@@ -1,0 +1,10 @@
+.login_fill{
+    width: 398px;
+    color: #666;
+}
+.login_salutation{
+    text-align: start;
+}
+.login_salutation p{
+    margin: 0;
+}
