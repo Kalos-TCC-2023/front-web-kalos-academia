@@ -1,3 +1,8 @@
+.login_container{
+    width: 50vw;
+    height: 50vh;
+    justify-content: space-between;
+}
 .login_fill{
     width: 398px;
     color: #666;
@@ -7,4 +12,22 @@
 }
 .login_salutation p{
     margin: 0;
+}
+.login_page{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.login_img_kalos_container{
+    height: 100%;
+    width: 90vw;   
+}
+.copyright_kalos{
+    color: #666;
+}
+.ant-btn-primary {
+    background-color: rgb(28, 27, 27);
+}
+.ant-btn:hover{
+    background-color: rgb(28, 27, 27);
 }

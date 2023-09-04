@@ -1,10 +1,15 @@
 import React from 'react'
+import { UserOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
+import './TextField.css'
 
-export const TextField = (nameText, size, placeholder) => {
+
+export const TextField = ({textName, placeholder, prefixIcon}) => {
   return (
     <div className='textField_component'>
-        <Input placeholder="default size" prefix={<UserOutlined />} />
+        <p className='textNameForInput'>{textName}</p>
+        <Input size="large" placeholder={placeholder} prefix={<UserOutlined />} />
     </div>
   )
 }
+
