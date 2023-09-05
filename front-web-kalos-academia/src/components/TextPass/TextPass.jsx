@@ -7,7 +7,7 @@ export const TextPass = () => {
   return (
     <div>
         <p className='textNameForInput'>Senha</p>
-        <Input.Password placeholder="senha" prefix={<LockOutlined />} />
+        <Input.Password placeholder="senha" prefix={<LockOutlined />} size='large' />
     </div>
   )
 }

@@ -11,35 +11,43 @@ import './LoginPage.css'
 export const LoginPage = () => {
     return (
         <div className='login_page'>
-            <div className="login_container">
-                <Space className='logotipo_kalos' size={10}>
-                    <img className='logo-kalos' src={logo_kalos} />
-                    <p>KALOS</p>
-                </Space>
-                <div className="login_fill">
-                    <div className="login_salutation">
-                        <p>SEJA BEM VINDO A KALOS!</p>
-                        <p>Faça login e comece a administrar seu negocio fitness!</p>
+            <div className="align_itens_container">
+                <div className="login_container">
+                    <Space className='logotipo_kalos' size={10}>
+                        <img className='logo-kalos' src={logo_kalos} />
+                        <p>KALOS</p>
+                    </Space>
+                    <div className="login_fill">
+                        <div className="login_salutation">
+                            <p className='login_welcome'>SEJA BEM VINDO A KALOS!</p>
+                            <p className='login_cta'>Faça login e comece a administrar seu negocio fitness!</p>
+                        </div>
+                        <Divider />
+                        <div className="login_fields">
+                            <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+                                <TextField textName='E-mail' placeholder='exemplo@gmail.com' />
+                                <TextPass />
+                            </Space>
+                            <Space size={55}>
+                                {/* ROTAS */}
+                                <p>esqueci a senha</p>
+                                <p>Sou cliente e quero fazer parte</p>
+                            </Space>
+                        </div>
+                        <div className="login_button_register">
+                            <ButtonPrimary nameButton="Entrar" size='large' />
+                            <p>É uma academia e não possui uma conta?</p>
+                            <p> Faça seu cadastro!</p>
+                        </div>
+                        
                     </div>
-                    <Divider />
-                    <div className="login_fields">
-                        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-                            <TextField textName='E-mail' placeholder='exemplo@gmail.com' />
-                            <TextPass />
-                        </Space>
-                        <Space size={55}>
-                            {/* ROTAS */}
-                            <p>esqueci a senha</p>
-                            <p>Sou cliente e quero fazer parte</p>
-                        </Space>
-                    </div>
-                    <ButtonPrimary />
+                    <p className='copyright_kalos'>Copyright ©2023 Produced by Kalos Tecnologia Fitness Ltda.</p>
                 </div>
-                <p className='copyright_kalos'>Copyright ©2023 Produced by Kalos Tecnologia Fitness Ltda.</p>
+                <div className="login_img_kalos_container">
+                    <img className='img_kalos_login' src={login_img} />
+                </div>
             </div>
-            <div className="login_img_kalos_container">
-                <img className='img_kalos_login' src={login_img} />
-            </div>
+
         </div>
     )
 }

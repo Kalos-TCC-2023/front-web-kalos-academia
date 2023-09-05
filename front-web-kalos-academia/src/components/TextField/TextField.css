@@ -1,7 +1,11 @@
-p{
-    margin: 0;
+p {
+  margin: 0;
 }
-.textNameForInput{
-    text-align: start;
-    font-weight: 600;
+.textNameForInput {
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  text-align: start;
+  font-weight: 600;
 }
