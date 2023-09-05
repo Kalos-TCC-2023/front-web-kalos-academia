@@ -57,9 +57,7 @@
   border: 1px solid #2E2E2E;
 }
 
-.ant-btn-primary:hover {
-  background-color: rgb(28, 27, 27);
-}
+
 .logotipo_kalos {
   text-align: start;
   font-family: Montserrat;
@@ -74,6 +72,9 @@
   font-family: Montserrat;
   font-size: 13px;
   font-weight: 400;
+}
+.route_register{
+    text-decoration: none;
 }
 /* @media only screen and (max-width: 480px) {
   img {
