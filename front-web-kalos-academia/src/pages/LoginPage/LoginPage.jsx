@@ -1,12 +1,13 @@
 import React,  { useState } from 'react'
-import { Divider, Space } from 'antd'
+import { Divider, Space, Input } from 'antd'
+import { LockOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { TextField } from '../../components/TextField/TextField'
-import { TextPass } from '../../components/TextPass/TextPass'
 import { ButtonPrimary } from '../../components/Button/ButtonPrimary'
 import login_img from './img/kalos-login.png'
 import logo_kalos from './img/logo-tipo-kalos.png'
 import './LoginPage.css'
+import '../../components/TextField/TextField.css'
 
 export const LoginPage = () => {
 
@@ -17,7 +18,19 @@ export const LoginPage = () => {
         const { value } = e.target
         
         setEmail(value)
-        console.log(email)
+    }
+
+    const handleLoginUser = () =>{
+        if( email == '' || password == '' ){
+            console.log('erro')
+            console.log(email, password)
+        } else {
+            const user = {
+            email, password
+            }
+            console.log(user)
+        }
+        
     }
     
     return (
@@ -37,7 +50,8 @@ export const LoginPage = () => {
                         <div className="login_fields">
                             <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
                                 <TextField textName='E-mail' placeholder='exemplo@gmail.com' text={email} handleChange={handleChange}/>
-                                <TextPass />
+                                <p className='textNameForInput'>Senha</p>
+                                <Input.Password placeholder="senha" prefix={<LockOutlined />} size='large' value={password} onChange={e => setPassword(e.target.value)}/>
                             </Space>
                             <Space size={55}>
                                 <Link to='/esqueciSenha'>esqueci a senha</Link>
@@ -45,7 +59,7 @@ export const LoginPage = () => {
                             </Space>
                         </div>
                         <div className="login_button_register">
-                            <ButtonPrimary nameButton="Entrar" size='large' />
+                            <ButtonPrimary nameButton="Entrar" size='large' onClickFuction={handleLoginUser}/>
                             <p>É uma academia e não possui uma conta?</p>
                             <Link className='route_register' to='/cadastro'> Faça seu cadastro!</Link>
                         </div>
