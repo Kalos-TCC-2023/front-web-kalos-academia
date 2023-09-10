@@ -1,0 +1,36 @@
+.fiels_reset{
+    display: flex;
+    align-items: center;
+    gap: 39px;
+    margin-top: 15px;
+}
+.fiels_reset input{
+    width: 327px;
+}
+.email{
+    margin-top: 15px;
+}
+.email input{
+    width: 327px;
+}
+.description_form{
+    color: #666;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+}
+.status_corporation{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.status{
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    background-color: #00FE90;
+}
+
+
+

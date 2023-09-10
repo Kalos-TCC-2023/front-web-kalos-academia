@@ -2,6 +2,7 @@ p {
   margin: 0;
 }
 .textNameForInput {
+  color: #666;
   font-family: Inter;
   font-size: 14px;
   font-style: normal;

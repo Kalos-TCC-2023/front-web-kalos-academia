@@ -2,6 +2,7 @@ import React from 'react'
 import { ProfileCorporationForm } from '../../components/ProfileCorporationForm/ProfileCorporationForm'
 import { ContactCorporationForm } from '../../components/ContactCorporationForm/ContactCorporationForm'
 import { DataCorporationForm } from '../../components/DataCorporationForm/DataCorporationForm'
+import { ArrowRightOutlined } from '@ant-design/icons' 
 
 import './RegisterPage.css'
 
@@ -17,10 +18,10 @@ export const RegisterPage = () => {
         </div>
         <div className="steps_itens">
           <div className="steps_fields">
-            Forms
+            <DataCorporationForm />
           </div>
           <div className="next_form">
-            next
+            <ArrowRightOutlined style={{ fontSize: '25px' }} onClick={() => console.log('click')}/>
           </div>
         </div>
 

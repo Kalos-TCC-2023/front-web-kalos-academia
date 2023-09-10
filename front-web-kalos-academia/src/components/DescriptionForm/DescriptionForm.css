@@ -1,0 +1,16 @@
+.title {
+    background: -webkit-linear-gradient(180deg, #00fe91 0%, #20fff7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: 600;
+}
+.description {
+    color: #666;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
