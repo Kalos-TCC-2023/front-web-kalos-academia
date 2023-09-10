@@ -7,14 +7,14 @@ function App() {
   return (
     <div className='App'>
       <Helmet>
-        <title>Kalos - para sua academia</title>
-        <meta 
+        <title>Kalos - Login</title>
+        <meta
           name='description'
           content='Aplicação web para academias'
         />
         <meta name='keywords' content='Academias, gerenciamento, alunos, fitness' />
       </Helmet>
-      <LoginPage/>
+        <LoginPage />
     </div>
   )
 }

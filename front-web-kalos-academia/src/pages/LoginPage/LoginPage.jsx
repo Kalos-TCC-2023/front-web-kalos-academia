@@ -1,4 +1,4 @@
-import React,  { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Divider, Space, Input } from 'antd'
 import { LockOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
@@ -13,26 +13,41 @@ export const LoginPage = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [forgotPassPage, setforgotPassPage] = useState(false)
+    const toforgotPass = forgotPassPage ? '/esqueciSenha' : ''
 
     const handleChange = (e) => {
         const { value } = e.target
-        
         setEmail(value)
     }
 
-    const handleLoginUser = () =>{
-        if( email == '' || password == '' ){
+    const handleLoginUser = () => {
+        if (email == '' || password == '') {
             console.log('erro')
             console.log(email, password)
         } else {
             const user = {
-            email, password
+                email, password
             }
             console.log(user)
         }
-        
+
     }
+
+    const refP = useRef()
     
+    const handleForgotPassword = () => {
+
+        if(email == ''){
+            refP.current.style.display = 'flex'
+        } else {
+            console.log('ok')
+            setforgotPassPage(true).forceUpdate()
+        }
+
+    }
+
+
     return (
         <div className='login_page'>
             <div className="align_itens_container">
@@ -49,21 +64,25 @@ export const LoginPage = () => {
                         <Divider />
                         <div className="login_fields">
                             <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-                                <TextField textName='E-mail' placeholder='exemplo@gmail.com' text={email} handleChange={handleChange}/>
-                                <p className='textNameForInput'>Senha</p>
-                                <Input.Password placeholder="senha" prefix={<LockOutlined />} size='large' value={password} onChange={e => setPassword(e.target.value)}/>
+                                <div className="email_fields">
+                                    <TextField textName='E-mail' placeholder='exemplo@gmail.com' text={email} handleChange={handleChange} />
+                                    <p className='inform_email' ref={refP}>Por favor informe o e-mail para fazer a troca</p>
+                                </div>
+                                <div className="passowrd_fields">
+                                    <p className='textNameForInput'>Senha</p>
+                                    <Input.Password placeholder="senha" prefix={<LockOutlined />} size='large' value={password} onChange={e => setPassword(e.target.value)} />
+                                </div>
                             </Space>
                             <Space size={55}>
-                                <Link to='/esqueciSenha'>esqueci a senha</Link>
+                                <Link to={toforgotPass} onClick={handleForgotPassword}>esqueci a senha</Link>
                                 <p>Sou cliente e quero fazer parte</p>
                             </Space>
                         </div>
                         <div className="login_button_register">
-                            <ButtonPrimary nameButton="Entrar" size='large' onClickFuction={handleLoginUser}/>
+                            <ButtonPrimary nameButton="Entrar" size='large' onClickFuction={handleLoginUser} />
                             <p>É uma academia e não possui uma conta?</p>
                             <Link className='route_register' to='/cadastro'> Faça seu cadastro!</Link>
                         </div>
-                        
                     </div>
                     <p className='copyright_kalos'>Copyright ©2023 Produced by Kalos Tecnologia Fitness Ltda.</p>
                 </div>
@@ -71,7 +90,6 @@ export const LoginPage = () => {
                     <img className='img_kalos_login' src={login_img} />
                 </div>
             </div>
-
         </div>
     )
 }

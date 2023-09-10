@@ -1,0 +1,26 @@
+.register_page_steps{
+    display: flex;
+    width: 100%;
+    display: flex;
+}
+.steps_itens{
+    margin-left: 57px;
+    margin-top: 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.next_form{
+    width: 55rem;
+    text-align: end;
+    margin-bottom: 52px;
+}
+.img{
+    display: grid;
+    place-items: center;
+    width: 500px;
+    height: 100vh;
+    background-image: url(./img/background_register_page.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
