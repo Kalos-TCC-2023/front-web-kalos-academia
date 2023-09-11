@@ -18,6 +18,9 @@
     display: flex;
     gap: 16px;
 }
+.visible_fiels{
+    display: none;
+}
 .fiels{
     width: 398px;
     height: 192px;
@@ -27,4 +30,14 @@
 }
 .userEmail{
     font-weight: bold;
+}
+.fiels_verification{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.verification{
+    display: none;
+    color: red;
 }
