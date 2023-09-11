@@ -4,11 +4,11 @@ import { Input } from 'antd';
 import './TextField.css'
 
 
-export const TextField = ({textName, placeholder, prefixIcon, text, handleChange}) => {
+export const TextField = ({textName, placeholder, prefixIcon, text, handleChange, status}) => {
   return (
     <div className='textField_component'>
         <p className='textNameForInput'>{textName}</p>
-        <Input size="large" placeholder={placeholder} prefix={<UserOutlined />} value={text} onChange={handleChange}/>
+        <Input size="large" placeholder={placeholder} prefix={<UserOutlined />} status={status} value={text} onChange={handleChange}/>
     </div>
   )
 }

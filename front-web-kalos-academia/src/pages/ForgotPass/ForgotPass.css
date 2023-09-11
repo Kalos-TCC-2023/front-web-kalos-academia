@@ -1,0 +1,30 @@
+.forgot_password{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 55px;
+}
+.forgot_password_instructions{
+    text-align: center;
+    color: #666;
+}
+.forgot_password_instructions p {
+    text-align: center;
+    font-size: 14px;
+}
+.forgot_passowrd_token_fiels{
+    display: flex;
+    gap: 16px;
+}
+.fiels{
+    width: 398px;
+    height: 192px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.userEmail{
+    font-weight: bold;
+}

@@ -13,6 +13,7 @@ export const LoginPage = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [statusInput, setStatusInput] = useState('')
     const [forgotPassPage, setforgotPassPage] = useState(false)
     const toforgotPass = forgotPassPage ? '/esqueciSenha' : ''
 
@@ -22,16 +23,18 @@ export const LoginPage = () => {
     }
 
     const handleLoginUser = () => {
-        if (email == '' || password == '') {
-            console.log('erro')
+        if (email == '') {
+            setStatusInput('error')
             console.log(email, password)
+        } else if (password == ''){
+            setStatusInput('error')
         } else {
+            setStatusInput('')
             const user = {
                 email, password
             }
             console.log(user)
         }
-
     }
 
     const refP = useRef()
@@ -41,10 +44,9 @@ export const LoginPage = () => {
         if(email == ''){
             refP.current.style.display = 'flex'
         } else {
-            console.log('ok')
+            localStorage.setItem('userEmail', email)
             setforgotPassPage(true).forceUpdate()
         }
-
     }
 
 
@@ -65,12 +67,12 @@ export const LoginPage = () => {
                         <div className="login_fields">
                             <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
                                 <div className="email_fields">
-                                    <TextField textName='E-mail' placeholder='exemplo@gmail.com' text={email} handleChange={handleChange} />
+                                    <TextField textName='E-mail' status={statusInput} placeholder='exemplo@gmail.com' text={email} handleChange={handleChange} />
                                     <p className='inform_email' ref={refP}>Por favor informe o e-mail para fazer a troca</p>
                                 </div>
                                 <div className="passowrd_fields">
                                     <p className='textNameForInput'>Senha</p>
-                                    <Input.Password placeholder="senha" prefix={<LockOutlined />} size='large' value={password} onChange={e => setPassword(e.target.value)} />
+                                    <Input.Password placeholder='Senha' status={statusInput} prefix={<LockOutlined />} size='large' value={password} onChange={e => setPassword(e.target.value)} />
                                 </div>
                             </Space>
                             <Space size={55}>
