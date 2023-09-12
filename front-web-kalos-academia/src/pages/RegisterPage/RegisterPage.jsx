@@ -18,7 +18,8 @@ export const RegisterPage = () => {
         </div>
         <div className="steps_itens">
           <div className="steps_fields">
-            <DataCorporationForm />
+            {/* <DataCorporationForm /> */}
+            < ProfileCorporationForm />
           </div>
           <div className="next_form">
             <ArrowRightOutlined style={{ fontSize: '25px' }} onClick={() => console.log('click')}/>

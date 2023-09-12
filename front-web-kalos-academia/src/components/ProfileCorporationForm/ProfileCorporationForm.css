@@ -1,0 +1,25 @@
+.profile_corporation_data_basic{
+    display: flex;
+    gap: 32px
+}
+.profile_corporation_data_basic Input{
+    width: 309px;
+}
+.display_picture{
+    height: 200px;
+    width: 200px;
+    background-color: slategray;
+}
+.name_description{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+.category_corporation .DropDownMenu{
+    width: 210px;
+    display: flex;
+    gap: 20px;
+    text-align: start;
+    margin-top: 20px;
+}
