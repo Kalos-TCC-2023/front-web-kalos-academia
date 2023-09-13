@@ -2,24 +2,14 @@ import React, { useState } from 'react'
 import { DownOutlined } from '@ant-design/icons';
 import { Dropdown, Space, Button } from 'antd'
 
-export const DropDownMenu = ({ onClickFuction, nameDropDown, items, className }) => {
+export const DropDownMenu = ({ onClickFuction, nameDropDown, items, className, itemSelected }) => {
 
-    const [itemSelected, setItemSelected] = useState(nameDropDown)
-    const checkButton = itemSelected == undefined ? setItemSelected(nameDropDown) : console.log('ok')
+    // ENVIAR ESTADOS PARA PROFILE CORPORATION
 
-    const handleMenuClick = (item) => {
-        setItemSelected(item.key)
-        console.log(itemSelected)
-        console.log('Item', item)
-      };
-
-    // const handleMenuClick = (e) => {
-    //     console.log('click', e);
-    // };
 
     const menuProps = {
         items,
-        onClick: handleMenuClick,
+        onClick: onClickFuction,
     }
 
     const handleButtonClick = (e) => {
@@ -28,7 +18,7 @@ export const DropDownMenu = ({ onClickFuction, nameDropDown, items, className })
 
     return (
         <div>
-            <Dropdown className={className} menu={menuProps} onClick={handleMenuClick}>
+            <Dropdown className={className} menu={menuProps} onClick={onClickFuction}>
                 <Button>
                     <Space size={100}>
                         {itemSelected}

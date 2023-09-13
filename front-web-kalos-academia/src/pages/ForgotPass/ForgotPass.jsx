@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import { Helmet } from 'react-helmet';
 import { InputNumber, Input } from 'antd';
 import { ButtonPrimary } from '../../components/Button/ButtonPrimary';
 import './ForgotPass.css'
@@ -45,6 +46,9 @@ export const ForgotPass = () => {
 
   return (
     <div className='forgot_password'>
+      <Helmet>
+        <title>Kalos - Recuperação de Senha</title>
+      </Helmet>
       <div className='forgot_password_instructions'>
         <h1>Insira o código de verificação</h1>
         <p>Por favor verifique o código de 5 dígitos que foi enviado para o e-mail <span className='userEmail'>{userEmail}</span> para efetuar a troca da senha.</p>

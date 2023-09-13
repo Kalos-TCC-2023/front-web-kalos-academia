@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Dropdown, Input } from 'antd';
+import { Input, ColorPicker } from 'antd';
 const { TextArea } = Input;
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
 import './ProfileCorporationForm.css'
@@ -10,7 +10,26 @@ export const ProfileCorporationForm = () => {
 
   const [nameCorporation, setNameCorporation] = useState('')
   const [descripitionCorporation, setDescripitionCorporation] = useState('')
+  const [colorPrimary, setColorPrimary] = useState('#008CFF')
+  const [colorSecondary, setColorSecondary] = useState('#008CFF')
+  const [categorySelected, setCategorySelected] = useState('Categoria')
+  const [tagSelected, setTagSelected] = useState('Tags')
+  const checkButtonCategory = categorySelected == undefined ? setCategorySelected('Categoria') : true
+  const checkButtonTag = tagSelected == undefined ? setTagSelected('Tags') : true
+
   
+  // VALIDAÇÃO PARA API
+
+  const profileCorporation = {
+    'name': nameCorporation,
+    'description': descripitionCorporation,
+    'category': categorySelected,
+    'tag': tagSelected,
+    'color_primary': colorPrimary,
+    'color_secondary': colorSecondary
+  }
+
+  console.log('profileCorporation', profileCorporation)
 
   const items = [
     {
@@ -31,8 +50,37 @@ export const ProfileCorporationForm = () => {
     }
   ]
 
+  const items_tags = [
+    {
+      label: 'Academia',
+      key: 'Academia'
+    },
+    {
+      label: 'Crossfit',
+      key: 'Crossfit'
+    },
+    {
+      label: 'Musculação',
+      key: 'Musculação'
+    },
+    {
+      label: 'Natação',
+      key: 'Natação'
+    }
+  ]
+
+  const handleTagClick = (item) => {
+    setTagSelected(item.key)
+    console.log(tagSelected)
+    console.log('Item', item)
+  };
   
 
+  const handleCategoryClick = (item) => {
+      setCategorySelected(item.key)
+      console.log(categorySelected)
+      console.log('Item', item)
+    };
 
 
   return (
@@ -49,16 +97,52 @@ export const ProfileCorporationForm = () => {
           </div>
           <div className='description_corporation'>
             <p className='textNameForInput'>Descrição</p>
-            <TextArea onChange={(value) => setDescripitionCorporation(value.target.value)} placeholder="Controlled autosize" autoSize={{ minRows: 4, maxRows: 5, }}
+            <TextArea className='textarea' onChange={(value) => setDescripitionCorporation(value.target.value)} placeholder="Academia totalmente focada no aluno" autoSize={{ minRows: 4, maxRows: 5, }}
             />
           </div>
         </div>
         <div className="category_corporation">
-          <DropDownMenu className='DropDownMenu' nameDropDown='Categoria' items={items} />
+          <p className='textNameForInput'>Categoria do Negócio</p>
+          <DropDownMenu className='DropDownMenu' items={items} itemSelected={categorySelected} onClickFuction={handleCategoryClick}/>
         </div>
       </div>
       <div className="tag_colors">
-
+        <div className="tags_corporation">
+          <p className='textNameForInput'>Tags</p>
+          <DropDownMenu className='DropDownMenu' items={items_tags} itemSelected={tagSelected} onClickFuction={handleTagClick}/>
+        </div>
+        <div className="colors_corporation">
+          <div className='color_primary'>
+            <p className='textNameForInput'>Cor primaria</p>
+            <div className="description_color_picker">
+              <ColorPicker showText
+                size='large'
+                value={colorPrimary}
+                onChangeComplete={(color) => {
+                  setColorPrimary(color.toHexString())
+                }}
+              />
+              <p className='description_color_picker'>
+                Usamos a cor primaria para personalizar a cor de seus ícones e botões
+              </p>
+            </div>
+          </div>
+          <div className='color_secondary'>
+            <p className='textNameForInput'>Cor Secundaria</p>
+            <div className="description_color_picker">
+              <ColorPicker showText
+                size='large'
+                value={colorSecondary}
+                onChangeComplete={(color) => {
+                  setColorSecondary(color.toHexString())
+                }}
+              />
+              <p className='description_color_picker'>
+                Usamos a cor primaria para personalizar a cor de seus ícones e botões
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

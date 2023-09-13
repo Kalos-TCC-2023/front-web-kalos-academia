@@ -1,0 +1,9 @@
+.day_week_sunday{
+    display: flex;
+    gap: 50px;
+    color: #606060;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 600;
+    align-items: center;
+}

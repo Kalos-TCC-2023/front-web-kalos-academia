@@ -1,9 +1,14 @@
+.profile_corporation_form{
+    gap: 32px;
+    display: flex;
+    flex-direction: column;
+}
 .profile_corporation_data_basic{
     display: flex;
     gap: 32px
 }
 .profile_corporation_data_basic Input{
-    width: 309px;
+    width: 399px;
 }
 .display_picture{
     height: 200px;
@@ -13,13 +18,28 @@
 .name_description{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    
+    justify-content: space-between;  
 }
 .category_corporation .DropDownMenu{
-    width: 210px;
+    width: 100%;
     display: flex;
-    gap: 20px;
     text-align: start;
-    margin-top: 20px;
+}
+.tag_colors{
+    display: flex;
+    gap: 16px;
+}
+.description_color_picker{
+    display: flex;
+    font-size: 12px;
+    gap: 5px;
+}
+.description_color_picker p{
+    width: 200px;
+    color: #666;
+    font-family: Montserrat;
+}
+.colors_corporation{
+    display: flex;
+    gap: 30px;
 }
