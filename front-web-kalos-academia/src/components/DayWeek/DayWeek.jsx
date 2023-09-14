@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Switch, TimePicker } from 'antd'
 import './DayWeek.css'
 
 export const DayWeek = ({dayOfWeek, onChangeFunction, stateOfOrganization}) => {
+
+    console.log(dayOfWeek)
+
+    
+
+
     return (
         <div id='key' className='day_week'>
             <div className="day_switch">

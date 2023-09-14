@@ -18,7 +18,6 @@ export const RegisterPage = () => {
 
   const description = 'This is a description.';
 
-  console.log(isFirstStep)
 
   return (
     <div className="register_page">

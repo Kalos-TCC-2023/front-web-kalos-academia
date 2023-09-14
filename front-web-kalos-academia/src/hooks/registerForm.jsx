@@ -13,8 +13,6 @@ export function registerForm(steps){
 
     }
 
-    console.log(currentStep)
-
     return {
         currentStep,
         currentComponent: steps[currentStep],
