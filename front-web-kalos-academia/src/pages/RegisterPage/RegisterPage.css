@@ -35,17 +35,21 @@
 
 /*CONFIG STEPS ANT*/
 .ant-steps-item-process .ant-steps-item-icon {
-    background: #35af00 !important;
+    background: #00FE90 !important;
     border-color: #ffffff00 !important;
 }
 .ant-steps-item-title {
     color: #fdfdfdd9 !important;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 400;
 }
 .ant-steps-item-finish .ant-steps-item-container .ant-steps-item-tail:after {
-    background-color: #35af00 !important;
+    background-color: #00FE90 !important;
+    height: 105px !important;
 }
 .ant-steps .ant-steps-item-finish .ant-steps-item-icon {
-    background-color: #d7f5ca;
+    background-color: #bdecd8;
     border-color: #d7f5ca;
 }
 .ant-steps .ant-steps-item-description {
@@ -53,8 +57,12 @@
     font-size: 14px;
 }
 .ant-steps-item-wait .ant-steps-item-icon {
-    background-color: #35af00 !important;
+    background-color: #00FE90 !important;
     border-color: #00000040;
+}
+.ant-steps-item-container{
+    height: 150px;
+    gap: 80px !important;
 }
 svg:not(:root) {
     overflow-clip-margin: content-box;

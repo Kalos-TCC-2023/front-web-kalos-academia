@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
 import { Input } from 'antd';
+import { TextPass } from '../TextPass/TextPass';
+import 'animate.css'
 import '../../components/TextField/TextField.css'
 import './DataCorporationForm.css'
 
 export const DataCorporationForm = () => {
 
+    const [cnpj, setCnpj] = useState('')
+    const [senha, setSenha] = useState('')
+    const [email, setEmail] = useState('')
+
     const [statusCorporation, setStatusCorporation] = useState()
 
     return (
-        <div className='data_corporation_form'>
+        <div className='data_corporation_form animate__animated animate__fadeInRight'>
             <div className='description_form'>
                 <DescriptionForm title='VAMOS COMEÇAR' description='Na Kalos você conseguirá elevar o nivel de treino de seus clientes em qualquer lugar e a qualquer hora!' />
                 <div className='data_corporation_form_fields'>
@@ -17,7 +23,7 @@ export const DataCorporationForm = () => {
                     <div className='fiels_reset'>
                         <div className='cnpj'>
                             <p className='textNameForInput'>CNPJ</p>
-                            <Input size='default size' placeholder='00.000.000/0000-00' />
+                            <Input size='default size' placeholder='00.000.000/0000-00' value={cnpj} onChange={cnpj => setCnpj(cnpj.target.value)} />
                         </div>
                         <div className='status_corporation'>
                             <div className='status'></div>
@@ -44,11 +50,17 @@ export const DataCorporationForm = () => {
                             <Input size="default size" disabled />
                         </div>
                     </div>
-                    <div className="email">
-                        <p className='textNameForInput'>E-mail</p>
-                        <Input size="default size" />
-                        
+                    <div className='fiels_reset email_passowrd'>
+                        <div className="email">
+                            <p className='textNameForInput'>E-mail</p>
+                            <Input size="default size" value={email} onChange={email => setEmail(email.target.value)}/>
+
+                        </div>
+                        <div className="senha">
+                            <TextPass password={senha} size='default size' onChange={senha => setSenha(senha.target.value)} />
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

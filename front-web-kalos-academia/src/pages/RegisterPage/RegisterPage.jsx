@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { Steps } from 'antd';
 import { ProfileCorporationForm } from '../../components/ProfileCorporationForm/ProfileCorporationForm'
 import { ContactCorporationForm } from '../../components/ContactCorporationForm/ContactCorporationForm'
 import { DataCorporationForm } from '../../components/DataCorporationForm/DataCorporationForm'
@@ -9,6 +8,7 @@ import { OperationCorporationForm } from '../../components/OperationCorporationF
 import { registerForm } from '../../hooks/registerForm'
 import { ButtonPrimary } from '../../components/Button/ButtonPrimary'
 import './RegisterPage.css'
+import { Step } from '../../components/Steps/Step'
 
 export const RegisterPage = () => {
 
@@ -16,8 +16,7 @@ export const RegisterPage = () => {
 
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep } = registerForm(formComponent)
 
-  const description = 'This is a description.';
-
+  
 
   return (
     <div className="register_page">
@@ -27,24 +26,7 @@ export const RegisterPage = () => {
       <div className="register_page_steps">
         <div className="img_steps">
           <div className="img">
-            <Steps className='steps' 
-              direction="vertical"
-              current={1}
-              items={[
-                {
-                  title: 'Finished',
-                  description,
-                },
-                {
-                  title: 'In Progress',
-                  description,
-                },
-                {
-                  title: 'Waiting',
-                  description,
-                },
-              ]}
-            />
+            < Step currentStep={currentStep} />
           </div>
         </div>
         <div className="steps_itens">

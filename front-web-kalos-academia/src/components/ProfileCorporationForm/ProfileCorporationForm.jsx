@@ -84,7 +84,7 @@ export const ProfileCorporationForm = () => {
 
 
   return (
-    <div className='profile_corporation_form'>
+    <div className='profile_corporation_form animate__animated animate__fadeInRight'>
       <DescriptionForm title='PERFIL DA EMPRESA' description='Preencha os dados para seu perfil, ele ficará visível para clientes e usuários do aplicativo:' />
       <div className="profile_corporation_data_basic">
         <div className="display_picture">

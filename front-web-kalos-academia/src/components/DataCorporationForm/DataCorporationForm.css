@@ -4,10 +4,10 @@
     gap: 39px;
     margin-top: 15px;
 }
-.fiels_reset input{
+.fiels_reset input, .senha{
     width: 327px;
 }
-.email{
+.email, .senha{
     margin-top: 15px;
 }
 .email input{

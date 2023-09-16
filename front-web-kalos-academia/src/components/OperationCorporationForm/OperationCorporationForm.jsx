@@ -8,12 +8,13 @@ export const OperationCorporationForm = () => {
 
 
     const onChange = (checked, day) => {
-        console.log(`switch to ${checked}`)
+        // console.log(`switch to ${checked}`)
+        return
     }
 
 
     return (
-        <div className='operation_corporation_form'>
+        <div className='operation_corporation_form animate__animated animate__fadeInRight'>
             <DescriptionForm title='HORARIO DE FUNCIONAMENTO' description='Preencha de acordo com os horários de funcionamento do seu negócio, isso ficará disponivel para consulta do usuário' />
             <div className="operation_corporation_week_fields">
                 <DayWeek dayOfWeek='Domingo' onChangeFunction={(checked) => {console.log(`este switch to ${checked}`)}} stateOfOrganization='Aberto'/>
