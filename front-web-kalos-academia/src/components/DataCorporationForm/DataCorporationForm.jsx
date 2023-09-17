@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
 import { Input } from 'antd';
-import { TextPass } from '../TextPass/TextPass';
+import { TextPass } from '../TextPass/TextPass'
 import 'animate.css'
 import '../../components/TextField/TextField.css'
 import './DataCorporationForm.css'
-import apiSpeedio from '../../adapters/api';
+import apiSpeedio from '../../adapters/api'
 
 export const DataCorporationForm = () => {
 
@@ -18,23 +18,26 @@ export const DataCorporationForm = () => {
     const [cnae, setCnae] = useState('')
     const [statusCorporation, setStatusCorporation] = useState()
 
-
-    // token - 533cbdbb2cf0aed03b8b5f9ecc7f815b5651e576f8e4538abab09ddb3e1a5376
-
     useEffect(() => {
-        apiSpeedio.get(`buscarcnpj?cnpj=${cnpj}`
-        ).then(({data}) => {
+        if (cnpj === '' || cnpj.length < 14) {
+            return
+        } else {
+            apiSpeedio.get(`buscarcnpj?cnpj=${cnpj}`
+            ).then(({ data }) => {
 
-            console.log(data)
-            setAbertura(data['DATA ABERTURA'])
-            setCnae(data['CNAE PRINCIPAL CODIGO'])
-            setRazaoSocial(data['RAZAO SOCIAL'])
-            setCep(data['CEP'])
+                console.log(data)
+                setAbertura(data['DATA ABERTURA'])
+                setCnae(data['CNAE PRINCIPAL CODIGO'])
+                setRazaoSocial(data['RAZAO SOCIAL'])
+                setCep(data['CEP'])
 
-        }).catch((erro) => {
-            console.log(erro)
-        })
-    }, [cnpj])
+            }).catch((erro) => {
+                console.log(erro)
+            })
+        }
+
+    }, [])
+
 
     return (
         <div className='data_corporation_form '>
@@ -75,7 +78,7 @@ export const DataCorporationForm = () => {
                     <div className='fiels_reset email_passowrd'>
                         <div className="email">
                             <p className='textNameForInput'>E-mail</p>
-                            <Input size="default size" value={email} onChange={email => setEmail(email.target.value)}/>
+                            <Input size="default size" value={email} onChange={email => setEmail(email.target.value)} />
 
                         </div>
                         <div className="senha">
