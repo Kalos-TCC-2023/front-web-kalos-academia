@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
 import { Input } from 'antd';
 import { TextPass } from '../TextPass/TextPass';
 import 'animate.css'
 import '../../components/TextField/TextField.css'
 import './DataCorporationForm.css'
+import apiSpeedio from '../../adapters/api';
 
 export const DataCorporationForm = () => {
 
@@ -17,9 +18,23 @@ export const DataCorporationForm = () => {
     const [cnae, setCnae] = useState('')
     const [statusCorporation, setStatusCorporation] = useState()
 
-    const dataCorporation = {
-        
-    }
+
+    // token - 533cbdbb2cf0aed03b8b5f9ecc7f815b5651e576f8e4538abab09ddb3e1a5376
+
+    useEffect(() => {
+        apiSpeedio.get(`buscarcnpj?cnpj=${cnpj}`
+        ).then(({data}) => {
+
+            console.log(data)
+            setAbertura(data['DATA ABERTURA'])
+            setCnae(data['CNAE PRINCIPAL CODIGO'])
+            setRazaoSocial(data['RAZAO SOCIAL'])
+            setCep(data['CEP'])
+
+        }).catch((erro) => {
+            console.log(erro)
+        })
+    }, [cnpj])
 
     return (
         <div className='data_corporation_form '>
@@ -40,21 +55,21 @@ export const DataCorporationForm = () => {
                     <div className='fiels_reset'>
                         <div className="rz">
                             <p className='textNameForInput'>Razão Social</p>
-                            <Input size="default size" disabled />
+                            <Input size="default size" value={razaoSocial} disabled />
                         </div>
                         <div className="CNAE">
                             <p className='textNameForInput'>CNAE Principal</p>
-                            <Input size="default size" disabled />
+                            <Input size="default size" value={cnae} disabled />
                         </div>
                     </div>
                     <div className='fiels_reset'>
                         <div className="rz">
                             <p className='textNameForInput'>Abertura</p>
-                            <Input size="default size" disabled />
+                            <Input size="default size" value={abertura} disabled />
                         </div>
                         <div className="CEP">
                             <p className='textNameForInput'>CEP</p>
-                            <Input size="default size" disabled />
+                            <Input size="default size" value={cep} disabled />
                         </div>
                     </div>
                     <div className='fiels_reset email_passowrd'>

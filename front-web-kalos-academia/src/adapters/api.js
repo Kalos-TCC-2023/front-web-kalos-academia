@@ -1,7 +1,11 @@
 import axios from 'axios'
 
-const apiKalos = axios.create({
-    baseUrel: 'https://kaloscorp.cyclic.cloud'
+export const apiKalos = axios.create({
+    baseURL: 'https://kaloscorp.cyclic.cloud'
 })
 
-export default apiKalos
+const apiSpeedio = axios.create({
+    baseURL: 'https://api-publica.speedio.com.br'
+})
+
+export default apiSpeedio

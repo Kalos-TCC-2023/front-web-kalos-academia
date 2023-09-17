@@ -4,11 +4,9 @@ import './DayWeek.css'
 
 export const DayWeek = ({dayOfWeek, onChangeFunction, stateOfOrganization}) => {
 
-    console.log(dayOfWeek)
+    // console.log(dayOfWeek)
 
     
-
-
     return (
         <div id='key' className='day_week'>
             <div className="day_switch">

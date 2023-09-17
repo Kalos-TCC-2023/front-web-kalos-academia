@@ -17,6 +17,10 @@ export const RegisterPage = () => {
 
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep } = registerForm(formComponent)
 
+  const toSucessRegister = () => {
+    
+  }
+
   return (
     <div className="register_page">
       <Helmet>
