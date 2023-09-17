@@ -1,0 +1,31 @@
+.contact_corporation_form{
+    display: grid;
+    gap: 12px;
+}
+.contact, .cep_complemento_bairro, .rua_cidade_numero {
+    display: flex;
+    align-items: center;
+    gap: 29px;
+    margin-top: 10px;
+}
+.contact Input{
+    width: 309px;
+}
+.cep_complemento_bairro Input{
+    width: 210px;
+}
+.cep_complemento_bairro{
+    gap: 15px;
+}
+.rua input{
+    width: 427px;
+}
+.numero input{
+    width: 88px;
+}
+.links_social_media{
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

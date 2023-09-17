@@ -23,3 +23,7 @@ a:hover{
   color: #1B1B1B;
 
 }
+.ant-btn:hover{
+  background-color: antiquewhite !important;
+  border-color: antiquewhite !important;
+}

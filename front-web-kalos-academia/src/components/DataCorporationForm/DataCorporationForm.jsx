@@ -11,12 +11,19 @@ export const DataCorporationForm = () => {
     const [cnpj, setCnpj] = useState('')
     const [senha, setSenha] = useState('')
     const [email, setEmail] = useState('')
-
+    const [razaoSocial, setRazaoSocial] = useState('')
+    const [abertura, setAbertura] = useState('')
+    const [cep, setCep] = useState('')
+    const [cnae, setCnae] = useState('')
     const [statusCorporation, setStatusCorporation] = useState()
 
+    const dataCorporation = {
+        
+    }
+
     return (
-        <div className='data_corporation_form animate__animated animate__fadeInRight'>
-            <div className='description_form'>
+        <div className='data_corporation_form '>
+            <div className='description_form animate__animated animate__fadeInRight'>
                 <DescriptionForm title='VAMOS COMEÇAR' description='Na Kalos você conseguirá elevar o nivel de treino de seus clientes em qualquer lugar e a qualquer hora!' />
                 <div className='data_corporation_form_fields'>
                     <p className='description_form'>Inicialmente precisamos que você nos informe alguns dados sobre sua empresa:</p>

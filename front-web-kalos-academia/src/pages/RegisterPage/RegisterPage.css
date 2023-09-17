@@ -2,6 +2,7 @@
     display: flex;
     width: 100%;
     display: flex;
+    
 }
 .steps_itens{
     margin-left: 57px;
@@ -64,7 +65,7 @@
     height: 150px;
     gap: 80px !important;
 }
-svg:not(:root) {
+.ant-steps svg:not(:root) {
     overflow-clip-margin: content-box;
     overflow: hidden;
     color: #000000 !important;

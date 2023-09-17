@@ -1,5 +1,4 @@
 import React from 'react'
-import { Switch, TimePicker } from 'antd';
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
 import './OperationCorporationForm.css'
 import { DayWeek } from '../DayWeek/DayWeek';

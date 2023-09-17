@@ -138,7 +138,7 @@ export const ProfileCorporationForm = () => {
                 }}
               />
               <p className='description_color_picker'>
-                Usamos a cor primaria para personalizar a cor de seus ícones e botões
+              Usamos a cor secundária para personalizar sua capa de perfil
               </p>
             </div>
           </div>
