@@ -23,46 +23,21 @@ export const ContactCorporationForm = () => {
 
   useEffect(() => {
     if (cep === '' || cep.length < 8) {
-        return
+      return
     } else {
       axios.get(`https://viacep.com.br/ws/${cep}/json/`)
-      .then(({ data } ) => {
-            setRua(data.logradouro)
-            setBairro(data.bairro)
-            setCidade(data.localidade)
-            console.log(data)
+        .then(({ data }) => {
+          setRua(data.logradouro)
+          setBairro(data.bairro)
+          setCidade(data.localidade)
+          console.log(data)
 
         }).catch((erro) => {
-            console.log(erro)
+          console.log(erro)
         })
     }
 
-}, [cep])
-
-//   useEffect(() => {
-//     console.log(cep)
-//     if (cep === '') {
-      
-//         return
-//     } else {
-//       apiViaCep.get(`/ws/${cep}/json`).then((response) => {
-//         console.log(cep)
-//         console.log(response)
-//       })
-
-//       // apiViaCep.get(`${cep}/json/`
-//       //   ).then(({ data }) => {
-//       //     console.log(cep)
-//       //       console.log(data)
-
-//       //   }).catch((erro) => {
-//       //       console.log(erro)
-//       //   })
-//     }
-
-// }, [cep])
-
-
+  }, [cep])
 
   return (
     <div className='contact_corporation_form animate__animated animate__fadeInRight'>
@@ -95,7 +70,7 @@ export const ContactCorporationForm = () => {
             </div>
           </div>
           <div className="rua_cidade_numero">
-          <div className='rua'>
+            <div className='rua'>
               <p className='textNameForInput'>Rua</p>
               <Input size='default size' disabled value={rua} onChange={rua => setRua(rua.target.value)} />
             </div>

@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Switch, TimePicker } from 'antd'
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+
 import './DayWeek.css'
 
-export const DayWeek = ({dayOfWeek, onChangeFunction, stateOfOrganization}) => {
+export const DayWeek = ({ dayOfWeek, onChangeFunction, stateOfOrganization, setStateTime, atualState }) => {
 
-    // console.log(dayOfWeek)
+    dayjs.extend(customParseFormat)
+    const onChange = (time, timeString) => {
+        console.log(time, timeString)
+        setStateTime(timeString)
+        console.log('isto foi atualizado', atualState)
+    }
 
-    
     return (
         <div id='key' className='day_week'>
             <div className="day_switch">
@@ -14,14 +21,7 @@ export const DayWeek = ({dayOfWeek, onChangeFunction, stateOfOrganization}) => {
                 <Switch defaultChecked size='large' onChange={onChangeFunction} />
             </div>
             <span className='closedOrOpen'>{stateOfOrganization}</span>
-            <TimePicker.RangePicker size='default size' placeholder={['Inicio', 'Fim']}/>
+            <TimePicker.RangePicker size='default size' onChange={onChange} placeholder={['Inicio', 'Fim']} />
         </div>
     )
 }
-
-{/* <div className="day_week_sunday">
-                    <span className='day'>Domingo</span>
-                    <Switch defaultChecked size='large' onChange={onChange} />
-                    <span className='closedOrOpen'>Aberto</span>
-                    <TimePicker.RangePicker size='large' placeholder={['Inicio', 'Fim']}/>
-                </div> */}

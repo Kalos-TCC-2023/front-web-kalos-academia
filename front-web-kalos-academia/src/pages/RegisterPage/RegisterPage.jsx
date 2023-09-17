@@ -18,7 +18,7 @@ export const RegisterPage = () => {
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep } = registerForm(formComponent)
 
   const toSucessRegister = () => {
-    
+
   }
 
   return (
@@ -51,7 +51,6 @@ export const RegisterPage = () => {
               </div>
             ) : (
               <div className="next_form">
-                {/* <ArrowRightOutlined style={{ fontSize: '25px' }} onClick={(e) => changeStep(currentStep + 1, e)} /> */}
                 <ButtonPrimary shape="circle" nameButton={< SendOutlined />} size='large' />
               </div>)}
 
