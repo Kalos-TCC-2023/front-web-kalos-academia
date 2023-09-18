@@ -21,7 +21,7 @@ const formCorporationTemplate = {
   descricao: '',
   cor_primaria: '',
   cor_secundaria: '',
-  data_abertura: '2022-07-02',
+  data_abertura: '',
   razao_social: 'Empresa seria',
   facebook: '',
   whatsapp: '',
@@ -35,14 +35,19 @@ const formCorporationTemplate = {
   estado: 'SP',
   id_categoria: 2,
   status: 'Ativo',
-  tags: [1, 2]
+  tags: []
 }
+
+
 
 export const RegisterPage = () => {
 
   const [data, setData] = useState(formCorporationTemplate)
   console.log(data)
   const updateFielHandler = (key, value) => {
+    console.log(typeof(formCorporationTemplate.tags))
+    console.log(Object.values(formCorporationTemplate.tags))
+
     setData((prev) => {
       return { ...prev, [key]: value }
     })

@@ -3,38 +3,46 @@ import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
 import { Input } from 'antd';
 import { TextPass } from '../TextPass/TextPass'
 import 'animate.css'
+import moment from 'moment'
 import '../../components/TextField/TextField.css'
 import './DataCorporationForm.css'
 import axios from 'axios';
 
 export const DataCorporationForm = ({ data, updateFielHandler }) => {
 
-    console.log(data)
-
     const [cnpj, setCnpj] = useState('')
     const [senha, setSenha] = useState('')
     const [email, setEmail] = useState('')
-    const [razaoSocial, setRazaoSocial] = useState('Exemplo Razão Social')
-    const [abertura, setAbertura] = useState('2022-07-02')
-    const [cep, setCep] = useState('-')
-    const [cnae, setCnae] = useState('-')
+    const [razaoSocial, setRazaoSocial] = useState('')
+    const [abertura, setAbertura] = useState('')
+    const [cep, setCep] = useState('')
+    const [cnae, setCnae] = useState('')
     const [statusCorporation, setStatusCorporation] = useState('Ativo')
+
 
     useEffect(() => {
         if (cnpj === '' || cnpj.length < 14) {
             return
         } else {
-            axios.get(`https://api-publica.speedio.com.br/buscarcnpj?cnpj=${cnpj}`
+
+            const cnpjValidate = cnpj.replace(/[^0-9]/g, '')
+            updateFielHandler('cnpj', cnpjValidate)
+
+            // deve ir dentro da chamada da api
+            var data = moment("02/03/2018", "DD/MM/YYYY");
+            console.log(data.format("YYYY-MM-DD"));
+            const dataAberturaFormatada = data.format("YYYY-MM-DD")
+            updateFielHandler('data_abertura', dataAberturaFormatada)
+            //
+
+            axios.get(`https://api-publica.speedio.com.br/buscarcnpj?cnpj=${cnpjValidate}`
             ).then(({ data }) => {
 
-                console.log(data)
-                
-                // setAbertura(data['DATA ABERTURA'])
+                console.log(data['DATA ABERTURA'])
+                setAbertura(dataAberturaFormatada)
                 setCnae(data['CNAE PRINCIPAL CODIGO'])
                 setRazaoSocial(data['RAZAO SOCIAL'])
                 setCep(data['CEP'])
-                console.log(cnpj)
-                updateFielHandler('data_abertura', abertura)
                 updateFielHandler('cep', data['CEP'])
 
             }).catch((erro) => {
@@ -54,11 +62,11 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
                     <div className='fiels_reset'>
                         <div className='cnpj'>
                             <p className='textNameForInput'>CNPJ</p>
-                            <Input size='default size' placeholder='00.000.000/0000-00' value={cnpj || data.cnpj } onChange={(cnpj) => {
+                            <Input size='default size' placeholder='00.000.000/0000-00' value={cnpj || data.cnpj} onChange={(cnpj) => {
                                 updateFielHandler('cnpj', cnpj.target.value)
                                 setCnpj(cnpj.target.value)
                             }
-                            }  />
+                            } />
                         </div>
                         <div className='status_corporation'>
                             <div className='status'></div>
@@ -88,11 +96,14 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
                     <div className='fiels_reset email_passowrd'>
                         <div className="email">
                             <p className='textNameForInput'>E-mail</p>
-                            <Input size="default size" value={email || data.email } onChange={email => updateFielHandler('email', email.target.value)} />
+                            <Input size="default size" value={email || data.email} onChange={email => updateFielHandler('email', email.target.value)} />
 
                         </div>
                         <div className="senha">
-                            <TextPass password={senha || data.senha} size='default size' onChange={senha => updateFielHandler('senha', senha.target.value)} />
+                            <TextPass password={senha || data.senha} size='default size' onChange={senha => {
+                                setSenha(senha.target.value)
+                                updateFielHandler('senha', senha.target.value)
+                            }} />
                         </div>
                     </div>
 

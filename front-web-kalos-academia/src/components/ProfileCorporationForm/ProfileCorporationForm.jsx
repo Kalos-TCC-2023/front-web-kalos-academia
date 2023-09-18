@@ -16,6 +16,11 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   const [tagSelected, setTagSelected] = useState('Tags')
   const checkButtonCategory = categorySelected == undefined ? setCategorySelected('Categoria') : true
   const checkButtonTag = tagSelected == undefined ? setTagSelected('Tags') : true
+  const [tags, setTags] = useState([1,2,3])
+
+  console.log(tags)
+
+  
 
 
   const items = [
@@ -60,6 +65,8 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
     setTagSelected(item.key)
     console.log(tagSelected)
     console.log('Item', item)
+    Object.values(tags)
+    updateFielHandler('tags', tags)
   };
   
 

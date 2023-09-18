@@ -20,7 +20,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler }) => {
   const [facebook, setFacebook] = useState('')
   const [whatsapp, setWhatsapp] = useState('')
 
-  
+  console.log(data.razao_social)
 
   useEffect(() => {
     if (cep === '' || cep.length < 8) {
@@ -39,6 +39,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler }) => {
           updateFielHandler('cidade', data.localidade)
           updateFielHandler('logradouro', data.logradouro)
 
+
         }).catch((erro) => {
           console.log(erro)
         })
@@ -47,26 +48,49 @@ export const ContactCorporationForm = ({ data, updateFielHandler }) => {
   }, [cep])
 
 
-  useEffect(() => {
-    if(data.facebook === '') {
-      console.log('nao enviado')
-    } else {
-      console.log(data)
-      axios.post('https://beautiful-pike-trench-coat.cyclic.cloud/kalos/academia', {
-        data
-      }
-      ).then(({ data }) => {
-  
-        console.log(data)
-  
-      }).catch((erro) => {
-        console.log(erro)
-      })
-  
-    }
+  // useEffect(() => {
+  //   if (data.facebook === '') {
+  //     console.log('nao enviado')
+  //   } else {
+  //     console.log(data)
+  //     axios.post('http://10.107.144.6:8080/kalos/academia', {
+  //       nome: data.nome,
+  //       email: data.email,
+  //       senha: data.senha,
+  //       telefone: data.telefone,
+  //       cnpj: data.cnpj,
+  //       foto: data.foto,
+  //       descricao: data.descricao,
+  //       cor_primaria: data.cor_primaria,
+  //       cor_secundaria: data.cor_secundaria,
+  //       data_abertura: '2022-07-02',
+  //       razao_social: 'Empresa seria',
+  //       facebook: data.facebook,
+  //       whatsapp: data.whatsapp,
+  //       instagram: data.instagram,
+  //       logradouro: 'bluefit',
+  //       numero: data.numero,
+  //       bairro: 'bluefit',
+  //       complemento: data.complemento,
+  //       cep: data.cep,
+  //       cidade: 'bluefit',
+  //       estado: 'SP',
+  //       id_categoria: 2,
+  //       status: 'Ativo',
+  //       tags: data.tags
+  //     }
+  //     ).then(({ data }) => {
+
+  //       console.log(data)
+
+  //     }).catch((erro) => {
+  //       console.log(erro)
+  //     })
+
+  //   }
 
 
-  }, [facebook])
+  // }, [facebook])
 
 
   return (
@@ -89,14 +113,14 @@ export const ContactCorporationForm = ({ data, updateFielHandler }) => {
             <div className='cep'>
               <p className='textNameForInput'>CEP</p>
               <Input size='default size' placeholder='00000000' value={data.cep} onChange={(cep) => {
-                    setCep(cep.target.value)
-                    updateFielHandler('cep', cep.target.value)
-                }
-              }  />
+                setCep(cep.target.value)
+                updateFielHandler('cep', cep.target.value)
+              }
+              } />
             </div>
             <div className='complemento'>
               <p className='textNameForInput'>Complemento</p>
-              <Input size='default size' value={data.complemento} onChange={complemento => updateFielHandler('complemento',complemento.target.value)} />
+              <Input size='default size' value={data.complemento} onChange={complemento => updateFielHandler('complemento', complemento.target.value)} />
             </div>
             <div className='bairro'>
               <p className='textNameForInput'>Bairro</p>
