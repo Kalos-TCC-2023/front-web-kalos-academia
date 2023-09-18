@@ -7,16 +7,20 @@ import '../../components/TextField/TextField.css'
 import './DataCorporationForm.css'
 import apiSpeedio from '../../adapters/api'
 
-export const DataCorporationForm = () => {
+export const DataCorporationForm = ({ data, updateFielHandler }) => {
+
+    console.log(data)
 
     const [cnpj, setCnpj] = useState('')
     const [senha, setSenha] = useState('')
     const [email, setEmail] = useState('')
-    const [razaoSocial, setRazaoSocial] = useState('')
-    const [abertura, setAbertura] = useState('')
-    const [cep, setCep] = useState('')
-    const [cnae, setCnae] = useState('')
-    const [statusCorporation, setStatusCorporation] = useState()
+    const [razaoSocial, setRazaoSocial] = useState('Empresa divertida')
+    const [abertura, setAbertura] = useState('-')
+    const [cep, setCep] = useState('-')
+    const [cnae, setCnae] = useState('-')
+    const [statusCorporation, setStatusCorporation] = useState('Ativo')
+
+    
 
     useEffect(() => {
         if (cnpj === '' || cnpj.length < 14) {
@@ -38,6 +42,12 @@ export const DataCorporationForm = () => {
 
     }, [])
 
+    if(cnpj === '' || senha === '' ||  email === '' ||  senha === ''){
+        console.log('vazio')
+    } else {
+        
+    }
+
 
     return (
         <div className='data_corporation_form '>
@@ -48,7 +58,7 @@ export const DataCorporationForm = () => {
                     <div className='fiels_reset'>
                         <div className='cnpj'>
                             <p className='textNameForInput'>CNPJ</p>
-                            <Input size='default size' placeholder='00.000.000/0000-00' value={cnpj} onChange={cnpj => setCnpj(cnpj.target.value)} />
+                            <Input size='default size' placeholder='00.000.000/0000-00' value={cnpj || data.cnpj } onChange={cnpj => updateFielHandler('cnpj',cnpj.target.value)} />
                         </div>
                         <div className='status_corporation'>
                             <div className='status'></div>
@@ -68,21 +78,21 @@ export const DataCorporationForm = () => {
                     <div className='fiels_reset'>
                         <div className="rz">
                             <p className='textNameForInput'>Abertura</p>
-                            <Input size="default size" value={abertura} disabled />
+                            <Input size="default size" value={abertura} disabled onChange={abertura => updateFielHandler('data_abertura', abertura.target.value)} />
                         </div>
                         <div className="CEP">
                             <p className='textNameForInput'>CEP</p>
-                            <Input size="default size" value={cep} disabled />
+                            <Input size="default size" value={cep} disabled onChange={cep => updateFielHandler('cep', cep.target.value)} />
                         </div>
                     </div>
                     <div className='fiels_reset email_passowrd'>
                         <div className="email">
                             <p className='textNameForInput'>E-mail</p>
-                            <Input size="default size" value={email} onChange={email => setEmail(email.target.value)} />
+                            <Input size="default size" value={email || data.email } onChange={email => updateFielHandler('email', email.target.value)} />
 
                         </div>
                         <div className="senha">
-                            <TextPass password={senha} size='default size' onChange={senha => setSenha(senha.target.value)} />
+                            <TextPass password={senha || data.senha} size='default size' onChange={senha => updateFielHandler('senha', senha.target.value)} />
                         </div>
                     </div>
 

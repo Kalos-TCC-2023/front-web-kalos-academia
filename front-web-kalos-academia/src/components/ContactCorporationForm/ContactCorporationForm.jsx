@@ -8,15 +8,15 @@ import '../../components/TextField/TextField.css'
 import axios from 'axios';
 
 
-export const ContactCorporationForm = () => {
+export const ContactCorporationForm = ({ data, updateFielHandler }) => {
 
   const [telefone, setTelefone] = useState('')
   const [contatoEmail, setContatoEmail] = useState('')
   const [cep, setCep] = useState('')
   const [complemento, setComplemento] = useState('')
-  const [bairro, setBairro] = useState('')
-  const [rua, setRua] = useState('')
-  const [cidade, setCidade] = useState('')
+  const [bairro, setBairro] = useState('Teste')
+  const [rua, setRua] = useState('Teste')
+  const [cidade, setCidade] = useState('Test')
   const [numero, setNumero] = useState('')
   const [instagram, setInstagram] = useState('')
   const [facebook, setFacebook] = useState('')
@@ -26,11 +26,15 @@ export const ContactCorporationForm = () => {
       return
     } else {
       axios.get(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(({ data }) => {
-          setRua(data.logradouro)
-          setBairro(data.bairro)
-          setCidade(data.localidade)
-          console.log(data)
+        .then(({ dataCep }) => {
+          // setRua(dataCep.logradouro)
+          // setBairro(dataCep.bairro)
+          // setCidade(dataCep.localidade)
+          console.log('data', dataCep)
+          updateFielHandler('bairro', 'bairro')
+          updateFielHandler('rua', 'rua')
+          updateFielHandler('cidade', 'cidade')
+          updateFielHandler('logradouro', 'rua')
 
         }).catch((erro) => {
           console.log(erro)
@@ -38,6 +42,30 @@ export const ContactCorporationForm = () => {
     }
 
   }, [cep])
+
+
+  useEffect(() => {
+    if(data.facebook === '') {
+      console.log('nao enviado')
+    } else {
+      console.log(data)
+      axios.post('https://kaloscorp.cyclic.cloud/kalos/academia', {
+        data
+      }
+      ).then(({ data }) => {
+  
+        console.log(data)
+  
+      }).catch((erro) => {
+        console.log(erro)
+      })
+  
+    }
+
+
+  }, [facebook])
+
+  console.log(rua)
 
   return (
     <div className='contact_corporation_form animate__animated animate__fadeInRight'>
@@ -47,22 +75,22 @@ export const ContactCorporationForm = () => {
         <div className="contact">
           <div className='telephone'>
             <p className='textNameForInput'>Telefone</p>
-            <Input size='default size' placeholder='00 0000-0000' value={telefone} onChange={telefone => setTelefone(telefone.target.value)} />
+            <Input size='default size' placeholder='00 0000-0000' value={data.telefone} onChange={telefone => updateFielHandler('telefone', telefone.target.value)} />
           </div>
           <div className='emailContact'>
             <p className='textNameForInput'>E-mail</p>
-            <Input size='default size' placeholder='exemplo@gmail.com' value={contatoEmail} onChange={email => setContatoEmail(email.target.value)} />
+            <Input size='default size' placeholder='exemplo@gmail.com' value={data.email} onChange={email => updateFielHandler(email.target.value)} />
           </div>
         </div>
         <div className="address">
           <div className="cep_complemento_bairro">
             <div className='cep'>
               <p className='textNameForInput'>CEP</p>
-              <Input size='default size' placeholder='00000000' value={cep} onChange={cep => setCep(cep.target.value)} />
+              <Input size='default size' placeholder='00000000' value={data.cep} onChange={cep => updateFielHandler('cep', cep.target.value)} />
             </div>
             <div className='complemento'>
               <p className='textNameForInput'>Complemento</p>
-              <Input size='default size' value={complemento} onChange={complemento => setComplemento(complemento.target.value)} />
+              <Input size='default size' value={data.complemento} onChange={complemento => updateFielHandler('complemento',complemento.target.value)} />
             </div>
             <div className='bairro'>
               <p className='textNameForInput'>Bairro</p>
@@ -80,7 +108,7 @@ export const ContactCorporationForm = () => {
             </div>
             <div className='numero'>
               <p className='textNameForInput'>Número</p>
-              <Input size='default size' value={numero} onChange={numero => setNumero(numero.target.value)} />
+              <Input size='default size' value={data.numero} onChange={numero => updateFielHandler('numero', numero.target.value)} />
             </div>
           </div>
         </div>
@@ -90,11 +118,11 @@ export const ContactCorporationForm = () => {
         <div className="links_social_media">
           <div className='instagram'>
             <p className='textNameForInput'>Instagram</p>
-            <Input size='default size' value={instagram} onChange={cep => setCep(cep.target.value)} />
+            <Input size='default size' value={data.instagram} onChange={instagram => updateFielHandler('instagram', instagram.target.value)} />
           </div>
           <div className='facebook'>
             <p className='textNameForInput'>Facebook</p>
-            <Input size='default size' value={facebook} onChange={cep => setCep(cep.target.value)} />
+            <Input size='default size' value={data.facebook} onChange={facebook => updateFielHandler('facebook', facebook.target.value)} />
           </div>
         </div>
       </div>

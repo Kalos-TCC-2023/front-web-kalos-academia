@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Input, ColorPicker } from 'antd';
 const { TextArea } = Input;
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
@@ -6,7 +6,7 @@ import './ProfileCorporationForm.css'
 import '../../components/TextField/TextField.css'
 import { DropDownMenu } from '../DropDownMenu/DropDownMenu';
 
-export const ProfileCorporationForm = () => {
+export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
 
   const [nameCorporation, setNameCorporation] = useState('')
   const [descripitionCorporation, setDescripitionCorporation] = useState('')
@@ -19,8 +19,9 @@ export const ProfileCorporationForm = () => {
 
   
   // VALIDAÇÃO PARA API
-
+  
   const profileCorporation = {
+    
     'name': nameCorporation,
     'description': descripitionCorporation,
     'category': categorySelected,
@@ -30,6 +31,7 @@ export const ProfileCorporationForm = () => {
   }
 
   console.log('profileCorporation', profileCorporation)
+
 
   const items = [
     {
@@ -80,8 +82,17 @@ export const ProfileCorporationForm = () => {
       setCategorySelected(item.key)
       console.log(categorySelected)
       console.log('Item', item)
-    };
+    }
 
+    // useEffect(() => {
+    //   updateFielHandler('nome', nameCorporation)
+    //   updateFielHandler('descricao', descripitionCorporation)
+    //   updateFielHandler('cor_primaria', colorPrimary)
+    //   updateFielHandler('cor_secundaria', colorSecondary)
+
+    // }, [nameCorporation, descripitionCorporation, colorPrimary, colorSecondary])
+
+    console.log(data)
 
   return (
     <div className='profile_corporation_form animate__animated animate__fadeInRight'>
@@ -93,11 +104,13 @@ export const ProfileCorporationForm = () => {
         <div className="name_description">
           <div className='name_corporation'>
             <p className='textNameForInput'>Nome da Empresa</p>
-            <Input size='default size' placeholder='Exemplo de Nome' onChange={(value) => setNameCorporation(value.target.value)} />
+            <Input size='default size' placeholder='Exemplo de Nome' value={data.nome} onChange={(nameCorporation) => updateFielHandler('nome', nameCorporation.target.value)} />
           </div>
           <div className='description_corporation'>
             <p className='textNameForInput'>Descrição</p>
-            <TextArea className='textarea' onChange={(value) => setDescripitionCorporation(value.target.value)} placeholder="Academia totalmente focada no aluno" autoSize={{ minRows: 4, maxRows: 5, }}
+            <TextArea className='textarea' value={data.descricao} onChange={
+              (descricao) => updateFielHandler('descricao', descricao.target.value)
+            } placeholder="Academia totalmente focada no aluno" autoSize={{ minRows: 4, maxRows: 5, }}
             />
           </div>
         </div>
@@ -120,6 +133,7 @@ export const ProfileCorporationForm = () => {
                 value={colorPrimary}
                 onChangeComplete={(color) => {
                   setColorPrimary(color.toHexString())
+                  updateFielHandler('cor_primaria', color.toHexString())
                 }}
               />
               <p className='description_color_picker'>
@@ -135,6 +149,7 @@ export const ProfileCorporationForm = () => {
                 value={colorSecondary}
                 onChangeComplete={(color) => {
                   setColorSecondary(color.toHexString())
+                  updateFielHandler('cor_secundaria', color.toHexString())
                 }}
               />
               <p className='description_color_picker'>
