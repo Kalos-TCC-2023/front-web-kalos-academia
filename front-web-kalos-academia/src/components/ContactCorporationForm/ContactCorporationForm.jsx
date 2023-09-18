@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
 import { Input } from 'antd'
-import apiCep from '../../adapters/api';
-
 import './ContactCorporationForm.css'
 import '../../components/TextField/TextField.css'
 import axios from 'axios';
@@ -14,27 +12,32 @@ export const ContactCorporationForm = ({ data, updateFielHandler }) => {
   const [contatoEmail, setContatoEmail] = useState('')
   const [cep, setCep] = useState('')
   const [complemento, setComplemento] = useState('')
-  const [bairro, setBairro] = useState('Teste')
-  const [rua, setRua] = useState('Teste')
-  const [cidade, setCidade] = useState('Test')
+  const [bairro, setBairro] = useState('')
+  const [rua, setRua] = useState('')
+  const [cidade, setCidade] = useState('')
   const [numero, setNumero] = useState('')
   const [instagram, setInstagram] = useState('')
   const [facebook, setFacebook] = useState('')
+  const [whatsapp, setWhatsapp] = useState('')
+
+  
 
   useEffect(() => {
     if (cep === '' || cep.length < 8) {
+      console.log(cep)
       return
     } else {
       axios.get(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(({ dataCep }) => {
-          // setRua(dataCep.logradouro)
-          // setBairro(dataCep.bairro)
-          // setCidade(dataCep.localidade)
-          console.log('data', dataCep)
-          updateFielHandler('bairro', 'bairro')
-          updateFielHandler('rua', 'rua')
-          updateFielHandler('cidade', 'cidade')
-          updateFielHandler('logradouro', 'rua')
+        .then(({ data }) => {
+          console.log(data)
+          setRua(data.logradouro)
+          setBairro(data.bairro)
+          setCidade(data.localidade)
+          console.log('data', data)
+          updateFielHandler('bairro', data.bairro)
+          updateFielHandler('rua', data.logradouro)
+          updateFielHandler('cidade', data.localidade)
+          updateFielHandler('logradouro', data.logradouro)
 
         }).catch((erro) => {
           console.log(erro)
@@ -49,7 +52,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler }) => {
       console.log('nao enviado')
     } else {
       console.log(data)
-      axios.post('https://kaloscorp.cyclic.cloud/kalos/academia', {
+      axios.post('https://beautiful-pike-trench-coat.cyclic.cloud/kalos/academia', {
         data
       }
       ).then(({ data }) => {
@@ -65,7 +68,6 @@ export const ContactCorporationForm = ({ data, updateFielHandler }) => {
 
   }, [facebook])
 
-  console.log(rua)
 
   return (
     <div className='contact_corporation_form animate__animated animate__fadeInRight'>
@@ -86,7 +88,11 @@ export const ContactCorporationForm = ({ data, updateFielHandler }) => {
           <div className="cep_complemento_bairro">
             <div className='cep'>
               <p className='textNameForInput'>CEP</p>
-              <Input size='default size' placeholder='00000000' value={data.cep} onChange={cep => updateFielHandler('cep', cep.target.value)} />
+              <Input size='default size' placeholder='00000000' value={data.cep} onChange={(cep) => {
+                    setCep(cep.target.value)
+                    updateFielHandler('cep', cep.target.value)
+                }
+              }  />
             </div>
             <div className='complemento'>
               <p className='textNameForInput'>Complemento</p>
@@ -123,6 +129,10 @@ export const ContactCorporationForm = ({ data, updateFielHandler }) => {
           <div className='facebook'>
             <p className='textNameForInput'>Facebook</p>
             <Input size='default size' value={data.facebook} onChange={facebook => updateFielHandler('facebook', facebook.target.value)} />
+          </div>
+          <div className='WhatsApp'>
+            <p className='textNameForInput'>Whastapp</p>
+            <Input size='default size' value={data.whatsapp} onChange={whatsapp => updateFielHandler('whatsapp', whatsapp.target.value)} />
           </div>
         </div>
       </div>

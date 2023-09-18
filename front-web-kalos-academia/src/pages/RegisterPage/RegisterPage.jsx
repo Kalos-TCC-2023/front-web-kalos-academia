@@ -9,9 +9,7 @@ import { OperationCorporationForm } from '../../components/OperationCorporationF
 import { registerForm } from '../../hooks/registerForm'
 import { ButtonPrimary } from '../../components/Button/ButtonPrimary'
 import { Step } from '../../components/Steps/Step'
-import apiKalos from '../../adapters/api'
 import './RegisterPage.css'
-import axios from 'axios'
 
 const formCorporationTemplate = {
   nome: '',
@@ -26,7 +24,7 @@ const formCorporationTemplate = {
   data_abertura: '2022-07-02',
   razao_social: 'Empresa seria',
   facebook: '',
-  whatsapp: '11963587895',
+  whatsapp: '',
   instagram: '',
   logradouro: 'bluefit',
   numero: '',
@@ -51,30 +49,13 @@ export const RegisterPage = () => {
   }
 
   const formComponent = [<DataCorporationForm data={data} updateFielHandler={updateFielHandler} />, <ProfileCorporationForm data={data} updateFielHandler={updateFielHandler} />, <OperationCorporationForm data={data} updateFielHandler={updateFielHandler} />, <ContactCorporationForm data={data} updateFielHandler={updateFielHandler} />]
-
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep } = registerForm(formComponent)
 
+  // const [enviar, setEnviar] = useState(false)
+  // console.log(enviar)
+
   console.log(data)
-  const toSucessRegister = () => {
-
-  }
-
-  // const cadastroAcademia = () => {
-    // useEffect(() => {
-
-    //   axios.post('https://kaloscorp.cyclic.cloud/kalos/academia', {
-    //     data
-    //   }
-    //   ).then(({ data }) => {
-
-    //     console.log(data)
-
-    //   }).catch((erro) => {
-    //     console.log(erro)
-    //   })
-
-    // }, [])
-  // }
+  
   return (
     <div className="register_page">
       <Helmet>

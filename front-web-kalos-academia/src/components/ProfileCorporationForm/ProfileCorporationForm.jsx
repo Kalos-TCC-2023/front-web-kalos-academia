@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Input, ColorPicker } from 'antd';
 const { TextArea } = Input;
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
@@ -16,21 +16,6 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   const [tagSelected, setTagSelected] = useState('Tags')
   const checkButtonCategory = categorySelected == undefined ? setCategorySelected('Categoria') : true
   const checkButtonTag = tagSelected == undefined ? setTagSelected('Tags') : true
-
-  
-  // VALIDAÇÃO PARA API
-  
-  const profileCorporation = {
-    
-    'name': nameCorporation,
-    'description': descripitionCorporation,
-    'category': categorySelected,
-    'tag': tagSelected,
-    'color_primary': colorPrimary,
-    'color_secondary': colorSecondary
-  }
-
-  console.log('profileCorporation', profileCorporation)
 
 
   const items = [
@@ -83,16 +68,6 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
       console.log(categorySelected)
       console.log('Item', item)
     }
-
-    // useEffect(() => {
-    //   updateFielHandler('nome', nameCorporation)
-    //   updateFielHandler('descricao', descripitionCorporation)
-    //   updateFielHandler('cor_primaria', colorPrimary)
-    //   updateFielHandler('cor_secundaria', colorSecondary)
-
-    // }, [nameCorporation, descripitionCorporation, colorPrimary, colorSecondary])
-
-    console.log(data)
 
   return (
     <div className='profile_corporation_form animate__animated animate__fadeInRight'>

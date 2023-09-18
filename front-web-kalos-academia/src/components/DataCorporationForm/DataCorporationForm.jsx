@@ -6,6 +6,7 @@ import 'animate.css'
 import '../../components/TextField/TextField.css'
 import './DataCorporationForm.css'
 import apiSpeedio from '../../adapters/api'
+import axios from 'axios';
 
 export const DataCorporationForm = ({ data, updateFielHandler }) => {
 
@@ -14,39 +15,35 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
     const [cnpj, setCnpj] = useState('')
     const [senha, setSenha] = useState('')
     const [email, setEmail] = useState('')
-    const [razaoSocial, setRazaoSocial] = useState('Empresa divertida')
-    const [abertura, setAbertura] = useState('-')
+    const [razaoSocial, setRazaoSocial] = useState('Exemplo Razão Social')
+    const [abertura, setAbertura] = useState('2022-07-02')
     const [cep, setCep] = useState('-')
     const [cnae, setCnae] = useState('-')
     const [statusCorporation, setStatusCorporation] = useState('Ativo')
-
-    
 
     useEffect(() => {
         if (cnpj === '' || cnpj.length < 14) {
             return
         } else {
-            apiSpeedio.get(`buscarcnpj?cnpj=${cnpj}`
+            axios.get(`https://api-publica.speedio.com.br/buscarcnpj?cnpj=${cnpj}`
             ).then(({ data }) => {
 
                 console.log(data)
-                setAbertura(data['DATA ABERTURA'])
+                
+                // setAbertura(data['DATA ABERTURA'])
                 setCnae(data['CNAE PRINCIPAL CODIGO'])
                 setRazaoSocial(data['RAZAO SOCIAL'])
                 setCep(data['CEP'])
+                console.log(cnpj)
+                updateFielHandler('data_abertura', abertura)
+                updateFielHandler('cep', data['CEP'])
 
             }).catch((erro) => {
                 console.log(erro)
             })
         }
 
-    }, [])
-
-    if(cnpj === '' || senha === '' ||  email === '' ||  senha === ''){
-        console.log('vazio')
-    } else {
-        
-    }
+    }, [cnpj])
 
 
     return (
@@ -58,7 +55,11 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
                     <div className='fiels_reset'>
                         <div className='cnpj'>
                             <p className='textNameForInput'>CNPJ</p>
-                            <Input size='default size' placeholder='00.000.000/0000-00' value={cnpj || data.cnpj } onChange={cnpj => updateFielHandler('cnpj',cnpj.target.value)} />
+                            <Input size='default size' placeholder='00.000.000/0000-00' value={cnpj || data.cnpj } onChange={(cnpj) => {
+                                updateFielHandler('cnpj', cnpj.target.value)
+                                setCnpj(cnpj.target.value)
+                            }
+                            }  />
                         </div>
                         <div className='status_corporation'>
                             <div className='status'></div>
