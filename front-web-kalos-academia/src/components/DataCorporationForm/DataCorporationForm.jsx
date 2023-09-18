@@ -5,7 +5,6 @@ import { TextPass } from '../TextPass/TextPass'
 import 'animate.css'
 import '../../components/TextField/TextField.css'
 import './DataCorporationForm.css'
-import apiSpeedio from '../../adapters/api'
 import axios from 'axios';
 
 export const DataCorporationForm = ({ data, updateFielHandler }) => {
