@@ -18,25 +18,24 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   const checkButtonTag = tagSelected == undefined ? setTagSelected('Tags') : true
   const [tags, setTags] = useState([1,2,3])
 
-  console.log(tags)
-
-  
-
-
   const items = [
     {
+      id: 1,
       label: 'Academia',
       key: 'Academia'
     },
     {
+      id: 2,
       label: 'Crossfit',
       key: 'Crossfit'
     },
     {
+      id: 3,
       label: 'Musculação',
       key: 'Musculação'
     },
     {
+      id: 4,
       label: 'Natação',
       key: 'Natação'
     }
@@ -44,18 +43,22 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
 
   const items_tags = [
     {
+      id: 1,
       label: 'Academia',
       key: 'Academia'
     },
     {
+      id: 2,
       label: 'Crossfit',
       key: 'Crossfit'
     },
     {
+      id: 3,
       label: 'Musculação',
       key: 'Musculação'
     },
     {
+      id: 4,
       label: 'Natação',
       key: 'Natação'
     }
@@ -63,8 +66,10 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
 
   const handleTagClick = (item) => {
     setTagSelected(item.key)
-    console.log(tagSelected)
+    console.log(tagSelected.id)
     console.log('Item', item)
+    console.log('id', item.id)
+
     Object.values(tags)
     updateFielHandler('tags', tags)
   };

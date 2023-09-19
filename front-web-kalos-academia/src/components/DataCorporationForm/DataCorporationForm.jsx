@@ -27,23 +27,28 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
 
             const cnpjValidate = cnpj.replace(/[^0-9]/g, '')
             updateFielHandler('cnpj', cnpjValidate)
-
-            // deve ir dentro da chamada da api
-            var data = moment("02/03/2018", "DD/MM/YYYY");
-            console.log(data.format("YYYY-MM-DD"));
-            const dataAberturaFormatada = data.format("YYYY-MM-DD")
-            updateFielHandler('data_abertura', dataAberturaFormatada)
-            //
+            setCnpj(cnpjValidate)
 
             axios.get(`https://api-publica.speedio.com.br/buscarcnpj?cnpj=${cnpjValidate}`
             ).then(({ data }) => {
 
-                console.log(data['DATA ABERTURA'])
+                const dataApi = data['DATA ABERTURA'].toString()
+                const dataFormat = moment(dataApi, "DD/MM/YYYY")
+                const dataAberturaFormatada = dataFormat.format("YYYY-MM-DD")
+
+                updateFielHandler('data_abertura', dataAberturaFormatada)
+
+                console.log(dataAberturaFormatada)
+
                 setAbertura(dataAberturaFormatada)
                 setCnae(data['CNAE PRINCIPAL CODIGO'])
                 setRazaoSocial(data['RAZAO SOCIAL'])
                 setCep(data['CEP'])
+
+                updateFielHandler('data_abertura', dataAberturaFormatada)
                 updateFielHandler('cep', data['CEP'])
+
+                console.log(abertura, cnae, razaoSocial, cep)
 
             }).catch((erro) => {
                 console.log(erro)
@@ -52,6 +57,7 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
 
     }, [cnpj])
 
+    console.log(abertura, cnae, razaoSocial, cep)
 
     return (
         <div className='data_corporation_form '>
@@ -76,21 +82,21 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
                     <div className='fiels_reset'>
                         <div className="rz">
                             <p className='textNameForInput'>Razão Social</p>
-                            <Input size="default size" value={razaoSocial} disabled />
+                            <Input size="default size" value={razaoSocial || data.razao_social} disabled />
                         </div>
                         <div className="CNAE">
                             <p className='textNameForInput'>CNAE Principal</p>
-                            <Input size="default size" value={cnae} disabled />
+                            <Input size="default size" value={cnae || data.cnae} disabled />
                         </div>
                     </div>
                     <div className='fiels_reset'>
                         <div className="rz">
                             <p className='textNameForInput'>Abertura</p>
-                            <Input size="default size" value={abertura} disabled onChange={abertura => updateFielHandler('data_abertura', abertura.target.value)} />
+                            <Input size="default size" value={abertura || data.data_abertura} disabled onChange={abertura => updateFielHandler('data_abertura', abertura.target.value)} />
                         </div>
                         <div className="CEP">
                             <p className='textNameForInput'>CEP</p>
-                            <Input size="default size" value={cep} disabled onChange={cep => updateFielHandler('cep', cep.target.value)} />
+                            <Input size="default size" value={cep || data.cep} disabled onChange={cep => updateFielHandler('cep', cep.target.value)} />
                         </div>
                     </div>
                     <div className='fiels_reset email_passowrd'>

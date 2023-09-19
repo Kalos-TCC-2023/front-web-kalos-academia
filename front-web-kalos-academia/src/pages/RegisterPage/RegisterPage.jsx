@@ -22,7 +22,7 @@ const formCorporationTemplate = {
   cor_primaria: '',
   cor_secundaria: '',
   data_abertura: '',
-  razao_social: 'Empresa seria',
+  razao_social: '',
   facebook: '',
   whatsapp: '',
   instagram: '',
@@ -91,7 +91,7 @@ export const RegisterPage = () => {
               </div>
             ) : (
               <div className="next_form">
-                <ButtonPrimary shape="circle" nameButton={< SendOutlined />} size='large' />
+                <ButtonPrimary  shape="circle" nameButton={< SendOutlined />} size='large' />
               </div>)}
 
           </div>

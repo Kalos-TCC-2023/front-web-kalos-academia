@@ -96,6 +96,10 @@
   color: red;
   display: none;
 }
+.ant-btn:hover{
+  background-color: #00FE90 !important;
+  border-color: #00FE90 !important;
+}
 @media only screen and (max-width: 480px) {
   img {
     width: 50%;
