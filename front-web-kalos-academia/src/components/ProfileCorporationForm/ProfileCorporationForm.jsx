@@ -8,78 +8,82 @@ import { DropDownMenu } from '../DropDownMenu/DropDownMenu';
 
 export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
 
-  const [nameCorporation, setNameCorporation] = useState('')
-  const [descripitionCorporation, setDescripitionCorporation] = useState('')
-  const [colorPrimary, setColorPrimary] = useState('#008CFF')
-  const [colorSecondary, setColorSecondary] = useState('#008CFF')
   const [categorySelected, setCategorySelected] = useState('Categoria')
   const [tagSelected, setTagSelected] = useState('Tags')
   const checkButtonCategory = categorySelected == undefined ? setCategorySelected('Categoria') : true
   const checkButtonTag = tagSelected == undefined ? setTagSelected('Tags') : true
-  const [tags, setTags] = useState([1,2,3])
+  const [tags, setTags] = useState([])
 
-  const items = [
+  const items_category = [
     {
-      id: 1,
       label: 'Academia',
-      key: 'Academia'
+      key: 1
     },
     {
-      id: 2,
+
       label: 'Crossfit',
       key: 'Crossfit'
     },
     {
-      id: 3,
       label: 'Musculação',
-      key: 'Musculação'
+      key: 3
     },
     {
-      id: 4,
       label: 'Natação',
-      key: 'Natação'
+      key: 4
     }
   ]
 
   const items_tags = [
     {
-      id: 1,
       label: 'Academia',
-      key: 'Academia'
+      key: 1
     },
     {
-      id: 2,
+
       label: 'Crossfit',
-      key: 'Crossfit'
+      key: 2
     },
     {
-      id: 3,
       label: 'Musculação',
-      key: 'Musculação'
+      key: 3
     },
     {
-      id: 4,
       label: 'Natação',
-      key: 'Natação'
+      key: 4
     }
   ]
 
   const handleTagClick = (item) => {
-    setTagSelected(item.key)
-    console.log(tagSelected.id)
-    console.log('Item', item)
-    console.log('id', item.id)
+    items_tags.map((tag) => {
+      if (item.key == tag.key) {
+
+        setTagSelected(tag.label)
+
+        const tagName = parseInt(item.key)
+        tags.push(tagName)
+      }
+    })
 
     Object.values(tags)
     updateFielHandler('tags', tags)
-  };
-  
+  }
+
 
   const handleCategoryClick = (item) => {
-      setCategorySelected(item.key)
-      console.log(categorySelected)
-      console.log('Item', item)
-    }
+    items_category.map((category) => {
+      if(item.key == category.key){
+        setCategorySelected(category.label)
+        const categoryName = parseInt(item.key)
+        updateFielHandler('id_categoria', categoryName)
+      }
+    })
+   
+    console.log(item.key)
+    console.log('Item', item)
+  }
+
+  console.log(data)
 
   return (
     <div className='profile_corporation_form animate__animated animate__fadeInRight'>
@@ -103,13 +107,13 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
         </div>
         <div className="category_corporation">
           <p className='textNameForInput'>Categoria do Negócio</p>
-          <DropDownMenu className='DropDownMenu' items={items} itemSelected={categorySelected} onClickFuction={handleCategoryClick}/>
+          <DropDownMenu className='DropDownMenu' items={items_category} itemSelected={categorySelected} onClickFuction={handleCategoryClick} />
         </div>
       </div>
       <div className="tag_colors">
         <div className="tags_corporation">
           <p className='textNameForInput'>Tags</p>
-          <DropDownMenu className='DropDownMenu' items={items_tags} itemSelected={tagSelected} onClickFuction={handleTagClick}/>
+          <DropDownMenu className='DropDownMenu' items={items_tags} itemSelected={tagSelected} onClickFuction={handleTagClick} />
         </div>
         <div className="colors_corporation">
           <div className='color_primary'>
@@ -117,9 +121,8 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
             <div className="description_color_picker">
               <ColorPicker showText
                 size='large'
-                value={colorPrimary}
+                value={data.cor_primaria}
                 onChangeComplete={(color) => {
-                  setColorPrimary(color.toHexString())
                   updateFielHandler('cor_primaria', color.toHexString())
                 }}
               />
@@ -133,14 +136,13 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
             <div className="description_color_picker">
               <ColorPicker showText
                 size='large'
-                value={colorSecondary}
+                value={data.cor_secundaria}
                 onChangeComplete={(color) => {
-                  setColorSecondary(color.toHexString())
                   updateFielHandler('cor_secundaria', color.toHexString())
                 }}
               />
               <p className='description_color_picker'>
-              Usamos a cor secundária para personalizar sua capa de perfil
+                Usamos a cor secundária para personalizar sua capa de perfil
               </p>
             </div>
           </div>

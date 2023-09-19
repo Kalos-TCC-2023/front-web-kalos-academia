@@ -40,7 +40,7 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
 
                 console.log(dataAberturaFormatada)
 
-                setAbertura(dataAberturaFormatada)
+                setAbertura(data['DATA ABERTURA'])
                 setCnae(data['CNAE PRINCIPAL CODIGO'])
                 setRazaoSocial(data['RAZAO SOCIAL'])
                 setCep(data['CEP'])
@@ -49,6 +49,7 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
                 updateFielHandler('cep', data['CEP'])
 
                 console.log(abertura, cnae, razaoSocial, cep)
+                console.log(updateFielHandler)
 
             }).catch((erro) => {
                 console.log(erro)

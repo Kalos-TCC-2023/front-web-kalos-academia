@@ -19,8 +19,8 @@ const formCorporationTemplate = {
   cnpj: '',
   foto: 'url.foto.com',
   descricao: '',
-  cor_primaria: '',
-  cor_secundaria: '',
+  cor_primaria: '#008CFF',
+  cor_secundaria: '#008CFF',
   data_abertura: '',
   razao_social: '',
   facebook: '',
@@ -33,7 +33,7 @@ const formCorporationTemplate = {
   cep: '',
   cidade: 'bluefit',
   estado: 'SP',
-  id_categoria: 2,
+  id_categoria: '',
   status: 'Ativo',
   tags: []
 }
@@ -43,10 +43,10 @@ const formCorporationTemplate = {
 export const RegisterPage = () => {
 
   const [data, setData] = useState(formCorporationTemplate)
-  console.log(data)
+  // console.log(data)
   const updateFielHandler = (key, value) => {
-    console.log(typeof(formCorporationTemplate.tags))
-    console.log(Object.values(formCorporationTemplate.tags))
+    // console.log(typeof(formCorporationTemplate.tags))
+    // console.log(Object.values(formCorporationTemplate.tags))
 
     setData((prev) => {
       return { ...prev, [key]: value }
@@ -55,11 +55,6 @@ export const RegisterPage = () => {
 
   const formComponent = [<DataCorporationForm data={data} updateFielHandler={updateFielHandler} />, <ProfileCorporationForm data={data} updateFielHandler={updateFielHandler} />, <OperationCorporationForm data={data} updateFielHandler={updateFielHandler} />, <ContactCorporationForm data={data} updateFielHandler={updateFielHandler} />]
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep } = registerForm(formComponent)
-
-  // const [enviar, setEnviar] = useState(false)
-  // console.log(enviar)
-
-  console.log(data)
   
   return (
     <div className="register_page">
