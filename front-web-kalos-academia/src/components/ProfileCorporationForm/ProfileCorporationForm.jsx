@@ -5,6 +5,7 @@ import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
 import './ProfileCorporationForm.css'
 import '../../components/TextField/TextField.css'
 import { DropDownMenu } from '../DropDownMenu/DropDownMenu';
+import { TagAcademy } from '../Tag/Tag';
 
 export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
 
@@ -12,7 +13,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   const [tagSelected, setTagSelected] = useState('Tags')
   const checkButtonCategory = categorySelected == undefined ? setCategorySelected('Categoria') : true
   const checkButtonTag = tagSelected == undefined ? setTagSelected('Tags') : true
-  const [tags, setTags] = useState([])
+  const [tagsKey, setTagsKey] = useState([])
 
   const items_category = [
     {
@@ -59,28 +60,73 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
       if (item.key == tag.key) {
 
         setTagSelected(tag.label)
-
         const tagName = parseInt(item.key)
-        tags.push(tagName)
+        tagsKey.push(tagName)
+
+       
+        if(tagsKey.length > 1){
+          tagsKey.filter((repeatKey, index) => {
+            if(repeatKey === tagName){
+              console.log(tagsKey)
+              console.log(tagName)
+              console.log(index)
+              
+            } else {
+              console.log('nao repetido');
+            }
+          })
+          // setTagSelected(tag.label)
+          // const tagName = parseInt(item.key)
+          // tagsKey.push(tagName)
+          console.log('a')
+        } else {
+          console.log('hm')
+        }
+          
+        
+        
+        
+
+        // tagsKey.filter((reapetTag) => {
+        //   if (reapetTag == item.key || tagsKey == []) {
+        //     console.log('achei')
+        //   } else {
+
+        //   }
+        // })
+        
+        // const tagName = parseInt(item.key)
+
+  
+        console.log(tagsKey)
+        
       }
     })
 
-    Object.values(tags)
-    updateFielHandler('tags', tags)
+    Object.values(tagsKey)
+    console.log(tagsKey)
+    updateFielHandler('tags', tagsKey)
   }
 
+  console.log(data)
 
   const handleCategoryClick = (item) => {
     items_category.map((category) => {
-      if(item.key == category.key){
+      if (item.key == category.key) {
+
+
         setCategorySelected(category.label)
         const categoryName = parseInt(item.key)
         updateFielHandler('id_categoria', categoryName)
       }
     })
-   
+
     console.log(item.key)
     console.log('Item', item)
+  }
+
+  const handleRemoveTagClick = () => {
+
   }
 
   console.log(data)
@@ -114,6 +160,12 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
         <div className="tags_corporation">
           <p className='textNameForInput'>Tags</p>
           <DropDownMenu className='DropDownMenu' items={items_tags} itemSelected={tagSelected} onClickFuction={handleTagClick} />
+          <div className="tags_visible">
+            <TagAcademy color={data.cor_primaria} name='Alguma coisa' />
+            <TagAcademy color={data.cor_primaria} name='Alguma coisa' />
+            <TagAcademy color={data.cor_primaria} name='Alguma coisa' />
+            <TagAcademy color={data.cor_primaria} name='Alguma coisa' />
+          </div>
         </div>
         <div className="colors_corporation">
           <div className='color_primary'>
