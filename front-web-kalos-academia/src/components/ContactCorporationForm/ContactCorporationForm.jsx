@@ -6,21 +6,14 @@ import '../../components/TextField/TextField.css'
 import axios from 'axios';
 
 
-export const ContactCorporationForm = ({ data, updateFielHandler }) => {
+export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateSubmit }) => {
 
-  const [telefone, setTelefone] = useState('')
-  const [contatoEmail, setContatoEmail] = useState('')
   const [cep, setCep] = useState('')
-  const [complemento, setComplemento] = useState('')
   const [bairro, setBairro] = useState('')
   const [rua, setRua] = useState('')
   const [cidade, setCidade] = useState('')
-  const [numero, setNumero] = useState('')
-  const [instagram, setInstagram] = useState('')
-  const [facebook, setFacebook] = useState('')
-  const [whatsapp, setWhatsapp] = useState('')
+  const [status, setStatus] = useState(true)
 
-  console.log(data.razao_social)
 
   useEffect(() => {
     if (cep === '' || cep.length < 8) {
@@ -48,49 +41,76 @@ export const ContactCorporationForm = ({ data, updateFielHandler }) => {
   }, [cep])
 
 
-  // useEffect(() => {
-  //   if (data.facebook === '') {
-  //     console.log('nao enviado')
-  //   } else {
-  //     console.log(data)
-  //     axios.post('http://10.107.144.6:8080/kalos/academia', {
-  //       nome: data.nome,
-  //       email: data.email,
-  //       senha: data.senha,
-  //       telefone: data.telefone,
-  //       cnpj: data.cnpj,
-  //       foto: data.foto,
-  //       descricao: data.descricao,
-  //       cor_primaria: data.cor_primaria,
-  //       cor_secundaria: data.cor_secundaria,
-  //       data_abertura: '2022-07-02',
-  //       razao_social: 'Empresa seria',
-  //       facebook: data.facebook,
-  //       whatsapp: data.whatsapp,
-  //       instagram: data.instagram,
-  //       logradouro: 'bluefit',
-  //       numero: data.numero,
-  //       bairro: 'bluefit',
-  //       complemento: data.complemento,
-  //       cep: data.cep,
-  //       cidade: 'bluefit',
-  //       estado: 'SP',
-  //       id_categoria: 2,
-  //       status: 'Ativo',
-  //       tags: data.tags
-  //     }
-  //     ).then(({ data }) => {
+  const checkingFields = () => {
+    const dadosArray = Object.values(data)
+    
+    dadosArray.map((dado) => {
+      if(dado.length == 0){
+        console.log('vazio', dado)
+        setStatus(false)
+        console.log(status)
+        
+      } 
+    })
+  }
 
-  //       console.log(data)
+  console.log(status)
 
-  //     }).catch((erro) => {
-  //       console.log(erro)
-  //     })
+  useEffect(() => {
+    if (submit == false) {
+      console.log('nao enviado')
+    } else {
+      console.log('enviado')
 
-  //   }
+      checkingFields()
+
+      console.log('sss', status)
+      if(status == true){
+        console.log('pronto para enviar');
+      } else {
+        console.log('faltando');
+      }
+      // axios.post('http://10.107.144.6:8080/kalos/academia', {
+      //   nome: data.nome,
+      //   email: data.email,
+      //   senha: data.senha,
+      //   telefone: data.telefone,
+      //   cnpj: data.cnpj,
+      //   foto: data.foto,
+      //   descricao: data.descricao,
+      //   cor_primaria: data.cor_primaria,
+      //   cor_secundaria: data.cor_secundaria,
+      //   data_abertura: '2022-07-02',
+      //   razao_social: 'Empresa seria',
+      //   facebook: data.facebook,
+      //   whatsapp: data.whatsapp,
+      //   instagram: data.instagram,
+      //   logradouro: 'bluefit',
+      //   numero: data.numero,
+      //   bairro: 'bluefit',
+      //   complemento: data.complemento,
+      //   cep: data.cep,
+      //   cidade: 'bluefit',
+      //   estado: 'SP',
+      //   id_categoria: data.id_categoria,
+      //   status: 'Ativo',
+      //   tags: data.tags
+      // }
+      // ).then(({ data }) => {
+
+      console.log(data)
+
+      // }).catch((erro) => {
+      //   console.log(erro)
+      // })
+
+    }
 
 
-  // }, [facebook])
+  }, [submit])
+
+
+
 
 
   return (

@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Input, ColorPicker } from 'antd';
 const { TextArea } = Input;
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
 import './ProfileCorporationForm.css'
 import '../../components/TextField/TextField.css'
 import { DropDownMenu } from '../DropDownMenu/DropDownMenu';
-import { TagAcademy } from '../Tag/Tag';
+import { TagsAcademy } from '../Tags/Tags';
+import axios from 'axios';
 
 export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
 
@@ -14,6 +15,31 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   const checkButtonCategory = categorySelected == undefined ? setCategorySelected('Categoria') : true
   const checkButtonTag = tagSelected == undefined ? setTagSelected('Tags') : true
   const [tagsKey, setTagsKey] = useState([])
+  const [nameTag, setNameTag] = useState([])
+  const [tagsApi, setTagsApi] = useState([])
+
+  useEffect(() => {
+    axios.get('http://10.107.144.6:8080/kalos/tags')
+      .then(({ data }) => {
+        if (tagsApi.length === 0) {
+
+          const items_api = data.tags.map((tag) => {
+            const newTags = {}
+            newTags.key = tag.id
+            newTags.label = tag.nome
+            tagsApi.push(newTags)
+          })
+          console.log(data.tags)
+
+          console.log(tagsApi)
+        } else {
+          return
+        }
+
+      }).catch((erro) => {
+        console.log(erro)
+      })
+  })
 
   const items_category = [
     {
@@ -35,71 +61,24 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
     }
   ]
 
-  const items_tags = [
-    {
-      label: 'Academia',
-      key: 1
-    },
-    {
-
-      label: 'Crossfit',
-      key: 2
-    },
-    {
-      label: 'Musculação',
-      key: 3
-    },
-    {
-      label: 'Natação',
-      key: 4
-    }
-  ]
-
   const handleTagClick = (item) => {
-    items_tags.map((tag) => {
+    tagsApi.map((tag) => {
       if (item.key == tag.key) {
 
-        setTagSelected(tag.label)
+        const tagObjetc = {}
         const tagName = parseInt(item.key)
+
+        setTagSelected(tag.label)
+        console.log(tagSelected)
+
+        tagObjetc.tag_name = tag.label
+        tagObjetc.tag_id = tag.key
+
+        console.log(nameTag)
+
         tagsKey.push(tagName)
+        nameTag.push(tagObjetc)
 
-       
-        if(tagsKey.length > 1){
-          tagsKey.filter((repeatKey, index) => {
-            if(repeatKey === tagName){
-              console.log(tagsKey)
-              console.log(tagName)
-              console.log(index)
-              
-            } else {
-              console.log('nao repetido');
-            }
-          })
-          // setTagSelected(tag.label)
-          // const tagName = parseInt(item.key)
-          // tagsKey.push(tagName)
-          console.log('a')
-        } else {
-          console.log('hm')
-        }
-          
-        
-        
-        
-
-        // tagsKey.filter((reapetTag) => {
-        //   if (reapetTag == item.key || tagsKey == []) {
-        //     console.log('achei')
-        //   } else {
-
-        //   }
-        // })
-        
-        // const tagName = parseInt(item.key)
-
-  
-        console.log(tagsKey)
-        
       }
     })
 
@@ -107,8 +86,6 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
     console.log(tagsKey)
     updateFielHandler('tags', tagsKey)
   }
-
-  console.log(data)
 
   const handleCategoryClick = (item) => {
     items_category.map((category) => {
@@ -159,12 +136,9 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
       <div className="tag_colors">
         <div className="tags_corporation">
           <p className='textNameForInput'>Tags</p>
-          <DropDownMenu className='DropDownMenu' items={items_tags} itemSelected={tagSelected} onClickFuction={handleTagClick} />
+          <DropDownMenu className='DropDownMenu' items={tagsApi} itemSelected={tagSelected} onClickFuction={handleTagClick} />
           <div className="tags_visible">
-            <TagAcademy color={data.cor_primaria} name='Alguma coisa' />
-            <TagAcademy color={data.cor_primaria} name='Alguma coisa' />
-            <TagAcademy color={data.cor_primaria} name='Alguma coisa' />
-            <TagAcademy color={data.cor_primaria} name='Alguma coisa' />
+            <TagsAcademy tags={nameTag} color={data.cor_primaria} />
           </div>
         </div>
         <div className="colors_corporation">

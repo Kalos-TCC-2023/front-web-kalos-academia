@@ -12,30 +12,30 @@ import { Step } from '../../components/Steps/Step'
 import './RegisterPage.css'
 
 const formCorporationTemplate = {
-  nome: '',
-  email: '',
-  senha: '',
-  telefone: '',
-  cnpj: '',
+  nome: 'dss',
+  email: 'd',
+  senha: 'd',
+  telefone: 'd',
+  cnpj: 'd',
   foto: 'url.foto.com',
-  descricao: '',
+  descricao: 'd',
   cor_primaria: '#008CFF',
   cor_secundaria: '#008CFF',
-  data_abertura: '',
-  razao_social: '',
-  facebook: '',
-  whatsapp: '',
-  instagram: '',
+  data_abertura: 'd',
+  razao_social: 'd',
+  facebook: 'd',
+  whatsapp: 'd',
+  instagram: 'd',
   logradouro: 'bluefit',
-  numero: '',
+  numero: 'd',
   bairro: 'bluefit',
-  complemento: '',
-  cep: '',
+  complemento: 'd',
+  cep: 'd',
   cidade: 'bluefit',
   estado: 'SP',
   id_categoria: '',
   status: 'Ativo',
-  tags: []
+  tags: [1]
 }
 
 
@@ -43,17 +43,17 @@ const formCorporationTemplate = {
 export const RegisterPage = () => {
 
   const [data, setData] = useState(formCorporationTemplate)
-  // console.log(data)
-  const updateFielHandler = (key, value) => {
-    // console.log(typeof(formCorporationTemplate.tags))
-    // console.log(Object.values(formCorporationTemplate.tags))
+  const [submit, setSubmit] = useState(false)
+  const [stateSubmit, setStateSubimt] = useState(false)
 
+  const updateFielHandler = (key, value) => {
+  
     setData((prev) => {
       return { ...prev, [key]: value }
     })
   }
 
-  const formComponent = [<DataCorporationForm data={data} updateFielHandler={updateFielHandler} />, <ProfileCorporationForm data={data} updateFielHandler={updateFielHandler} />, <OperationCorporationForm data={data} updateFielHandler={updateFielHandler} />, <ContactCorporationForm data={data} updateFielHandler={updateFielHandler} />]
+  const formComponent = [<DataCorporationForm data={data} updateFielHandler={updateFielHandler} />, <ProfileCorporationForm data={data} updateFielHandler={updateFielHandler} />, <OperationCorporationForm data={data} updateFielHandler={updateFielHandler} />, <ContactCorporationForm data={data} updateFielHandler={updateFielHandler} submit={submit} stateSubmit={setSubmit} />]
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep } = registerForm(formComponent)
   
   return (
@@ -85,9 +85,15 @@ export const RegisterPage = () => {
                 <ArrowRightOutlined style={{ fontSize: '25px' }} onClick={(e) => changeStep(currentStep + 1, e)} />
               </div>
             ) : (
-              <div className="next_form">
-                <ButtonPrimary  shape="circle" nameButton={< SendOutlined />} size='large' />
-              </div>)}
+              <div className="submit">
+                <ButtonPrimary disabled={stateSubmit} shape="circle" onClickFuction={() =>
+                {
+                  setSubmit(true)
+                  console.log('click')
+                } } nameButton={< SendOutlined />} size='large' />
+              </div>
+              )
+              }
 
           </div>
         </div>
