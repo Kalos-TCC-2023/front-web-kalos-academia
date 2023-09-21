@@ -12,7 +12,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
   const [bairro, setBairro] = useState('')
   const [rua, setRua] = useState('')
   const [cidade, setCidade] = useState('')
-  const [status, setStatus] = useState(true)
+  const [status, setStatus] = useState(false)
 
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
           updateFielHandler('rua', data.logradouro)
           updateFielHandler('cidade', data.localidade)
           updateFielHandler('logradouro', data.logradouro)
-
+          updateFielHandler('estado', data.uf)
 
         }).catch((erro) => {
           console.log(erro)
@@ -41,70 +41,54 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
   }, [cep])
 
 
-  const checkingFields = () => {
-    const dadosArray = Object.values(data)
-    
-    dadosArray.map((dado) => {
-      if(dado.length == 0){
-        console.log('vazio', dado)
-        setStatus(false)
-        console.log(status)
-        
-      } 
-    })
-  }
-
-  console.log(status)
-
   useEffect(() => {
-    if (submit == false) {
-      console.log('nao enviado')
-    } else {
-      console.log('enviado')
 
-      checkingFields()
-
-      console.log('sss', status)
-      if(status == true){
-        console.log('pronto para enviar');
-      } else {
-        console.log('faltando');
-      }
-      // axios.post('http://10.107.144.6:8080/kalos/academia', {
-      //   nome: data.nome,
-      //   email: data.email,
-      //   senha: data.senha,
-      //   telefone: data.telefone,
-      //   cnpj: data.cnpj,
-      //   foto: data.foto,
-      //   descricao: data.descricao,
-      //   cor_primaria: data.cor_primaria,
-      //   cor_secundaria: data.cor_secundaria,
-      //   data_abertura: '2022-07-02',
-      //   razao_social: 'Empresa seria',
-      //   facebook: data.facebook,
-      //   whatsapp: data.whatsapp,
-      //   instagram: data.instagram,
-      //   logradouro: 'bluefit',
-      //   numero: data.numero,
-      //   bairro: 'bluefit',
-      //   complemento: data.complemento,
-      //   cep: data.cep,
-      //   cidade: 'bluefit',
-      //   estado: 'SP',
-      //   id_categoria: data.id_categoria,
-      //   status: 'Ativo',
-      //   tags: data.tags
-      // }
-      // ).then(({ data }) => {
-
+    if(submit === true){
+      if (data.nome == '' 
+    ) {
       console.log(data)
+      console.log('Ainda está vazio')
+      stateSubmit(false)
+    } else {
 
-      // }).catch((erro) => {
-      //   console.log(erro)
-      // })
+      axios.post('https://kaloscorp.cyclic.cloud/kalos/academia', {
+        nome: data.nome,
+        email: data.email,
+        senha: data.senha,
+        telefone: data.telefone,
+        cnpj: data.cnpj,
+        foto: data.foto,
+        descricao: data.descricao,
+        cor_primaria: data.cor_primaria,
+        cor_secundaria: data.cor_secundaria,
+        data_abertura: data.data_abertura,
+        razao_social: data.razao_social,
+        facebook: data.facebook,
+        whatsapp: data.whatsapp,
+        instagram: data.instagram,
+        logradouro: data.logradouro,
+        numero: data.numero,
+        bairro: data.bairro,
+        complemento: data.complemento,
+        cep: data.cep,
+        cidade: data.cidade,
+        estado: data.estado,
+        id_categoria: data.id_categoria,
+        status: data.status,
+        tags: data.tags
+      }
+      ).then(({ data }) => {
 
+        console.log(data.status)
+        stateSubmit(false)
+
+      }).catch((erro) => {
+        console.log(erro)
+      })
     }
+    }
+    
+
 
 
   }, [submit])
@@ -144,17 +128,17 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
             </div>
             <div className='bairro'>
               <p className='textNameForInput'>Bairro</p>
-              <Input size='default size' disabled value={bairro} onChange={bairro => setBairro(bairro.target.value)} />
+              <Input size='default size' disabled value={data.bairro} onChange={bairro => setBairro(bairro.target.value)} />
             </div>
           </div>
           <div className="rua_cidade_numero">
             <div className='rua'>
               <p className='textNameForInput'>Rua</p>
-              <Input size='default size' disabled value={rua} onChange={rua => setRua(rua.target.value)} />
+              <Input size='default size' disabled value={data.logradouro} onChange={rua => setRua(rua.target.value)} />
             </div>
             <div className='cidade'>
               <p className='textNameForInput'>Cidade</p>
-              <Input size='default size' disabled value={cidade} onChange={cidade => setCidade(cidade.target.value)} />
+              <Input size='default size' disabled value={data.cidade} onChange={cidade => setCidade(cidade.target.value)} />
             </div>
             <div className='numero'>
               <p className='textNameForInput'>Número</p>

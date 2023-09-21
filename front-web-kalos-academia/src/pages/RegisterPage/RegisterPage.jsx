@@ -11,31 +11,34 @@ import { ButtonPrimary } from '../../components/Button/ButtonPrimary'
 import { Step } from '../../components/Steps/Step'
 import './RegisterPage.css'
 
+// CERTO
+
 const formCorporationTemplate = {
-  nome: 'dss',
-  email: 'd',
-  senha: 'd',
-  telefone: 'd',
-  cnpj: 'd',
+  nome: '',
+  email: '',
+  senha: '',
+  telefone: '',
+  cnpj: '',
   foto: 'url.foto.com',
-  descricao: 'd',
+  descricao: '',
   cor_primaria: '#008CFF',
   cor_secundaria: '#008CFF',
-  data_abertura: 'd',
-  razao_social: 'd',
-  facebook: 'd',
-  whatsapp: 'd',
-  instagram: 'd',
-  logradouro: 'bluefit',
-  numero: 'd',
-  bairro: 'bluefit',
-  complemento: 'd',
-  cep: 'd',
-  cidade: 'bluefit',
-  estado: 'SP',
+  data_abertura: '',
+  razao_social: '',
+  facebook: '',
+  whatsapp: '',
+  instagram: '',
+  logradouro: '',
+  numero: '',
+  bairro: '',
+  complemento: '',
+  cep: '',
+  cidade: '',
+  estado: '',
   id_categoria: '',
-  status: 'Ativo',
-  tags: [1]
+  status: '',
+  cnae: '',
+  tags: []
 }
 
 

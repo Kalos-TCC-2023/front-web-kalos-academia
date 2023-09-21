@@ -19,12 +19,10 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
     const [cnae, setCnae] = useState('')
     const [statusCorporation, setStatusCorporation] = useState('Ativo')
 
-
     useEffect(() => {
         if (cnpj === '' || cnpj.length < 14) {
             return
         } else {
-
             const cnpjValidate = cnpj.replace(/[^0-9]/g, '')
             updateFielHandler('cnpj', cnpjValidate)
             setCnpj(cnpjValidate)
@@ -36,20 +34,24 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
                 const dataFormat = moment(dataApi, "DD/MM/YYYY")
                 const dataAberturaFormatada = dataFormat.format("YYYY-MM-DD")
 
-                updateFielHandler('data_abertura', dataAberturaFormatada)
-
                 console.log(dataAberturaFormatada)
 
                 setAbertura(data['DATA ABERTURA'])
                 setCnae(data['CNAE PRINCIPAL CODIGO'])
                 setRazaoSocial(data['RAZAO SOCIAL'])
                 setCep(data['CEP'])
+                setStatusCorporation(data['STATUS'])
 
                 updateFielHandler('data_abertura', dataAberturaFormatada)
                 updateFielHandler('cep', data['CEP'])
+                updateFielHandler('status', data['STATUS'])
+                updateFielHandler('cnae', data['CNAE PRINCIPAL CODIGO'])
+                updateFielHandler('razao_social',data['RAZAO SOCIAL'])
+
+                
+                
 
                 console.log(abertura, cnae, razaoSocial, cep)
-                console.log(updateFielHandler)
 
             }).catch((erro) => {
                 console.log(erro)
@@ -57,6 +59,19 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
         }
 
     }, [cnpj])
+
+    const formartUserData = () => {
+        if(data.data_abertura == ''){
+            const newDataFormatUser = ''
+            return newDataFormatUser
+        } else {
+            const dataFormatApi =  data.data_abertura
+            const dataFormat = moment(dataFormatApi, "YYYY-MM-DD")
+            const newDataFormatUser = dataFormat.format("DD/MM/YYYY")
+            return newDataFormatUser
+        }
+
+    }
 
     console.log(abertura, cnae, razaoSocial, cep)
 
@@ -93,7 +108,7 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
                     <div className='fiels_reset'>
                         <div className="rz">
                             <p className='textNameForInput'>Abertura</p>
-                            <Input size="default size" value={abertura || data.data_abertura} disabled onChange={abertura => updateFielHandler('data_abertura', abertura.target.value)} />
+                            <Input size="default size" value={abertura || formartUserData()} disabled onChange={abertura => updateFielHandler('data_abertura', abertura.target.value)} />
                         </div>
                         <div className="CEP">
                             <p className='textNameForInput'>CEP</p>

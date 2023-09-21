@@ -19,7 +19,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   const [tagsApi, setTagsApi] = useState([])
 
   useEffect(() => {
-    axios.get('http://10.107.144.6:8080/kalos/tags')
+    axios.get('https://kaloscorp.cyclic.cloud/kalos/tags')
       .then(({ data }) => {
         if (tagsApi.length === 0) {
 
