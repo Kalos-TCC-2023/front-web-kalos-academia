@@ -4,6 +4,7 @@ import { Input } from 'antd'
 import './ContactCorporationForm.css'
 import '../../components/TextField/TextField.css'
 import axios from 'axios';
+import { SuccessPage } from '../SuccessPage/SuccessPage'
 
 
 export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateSubmit }) => {
