@@ -96,7 +96,7 @@
   color: red;
   display: none;
 }
-.ant-btn:hover{
+.login_button_register .ant-btn:hover {
   background-color: #00FE90 !important;
   border-color: #00FE90 !important;
 }

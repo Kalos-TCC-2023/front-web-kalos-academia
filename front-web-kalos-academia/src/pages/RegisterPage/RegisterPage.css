@@ -69,7 +69,8 @@
   overflow: hidden;
   color: #000000 !important;
 }
-.ant-btn:hover button{
+.submit .ant-btn:hover {
   background-color: #00fe90 !important;
   border-color: #00fe90 !important;
 }
+
