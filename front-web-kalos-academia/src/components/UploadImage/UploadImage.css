@@ -1,0 +1,25 @@
+.ant-upload-wrapper.ant-upload-picture-circle-wrapper .ant-upload.ant-upload-select {
+    width: 200px;
+    height: 200px;
+    margin-inline-end: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    vertical-align: top;
+    background-color: rgba(0, 0, 0, 0.02);
+    border: 1px dashed #696969;
+    border-radius: 500px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.ant-upload-wrapper.ant-upload-picture-circle-wrapper .ant-upload-list.ant-upload-list-picture-circle .ant-upload-list-item{
+    height: 200px;
+    width: 200px;
+}
+.ant-upload-wrapper.ant-upload-picture-circle-wrapper .ant-upload-list.ant-upload-list-picture-circle .ant-upload-list-item-thumbnail{
+    height: auto;
+}
+
+.ant-upload-wrapper.ant-upload-picture-circle-wrapper .ant-upload-list.ant-upload-list-picture-circle .ant-upload-list-item-thumbnail{
+    /*background-color: yellow;*/
+}

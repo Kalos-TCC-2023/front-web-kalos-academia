@@ -11,8 +11,6 @@ import { ButtonPrimary } from '../../components/Button/ButtonPrimary'
 import { Step } from '../../components/Steps/Step'
 import './RegisterPage.css'
 
-// CERTO
-
 const formCorporationTemplate = {
   nome: '',
   email: '',
@@ -41,11 +39,52 @@ const formCorporationTemplate = {
   tags: []
 }
 
+const operationCorporation = {
+  id_academia: '',
+  segunda: {
+    status: '',
+    horario_inicio: '',
+    horario_fim: ''
+  },
+  terca: {
+    status: '',
+    horario_inicio: '',
+    horario_fim: ''
+  },
+  quarta: {
+    status: '',
+    horario_inicio: '',
+    horario_fim: ''
+  },
+  quinta: {
+    status: '',
+    horario_inicio: '',
+    horario_fim: ''
+  },
+  sexta: {
+    status: '',
+    horario_inicio: '',
+    horario_fim: ''
+  },
+  sabado: {
+    status: '',
+    horario_inicio: '',
+    horario_fim: ''
+  },
+  domingo: {
+    status: '',
+    horario_inicio: '',
+    horario_fim: ''
+  }
+}
+
+console.log(operationCorporation)
 
 
 export const RegisterPage = () => {
 
   const [data, setData] = useState(formCorporationTemplate)
+  const [operation, setOperation] = useState(operationCorporation)
   const [submit, setSubmit] = useState(false)
   const [stateSubmit, setStateSubimt] = useState(false)
 
@@ -56,7 +95,14 @@ export const RegisterPage = () => {
     })
   }
 
-  const formComponent = [<DataCorporationForm data={data} updateFielHandler={updateFielHandler} />, <ProfileCorporationForm data={data} updateFielHandler={updateFielHandler} />, <OperationCorporationForm data={data} updateFielHandler={updateFielHandler} />, <ContactCorporationForm data={data} updateFielHandler={updateFielHandler} submit={submit} stateSubmit={setSubmit} />]
+  const updateOperationHandler = (key, value) => {
+  
+    setOperation((prev) => {
+      return { ...prev, [key]: value }
+    })
+  }
+
+  const formComponent = [<DataCorporationForm data={data} updateFielHandler={updateFielHandler} />, <ProfileCorporationForm data={data} updateFielHandler={updateFielHandler} />, <OperationCorporationForm data={data} updateOperationHandler={updateOperationHandler} operationCorporation={operation} updateFielHandler={updateFielHandler} />, <ContactCorporationForm data={data} updateFielHandler={updateFielHandler} updateOperationHandler={updateOperationHandler} operationCorporation={operation} submit={submit} stateSubmit={setSubmit} />]
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep } = registerForm(formComponent)
   
   return (

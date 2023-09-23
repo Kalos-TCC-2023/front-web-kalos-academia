@@ -5,16 +5,21 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 
 import './DayWeek.css'
 
-export const DayWeek = ({ dayOfWeek, setStateTime, atualState }) => {
+export const DayWeek = ({ dayOfWeek, setStateTime, atualState, updateOperationHandler, dayString }) => {
+
+    const [openOrClosed, setOpenOrClosed] = useState('Aberto')
+    const [timerFiel, setTimeFiel] = useState(false)
 
     dayjs.extend(customParseFormat)
     const onChange = (time, timeString) => {
         setStateTime(timeString)
-        // console.log('isto foi atualizado - ', dayOfWeek, '-', atualState)
+        console.log(atualState)
+        updateOperationHandler(dayOfWeek.toString(), {
+            status: 1,
+            horario_inicio: timeString[0],
+            horario_fim: timeString[1]
+        })
     }
-
-    const [openOrClosed, setOpenOrClosed] = useState('Aberto')
-    const [timerFiel, setTimeFiel] = useState(false)
 
     const onStatusSwitch = (checked) => {
         if(checked === true){
@@ -22,17 +27,22 @@ export const DayWeek = ({ dayOfWeek, setStateTime, atualState }) => {
             setTimeFiel(false)
         } else {
             setOpenOrClosed('Fechado')
-            setStateTime(['00:00:00','00:00:00'])
-            // console.log(atualState)
-            // console.log('isto foi atualizado - ', dayOfWeek, '-', atualState)
+            setStateTime([null, null])
+            console.log(atualState)
             setTimeFiel(true)
+            updateOperationHandler(dayOfWeek.toString(), 
+            {
+                status: 0,
+                horario_inicio: null,
+                horario_fim: null
+            })
         }
     }
 
     return (
         <div id='key' className='day_week'>
             <div className="day_switch">
-                <span className='day'>{dayOfWeek}</span>
+                <span className='day'>{dayString}</span>
                 <Switch defaultChecked size='large' onClick={onStatusSwitch} onChange={onStatusSwitch} />
             </div>
             <span className='closedOrOpen'>{openOrClosed}</span>

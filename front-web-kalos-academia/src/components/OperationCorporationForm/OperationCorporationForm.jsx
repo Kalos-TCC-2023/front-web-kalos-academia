@@ -5,9 +5,8 @@ import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import './OperationCorporationForm.css'
 
-export const OperationCorporationForm = ({ data }) => {
+export const OperationCorporationForm = ({ data, operationCorporation, updateOperationHandler }) => {
 
-    const [switchStatus, setSwitchStatus] = useState(false)
     const [timeSunday, setTimeSunday] = useState([''])
     const [timeMonday, setTimeMonday] = useState('')
     const [timeTuesday, setTimeTuesday] = useState('')
@@ -15,35 +14,33 @@ export const OperationCorporationForm = ({ data }) => {
     const [timeThursday, setTimeThursday] = useState('')
     const [timeFriday, setTimeFriday] = useState('')
     const [timeSaturday, setTimeSaturday] = useState('')
+    
+    
 
-    const operationCorporation = {
-        'Domingo': timeSunday,
-        'Segunda': timeMonday,
-        'Terça': timeTuesday,
-        'Quarta': timeWednesday,
-        'Quinta': timeThursday,
-        'Sexta': timeFriday,
-        'Sabado': timeSaturday,
-    }
+    console.log(operationCorporation)
+    
 
-    console.log(operationCorporation);
+    console.log(operationCorporation)
+
 
     dayjs.extend(customParseFormat)
     const onChange = (time, timeString ) => {
         console.log(time, timeString )
     }
 
+    
+
     return (
         <div className='operation_corporation_form animate__animated animate__fadeInRight'>
             <DescriptionForm title='HORARIO DE FUNCIONAMENTO' description='Preencha de acordo com os horários de funcionamento do seu negócio, isso ficará disponivel para consulta do usuário' />
             <div className="operation_corporation_week_fields">
-                <DayWeek dayOfWeek='Domingo' atualState={timeSunday} atualSwitch={switchStatus} setStatusSwitch={setSwitchStatus} setStateTime={setTimeSunday} />
-                <DayWeek dayOfWeek='Segunda'  atualState={timeMonday} setStateTime={setTimeMonday} onChangeFunction={(checked) => {console.log(`este switch da segunda é ${checked}`)}} stateOfOrganization='Aberto'/>
-                <DayWeek dayOfWeek='Terça' atualState={timeTuesday} setStateTime={setTimeTuesday} onChangeFunction={onChange}/>
-                <DayWeek dayOfWeek='Quarta' atualState={timeWednesday} setStateTime={setTimeWednesday} onChangeFunction={onChange} />
-                <DayWeek dayOfWeek='Quinta' atualState={timeThursday} setStateTime={setTimeThursday} onChangeFunction={onChange} />
-                <DayWeek dayOfWeek='Sexta' atualState={timeFriday} setStateTime={setTimeFriday} onChangeFunction={onChange} />
-                <DayWeek dayOfWeek='Sabado' atualState={timeSaturday} setStateTime={setTimeSaturday} onChangeFunction={onChange} stateOfOrganization='Aberto'/>
+                <DayWeek dayString='Domingo' dayOfWeek='domingo' updateOperationHandler={updateOperationHandler} atualState={timeSunday}  setStateTime={setTimeSunday} />
+                <DayWeek dayString='Segunda' dayOfWeek='segunda' updateOperationHandler={updateOperationHandler}  atualState={timeMonday} setStateTime={setTimeMonday} />
+                <DayWeek dayString='Terça' dayOfWeek='terca' updateOperationHandler={updateOperationHandler} atualState={timeTuesday} setStateTime={setTimeTuesday} />
+                <DayWeek dayString='Quarta' dayOfWeek='quarta' updateOperationHandler={updateOperationHandler} atualState={timeWednesday} setStateTime={setTimeWednesday}  />
+                <DayWeek dayString='Quinta' dayOfWeek='quinta' updateOperationHandler={updateOperationHandler} atualState={timeThursday} setStateTime={setTimeThursday}  />
+                <DayWeek dayString='Sexta' dayOfWeek='sexta' updateOperationHandler={updateOperationHandler} atualState={timeFriday} setStateTime={setTimeFriday} />
+                <DayWeek dayString='Sabado' dayOfWeek='sabado' updateOperationHandler={updateOperationHandler} atualState={timeSaturday} setStateTime={setTimeSaturday} />
             </div>
         </div>
     )

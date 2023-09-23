@@ -73,7 +73,6 @@ export const DataCorporationForm = ({ data, updateFielHandler }) => {
 
     }
 
-    console.log(abertura, cnae, razaoSocial, cep)
 
     return (
         <div className='data_corporation_form '>

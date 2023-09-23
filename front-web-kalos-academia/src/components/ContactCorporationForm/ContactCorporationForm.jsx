@@ -7,7 +7,7 @@ import axios from 'axios';
 import { SuccessPage } from '../SuccessPage/SuccessPage'
 
 
-export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateSubmit }) => {
+export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateSubmit, operationCorporation, updateOperationHandler }) => {
 
   const [cep, setCep] = useState('')
   const [bairro, setBairro] = useState('')
@@ -15,10 +15,15 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
   const [cidade, setCidade] = useState('')
   const [status, setStatus] = useState(false)
 
+  
+
+  console.log(operationCorporation)
+
 
   useEffect(() => {
     if (cep === '' || cep.length < 8) {
       console.log(cep)
+
       return
     } else {
       axios.get(`https://viacep.com.br/ws/${cep}/json/`)
@@ -33,6 +38,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
           updateFielHandler('cidade', data.localidade)
           updateFielHandler('logradouro', data.logradouro)
           updateFielHandler('estado', data.uf)
+          
 
         }).catch((erro) => {
           console.log(erro)
@@ -81,6 +87,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
       ).then(({ data }) => {
 
         console.log(data.status)
+        updateOperationHandler('id_academia', 2)
         stateSubmit(false)
 
       }).catch((erro) => {
@@ -89,9 +96,6 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
     }
     }
     
-
-
-
   }, [submit])
 
 
