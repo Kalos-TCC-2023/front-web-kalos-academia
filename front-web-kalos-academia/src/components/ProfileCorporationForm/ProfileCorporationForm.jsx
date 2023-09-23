@@ -17,21 +17,20 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   const [tagSelected, setTagSelected] = useState('Tags')
   const checkButtonCategory = categorySelected == undefined ? setCategorySelected('Categoria') : true
   const checkButtonTag = tagSelected == undefined ? setTagSelected('Tags') : true
-  const [tagSe, setTagSe] = useState('')
   const [tagsKey, setTagsKey] = useState([])
   const [nameTag, setNameTag] = useState([])
   const [tagsApi, setTagsApi] = useState([])
   const [fileList, setFileList] = useState([
     {
-        uid: '-5',
-        name: 'image.png',
-        status: 'removed'
+      uid: '-5',
+      name: 'image.png',
+      status: 'removed'
     },
-])
+  ])
 
-console.log(tagsKey, tagSelected, nameTag)
+  console.log(tagsKey, tagSelected, nameTag)
 
-  
+
   useEffect(() => {
     axios.get('https://kaloscorp.cyclic.cloud/kalos/tags')
       .then(({ data }) => {
@@ -118,12 +117,6 @@ console.log(tagsKey, tagSelected, nameTag)
   }
 
   console.log(data)
-
-
-  const handleRemoveTagClick = () => {
-
-  }
-
 
   return (
     <div className='profile_corporation_form animate__animated animate__fadeInRight'>

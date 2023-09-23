@@ -19,7 +19,15 @@
 .ant-upload-wrapper.ant-upload-picture-circle-wrapper .ant-upload-list.ant-upload-list-picture-circle .ant-upload-list-item-thumbnail{
     height: auto;
 }
-
 .ant-upload-wrapper.ant-upload-picture-circle-wrapper .ant-upload-list.ant-upload-list-picture-circle .ant-upload-list-item-thumbnail{
-    /*background-color: yellow;*/
+    /* background-color: yellow; */
+    
+}
+
+.ant-progress .ant-progress-inner{
+    width: 150px;
+    margin-left: 15px;
+}
+.ant-progress .ant-progress-bg {
+    height: 3px;
 }

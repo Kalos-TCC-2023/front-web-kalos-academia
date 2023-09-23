@@ -16,8 +16,8 @@ export const DayWeek = ({ dayOfWeek, setStateTime, atualState, updateOperationHa
         console.log(atualState)
         updateOperationHandler(dayOfWeek.toString(), {
             status: 1,
-            horario_inicio: timeString[0],
-            horario_fim: timeString[1]
+            horario_inicio: timeString[0].slice(0, 5),
+            horario_fim: timeString[1].slice(0, 5)
         })
     }
 

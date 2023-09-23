@@ -14,16 +14,16 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
   const [rua, setRua] = useState('')
   const [cidade, setCidade] = useState('')
   const [status, setStatus] = useState(false)
+  const [idAcademia, setIdAcademia] = useState('')
 
-  
   console.log(data)
   console.log(operationCorporation)
-
+  console.log(operationCorporation.segunda)
+  console.log(operationCorporation.segunda['status'])
 
   useEffect(() => {
     if (cep === '' || cep.length < 8) {
       console.log(cep)
-
       return
     } else {
       axios.get(`https://viacep.com.br/ws/${cep}/json/`)
@@ -38,68 +38,109 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
           updateFielHandler('cidade', data.localidade)
           updateFielHandler('logradouro', data.logradouro)
           updateFielHandler('estado', data.uf)
-          
-
         }).catch((erro) => {
           console.log(erro)
         })
     }
-
   }, [cep])
 
+  useEffect(() => {
+    if (submit === true) {
+      if (data.nome == ''
+      ) {
+        console.log(data)
+        console.log('Ainda está vazio')
+        stateSubmit(false)
+      } else {
+
+        axios.post('https://kaloscorp.cyclic.cloud/kalos/academia', {
+          nome: data.nome,
+          email: data.email,
+          senha: data.senha,
+          telefone: data.telefone,
+          cnpj: data.cnpj,
+          foto: data.foto,
+          descricao: data.descricao,
+          cor_primaria: data.cor_primaria,
+          cor_secundaria: data.cor_secundaria,
+          data_abertura: data.data_abertura,
+          razao_social: data.razao_social,
+          facebook: data.facebook,
+          whatsapp: data.whatsapp,
+          instagram: data.instagram,
+          logradouro: data.logradouro,
+          numero: data.numero,
+          bairro: data.bairro,
+          complemento: data.complemento,
+          cep: data.cep,
+          cidade: data.cidade,
+          estado: data.estado,
+          id_categoria: data.id_categoria,
+          status: data.status,
+          tags: data.tags
+        }
+        ).then(({ data }) => {
+
+          console.log(data.academia[0]['id'])
+          setIdAcademia(data.academia[0]['id'])
+          updateOperationHandler('id_academia', idAcademia)
+          stateSubmit(false)
+
+        }).catch((erro) => {
+          console.log(erro)
+        })
+      }
+    }
+  }, [submit])
 
   useEffect(() => {
-
-    if(submit === true){
-      if (data.nome == '' 
-    ) {
-      console.log(data)
-      console.log('Ainda está vazio')
-      stateSubmit(false)
-    } else {
-
-      axios.post('https://kaloscorp.cyclic.cloud/kalos/academia', {
-        nome: data.nome,
-        email: data.email,
-        senha: data.senha,
-        telefone: data.telefone,
-        cnpj: data.cnpj,
-        foto: data.foto,
-        descricao: data.descricao,
-        cor_primaria: data.cor_primaria,
-        cor_secundaria: data.cor_secundaria,
-        data_abertura: data.data_abertura,
-        razao_social: data.razao_social,
-        facebook: data.facebook,
-        whatsapp: data.whatsapp,
-        instagram: data.instagram,
-        logradouro: data.logradouro,
-        numero: data.numero,
-        bairro: data.bairro,
-        complemento: data.complemento,
-        cep: data.cep,
-        cidade: data.cidade,
-        estado: data.estado,
-        id_categoria: data.id_categoria,
-        status: data.status,
-        tags: data.tags
-      }
-      ).then(({ data }) => {
-
-        console.log(data.status)
-        updateOperationHandler('id_academia', 2)
-        stateSubmit(false)
-
+    if (idAcademia !== '') {
+      axios.post('https://kaloscorp.cyclic.cloud/kalos/funcionamento', {
+        id_academia: idAcademia,
+        segunda: {
+          status: operationCorporation.segunda['status'],
+          horario_inicio: operationCorporation.segunda['horario_inicio'],
+          horario_fim: operationCorporation.segunda['horario_fim']
+        },
+        terca: {
+          status: operationCorporation.terca['status'],
+          horario_inicio: operationCorporation.terca['horario_inicio'],
+          horario_fim: operationCorporation.terca['horario_fim']
+        },
+        quarta: {
+          status: operationCorporation.quarta['status'],
+          horario_inicio: operationCorporation.quarta['horario_inicio'],
+          horario_fim: operationCorporation.quarta['horario_fim']
+        },
+        quinta: {
+          status: operationCorporation.quinta['status'],
+          horario_inicio: operationCorporation.quinta['horario_inicio'],
+          horario_fim: operationCorporation.quinta['horario_fim']
+        },
+        sexta: {
+          status: operationCorporation.sexta['status'],
+          horario_inicio: operationCorporation.sexta['horario_inicio'],
+          horario_fim: operationCorporation.sexta['horario_fim']
+        },
+        sabado: {
+          status: operationCorporation.sabado['status'],
+          horario_inicio: operationCorporation.sabado['horario_inicio'],
+          horario_fim: operationCorporation.sabado['horario_fim']
+        },
+        domingo: {
+          status: operationCorporation.domingo['status'],
+          horario_inicio: operationCorporation.domingo['horario_inicio'],
+          horario_fim: operationCorporation.domingo['horario_fim']
+        }
+      }).then(({ data }) => {
+        console.log(data)
       }).catch((erro) => {
         console.log(erro)
       })
+
     }
-    }
-    
-  }, [submit])
 
-
-
+  }, [idAcademia])
 
 
   return (

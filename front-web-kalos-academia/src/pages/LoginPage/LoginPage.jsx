@@ -15,6 +15,7 @@ export const LoginPage = () => {
     const [password, setPassword] = useState('')
     const [statusInput, setStatusInput] = useState('')
     const [forgotPassPage, setforgotPassPage] = useState(false)
+    const user = {}
     const toforgotPass = forgotPassPage ? '/esqueciSenha' : ''
 
     const handleChange = (e) => {
