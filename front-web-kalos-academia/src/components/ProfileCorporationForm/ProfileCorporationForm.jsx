@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import { Input, ColorPicker } from 'antd';
-const { TextArea } = Input;
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
-
-import './ProfileCorporationForm.css'
-import '../../components/TextField/TextField.css'
 import { DropDownMenu } from '../DropDownMenu/DropDownMenu';
 import { TagsAcademy } from '../Tags/Tags';
-import axios from 'axios';
 import { UploadImage } from '../UploadImage/UploadImage';
+import './ProfileCorporationForm.css'
+import '../../components/TextField/TextField.css'
+
+const { TextArea } = Input;
+
 
 export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
 
@@ -16,6 +17,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   const [tagSelected, setTagSelected] = useState('Tags')
   const checkButtonCategory = categorySelected == undefined ? setCategorySelected('Categoria') : true
   const checkButtonTag = tagSelected == undefined ? setTagSelected('Tags') : true
+  const [tagSe, setTagSe] = useState('')
   const [tagsKey, setTagsKey] = useState([])
   const [nameTag, setNameTag] = useState([])
   const [tagsApi, setTagsApi] = useState([])
@@ -27,13 +29,14 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
     },
 ])
 
-
+console.log(tagsKey, tagSelected, nameTag)
 
   
   useEffect(() => {
     axios.get('https://kaloscorp.cyclic.cloud/kalos/tags')
       .then(({ data }) => {
         if (tagsApi.length === 0) {
+          console.log(data.tags)
 
           const items_api = data.tags.map((tag) => {
             const newTags = {}
@@ -41,9 +44,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
             newTags.label = tag.nome
             tagsApi.push(newTags)
           })
-          // console.log(data.tags)
 
-          // console.log(tagsApi)
         } else {
           return
         }
@@ -99,6 +100,8 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
     updateFielHandler('tags', tagsKey)
   }
 
+  console.log(tagsKey)
+
   const handleCategoryClick = (item) => {
     items_category.map((category) => {
       if (item.key == category.key) {
@@ -114,6 +117,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
     console.log('Item', item)
   }
 
+  console.log(data)
 
 
   const handleRemoveTagClick = () => {
@@ -151,7 +155,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
           <p className='textNameForInput'>Tags</p>
           <DropDownMenu className='DropDownMenu' items={tagsApi} itemSelected={tagSelected} onClickFuction={handleTagClick} />
           <div className="tags_visible">
-            <TagsAcademy tags={nameTag} color={data.cor_primaria} />
+            <TagsAcademy tags={nameTag} tagsKey={tagsKey} updateFielHandler={updateFielHandler} setTagsKey={setTagsKey} setTagsName={setNameTag} color={data.cor_primaria} />
           </div>
         </div>
         <div className="colors_corporation">

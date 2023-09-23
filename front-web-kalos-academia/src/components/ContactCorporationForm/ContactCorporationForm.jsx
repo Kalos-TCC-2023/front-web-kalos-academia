@@ -16,7 +16,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
   const [status, setStatus] = useState(false)
 
   
-
+  console.log(data)
   console.log(operationCorporation)
 
 
