@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
 import { Input } from 'antd'
+import { message } from 'antd';
+
 import './ContactCorporationForm.css'
 import '../../components/TextField/TextField.css'
 import axios from 'axios';
@@ -15,6 +17,15 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
   const [cidade, setCidade] = useState('')
   const [status, setStatus] = useState(false)
   const [idAcademia, setIdAcademia] = useState('')
+  const [messageApi, contextHolder] = message.useMessage()
+
+  const errorMessage = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'Existem campos vazios, verifique o formulario',
+    });
+  };
+
 
   console.log(data)
   console.log(operationCorporation)
@@ -46,10 +57,10 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
 
   useEffect(() => {
     if (submit === true) {
-      if (data.nome == ''
-      ) {
+      if (data.nome == '') {
         console.log(data)
         console.log('Ainda está vazio')
+        errorMessage()
         stateSubmit(false)
       } else {
 
@@ -145,7 +156,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
 
   return (
     <div className='contact_corporation_form animate__animated animate__fadeInRight'>
-
+      {contextHolder}
       <div className="contact_address">
         <DescriptionForm title='CONTATO E ENDEREÇO' description='Preencher dados de contato e endereço referente a sua academia' />
         <div className="contact">

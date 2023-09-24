@@ -41,3 +41,7 @@
     display: none;
     color: red;
 }
+.forgot_password .ant-btn:hover{
+    background-color: #00FE90 !important;
+    border-color: #00FE90 !important;
+}

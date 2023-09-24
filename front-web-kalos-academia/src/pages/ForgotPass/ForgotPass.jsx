@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet';
-import { InputNumber, Input } from 'antd';
+import { InputNumber, Input, message } from 'antd';
 import { ButtonPrimary } from '../../components/Button/ButtonPrimary';
 import './ForgotPass.css'
+import axios from 'axios';
 
 export const ForgotPass = () => {
 
@@ -13,8 +14,16 @@ export const ForgotPass = () => {
   const [tokenFive, setTokenFive] = useState(0)
   const [tokenCode, setToken] = useState('')
   const [disabled, setDisabled] = useState('disabled')
+  const [messageApi, contextHolder] = message.useMessage()
 
-  const refVerification = useRef()
+  const error = () => {
+    messageApi.open({
+      type: 'error',
+      content: ' Verifique se todos os campos foram preenchidos corretamente',
+    })
+  }
+
+
   const refFielsNewPassoword = useRef()
 
   const validateToken = () => {
@@ -22,7 +31,7 @@ export const ForgotPass = () => {
 
     if (tokenOne == null || tokenTwo == null || tokenThree == null || tokenFour == null || tokenFive == null) {
       console.log('erro')
-      refVerification.current.style.display = 'flex'
+      error()
 
     } else if (tokenOne !== 0 && tokenTwo !== 0 && tokenThree !== 0 && tokenFour !== 0 && tokenFive !== 0) {
 
@@ -32,20 +41,41 @@ export const ForgotPass = () => {
 
       const fullToken = token.reduce((letter, token) => letter + token)
 
+      console.log(fullToken)
+
       setToken(fullToken)
 
       refFielsNewPassoword.current.style.display = 'flex'
 
     } else {
-      refVerification.current.style.display = 'flex'
+      error()
     }
   }
 
 
   const userEmail = localStorage.getItem('userEmail')
 
+  useEffect(() => {
+    if (userEmail === '' || userEmail.length > 256) {
+      console.log(userEmail)
+      return
+    } else {
+      axios.post(`https://kaloscorp.cyclic.cloud/kalos/academia/esqueci_senha`, {
+        email: userEmail.toString()
+      })
+        .then(({ data }) => {
+          console.log(data)
+        }).catch((erro) => {
+          console.log(erro)
+        })
+    }
+  }, [])
+
+  
+
   return (
     <div className='forgot_password'>
+      {contextHolder}
       <Helmet>
         <title>Kalos - Recuperação de Senha</title>
       </Helmet>
@@ -61,11 +91,7 @@ export const ForgotPass = () => {
           <InputNumber type='number' size="large" min={1} max={9} maxLength={1} defaultValue={''} value={tokenFour} onChange={e => setTokenFour(e)} />
           <InputNumber type='number' size="large" min={1} max={9} maxLength={1} defaultValue={''} value={tokenFive} onChange={e => setTokenFive(e)} />
         </div>
-        <div ref={refVerification} className="verification">
-          Verifique se todos os campos foram preenchidos corretamente
-        </div>
-        <ButtonPrimary shape='round' size={'large'} nameButton='Validar' onClickFuction={validateToken} />
-
+        <ButtonPrimary className='validation_button' shape='round' size={'large'} nameButton='Validar' onClickFuction={validateToken} />
       </div>
 
       <div ref={refFielsNewPassoword} className="visible_fiels">

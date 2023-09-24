@@ -6,8 +6,10 @@ import { TextField } from '../../components/TextField/TextField'
 import { ButtonPrimary } from '../../components/Button/ButtonPrimary'
 import login_img from './img/kalos-login.png'
 import logo_kalos from './img/logo-tipo-kalos.png'
+import 'animate.css'
 import './LoginPage.css'
 import '../../components/TextField/TextField.css'
+import axios from 'axios'
 
 export const LoginPage = () => {
 
@@ -15,34 +17,47 @@ export const LoginPage = () => {
     const [password, setPassword] = useState('')
     const [statusInput, setStatusInput] = useState('')
     const [forgotPassPage, setforgotPassPage] = useState(false)
-    const user = {}
+    const [submitButton, setSubmitButton] = useState(false)
     const toforgotPass = forgotPassPage ? '/esqueciSenha' : ''
 
     const handleChange = (e) => {
         const { value } = e.target
         setEmail(value)
     }
-
-    const handleLoginUser = () => {
-        if (email == '') {
-            setStatusInput('error')
-            console.log(email, password)
-        } else if (password == ''){
-            setStatusInput('error')
-        } else {
-            setStatusInput('')
-            const user = {
-                email, password
+    
+        useEffect(() => {
+            if(submitButton === true){
+                if(email == '' || password == ''){
+                    setStatusInput('error')
+                    setSubmitButton(false)
+                    console.log(email, password)
+                } else {
+                    setStatusInput('')
+                    axios.post(`https://kaloscorp.cyclic.cloud/kalos/academia/autenticar`, {
+                email: email,
+                senha: password
+            })
+                .then(({ data }) => {
+                    console.log(data)
+                    setSubmitButton(false)
+                    
+                }).catch((erro) => {
+                    console.log(erro)
+                })
+                }
+                
+            } else {
+                console.log('erro')
+                setSubmitButton(false)
             }
-            console.log(user)
-        }
-    }
+            
+        }, [submitButton, email, password])
 
     const refP = useRef()
-    
+
     const handleForgotPassword = () => {
 
-        if(email == ''){
+        if (email == '') {
             refP.current.style.display = 'flex'
         } else {
             localStorage.setItem('userEmail', email)
@@ -69,7 +84,7 @@ export const LoginPage = () => {
                             <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
                                 <div className="email_fields">
                                     <TextField textName='E-mail' status={statusInput} placeholder='exemplo@gmail.com' text={email} handleChange={handleChange} />
-                                    <p className='inform_email' ref={refP}>Por favor informe o e-mail para fazer a troca</p>
+                                    <p className='inform_email animate__animated animate__fadeIn' ref={refP}>Por favor informe o e-mail para fazer a troca</p>
                                 </div>
                                 <div className="passowrd_fields">
                                     <p className='textNameForInput'>Senha</p>
@@ -82,7 +97,9 @@ export const LoginPage = () => {
                             </Space>
                         </div>
                         <div className="login_button_register">
-                            <ButtonPrimary nameButton="Entrar" size='large' onClickFuction={handleLoginUser} />
+                            <ButtonPrimary nameButton="Entrar" size='large' onClickFuction={(e) => {
+                                setSubmitButton(true)
+                                }} />
                             <p>É uma academia e não possui uma conta?</p>
                             <Link className='route_register' to='/cadastro'> Faça seu cadastro!</Link>
                         </div>

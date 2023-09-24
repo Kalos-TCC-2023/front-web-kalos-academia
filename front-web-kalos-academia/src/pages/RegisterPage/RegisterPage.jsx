@@ -138,7 +138,6 @@ export const RegisterPage = () => {
                 <ButtonPrimary disabled={stateSubmit} shape="circle" onClickFuction={() =>
                 {
                   setSubmit(true)
-                  console.log('click')
                 } } nameButton={< SendOutlined />} size='large' />
               </div>
               )
