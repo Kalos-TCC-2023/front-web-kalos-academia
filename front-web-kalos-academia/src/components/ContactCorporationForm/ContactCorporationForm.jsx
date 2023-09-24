@@ -15,7 +15,6 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
   const [bairro, setBairro] = useState('')
   const [rua, setRua] = useState('')
   const [cidade, setCidade] = useState('')
-  const [status, setStatus] = useState(false)
   const [idAcademia, setIdAcademia] = useState('')
   const [messageApi, contextHolder] = message.useMessage()
 
@@ -59,7 +58,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
     if (submit === true) {
       if (data.nome == '') {
         console.log(data)
-        console.log('Ainda está vazio')
+        
         errorMessage()
         stateSubmit(false)
       } else {
@@ -144,6 +143,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
           horario_fim: operationCorporation.domingo['horario_fim']
         }
       }).then(({ data }) => {
+        
         console.log(data)
       }).catch((erro) => {
         console.log(erro)
