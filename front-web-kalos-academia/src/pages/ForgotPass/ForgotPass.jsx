@@ -60,7 +60,7 @@ export const ForgotPass = () => {
       console.log(userEmail)
       return
     } else {
-      axios.post(`https://kaloscorp.cyclic.cloud/kalos/academia/esqueci_senha`, {
+      axios.post(`http://10.107.144.6:8080/kalos/academia/esqueci_senha`, {
         email: userEmail.toString()
       })
         .then(({ data }) => {

@@ -2,6 +2,8 @@ import React from 'react'
 
 export const HomePage = () => {
     return (
-        <div>Sair</div>
+        <div className='home_page'>
+            Home
+        </div>
     )
 }

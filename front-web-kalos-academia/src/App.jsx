@@ -14,7 +14,7 @@ function App() {
         />
         <meta name='keywords' content='Academias, gerenciamento, alunos, fitness' />
       </Helmet>
-        <LoginPage />
+        {/* <LoginPage /> */}
     </div>
   )
 }
