@@ -8,8 +8,13 @@ import { RegisterPage } from './pages/RegisterPage/RegisterPage.jsx'
 import { HomePage } from './pages/HomePage/HomePage.jsx'
 import { LoginPage } from './pages/LoginPage/LoginPage.jsx'
 import { MenuMain } from './components/MenuMain/MenuMain.jsx'
-import { PerfilGym } from './pages/Profile/PerfilGym.jsx'
+import { PerfilGym } from './pages/ProfilePage/PerfilGym.jsx'
 import { ErrorPage } from './pages/ErrorPage/ErrorPage.jsx'
+import { StudentsPage } from './pages/StudentsPage/StudentsPage.jsx'
+import { Productspage } from './pages/ProductsPage/Productspage.jsx'
+import { Chatpage } from './pages/ChatPage/Chatpage.jsx'
+import { Workoutspage } from './pages/WorkoutsPage/Workoutspage.jsx'
+import { PostsPage } from './pages/PostsPage/PostsPage.jsx'
 
 
 const router = createBrowserRouter([
@@ -33,11 +38,31 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/menu/home",
-        element: <HomePage />
+        element: <HomePage /> 
       },
       {
         path: "/menu/perfil",
         element: <PerfilGym />
+      },
+      {
+        path: "/menu/alunos",
+        element: <StudentsPage />
+      },
+      {
+        path: "/menu/produtos",
+        element: <Productspage />
+      },
+      {
+        path: "/menu/treinos",
+        element: <Workoutspage />
+      },
+      {
+        path: "/menu/chat",
+        element: <Chatpage />
+      },
+      {
+        path: "/menu/posts",
+        element: <PostsPage />
       },
     ]
     
