@@ -7,7 +7,9 @@ export const HomePage = () => {
             <Helmet>
                 <title>Kalos - Home</title>
             </Helmet>
-            Home
+            <div className="home">
+
+            </div>
         </div>
     )
 }
