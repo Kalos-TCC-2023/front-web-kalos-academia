@@ -4,6 +4,7 @@ import { LockOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { TextField } from '../../components/TextField/TextField'
 import { ButtonPrimary } from '../../components/Button/ButtonPrimary'
+import { Helmet } from 'react-helmet'
 import login_img from './img/kalos-login.png'
 import logo_kalos from './img/logo-tipo-kalos.png'
 import 'animate.css'
@@ -68,6 +69,9 @@ export const LoginPage = () => {
 
     return (
         <div className='login_page'>
+            <Helmet>
+                <title>Login - Kalos</title>
+            </Helmet>
             <div className="align_itens_container">
                 <div className="login_container">
                     <Space className='logotipo_kalos' size={10}>
