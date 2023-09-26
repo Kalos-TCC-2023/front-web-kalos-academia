@@ -15,6 +15,7 @@ import { Productspage } from './pages/ProductsPage/Productspage.jsx'
 import { Chatpage } from './pages/ChatPage/Chatpage.jsx'
 import { Workoutspage } from './pages/WorkoutsPage/Workoutspage.jsx'
 import { PostsPage } from './pages/PostsPage/PostsPage.jsx'
+import { SuccessPage } from './components/SuccessPage/SuccessPage.jsx'
 
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/cadastro",
     element: <RegisterPage />
+  },
+  {
+    path: "/sucesso",
+    element: <SuccessPage />
   },
   {
     path: "/menu",
