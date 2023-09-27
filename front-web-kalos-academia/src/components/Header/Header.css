@@ -1,0 +1,64 @@
+.items_bar{
+    display: flex;
+    align-items: center;
+    width: 93vw;
+    height: 40px;
+    margin: 20px 0px 0px 65px;
+}
+.search_header input{
+    width: 555px !important;
+    border: 100px;
+    background-color: #F5F7F9;
+    border-radius: 100px;
+    border: 1px solid #e7e7e7;
+}
+.ant-input-group-addon button{
+    border-radius: 0px 100px 100px 0px !important;
+    height: 40.2px !important;
+}
+.itens_gym{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.itens_gym button{
+    background-color: #00FE91 !important;
+}
+.data_gym{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: auto;
+    height: 40px;
+    padding: 5px;
+    background-color: #1B1B1B;
+    border-radius: 100px;
+}
+.gym_name{
+    color: #FFB800;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+}
+.date_day_div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 32px;
+    background-color: #ffffff;
+    border-radius: 100px;
+}
+.date_day{
+    color: #FFB800;
+    font-family: Inter;
+    font-size: 10px;
+}
+.ant-input-group {
+    width: 0%;
+}
+.ant-input-group-wrapper{
+    width: 70%;
+}
