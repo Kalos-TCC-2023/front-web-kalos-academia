@@ -14,6 +14,7 @@ export const Header = () => {
 
   const atual_day = moment().format('ll').toString()
   const format_day = atual_day.replace(' de', '')
+  const git = 'nicaco'
  
   return (
     <div className='header_bar'>
