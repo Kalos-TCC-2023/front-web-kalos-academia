@@ -1,11 +1,12 @@
 import React from 'react'
-import { Input, Switch, Avatar, Badge } from 'antd'
 import moment from 'moment'
+import { Input, Switch, Avatar, Badge } from 'antd'
+import { BellOutlined, UserOutlined } from '@ant-design/icons'
+import { MomentDate } from '../MomentDate/MomentDate'
 import 'moment/dist/locale/pt-br'
+import './Header.css'
 moment.locale('pt-br')
 const { Search } = Input
-import { BellOutlined, UserOutlined } from '@ant-design/icons'
-import './Header.css'
 
 export const Header = () => {
 
@@ -13,7 +14,7 @@ export const Header = () => {
 
   const atual_day = moment().format('ll').toString()
   const format_day = atual_day.replace(' de', '')
-
+ 
   return (
     <div className='header_bar'>
       <div className="items_bar">
