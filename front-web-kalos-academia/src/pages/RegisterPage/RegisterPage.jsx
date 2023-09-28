@@ -78,9 +78,6 @@ const operationCorporation = {
   }
 }
 
-console.log(operationCorporation)
-
-
 export const RegisterPage = () => {
 
   const [data, setData] = useState(formCorporationTemplate)
@@ -105,8 +102,6 @@ export const RegisterPage = () => {
   const formComponent = [<DataCorporationForm data={data} updateFielHandler={updateFielHandler} />, <ProfileCorporationForm data={data} updateFielHandler={updateFielHandler} />, <OperationCorporationForm data={data} updateOperationHandler={updateOperationHandler} operationCorporation={operation} updateFielHandler={updateFielHandler} />, <ContactCorporationForm data={data} updateFielHandler={updateFielHandler} updateOperationHandler={updateOperationHandler} operationCorporation={operation} submit={submit} stateSubmit={setSubmit} />]
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep } = registerForm(formComponent)
   
-
-
   return (
     <div className="register_page">
       <Helmet>

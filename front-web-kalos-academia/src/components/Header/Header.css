@@ -62,3 +62,6 @@
 .ant-input-group-wrapper{
     width: 70%;
 }
+.notificacoes_icon{
+    cursor: pointer;
+}

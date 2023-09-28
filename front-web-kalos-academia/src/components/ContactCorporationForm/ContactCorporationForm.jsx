@@ -3,12 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
 import { Input } from 'antd'
 import { message } from 'antd';
-
 import './ContactCorporationForm.css'
 import '../../components/TextField/TextField.css'
 import axios from 'axios';
-import { SuccessPage } from '../SuccessPage/SuccessPage'
-import { Link } from 'react-router-dom';
 
 
 export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateSubmit, operationCorporation, updateOperationHandler }) => {
@@ -19,6 +16,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
   const [cidade, setCidade] = useState('')
   const [idAcademia, setIdAcademia] = useState('')
   const [messageApi, contextHolder] = message.useMessage()
+  const navigate = useNavigate()
 
   const errorMessage = () => {
     messageApi.open({
@@ -34,13 +32,6 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
     })
   }
 
-
-
-  console.log(data)
-  console.log(operationCorporation)
-  console.log(operationCorporation.segunda)
-  console.log(operationCorporation.segunda['status'])
-
   useEffect(() => {
     if (cep === '' || cep.length < 8) {
       console.log(cep)
@@ -48,11 +39,9 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
     } else {
       axios.get(`https://viacep.com.br/ws/${cep}/json/`)
         .then(({ data }) => {
-          console.log(data)
           setRua(data.logradouro)
           setBairro(data.bairro)
           setCidade(data.localidade)
-          console.log('data', data)
           updateFielHandler('bairro', data.bairro)
           updateFielHandler('rua', data.logradouro)
           updateFielHandler('cidade', data.localidade)
@@ -73,7 +62,6 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
       data.whatsapp == '', data.instagram == '', data.logradouro == '', 
       data.numero == '',  data.bairro == '', data.complemento == '', data.cep == '', 
       data.cidade == '', data.estado == '', data.id_categoria == '', data.status == '', data.tags == []) {
-        console.log(data)
         
         errorMessage()
         stateSubmit(false)
@@ -107,15 +95,13 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
         }
         ).then(({ data }) => {
 
-          console.log(data.academia[0]['id'])
           setIdAcademia(data.academia[0]['id'])
           updateOperationHandler('id_academia', idAcademia)
           stateSubmit(false)
 
         }).catch((erro) => {
           errorServer()
-          console.log(erro)
-          // stateSubmit(false)
+          
         })
       }
     }

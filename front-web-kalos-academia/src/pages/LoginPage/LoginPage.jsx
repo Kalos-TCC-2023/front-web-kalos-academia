@@ -32,7 +32,6 @@ export const LoginPage = () => {
                 if(email == '' || password == ''){
                     setStatusInput('error')
                     setSubmitButton(false)
-                    console.log(email, password)
                 } else {
                     setStatusInput('')
                     axios.post(`https://kaloscorp.cyclic.cloud/kalos/academia/autenticar`, {
