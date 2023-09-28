@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { DescriptionForm } from '../DescriptionForm/DescriptionForm'
 import { Input } from 'antd'
 import { message } from 'antd';
@@ -7,6 +8,7 @@ import './ContactCorporationForm.css'
 import '../../components/TextField/TextField.css'
 import axios from 'axios';
 import { SuccessPage } from '../SuccessPage/SuccessPage'
+import { Link } from 'react-router-dom';
 
 
 export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateSubmit, operationCorporation, updateOperationHandler }) => {
@@ -22,8 +24,16 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
     messageApi.open({
       type: 'error',
       content: 'Existem campos vazios, verifique o formulario',
-    });
-  };
+    })
+  }
+
+  const errorServer = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'Ops! Parece que houve um erro inesperado!',
+    })
+  }
+
 
 
   console.log(data)
@@ -56,7 +66,13 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
 
   useEffect(() => {
     if (submit === true) {
-      if (data.nome == '') {
+      if (data.nome == '', data.email == '', data.senha == '', 
+      data.telefone == '', data.cnpj == '', data.foto == '', 
+      data.descricao == '', data.cor_primaria == '', data.cor_primaria == '', 
+      data.data_abertura == '',data.razao_social == '', data.facebook == '', 
+      data.whatsapp == '', data.instagram == '', data.logradouro == '', 
+      data.numero == '',  data.bairro == '', data.complemento == '', data.cep == '', 
+      data.cidade == '', data.estado == '', data.id_categoria == '', data.status == '', data.tags == []) {
         console.log(data)
         
         errorMessage()
@@ -97,7 +113,9 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
           stateSubmit(false)
 
         }).catch((erro) => {
+          errorServer()
           console.log(erro)
+          // stateSubmit(false)
         })
       }
     }
@@ -143,10 +161,14 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
           horario_fim: operationCorporation.domingo['horario_fim']
         }
       }).then(({ data }) => {
-        
+        if(data.status == 201){
+          navigate("/sucesso")
+        } else {
+          errorServer()
+        }
         console.log(data)
       }).catch((erro) => {
-        console.log(erro)
+        errorServer()
       })
 
     }

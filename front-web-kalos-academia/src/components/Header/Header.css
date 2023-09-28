@@ -1,7 +1,7 @@
 .items_bar{
     display: flex;
     align-items: center;
-    width: 93vw;
+    width: 85vw;
     height: 40px;
     margin: 20px 0px 0px 65px;
 }

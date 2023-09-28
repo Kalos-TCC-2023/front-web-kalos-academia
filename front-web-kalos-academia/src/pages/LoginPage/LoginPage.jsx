@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Divider, Space, Input } from 'antd'
 import { LockOutlined } from '@ant-design/icons'
-import { Link, redirect } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { TextField } from '../../components/TextField/TextField'
 import { ButtonPrimary } from '../../components/Button/ButtonPrimary'
 import { Helmet } from 'react-helmet'
@@ -20,7 +20,7 @@ export const LoginPage = () => {
     const [forgotPassPage, setforgotPassPage] = useState(false)
     const [submitButton, setSubmitButton] = useState(false)
     const toforgotPass = forgotPassPage ? '/esqueciSenha' : ''
-
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         const { value } = e.target
@@ -43,17 +43,14 @@ export const LoginPage = () => {
                     console.log(data.status)
                     localStorage.setItem('id_academia', data.id)
                     setSubmitButton(false)
-                    redirect('/menu/home')
+                    navigate("/menu/home")
                     
                 }).catch((erro) => {
                     console.log(erro)
                 })
                 }
                 
-            } else {
-                console.log('erro')
-                setSubmitButton(false)
-            }
+            } 
             
         }, [submitButton, email, password])
 
