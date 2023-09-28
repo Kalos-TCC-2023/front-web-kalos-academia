@@ -128,7 +128,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
         <div className="name_description">
           <div className='name_corporation'>
             <p className='textNameForInput'>Nome da Empresa</p>
-            <Input size='default size' placeholder='Exemplo de Nome' value={data.nome} onChange={(nameCorporation) => updateFielHandler('nome', nameCorporation.target.value)} />
+            <Input size='default size' placeholder='Exemplo de Nome' maxLength={12} value={data.nome} onChange={(nameCorporation) => updateFielHandler('nome', nameCorporation.target.value)} />
           </div>
           <div className='description_corporation'>
             <p className='textNameForInput'>Descrição</p>

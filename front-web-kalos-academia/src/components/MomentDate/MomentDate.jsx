@@ -4,7 +4,7 @@ import 'moment/dist/locale/pt-br'
 moment.locale('pt-br')
 
 export const MomentDate = ({formato}) => {
-    const atual_day = moment().format(formato.toString())
+    const atual_day = moment().format(formato)
     
   return (
     <div className='date_moment'>{atual_day}</div>

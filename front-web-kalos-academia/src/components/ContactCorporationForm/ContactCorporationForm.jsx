@@ -25,6 +25,8 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
     })
   }
 
+  console.log(data)
+
   const errorServer = () => {
     messageApi.open({
       type: 'error',
@@ -67,7 +69,8 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
         stateSubmit(false)
       } else {
 
-        axios.post('https://kaloscorp.cyclic.cloud/kalos/academia', {
+        // http://10.107.144.6:8080
+        axios.post('http://10.107.144.6:8080/kalos/academia', {
           nome: data.nome,
           email: data.email,
           senha: data.senha,

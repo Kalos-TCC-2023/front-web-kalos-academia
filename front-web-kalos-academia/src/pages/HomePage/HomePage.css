@@ -1,3 +1,137 @@
-.home{
+.home {
     display: flex;
+    align-items: center;
+    gap: 3vw;
+    margin-left: 65px;
+    margin-top: 62px;
+    margin-right: 32px;
+
+}
+
+.students_workouts_data, .new_students_products_weights_data {
+    
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    gap: 65px;
+}
+.items_home{
+    display: flex;
+    gap: 1.7vw;
+}
+.workouts_counter {
+    width: 16vw;
+    height: 268px;
+    border: 1px solid #00FE90;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.items_workouts_counter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+
+.title_home,
+.number_description, .title_recent_students {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.description_home {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1
+}
+.counter {
+    font-family: Inter;
+    font-size: 86px;
+    font-weight: 600;
+    background: linear-gradient(180deg, #00FE90 0%, #20FFF7 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.create_workout button {
+    color: #000 !important;
+    background-color: #00FE90;
+    border-color: #00FE90;
+}
+
+.create_workout .ant-btn:hover {
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+.recent_students {
+    width: 18vw;
+    height: 393px;
+    border: 1px solid #00FE90;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+
+.header_recent_students {
+    display: flex;
+    justify-content: space-between;
+}
+.atual_day_format {
+    width: 124px;
+    height: 34px;
+    border-radius: 10px;
+    background: #1E1E1E;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.atual_day_format :first-child {
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+}
+.new_students_dahsboard{
+    width: 20vw;
+    height: 310px;
+    background-color: #00FE91;
+    border-radius: 30px;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+.products{
+    width: 20vw;
+    height: 144px;
+    border-radius: 20px;
+    background: #00FE90;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+.weights{
+    width: 20vw;
+    height: 144px;
+    border-radius: 20px;
+    border: 1px solid #00FE90;
+    background: #FEFEFE;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+.extras_items{
+    height: 45vw;
+    
 }
