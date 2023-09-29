@@ -1,27 +1,26 @@
 .home {
     display: flex;
-    align-items: center;
+    height: 90vh;
     gap: 3vw;
     margin-left: 65px;
     margin-top: 62px;
     margin-right: 32px;
 
 }
-
 .students_workouts_data, .new_students_products_weights_data {
-    
-    height: 90vh;
     display: flex;
     flex-direction: column;
-    gap: 65px;
+    gap: 2rem;
 }
+
 .items_home{
+    height: 90vh;
     display: flex;
     gap: 1.7vw;
 }
 .workouts_counter {
-    width: 16vw;
-    height: 268px;
+    width: 18vw;
+    height: 24vh;
     border: 1px solid #00FE90;
     border-radius: 30px;
     display: flex;
@@ -60,6 +59,11 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.view_students button{
+    color: rgb(0, 0, 0) !important;
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
 
 .create_workout button {
     color: #000 !important;
@@ -67,7 +71,7 @@
     border-color: #00FE90;
 }
 
-.create_workout .ant-btn:hover {
+.create_workout .ant-btn:hover, .view_students .ant-btn:hover{
     background-color: #000000 !important;
     border-color: #000000 !important;
     color: #ffffff !important;
@@ -75,19 +79,22 @@
 
 .recent_students {
     width: 18vw;
-    height: 393px;
+    height: 30.5vh;
     border: 1px solid #00FE90;
     border-radius: 30px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     padding-left: 22px;
     padding-right: 22px;
+    padding-top: 24px;
+    padding-bottom: 24px;
 }
 
 .header_recent_students {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .atual_day_format {
     width: 124px;
@@ -133,5 +140,5 @@
 }
 .extras_items{
     height: 45vw;
-    
+    background-color: yellowgreen;
 }

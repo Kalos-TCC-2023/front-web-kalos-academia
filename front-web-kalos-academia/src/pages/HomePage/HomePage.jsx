@@ -1,9 +1,12 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { Breadcrumb } from 'antd';
+import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { ButtonPrimary } from './../../components/Button/ButtonPrimary'
 import { MomentDate } from '../../components/MomentDate/MomentDate'
-import './HomePage.css'
 import { UserCard } from '../../components/UserCard/UserCard'
+import './HomePage.css'
+import { ReportDev } from '../../components/ReportDev/ReportDev';
 
 export const HomePage = () => {
 
@@ -15,6 +18,7 @@ export const HomePage = () => {
             <Helmet>
                 <title>Kalos - Home</title>
             </Helmet>
+
             <div className="home">
                 <div className="items_home">
                     {/* FILEIRA UM */}
@@ -42,14 +46,20 @@ export const HomePage = () => {
                                 </div>
                             </div>
                             <div className="new_students">
-                                <UserCard />
+                                <UserCard name={'Artur Alves'} id={'#10000'} />
+                                <UserCard name={'Artur Alves'} id={'#10000'} />
+                                <UserCard name={'Artur Alves'} id={'#10000'} />
+                                <UserCard name={'Artur Alves'} id={'#10000'} />
+                                <UserCard name={'Artur Alves'} id={'#10000'} />
                             </div>
                         </div>
                     </div>
                     {/* FILEIRA DOIS */}
                     <div className="new_students_products_weights_data">
                         <div className="new_students_dahsboard">
-                           
+                            {/* <div className="view_students">
+                                <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR TODOS OS ALUNOS' />
+                            </div> */}
                         </div>
                         <div className="products">
 
@@ -61,6 +71,7 @@ export const HomePage = () => {
                 </div>
                 <div className="extras_items">
                     Extras
+                    <ReportDev />
                 </div>
             </div>
 

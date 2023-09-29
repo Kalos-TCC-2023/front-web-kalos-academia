@@ -1,0 +1,28 @@
+.user_card{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+.user_data{
+    display: flex;
+    flex-direction: column;
+}
+.user_name{
+    font-family: Inter;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1 ;
+    
+}
+.user_id{
+    color: #D2D2D2;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+}
+.container_user .ant-divider-horizontal{
+    margin: 5px !important;
+}

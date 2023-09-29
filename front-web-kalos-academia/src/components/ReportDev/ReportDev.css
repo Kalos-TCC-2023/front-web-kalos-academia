@@ -1,0 +1,26 @@
+.modal_report_bug_dev{
+    width: 288px;
+    height: 159px;
+    border-radius: 10px;
+    background-color: #FBFBFB;
+    font-family: Inter;
+    text-align: center;
+}
+.description_modal{
+    display: flex;
+    flex-direction: column;
+}
+.title_modal{
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+.description_dev_report{
+    color: #666;
+    text-align: center;
+    font-family: Inter;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
