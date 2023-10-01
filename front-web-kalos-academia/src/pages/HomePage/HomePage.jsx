@@ -1,16 +1,19 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { Breadcrumb } from 'antd';
-import { HomeOutlined, UserOutlined } from '@ant-design/icons';
+import { NoDataNotification } from '../../components/noDataNotification/noDataNotification'
+
 import { ButtonPrimary } from './../../components/Button/ButtonPrimary'
 import { MomentDate } from '../../components/MomentDate/MomentDate'
 import { UserCard } from '../../components/UserCard/UserCard'
+import { ReportDev } from '../../components/ReportDev/ReportDev'
+import { CalenderHome } from '../../components/Calender/CalenderHome'
 import './HomePage.css'
-import { ReportDev } from '../../components/ReportDev/ReportDev';
+
 
 export const HomePage = () => {
 
     const contadorTreinos = 0
+    const price = 592.99
 
 
     return (
@@ -20,6 +23,7 @@ export const HomePage = () => {
             </Helmet>
 
             <div className="home">
+
                 <div className="items_home">
                     {/* FILEIRA UM */}
                     <div className="students_workouts_data">
@@ -57,20 +61,30 @@ export const HomePage = () => {
                     {/* FILEIRA DOIS */}
                     <div className="new_students_products_weights_data">
                         <div className="new_students_dahsboard">
-                            {/* <div className="view_students">
-                                <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR TODOS OS ALUNOS' />
-                            </div> */}
+                            <div className="view_students">
+                                <NoDataNotification description='A academia ainda não possui novos estudantes' />
+                                {/* <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR TODOS OS ALUNOS' /> */}
+                            </div>
                         </div>
                         <div className="products">
-
+                            <NoDataNotification description='A academia ainda não possui reservas' />
                         </div>
                         <div className="weights">
-
+                            <NoDataNotification description='A academia ainda não possui média de pesos pegos' />
                         </div>
                     </div>
                 </div>
                 <div className="extras_items">
-                    Extras
+                    <CalenderHome />
+                    <div className="data_products">
+                        <div className="total_price_products">
+                            <div className="value">
+                                R${price}
+                                <span className='total_description'>Lucro Total</span>
+                            </div>
+                            <span>Com sua loja on você lucrou</span>
+                        </div>
+                    </div>
                     <ReportDev />
                 </div>
             </div>

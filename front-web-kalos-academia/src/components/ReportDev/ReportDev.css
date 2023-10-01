@@ -1,10 +1,12 @@
 .modal_report_bug_dev{
-    width: 288px;
-    height: 159px;
+    width: 22vw;
+    height: 25vh;
     border-radius: 10px;
     background-color: #FBFBFB;
     font-family: Inter;
     text-align: center;
+    display: grid;
+    place-items: center;
 }
 .description_modal{
     display: flex;
@@ -23,4 +25,15 @@
     font-family: Inter;
     font-size: 0.8rem;
     font-weight: 400;
+}
+.modal_report_bug_dev button{
+    background-color: #00FE91 !important;
+    border: #00FE91;
+    color: #000;
+}
+
+.modal_report_bug_dev .ant-btn:hover{
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+    color: #ffffff !important;
 }

@@ -1,0 +1,6 @@
+.ant-picker-calendar .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner{
+    background-color: #00FE91 !important;
+}
+.ant-picker-calendar .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before{
+    border: #00FE91 !important;
+}

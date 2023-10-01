@@ -1,9 +1,15 @@
 .user_card{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+.basic_data{
+    display: flex ;
+    align-items: center;
+    gap: 20px;
 }
 .user_data{
     display: flex;
@@ -22,6 +28,15 @@
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
+}
+.button_user_profile{
+    width: 31px;
+    height: 31px;
+    background-color: #00fe90;
+    border-radius: 21px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
 }
 .container_user .ant-divider-horizontal{
     margin: 5px !important;

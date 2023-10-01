@@ -1,6 +1,7 @@
 import React from 'react'
 import './ReportDev.css'
 import logo from './img/report_dev_logo.svg'
+import { ButtonPrimary } from '../Button/ButtonPrimary'
 
 export const ReportDev = () => {
   return (
@@ -10,6 +11,7 @@ export const ReportDev = () => {
             <span className='title_modal'>Notou algo estranho? Reporte os desenvolvedores! </span>
             <span className='description_dev_report'>Trabalhamos todos os dias para melhorar ainda mais a experiência dos usuários!</span>
         </div>
+        <ButtonPrimary nameButton='REPORTAR BUG' />
     </div>
   )
 }
