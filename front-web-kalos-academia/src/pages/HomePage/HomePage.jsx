@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { NoDataNotification } from '../../components/noDataNotification/noDataNotification'
+// import { NoDataNotification } from '../../components/noDataNotification/noDataNotification'
 
 import { ButtonPrimary } from './../../components/Button/ButtonPrimary'
 import { MomentDate } from '../../components/MomentDate/MomentDate'
@@ -62,15 +62,15 @@ export const HomePage = () => {
                     <div className="new_students_products_weights_data">
                         <div className="new_students_dahsboard">
                             <div className="view_students">
-                                <NoDataNotification description='A academia ainda não possui novos estudantes' />
+                                {/* <NoDataNotification description='A academia ainda não possui novos estudantes' /> */}
                                 {/* <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR TODOS OS ALUNOS' /> */}
                             </div>
                         </div>
                         <div className="products">
-                            <NoDataNotification description='A academia ainda não possui reservas' />
+                            {/* <NoDataNotification description='A academia ainda não possui reservas' /> */}
                         </div>
                         <div className="weights">
-                            <NoDataNotification description='A academia ainda não possui média de pesos pegos' />
+                            {/* <NoDataNotification description='A academia ainda não possui média de pesos pegos' /> */}
                         </div>
                     </div>
                 </div>

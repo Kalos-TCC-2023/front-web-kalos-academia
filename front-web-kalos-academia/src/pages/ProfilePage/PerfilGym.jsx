@@ -1,5 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import './Profile.css'
 
 export const PerfilGym = () => {
   return (
@@ -7,7 +8,9 @@ export const PerfilGym = () => {
       <Helmet>
         <title>Kalos - Perfil</title>
       </Helmet>
-      PerfilGym
+      <div className="profile_gym">
+        Profile Gym
+      </div>
     </div>
   )
 }
