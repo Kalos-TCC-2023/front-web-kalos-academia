@@ -1,10 +1,9 @@
 import React from 'react'
 import { Empty } from 'antd';
 
-export const NoDataNotification = ( {description} ) => {
+export const NoData = ({description}) => {
     return (
-        <div>
-            <Empty
+        <Empty
                 image={Empty.PRESENTED_IMAGE_DEFAULT} 
                 imageStyle={{
                     height: 60,
@@ -16,6 +15,5 @@ export const NoDataNotification = ( {description} ) => {
                 }
             >
             </Empty>
-        </div>
     )
 }
