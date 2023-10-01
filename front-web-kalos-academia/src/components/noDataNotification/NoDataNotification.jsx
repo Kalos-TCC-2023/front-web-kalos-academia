@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Empty } from 'antd';
+import { Empty } from 'antd';
 
 export const NoDataNotification = ( {description} ) => {
     return (
