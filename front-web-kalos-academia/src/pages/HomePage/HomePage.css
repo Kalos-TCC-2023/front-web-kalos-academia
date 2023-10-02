@@ -82,7 +82,7 @@
 
 .recent_students {
   width: 18vw;
-  height: 80.5vh;
+  /* height: 80.5vh; */
   border: 1px solid #00fe90;
   border-radius: 30px;
   display: flex;
@@ -116,6 +116,7 @@
   font-size: 16px;
   font-weight: 500;
 }
+
 .new_students_dahsboard {
   width: 20vw;
   height: 310px;

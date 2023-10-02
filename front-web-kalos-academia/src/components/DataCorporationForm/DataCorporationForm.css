@@ -10,6 +10,11 @@
 .email, .senha{
     margin-top: 15px;
 }
+.email{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
 .email input{
     width: 327px;
 }

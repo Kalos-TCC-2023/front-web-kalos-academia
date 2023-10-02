@@ -82,9 +82,9 @@
   width: 17vw;
 }
 .pages_gym {
-  width: 62vw;
+  width: 25vw;
 }
-.email,
+.email_profile,
 .telefone,
 .endereco {
   display: flex;

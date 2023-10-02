@@ -66,7 +66,7 @@ export const PerfilGym = () => {
               </div>
               <div className="info_gym">
                 <InfoCardGym title='Info'>
-                  <div className="email">
+                  <div className="email_profile">
                     <MailFilled style={{ color: '#ffb800', fontSize: '20px' }} />
                     <InfoDescription title='E-mail' description={emailGym} />
                   </div>
