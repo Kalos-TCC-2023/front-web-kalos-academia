@@ -10,10 +10,8 @@ import './HomePage.css'
 
 
 export const HomePage = () => {
-
     const contadorTreinos = 0
     const price = 592.99
-
 
     return (
         <div className='home_page'>

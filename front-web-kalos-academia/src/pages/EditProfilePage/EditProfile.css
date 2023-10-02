@@ -1,0 +1,43 @@
+.edit_profile_gym{
+    height: 90vh;
+    gap: 3vw;
+    margin-left: 45px;
+    margin-top: 5px;
+    margin-right: 32px;
+    margin-bottom: 41px;
+    overflow: auto;
+    
+  }
+.title_edit_page {
+  color: #000;
+  font-family: Montserrat;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+}
+.photo_basic_information,  .social_midia_endereco, .operation_colors{
+  display: flex;
+  gap: 50px;
+  margin-bottom: 25px;
+}
+.category_name_gym, .tags_contact, .social_midia_endereco, .operation_colors{
+  display: flex;
+  gap: 50px;
+  margin-bottom: 25px;
+}
+.tags_contact{
+  width: 550px;
+}
+.cep_rua, .complemento_numero_bairro{
+  display: flex;
+  gap: 20px;
+}
+.days_week{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.colors_picker{
+  display: flex;
+  gap: 50px;
+}

@@ -6,6 +6,7 @@ import { EditOutlined, UserOutlined, MailFilled, PhoneFilled, PushpinFilled, Ins
 import { SubPagesProfile } from '../../components/SubPagesProfile/SubPagesProfile';
 import { InfoCardGym } from '../../components/InfoCardGym/InfoCardGym';
 import { InfoDescription } from '../../components/InfoDescription/InfoDescription';
+import { Link } from 'react-router-dom';
 import './Profile.css'
 
 
@@ -27,7 +28,9 @@ export const PerfilGym = () => {
         <title>Kalos - Perfil</title>
       </Helmet>
       <div className="profile_gym">
-        <FloatButton tooltip='Editar Perfil' icon={<EditOutlined />} onClick={() => console.log('click')} />
+        <Link to='/menu/perfil/editar'>
+          <FloatButton tooltip='Editar Perfil' icon={<EditOutlined />} />
+        </Link>
         <div className="profile_items">
           <div className="top_profile_data">
             <div className="img_name_type_operation">
