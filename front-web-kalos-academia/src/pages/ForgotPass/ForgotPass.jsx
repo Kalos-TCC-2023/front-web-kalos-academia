@@ -13,8 +13,11 @@ export const ForgotPass = () => {
   const [tokenFour, setTokenFour] = useState(0)
   const [tokenFive, setTokenFive] = useState(0)
   const [tokenCode, setToken] = useState('')
+  const [newPassoword, setNewPassword] = useState('')
+  const [checkPassword, setCheckPassword] = useState('')
   const [disabled, setDisabled] = useState('disabled')
   const [messageApi, contextHolder] = message.useMessage()
+ 
 
   const error = () => {
     messageApi.open({
@@ -23,6 +26,12 @@ export const ForgotPass = () => {
     })
   }
 
+  const errorInvalidToken = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'Codigo invalido, tente novamente!',
+    })
+  }
 
   const refFielsNewPassoword = useRef()
 
@@ -33,9 +42,9 @@ export const ForgotPass = () => {
       console.log('erro')
       error()
 
-    } else if (tokenOne !== 0 && tokenTwo !== 0 && tokenThree !== 0 && tokenFour !== 0 && tokenFive !== 0) {
+    } else if (tokenOne !== -1 && tokenTwo !== -1 && tokenThree !== -1 && tokenFour !== -1 && tokenFive !== -1) {
 
-      refVerification.current.style.display = 'none'
+      refFielsNewPassoword.current.style.display = 'none'
 
       const token = [tokenOne.toString(), tokenTwo.toString(), tokenThree.toString(), tokenFour.toString(), tokenFive.toString()]
 
@@ -45,14 +54,12 @@ export const ForgotPass = () => {
 
       setToken(fullToken)
 
-      refFielsNewPassoword.current.style.display = 'flex'
-
     } else {
       error()
     }
   }
 
-
+ 
   const userEmail = localStorage.getItem('userEmail')
 
   useEffect(() => {
@@ -71,7 +78,25 @@ export const ForgotPass = () => {
     }
   }, [])
 
-  
+
+  useEffect(() => {
+    if (tokenCode == '' || tokenCode.length < 5) {
+      errorInvalidToken()
+    } else {
+      axios.post(`http://10.107.144.6:8080/kalos/academia/validar_token`, {
+        email: userEmail.toString(),
+        token: tokenCode.toString()
+      })
+        .then(({ data }) => {
+          console.log(data)
+          refFielsNewPassoword.current.style.display = 'flex'
+        }).catch((erro) => {
+          errorInvalidToken()
+        })
+    }
+  }, [tokenCode])
+
+
 
   return (
     <div className='forgot_password'>
@@ -85,17 +110,17 @@ export const ForgotPass = () => {
       </div>
       <div className="fiels_verification">
         <div className='forgot_passowrd_token_fiels'>
-          <InputNumber type='number' size="large" min={1} max={9} maxLength={1} defaultValue={''} value={tokenOne} onChange={e => setTokenOne(e)} />
-          <InputNumber type='number' size="large" min={1} max={9} maxLength={1} defaultValue={''} value={tokenTwo} onChange={e => setTokenTwo(e)} />
-          <InputNumber type='number' size="large" min={1} max={9} maxLength={1} defaultValue={''} value={tokenThree} onChange={e => setTokenThree(e)} />
-          <InputNumber type='number' size="large" min={1} max={9} maxLength={1} defaultValue={''} value={tokenFour} onChange={e => setTokenFour(e)} />
-          <InputNumber type='number' size="large" min={1} max={9} maxLength={1} defaultValue={''} value={tokenFive} onChange={e => setTokenFive(e)} />
+          <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenOne} onChange={e => setTokenOne(e)} />
+          <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenTwo} onChange={e => setTokenTwo(e)} />
+          <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenThree} onChange={e => setTokenThree(e)} />
+          <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenFour} onChange={e => setTokenFour(e)} />
+          <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenFive} onChange={e => setTokenFive(e)} />
         </div>
         <ButtonPrimary className='validation_button' shape='round' size={'large'} nameButton='Validar' onClickFuction={validateToken} />
       </div>
 
       <div ref={refFielsNewPassoword} className="visible_fiels">
-        <div  className='forgot_passowrd_new_fiels'>
+        <div className='forgot_passowrd_new_fiels'>
           <div className='fiels'>
             <div className="new_passowrd">
               <p className='textNameForInput'>Nova Senha</p>
