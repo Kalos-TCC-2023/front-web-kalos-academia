@@ -28,7 +28,6 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
     },
   ])
 
-  console.log(tagsKey, tagSelected, nameTag)
 
 
   useEffect(() => {
