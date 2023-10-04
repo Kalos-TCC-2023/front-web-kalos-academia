@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet';
 import { InputNumber, Input, message } from 'antd';
 import { ButtonPrimary } from '../../components/Button/ButtonPrimary';
+import 'animate.css'
 import './ForgotPass.css'
 import axios from 'axios';
 
@@ -34,6 +35,7 @@ export const ForgotPass = () => {
   }
 
   const refFielsNewPassoword = useRef()
+  const refFielFullCode = useRef()
 
   const validateToken = () => {
     console.log(tokenCode)
@@ -50,9 +52,13 @@ export const ForgotPass = () => {
 
       const fullToken = token.reduce((letter, token) => letter + token)
 
-      console.log(fullToken)
+      if(fullToken == '00000'){
+        errorInvalidToken()
+      } else {
+        setToken(fullToken)
+      }
 
-      setToken(fullToken)
+      console.log(fullToken)
 
     } else {
       error()
@@ -72,6 +78,7 @@ export const ForgotPass = () => {
       })
         .then(({ data }) => {
           console.log(data)
+          localStorage.clear()
         }).catch((erro) => {
           console.log(erro)
         })
@@ -80,8 +87,8 @@ export const ForgotPass = () => {
 
 
   useEffect(() => {
-    if (tokenCode == '' || tokenCode.length < 5) {
-      errorInvalidToken()
+    if (tokenCode == '' || tokenCode.length < 5 ) {
+      return
     } else {
       axios.post(`http://10.107.144.6:8080/kalos/academia/validar_token`, {
         email: userEmail.toString(),
@@ -90,6 +97,7 @@ export const ForgotPass = () => {
         .then(({ data }) => {
           console.log(data)
           refFielsNewPassoword.current.style.display = 'flex'
+          refFielFullCode.current.style.display = 'none'
         }).catch((erro) => {
           errorInvalidToken()
         })
@@ -104,7 +112,7 @@ export const ForgotPass = () => {
       <Helmet>
         <title>Kalos - Recuperação de Senha</title>
       </Helmet>
-      <div className='forgot_password_instructions'>
+      <div ref={refFielFullCode} className='forgot_password_instructions'>
         <h1>Insira o código de verificação</h1>
         <p>Por favor verifique o código de 5 dígitos que foi enviado para o e-mail <span className='userEmail'>{userEmail}</span> para efetuar a troca da senha.</p>
       </div>
@@ -119,12 +127,12 @@ export const ForgotPass = () => {
         <ButtonPrimary className='validation_button' shape='round' size={'large'} nameButton='Validar' onClickFuction={validateToken} />
       </div>
 
-      <div ref={refFielsNewPassoword} className="visible_fiels">
+      <div ref={refFielsNewPassoword} className="animate__animated animate__fadeInDown visible_fiels">
         <div className='forgot_passowrd_new_fiels'>
           <div className='fiels'>
             <div className="new_passowrd">
               <p className='textNameForInput'>Nova Senha</p>
-              <Input size="large" />
+              <Input value={newPassoword} onc size="large" />
             </div>
             <div className="repeat_passowrd">
               <p className='textNameForInput'>Repetir Senha</p>
