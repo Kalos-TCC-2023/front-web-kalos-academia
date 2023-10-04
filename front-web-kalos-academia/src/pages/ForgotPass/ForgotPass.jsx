@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
 import { InputNumber, Input, message } from 'antd';
 import { ButtonPrimary } from '../../components/Button/ButtonPrimary';
 import 'animate.css'
@@ -16,9 +17,10 @@ export const ForgotPass = () => {
   const [tokenCode, setToken] = useState('')
   const [newPassoword, setNewPassword] = useState('')
   const [checkPassword, setCheckPassword] = useState('')
-  const [disabled, setDisabled] = useState('disabled')
+  const [submitPassword, setSubmitPassword] = useState('')
   const [messageApi, contextHolder] = message.useMessage()
- 
+  const navigate = useNavigate()
+
 
   const error = () => {
     messageApi.open({
@@ -33,6 +35,35 @@ export const ForgotPass = () => {
       content: 'Codigo invalido, tente novamente!',
     })
   }
+
+  const errorExpiredToken = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'Codigo expirou, tente novamente!',
+    })
+  }
+
+  const invalidPassowrd = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'Senha Invalida, verifique os campos preenchidos',
+    })
+  }
+
+  const internError = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'Erro interno, tente novamente mais tarde!',
+    })
+  }
+
+  const sucessPassword = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Senha Alterada com sucesso! Você será redirecionado em 5 segundos.',
+    })
+  }
+
 
   const refFielsNewPassoword = useRef()
   const refFielFullCode = useRef()
@@ -52,24 +83,34 @@ export const ForgotPass = () => {
 
       const fullToken = token.reduce((letter, token) => letter + token)
 
-      if(fullToken == '00000'){
+      if (fullToken == '00000') {
         errorInvalidToken()
       } else {
         setToken(fullToken)
       }
-
       console.log(fullToken)
-
     } else {
       error()
     }
   }
 
- 
+  const checkNewPassoword = () => {
+    if(newPassoword < 12 || checkPassword < 12 || newPassoword == '' || checkPassword == '' || newPassoword == null || checkPassword == null){
+      invalidPassowrd()
+    } else {
+      const verificationPassowrd = newPassoword.localeCompare(checkPassword)
+      if( verificationPassowrd == 0){
+        setSubmitPassword(newPassoword)
+      } else {
+        invalidPassowrd()
+      }
+    }
+  }
+
   const userEmail = localStorage.getItem('userEmail')
 
   useEffect(() => {
-    if (userEmail === '' || userEmail.length > 256) {
+    if (userEmail == '' || userEmail.length > 256 || userEmail == null) {
       console.log(userEmail)
       return
     } else {
@@ -78,16 +119,16 @@ export const ForgotPass = () => {
       })
         .then(({ data }) => {
           console.log(data)
-          localStorage.clear()
+
         }).catch((erro) => {
           console.log(erro)
         })
     }
-  }, [])
+  }, [userEmail])
 
 
   useEffect(() => {
-    if (tokenCode == '' || tokenCode.length < 5 ) {
+    if (tokenCode == '' || tokenCode.length < 5) {
       return
     } else {
       axios.post(`http://10.107.144.6:8080/kalos/academia/validar_token`, {
@@ -96,14 +137,40 @@ export const ForgotPass = () => {
       })
         .then(({ data }) => {
           console.log(data)
-          refFielsNewPassoword.current.style.display = 'flex'
-          refFielFullCode.current.style.display = 'none'
+          if (data.status == 401) {
+            errorExpiredToken()
+          } else {
+            refFielsNewPassoword.current.style.display = 'flex'
+            refFielFullCode.current.style.display = 'none'
+          }
+
         }).catch((erro) => {
           errorInvalidToken()
         })
     }
   }, [tokenCode])
 
+  useEffect(() => {
+    if(submitPassword == '' || submitPassword == null){
+      return
+    } else {
+      axios.put(`http://10.107.144.6:8080/kalos/academia/redefinir_senha`, {
+        email: userEmail.toString(),
+        senha: submitPassword.toString()
+      }).then(({ data }) => {
+        if(data.status == 200){
+          sucessPassword()
+          setTimeout(() => {
+            navigate("/")
+          }, 5000)
+        }       
+        console.log(data)
+      }).catch((erro) => {
+        console.log(erro)
+        internError()
+      })
+    }
+  }, [submitPassword])
 
 
   return (
@@ -112,19 +179,21 @@ export const ForgotPass = () => {
       <Helmet>
         <title>Kalos - Recuperação de Senha</title>
       </Helmet>
-      <div ref={refFielFullCode} className='forgot_password_instructions'>
-        <h1>Insira o código de verificação</h1>
-        <p>Por favor verifique o código de 5 dígitos que foi enviado para o e-mail <span className='userEmail'>{userEmail}</span> para efetuar a troca da senha.</p>
-      </div>
-      <div className="fiels_verification">
-        <div className='forgot_passowrd_token_fiels'>
-          <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenOne} onChange={e => setTokenOne(e)} />
-          <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenTwo} onChange={e => setTokenTwo(e)} />
-          <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenThree} onChange={e => setTokenThree(e)} />
-          <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenFour} onChange={e => setTokenFour(e)} />
-          <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenFive} onChange={e => setTokenFive(e)} />
+      <div ref={refFielFullCode} className="insert_token">
+        <div className='forgot_password_instructions'>
+          <h1>Insira o código de verificação</h1>
+          <p>Por favor verifique o código de 5 dígitos que foi enviado para o e-mail <span className='userEmail'>{userEmail}</span> para efetuar a troca da senha.</p>
         </div>
-        <ButtonPrimary className='validation_button' shape='round' size={'large'} nameButton='Validar' onClickFuction={validateToken} />
+        <div className="fiels_verification">
+          <div className='forgot_passowrd_token_fiels'>
+            <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenOne} onChange={e => setTokenOne(e)} />
+            <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenTwo} onChange={e => setTokenTwo(e)} />
+            <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenThree} onChange={e => setTokenThree(e)} />
+            <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenFour} onChange={e => setTokenFour(e)} />
+            <InputNumber type='number' size="large" min={0} max={9} maxLength={1} defaultValue={''} value={tokenFive} onChange={e => setTokenFive(e)} />
+          </div>
+          <ButtonPrimary className='validation_button' shape='round' size={'large'} nameButton='Validar' onClickFuction={validateToken} />
+        </div>
       </div>
 
       <div ref={refFielsNewPassoword} className="animate__animated animate__fadeInDown visible_fiels">
@@ -132,14 +201,14 @@ export const ForgotPass = () => {
           <div className='fiels'>
             <div className="new_passowrd">
               <p className='textNameForInput'>Nova Senha</p>
-              <Input value={newPassoword} onc size="large" />
+              <Input.Password value={newPassoword} onChange={e => setNewPassword(e.target.value)} size="large" />
             </div>
             <div className="repeat_passowrd">
               <p className='textNameForInput'>Repetir Senha</p>
-              <Input size="large" />
+              <Input.Password value={checkPassword} onChange={e => setCheckPassword(e.target.value)} size="large" />
             </div>
           </div>
-          < ButtonPrimary size={'large'} nameButton='Trocar' />
+          < ButtonPrimary onClickFuction={checkNewPassoword} size={'large'} nameButton='Trocar' />
         </div>
       </div>
 

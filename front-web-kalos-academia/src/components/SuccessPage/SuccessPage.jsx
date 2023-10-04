@@ -7,8 +7,7 @@ import { faDoorClosed } from '@fortawesome/free-solid-svg-icons'
 import logo from './img/logo-kalos.png'
 import './SuccessPage.css'
 
-
-export const SuccessPage = ({ }) => {
+export const SuccessPage = () => {
     return (
         <div className='sucess_page'>
             <Helmet>

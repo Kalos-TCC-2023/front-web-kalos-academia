@@ -45,3 +45,8 @@
     background-color: #00FE90 !important;
     border-color: #00FE90 !important;
 }
+.insert_token{
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+}
