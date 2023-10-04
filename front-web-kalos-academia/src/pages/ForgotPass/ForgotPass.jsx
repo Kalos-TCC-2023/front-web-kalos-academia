@@ -22,6 +22,8 @@ export const ForgotPass = () => {
   const navigate = useNavigate()
 
 
+  // INSERIR AVISO DE 12 CARACTERES
+
   const error = () => {
     messageApi.open({
       type: 'error',
