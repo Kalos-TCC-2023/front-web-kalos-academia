@@ -13,6 +13,10 @@ export const HomePage = () => {
     const contadorTreinos = 0
     const price = 592.99
 
+    console.log(localStorage.getItem("id_academia"))
+
+    
+
     return (
         <div className='home_page'>
             <Helmet>

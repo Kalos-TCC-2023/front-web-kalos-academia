@@ -34,13 +34,13 @@ export const LoginPage = () => {
                     setSubmitButton(false)
                 } else {
                     setStatusInput('')
-                    axios.post(`https://kaloscorp.cyclic.cloud/kalos/academia/autenticar`, {
+                    axios.post(`http://10.107.144.11:8080/kalos/academia/autenticar`, {
                 email: email,
                 senha: password
             })
                 .then(({ data }) => {
-                    console.log(data.status)
-                    localStorage.setItem('id_academia', data.id)
+                    console.log(data.academia.id)
+                    localStorage.setItem('id_academia', data.academia.id)
                     setSubmitButton(false)
                     navigate("/menu/home")
                     

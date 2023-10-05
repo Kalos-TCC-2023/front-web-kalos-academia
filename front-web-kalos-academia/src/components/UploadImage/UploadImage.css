@@ -58,10 +58,10 @@
     align-items: center;
     width: 200px;
 }
-input[type="file"] {
+ input[type="file"] {
     display: none;
 }
-label{
+ .label_img{
     background-color: #252525;
     width: 180px;
     height: 30px;
@@ -76,8 +76,7 @@ label{
     border: none;
     cursor: pointer;
     transition: all .4s ease-in-out;
-}
-label:hover, .submitButton:hover{
-    
+} 
+.label_img:hover, .submitButton:hover{
     background-color: #00fe90;
-}
+} 

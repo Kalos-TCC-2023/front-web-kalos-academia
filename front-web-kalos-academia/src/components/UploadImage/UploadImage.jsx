@@ -54,7 +54,7 @@ export const UploadImage = ({ fileList, imageDb, setImageDb }) => {
                         <Progress percent={progress} size="small" />
                     </div>
                     <div className="input_file_style">
-                        <label htmlFor="arquivo">Escolher arquivo</label>
+                        <label className='label_img' htmlFor="arquivo">Escolher arquivo</label>
                         <input name='arquivo' type='file' id='arquivo' />
                     </div>
                     <button className='submitButton' type='submit'>Enviar</button>

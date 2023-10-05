@@ -32,7 +32,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   ])
 
   useEffect(() => {
-    axios.get('http://10.107.144.6:8080/kalos/tags')
+    axios.get('http://10.107.144.11:8080/kalos/tags')
       .then(({ data }) => {
         if (tagsApi.length === 0) {
           console.log(data.tags)
@@ -55,7 +55,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   }, [imageDb])
 
   useEffect(() => {
-    axios.get('http://10.107.144.6:8080/kalos/categoria')
+    axios.get('http://10.107.144.11:8080/kalos/categoria')
     .then(({ data }) => {
       
       if(categoryApi.length === 0){
