@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { PlusOutlined } from '@ant-design/icons';
-import { Modal, Upload, Button, Input } from 'antd';
+import { Button, Progress } from 'antd';
 import './UploadImage.css'
 import { storage } from '../../adapters/firebase';
 import { uploadBytesResumable, getDownloadURL, ref } from 'firebase/storage';
@@ -9,6 +9,7 @@ import { uploadBytesResumable, getDownloadURL, ref } from 'firebase/storage';
 export const UploadImage = ({ fileList, imageDb, setImageDb }) => {
 
     const [imgUrl, setImgUrl] = useState('')
+    const [progress, setProgress] = useState(0)
 
     const handleChange = (event) => {
         event.preventDefault()
@@ -24,6 +25,7 @@ export const UploadImage = ({ fileList, imageDb, setImageDb }) => {
             "state_changed",
             snapshot => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                setProgress(progress)
                 // console.log(progress)
             },
             error => {
@@ -42,11 +44,22 @@ export const UploadImage = ({ fileList, imageDb, setImageDb }) => {
     return (
 
         <div className='container_icon'>
+            <div className="img_icon">
+                {imageDb && <img src={imageDb} height={100} className='img_upload' />}
+            </div>
 
-            {imageDb && <img src={imageDb} height={100} className='img_upload' />}
-            <form onSubmit={handleChange}>
-                <input type='file' />
-                <button type='submit'>Enviar</button>
+            <form className='upload_img' onSubmit={handleChange}>
+                <div className="data_img_upload">
+                    <div style={{ width: 195 }}>
+                        <Progress percent={progress} size="small" />
+                    </div>
+                    <div className="input_file_style">
+                        <label htmlFor="arquivo">Escolher arquivo</label>
+                        <input name='arquivo' type='file' id='arquivo' />
+                    </div>
+                    <button className='submitButton' type='submit'>Enviar</button>
+                </div>
+
             </form>
             <br />
         </div>

@@ -31,7 +31,53 @@
 .ant-progress .ant-progress-bg {
     height: 3px;
 }
-.img_upload{
+
+.img_icon, .img_upload{
     height: 200px;
     border-radius: 150px;
+}
+.upload_img{
+    display: flex;
+}
+.submitButton{
+    background-color: #252525;
+    height: 25px;
+    border-radius: 150px;
+    width: 70px;
+    font-family: Montserrat;
+    color: aliceblue;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+}
+.data_img_upload{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    width: 200px;
+}
+input[type="file"] {
+    display: none;
+}
+label{
+    background-color: #252525;
+    width: 180px;
+    height: 30px;
+    font-size: 15px;
+    border-radius: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Montserrat;
+    color: aliceblue;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+}
+label:hover, .submitButton:hover{
+    
+    background-color: #00fe90;
 }

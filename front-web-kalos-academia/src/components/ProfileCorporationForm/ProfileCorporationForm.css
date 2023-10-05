@@ -5,7 +5,8 @@
 }
 .profile_corporation_data_basic{
     display: flex;
-    gap: 32px
+    gap: 32px;
+    margin-bottom: 40px;
 }
 .profile_corporation_data_basic Input{
     width: 399px;

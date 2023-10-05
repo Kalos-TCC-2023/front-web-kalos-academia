@@ -57,13 +57,13 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
 
   useEffect(() => {
     if (submit === true) {
-      if (data.nome == '', data.email == '', data.senha == '', 
-      data.telefone == '', data.cnpj == '', data.foto == '', 
-      data.descricao == '', data.cor_primaria == '', data.cor_primaria == '', 
-      data.data_abertura == '',data.razao_social == '', data.facebook == '', 
-      data.whatsapp == '', data.instagram == '', data.logradouro == '', 
-      data.numero == '',  data.bairro == '', data.complemento == '', data.cep == '', 
-      data.cidade == '', data.estado == '', data.id_categoria == '', data.status == '', data.tags == []) {
+      if (data.nome == '' || data.email == '' || data.senha == '' ||
+      data.telefone == '' || data.cnpj == '' || data.foto == '' ||
+      data.descricao == '' || data.cor_primaria == '' || data.cor_primaria == '' ||
+      data.data_abertura == '' || data.razao_social == '' || data.facebook == '' ||
+      data.whatsapp == '' || data.instagram == '' || data.logradouro == '' ||
+      data.numero == '' || data.bairro == '' || data.complemento == '', data.cep == '' ||
+      data.cidade == '' || data.estado == '' || data.id_categoria == '' || data.status == '' || data.tags == []) {
         
         errorMessage()
         stateSubmit(false)
