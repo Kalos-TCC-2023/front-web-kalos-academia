@@ -31,3 +31,7 @@
 .ant-progress .ant-progress-bg {
     height: 3px;
 }
+.img_upload{
+    height: 200px;
+    border-radius: 150px;
+}
