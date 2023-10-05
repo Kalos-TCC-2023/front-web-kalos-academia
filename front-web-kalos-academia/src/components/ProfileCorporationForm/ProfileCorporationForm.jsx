@@ -19,16 +19,17 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   const checkButtonTag = tagSelected == undefined ? setTagSelected('Tags') : true
   const [tagsKey, setTagsKey] = useState([])
   const [nameTag, setNameTag] = useState([])
+  const [imageDb, setImageDb] = useState('https://firebasestorage.googleapis.com/v0/b/kalos-corp-academia.appspot.com/o/images%2F360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg?alt=media&token=d76e9efb-e14a-42d7-8daa-4cdbd0b85dea&_gl=1*bx9q1z*_ga*MzU5MzIyMzYwLjE2OTY0NTc2MDM.*_ga_CW55HF8NVT*MTY5NjQ2MzkyNC4yLjEuMTY5NjQ3MDUyMy4xMi4wLjA.')
   const [tagsApi, setTagsApi] = useState([])
   const [fileList, setFileList] = useState([
     {
       uid: '-5',
-      name: 'image.png',
-      status: 'removed'
+      url: 'https://firebasestorage.googleapis.com/v0/b/kalos-corp-academia.appspot.com/o/images%2F360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg?alt=media&token=d76e9efb-e14a-42d7-8daa-4cdbd0b85dea&_gl=1*bx9q1z*_ga*MzU5MzIyMzYwLjE2OTY0NTc2MDM.*_ga_CW55HF8NVT*MTY5NjQ2MzkyNC4yLjEuMTY5NjQ3MDUyMy4xMi4wLjA.',
+      status: 'done'
     },
   ])
 
-
+  console.log('atualizar', imageDb)
 
   useEffect(() => {
     axios.get('https://kaloscorp.cyclic.cloud/kalos/tags')
@@ -41,6 +42,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
             newTags.key = tag.id
             newTags.label = tag.nome
             tagsApi.push(newTags)
+            updateFielHandler('foto', imageDb)
           })
 
         } else {
@@ -50,7 +52,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
       }).catch((erro) => {
         console.log(erro)
       })
-  })
+  }, [imageDb])
 
   const items_category = [
     {
@@ -98,8 +100,6 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
     updateFielHandler('tags', tagsKey)
   }
 
-  console.log(tagsKey)
-
   const handleCategoryClick = (item) => {
     items_category.map((category) => {
       if (item.key == category.key) {
@@ -115,14 +115,16 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
     console.log('Item', item)
   }
 
+  
   console.log(data)
+  console.log(imageDb)
 
   return (
     <div className='profile_corporation_form animate__animated animate__fadeInRight'>
       <DescriptionForm title='PERFIL DA EMPRESA' description='Preencha os dados para seu perfil, ele ficará visível para clientes e usuários do aplicativo:' />
       <div className="profile_corporation_data_basic">
         <div className="display_picture">
-          <UploadImage fileList={fileList} setFileList={setFileList} />
+          <UploadImage fileList={fileList} imageDb={imageDb} updateFielHandler={updateFielHandler} setImageDb={setImageDb} setFileList={setFileList} />
         </div>
         <div className="name_description">
           <div className='name_corporation'>

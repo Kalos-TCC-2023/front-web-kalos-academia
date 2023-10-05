@@ -17,7 +17,7 @@ const formCorporationTemplate = {
   senha: '',
   telefone: '',
   cnpj: '',
-  foto: 'url.foto.com',
+  foto: '',
   descricao: '',
   cor_primaria: '#008CFF',
   cor_secundaria: '#008CFF',

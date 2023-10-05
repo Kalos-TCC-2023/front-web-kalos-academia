@@ -1,5 +1,4 @@
 import './App.css'
-import { LoginPage } from './pages/LoginPage/LoginPage'
 import Helmet from 'react-helmet'
 
 
@@ -14,7 +13,7 @@ function App() {
         />
         <meta name='keywords' content='Academias, gerenciamento, alunos, fitness' />
       </Helmet>
-        {/* <LoginPage /> */}
+        
     </div>
   )
 }
