@@ -18,6 +18,8 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   const checkButtonCategory = categorySelected == undefined ? setCategorySelected('Categoria') : true
   const checkButtonTag = tagSelected == undefined ? setTagSelected('Tags') : true
   const [tagsKey, setTagsKey] = useState([])
+  const [categoryKey, setCategoryKey] = useState([])
+  const [categoryApi, setCategoryApi] = useState([])
   const [nameTag, setNameTag] = useState([])
   const [imageDb, setImageDb] = useState('https://firebasestorage.googleapis.com/v0/b/kalos-corp-academia.appspot.com/o/images%2F360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg?alt=media&token=d76e9efb-e14a-42d7-8daa-4cdbd0b85dea&_gl=1*bx9q1z*_ga*MzU5MzIyMzYwLjE2OTY0NTc2MDM.*_ga_CW55HF8NVT*MTY5NjQ2MzkyNC4yLjEuMTY5NjQ3MDUyMy4xMi4wLjA.')
   const [tagsApi, setTagsApi] = useState([])
@@ -29,10 +31,8 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
     },
   ])
 
-  console.log('atualizar', imageDb)
-
   useEffect(() => {
-    axios.get('https://kaloscorp.cyclic.cloud/kalos/tags')
+    axios.get('http://10.107.144.6:8080/kalos/tags')
       .then(({ data }) => {
         if (tagsApi.length === 0) {
           console.log(data.tags)
@@ -54,25 +54,25 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
       })
   }, [imageDb])
 
-  const items_category = [
-    {
-      label: 'Academia',
-      key: 1
-    },
-    {
-
-      label: 'Crossfit',
-      key: 'Crossfit'
-    },
-    {
-      label: 'Musculação',
-      key: 3
-    },
-    {
-      label: 'Natação',
-      key: 4
-    }
-  ]
+  useEffect(() => {
+    axios.get('http://10.107.144.6:8080/kalos/categoria')
+    .then(({ data }) => {
+      
+      if(categoryApi.length === 0){
+        const items_api = data.categorias.map((categoria) => {
+          const newCategories = {}
+          newCategories.key = categoria.id
+          newCategories.label = categoria.nome
+          categoryApi.push(newCategories)
+        })
+        console.log(data.categorias)
+      } else {
+        return
+      }
+    }).catch((erro) => {
+      console.log(erro)
+    })
+  }, [])
 
   const handleTagClick = (item) => {
     tagsApi.map((tag) => {
@@ -101,23 +101,20 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   }
 
   const handleCategoryClick = (item) => {
-    items_category.map((category) => {
+    categoryApi.map((category) => {
       if (item.key == category.key) {
-
 
         setCategorySelected(category.label)
         const categoryName = parseInt(item.key)
+        console.log(categoryName)
         updateFielHandler('id_categoria', categoryName)
       }
     })
 
-    console.log(item.key)
-    console.log('Item', item)
   }
 
-  
   console.log(data)
-  console.log(imageDb)
+
 
   return (
     <div className='profile_corporation_form animate__animated animate__fadeInRight'>
@@ -141,7 +138,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
         </div>
         <div className="category_corporation">
           <p className='textNameForInput'>Categoria do Negócio</p>
-          <DropDownMenu className='DropDownMenu' items={items_category} itemSelected={categorySelected} onClickFuction={handleCategoryClick} />
+          <DropDownMenu className='DropDownMenu' items={categoryApi} itemSelected={categorySelected} onClickFuction={handleCategoryClick} />
         </div>
       </div>
       <div className="tag_colors">

@@ -6,7 +6,7 @@ import { storage } from '../../adapters/firebase';
 import { uploadBytesResumable, getDownloadURL, ref } from 'firebase/storage';
 
 
-export const UploadImage = ({ fileList, setFileList, imageDb, setImageDb, updateFielHandler }) => {
+export const UploadImage = ({ fileList, imageDb, setImageDb }) => {
 
     const [imgUrl, setImgUrl] = useState('')
 
@@ -14,7 +14,7 @@ export const UploadImage = ({ fileList, setFileList, imageDb, setImageDb, update
         event.preventDefault()
 
         const file = event.target[0]?.files[0]
-        console.log(file)
+
         if (!file) return console.log('error')
 
         const storageRef = ref(storage, `images/${file.name}`)
@@ -24,7 +24,7 @@ export const UploadImage = ({ fileList, setFileList, imageDb, setImageDb, update
             "state_changed",
             snapshot => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                console.log(progress)
+                // console.log(progress)
             },
             error => {
                 console.log(error)
@@ -39,58 +39,16 @@ export const UploadImage = ({ fileList, setFileList, imageDb, setImageDb, update
 
     }
 
-    console.log(imgUrl)
-    console.log(fileList)
-    const uploadButton = (
-        <div>
-            <PlusOutlined />
-            <div
-                style={{
-                    marginTop: 8,
-                }}
-            >
-                Upload
-            </div>
-        </div>
-    );
-
-
     return (
 
         <div className='container_icon'>
 
-
-
-
-            {/* <div className="upload_icon">
-                <Upload style={'width: 100%; height: 100%;'}
-                    listType="picture-circle"
-                    fileList={fileList}
-
-                    onPreview={handlePreview}
-                    onChange={handleChange}
-                >
-                    {fileList.length >= 1 ? null : uploadButton}
-                </Upload>
-
-                <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
-                    <img
-                        alt="example"
-                        style={{
-                            width: '100%',
-                        }}
-                        src={imageDb}
-                    />
-                </Modal>
-            </div> */}
             {imageDb && <img src={imageDb} height={100} className='img_upload' />}
             <form onSubmit={handleChange}>
                 <input type='file' />
                 <button type='submit'>Enviar</button>
             </form>
             <br />
-            
-
         </div>
     )
 }
