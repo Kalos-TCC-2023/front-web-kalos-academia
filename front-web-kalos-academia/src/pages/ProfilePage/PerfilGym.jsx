@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CountUp from 'react-countup';
 import { Helmet } from 'react-helmet'
 import { Statistic, FloatButton, Avatar, Tag } from 'antd';
@@ -8,14 +8,30 @@ import { InfoCardGym } from '../../components/InfoCardGym/InfoCardGym';
 import { InfoDescription } from '../../components/InfoDescription/InfoDescription';
 import { Link } from 'react-router-dom';
 import './Profile.css'
+import axios from 'axios';
 
 
 export const PerfilGym = () => {
 
+  const id = localStorage.getItem("id_academia")
+  const [objectGym, setObjectGym] = useState({})
+  console.log('academia:', objectGym.length)
   const formatter = (value) => <CountUp end={value} separator="," />;
 
-  const nameGym = 'ACADEMIA ORIGINAL'
-  const typeGym = 'Academia'
+
+  useEffect(() => {
+    axios.get(`http://10.107.144.11:8080/kalos/academia/id/${id}`)
+    .then(({ data }) => {
+      console.log(data.academia)
+      setObjectGym(data.academia)
+    }).catch((erro) => {
+      console.log(erro)
+    })
+
+  }, [])
+
+  const nameGym = objectGym.nome
+  const typeGym = objectGym.categoria
   const operationGym = 'Aberto - Fecha ás 22:00'
   const emailGym = 'academiaoriginal@gmail.com'
   const telefoneGym = '+55 11 9999-9999'
@@ -31,6 +47,7 @@ export const PerfilGym = () => {
         <Link to='/menu/perfil/editar'>
           <FloatButton tooltip='Editar Perfil' icon={<EditOutlined />} />
         </Link>
+        {/* {objectGym == {} ? loaderMuitoLegal : ()} */}
         <div className="profile_items">
           <div className="top_profile_data">
             <div className="img_name_type_operation">
