@@ -51,6 +51,7 @@ export const UploadImage = ({ fileList, imageDb, setImageDb }) => {
             <form className='upload_img' onSubmit={handleChange}>
                 <div className="data_img_upload">
                     <div style={{ width: 195 }}>
+                    {/* <Progress percent={progress} steps={5} /> */}
                         <Progress percent={progress} size="small" />
                     </div>
                     <div className="input_file_style">
