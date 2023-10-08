@@ -27,6 +27,6 @@ export const SubPagesProfile = () => {
         },
     ];
     return (
-        <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+        <Tabs className='sub_routes' defaultActiveKey="1" items={items} onChange={onChange} />
     )
 }

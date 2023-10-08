@@ -1,6 +1,7 @@
 .description_info {
   display: flex;
   flex-direction: column;
+  width: 200px;
 }
 .title_info {
   color: #000;

@@ -1,0 +1,7 @@
+
+.ant-spin {
+    color: #00fe90;
+}
+.ant-spin .ant-spin-dot-item{
+    background-color: #00fe90 !important;
+}

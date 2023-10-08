@@ -6,6 +6,9 @@
   margin-right: 32px;
   margin-bottom: 41px;
   overflow: auto;
+
+  align-items: center;
+  justify-content: center;
 }
 .top_profile_data {
   width: 1215px;
@@ -112,4 +115,9 @@
 }
 ::-webkit-scrollbar {
   width: 0px;
+}
+@media (max-width: 1600px) {
+  .pages_gym {
+    width: 60vw;
+  }
 }
