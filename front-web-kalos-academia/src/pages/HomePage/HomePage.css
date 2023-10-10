@@ -149,7 +149,6 @@
   place-items: center;
 }
 .extras_items {
-  height: 45vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

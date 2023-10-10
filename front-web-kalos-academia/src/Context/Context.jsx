@@ -1,12 +1,14 @@
-import React, { createContext } from 'react'
+import React, { createContext, useState } from 'react'
 
-const GlobalContext = createContext()
+const AuthContext = createContext()
 
-function globalContext  ({ children })  {
-    <GlobalContext.Provider>
-        {children}
-    </GlobalContext.Provider>
+export const AuthProvider = ({ children }) => {
+    const [auth, setAuth] = useState({})
 
+    return (
+        <AuthContext.Provider value={{auth, setAuth}}>
+            {children}
+        </AuthContext.Provider>
+
+    )
 }
-
-export {GlobalContext, globalContext}

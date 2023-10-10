@@ -33,6 +33,65 @@ export const EditProfile = () => {
     const [dataAbertura, setDataAbertura] = useState('')
     const [cnae, setCnae] = useState('')
 
+    const operationCorporation = {
+        id_academia: '',
+        segunda: {
+            status: '',
+            horario_inicio: '',
+            horario_fim: ''
+        },
+        terca: {
+            status: '',
+            horario_inicio: '',
+            horario_fim: ''
+        },
+        quarta: {
+            status: '',
+            horario_inicio: '',
+            horario_fim: ''
+        },
+        quinta: {
+            status: '',
+            horario_inicio: '',
+            horario_fim: ''
+        },
+        sexta: {
+            status: '',
+            horario_inicio: '',
+            horario_fim: ''
+        },
+        sabado: {
+            status: '',
+            horario_inicio: '',
+            horario_fim: ''
+        },
+        domingo: {
+            status: '',
+            horario_inicio: '',
+            horario_fim: ''
+        }
+    }
+
+    const [operation, setOperation] = useState(operationCorporation)
+
+    const updateOperationHandler = (key, value) => {
+
+        setOperation((prev) => {
+            return { ...prev, [key]: value }
+        })
+    }
+
+    const [timeSunday, setTimeSunday] = useState([''])
+    const [timeMonday, setTimeMonday] = useState('')
+    const [timeTuesday, setTimeTuesday] = useState('')
+    const [timeWednesday, setTimeWednesday] = useState('')
+    const [timeThursday, setTimeThursday] = useState('')
+    const [timeFriday, setTimeFriday] = useState('')
+    const [timeSaturday, setTimeSaturday] = useState('')
+
+    console.log(operation)
+
+
 
     return (
         <div>
@@ -58,7 +117,7 @@ export const EditProfile = () => {
                             <InfoCardGym sizeDiv={500} title='Foto de Perfil' >
 
                             </InfoCardGym>
-                            <InfoCardGym  sizeDiv={580} title='Informações Basicas' >
+                            <InfoCardGym sizeDiv={580} title='Informações Basicas' >
                                 <div className="category_name_gym">
                                     <div className="name_gym_edit">
                                         <p className='textNameForInput'>Nome do seu comercio</p>
@@ -174,7 +233,7 @@ export const EditProfile = () => {
                                 <div className="cep_rua">
                                     <div className="cep">
                                         <p className='textNameForInput'>Cep</p>
-                                        <Input  size='default size' value={telefone} onChange={(telefone) => {
+                                        <Input size='default size' value={telefone} onChange={(telefone) => {
                                             setTelefone(telefone.target.value)
                                         }
                                         } />
@@ -190,7 +249,7 @@ export const EditProfile = () => {
                                 <div className="complemento_numero_bairro">
                                     <div className="complemento">
                                         <p className='textNameForInput'>Complemento</p>
-                                        <Input  size='default size' placeholder='00 0000-0000' value={telefone} onChange={(telefone) => {
+                                        <Input size='default size' placeholder='00 0000-0000' value={telefone} onChange={(telefone) => {
                                             setTelefone(telefone.target.value)
                                         }
                                         } />
@@ -222,13 +281,13 @@ export const EditProfile = () => {
                         <div className="operation_colors">
                             <InfoCardGym sizeDiv={840} title='Horario de Funcionamento' >
                                 <div className="days_week">
-                                    <DayWeek dayString='Domingo' dayOfWeek='domingo' />
-                                    <DayWeek dayString='Segunda' dayOfWeek='segunda' />
-                                    <DayWeek dayString='Terça' dayOfWeek='terca' />
-                                    <DayWeek dayString='Quarta' dayOfWeek='quarta' />
-                                    <DayWeek dayString='Quinta' dayOfWeek='quinta' />
-                                    <DayWeek dayString='Sexta' dayOfWeek='sexta' />
-                                    <DayWeek dayString='Sabado' dayOfWeek='sabado' />
+                                    <DayWeek dayString='Domingo' dayOfWeek='domingo' updateOperationHandler={updateOperationHandler} atualState={timeSunday} setStateTime={setTimeSunday} />
+                                    <DayWeek dayString='Segunda' dayOfWeek='segunda' updateOperationHandler={updateOperationHandler} atualState={timeMonday} setStateTime={setTimeMonday} />
+                                    <DayWeek dayString='Terça' dayOfWeek='terca' updateOperationHandler={updateOperationHandler} atualState={timeTuesday} setStateTime={setTimeTuesday} />
+                                    <DayWeek dayString='Quarta' dayOfWeek='quarta' updateOperationHandler={updateOperationHandler} atualState={timeWednesday} setStateTime={setTimeWednesday} />
+                                    <DayWeek dayString='Quinta' dayOfWeek='quinta' updateOperationHandler={updateOperationHandler} atualState={timeThursday} setStateTime={setTimeThursday} />
+                                    <DayWeek dayString='Sexta' dayOfWeek='sexta' updateOperationHandler={updateOperationHandler} atualState={timeFriday} setStateTime={setTimeFriday} />
+                                    <DayWeek dayString='Sabado' dayOfWeek='sabado' updateOperationHandler={updateOperationHandler} atualState={timeSaturday} setStateTime={setTimeSaturday} />
                                 </div>
 
                             </InfoCardGym>

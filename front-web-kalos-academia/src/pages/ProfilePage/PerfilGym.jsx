@@ -17,6 +17,9 @@ export const PerfilGym = () => {
   const id = localStorage.getItem("id_academia")
   const [objectGym, setObjectGym] = useState({})
   const [stateGymApi, setStateGymApis] = useState(0)
+  const [counterWorkouts, setCounterWorkouts] = useState(0)
+  const [counterStudents, setCounterStudents] = useState(0)
+
 
   const formatter = (value) => <CountUp end={value} separator="," />;
 
@@ -31,6 +34,26 @@ export const PerfilGym = () => {
         console.log(erro)
       })
 
+  }, [])
+
+  useEffect(() => {
+    axios.get(`https://kaloscorp.cyclic.cloud/kalos/treinoNivelCategoria/idAcademia/${id}`)
+    .then(({ data }) => {
+      console.log(data.informacoes.length)
+      setCounterWorkouts(data.informacoes.length)
+    }).catch((erro) => {
+      console.log(erro)
+    })
+  }, [])
+
+  useEffect(() => {
+    axios.get(`https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/${id}`)
+    .then(({ data }) => {
+      console.log(data.ultimos_alunos.length)
+      setCounterStudents(data.ultimos_alunos.length)
+    }).catch((erro) => {
+      console.log(erro)
+    })
   }, [])
 
   console.log(objectGym)
@@ -66,10 +89,10 @@ export const PerfilGym = () => {
                   </div>
                   <div className="statistic">
                     <div className="students_number">
-                      <Statistic title="Alunos cadastrados" value={250} formatter={formatter} />
+                      <Statistic title="Alunos cadastrados" value={counterStudents} formatter={formatter} />
                     </div>
                     <div className="workouts_number">
-                      <Statistic title="Treinos" value={28} formatter={formatter} />
+                      <Statistic title="Treinos" value={counterWorkouts} formatter={formatter} />
                     </div>
                   </div>
                 </div>
