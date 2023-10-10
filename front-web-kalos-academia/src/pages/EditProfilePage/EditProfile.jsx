@@ -53,198 +53,200 @@ export const EditProfile = () => {
                             }
                         ]}
                     />
-                    <div className="photo_basic_information">
-                        <InfoCardGym title='Foto de Perfil' >
+                    <div className="elements_edit_profile">
+                        <div className="photo_basic_information">
+                            <InfoCardGym sizeDiv={500} title='Foto de Perfil' >
 
-                        </InfoCardGym>
-                        <InfoCardGym title='Informações Basicas' >
-                            <div className="category_name_gym">
-                                <div className="name_gym">
-                                    <p className='textNameForInput'>Nome do seu comercio</p>
-                                    <Input size='default size' placeholder='exemplo' value={nameGym} onChange={(nameGym) => {
-                                        setNameGym(nameGym.target.value)
-                                    }
-                                    } />
+                            </InfoCardGym>
+                            <InfoCardGym  sizeDiv={580} title='Informações Basicas' >
+                                <div className="category_name_gym">
+                                    <div className="name_gym_edit">
+                                        <p className='textNameForInput'>Nome do seu comercio</p>
+                                        <Input size='default size' value={nameGym} onChange={(nameGym) => {
+                                            setNameGym(nameGym.target.value)
+                                        }
+                                        } />
+                                    </div>
+                                    <div className="category_gym">
+                                        <p className='textNameForInput'>Categoria</p>
+                                        <Select
+                                            defaultValue="Academia"
+                                            style={{
+                                                width: 180,
+                                            }}
+                                            onChange={handleChange}
+                                            options={[
+                                                {
+                                                    value: '1',
+                                                    label: 'Academia',
+                                                },
+                                                {
+                                                    value: '2',
+                                                    label: 'Luta',
+                                                },
+                                                {
+                                                    value: '2',
+                                                    label: 'Crossfith',
+                                                },
+                                                {
+                                                    value: '3',
+                                                    label: 'Natação',
+
+                                                },
+                                            ]}
+                                        />
+                                    </div>
+
                                 </div>
-                                <div className="category_gym">
-                                    <p className='textNameForInput'>Categoria</p>
-                                    <Select
-                                        defaultValue="Academia"
-                                        style={{
-                                            width: 180,
-                                        }}
-                                        onChange={handleChange}
-                                        options={[
-                                            {
-                                                value: '1',
-                                                label: 'Academia',
-                                            },
-                                            {
-                                                value: '2',
-                                                label: 'Luta',
-                                            },
-                                            {
-                                                value: '2',
-                                                label: 'Crossfith',
-                                            },
-                                            {
-                                                value: '3',
-                                                label: 'Natação',
-
-                                            },
-                                        ]}
+                                <div className="description_gym">
+                                    <p className='textNameForInput'>Descrição</p>
+                                    <TextArea
+                                        style={{ width: '550px' }}
+                                        value={description}
+                                        onChange={(e) => setDescription(e.target.value)}
+                                        placeholder="Descrição da Academia"
+                                        autoSize={{ minRows: 3, maxRows: 5 }}
                                     />
                                 </div>
+                            </InfoCardGym>
+                        </div>
+                        <div className="tags_contact">
+                            <InfoCardGym sizeDiv={500} title='Tags' >
+                                <Select
+                                    defaultValue="Acessibilidade"
+                                    style={{
+                                        width: 250,
+                                    }}
+                                    onChange={handleChange}
+                                    options={[
+                                        {
+                                            value: '1',
+                                            label: 'Acessibilidade',
+                                        },
+                                        {
+                                            value: '2',
+                                            label: 'Luta',
+                                        },
+                                        {
+                                            value: '2',
+                                            label: 'Crossfith',
+                                        },
+                                        {
+                                            value: '3',
+                                            label: 'Natação',
 
-                            </div>
-                            <div className="description_gym">
-                                <p className='textNameForInput'>Descrição</p>
-                                <TextArea
-                                    style={{ width: '550px' }}
-                                    value={description}
-                                    onChange={(e) => setDescription(e.target.value)}
-                                    placeholder="Descrição da Academia"
-                                    autoSize={{ minRows: 3, maxRows: 5 }}
+                                        },
+                                    ]}
                                 />
-                            </div>
-                        </InfoCardGym>
-                    </div>
-                    <div className="tags_contact">
-                        <InfoCardGym title='Tags' >
-                            <Select
-                                defaultValue="Acessibilidade"
-                                style={{
-                                    width: 250,
-                                }}
-                                onChange={handleChange}
-                                options={[
-                                    {
-                                        value: '1',
-                                        label: 'Acessibilidade',
-                                    },
-                                    {
-                                        value: '2',
-                                        label: 'Luta',
-                                    },
-                                    {
-                                        value: '2',
-                                        label: 'Crossfith',
-                                    },
-                                    {
-                                        value: '3',
-                                        label: 'Natação',
-
-                                    },
-                                ]}
-                            />
-                        </InfoCardGym>
-                        <InfoCardGym title='Contato' >
-                            <p className='textNameForInput'>E-mail</p>
-                            <Input style={{ width: '550px' }} placeholder='exemplo' value={email} onChange={(email) => {
-                                setEmail(email.target.value)
-                            }
-                            } />
-                            <p className='textNameForInput'>Telefone</p>
-                            <Input size='default size' placeholder='exemplo' value={telefone} onChange={(telefone) => {
-                                setTelefone(telefone.target.value)
-                            }
-                            } />
-                        </InfoCardGym>
-                    </div>
-                    <div className="social_midia_endereco">
-                        <InfoCardGym title='Redes Sociais' >
-                            <p className='textNameForInput'>Instagram</p>
-                            <Input style={{ width: '550px' }} size='default size' placeholder='exemplo' value={email} onChange={(email) => {
-                                setEmail(email.target.value)
-                            }
-                            } />
-                            <p className='textNameForInput'>Facebook</p>
-                            <Input size='default size' placeholder='exemplo' value={telefone} onChange={(telefone) => {
-                                setTelefone(telefone.target.value)
-                            }
-                            } />
-                            <p className='textNameForInput'>Whatsapp</p>
-                            <Input size='default size' placeholder='exemplo' value={telefone} onChange={(telefone) => {
-                                setTelefone(telefone.target.value)
-                            }
-                            } />
-                        </InfoCardGym>
-                        <InfoCardGym title='Redes Sociais' >
-                            <div className="cep_rua">
-                                <div className="cep">
-                                    <p className='textNameForInput'>Cep</p>
-                                    <Input style={{ width: '250px' }} size='default size' placeholder='exemplo' value={telefone} onChange={(telefone) => {
-                                        setTelefone(telefone.target.value)
-                                    }
-                                    } />
-                                </div>
-                                <div className="rua">
-                                    <p className='textNameForInput'>Rua</p>
-                                    <Input style={{ width: '250px' }} size='default size' placeholder='exemplo' value={telefone} onChange={(telefone) => {
-                                        setTelefone(telefone.target.value)
-                                    }
-                                    } />
-                                </div>
-                            </div>
-                            <div className="complemento_numero_bairro">
-                                <div className="complemento">
-                                    <p className='textNameForInput'>Complemento</p>
-                                    <Input style={{ width: '250px' }} size='default size' placeholder='exemplo' value={telefone} onChange={(telefone) => {
-                                        setTelefone(telefone.target.value)
-                                    }
-                                    } />
-                                </div>
-                                <div className="numero">
-                                    <p className='textNameForInput'>Numero</p>
-                                    <Input style={{ width: '100px' }} size='default size' placeholder='exemplo' value={telefone} onChange={(telefone) => {
-                                        setTelefone(telefone.target.value)
-                                    }
-                                    } />
-                                </div>
-                                <div className="bairro">
-                                    <p className='textNameForInput'>Bairro</p>
-                                    <Input style={{ width: '250px' }} size='default size' placeholder='exemplo' value={telefone} onChange={(telefone) => {
-                                        setTelefone(telefone.target.value)
-                                    }
-                                    } />
-                                </div>
-                            </div>
-                            <div className="cidade">
-                                <p className='textNameForInput'>Cidade</p>
-                                <Input style={{ width: '550px' }} size='default size' placeholder='exemplo' value={telefone} onChange={(telefone) => {
+                            </InfoCardGym>
+                            <InfoCardGym sizeDiv={580} title='Contato' >
+                                <p className='textNameForInput'>E-mail</p>
+                                <Input value={email} onChange={(email) => {
+                                    setEmail(email.target.value)
+                                }
+                                } />
+                                <p className='textNameForInput'>Telefone</p>
+                                <Input size='default size' value={telefone} onChange={(telefone) => {
                                     setTelefone(telefone.target.value)
                                 }
                                 } />
-                            </div>
-                        </InfoCardGym>
-                    </div>
-                    <div className="operation_colors">
-                        <InfoCardGym title='Horario de Funcionamento' >
-                            <div className="days_week">
-                                <DayWeek dayString='Domingo' dayOfWeek='domingo' />
-                                <DayWeek dayString='Segunda' dayOfWeek='segunda' />
-                                <DayWeek dayString='Terça' dayOfWeek='terca' />
-                                <DayWeek dayString='Quarta' dayOfWeek='quarta' />
-                                <DayWeek dayString='Quinta' dayOfWeek='quinta' />
-                                <DayWeek dayString='Sexta' dayOfWeek='sexta' />
-                                <DayWeek dayString='Sabado' dayOfWeek='sabado' />
-                            </div>
+                            </InfoCardGym>
+                        </div>
+                        <div className="social_midia_endereco">
+                            <InfoCardGym sizeDiv={500} title='Redes Sociais' >
+                                <p className='textNameForInput'>Instagram</p>
+                                <Input size='default size' value={email} onChange={(email) => {
+                                    setEmail(email.target.value)
+                                }
+                                } />
+                                <p className='textNameForInput'>Facebook</p>
+                                <Input size='default size' value={telefone} onChange={(telefone) => {
+                                    setTelefone(telefone.target.value)
+                                }
+                                } />
+                                <p className='textNameForInput'>Whatsapp</p>
+                                <Input size='default size' value={telefone} onChange={(telefone) => {
+                                    setTelefone(telefone.target.value)
+                                }
+                                } />
+                            </InfoCardGym>
+                            <InfoCardGym sizeDiv={580} title='Endereço' >
+                                <div className="cep_rua">
+                                    <div className="cep">
+                                        <p className='textNameForInput'>Cep</p>
+                                        <Input  size='default size' value={telefone} onChange={(telefone) => {
+                                            setTelefone(telefone.target.value)
+                                        }
+                                        } />
+                                    </div>
+                                    <div className="rua">
+                                        <p className='textNameForInput'>Rua</p>
+                                        <Input style={{ width: '345px' }} size='default size' value={telefone} onChange={(telefone) => {
+                                            setTelefone(telefone.target.value)
+                                        }
+                                        } />
+                                    </div>
+                                </div>
+                                <div className="complemento_numero_bairro">
+                                    <div className="complemento">
+                                        <p className='textNameForInput'>Complemento</p>
+                                        <Input  size='default size' placeholder='00 0000-0000' value={telefone} onChange={(telefone) => {
+                                            setTelefone(telefone.target.value)
+                                        }
+                                        } />
+                                    </div>
+                                    <div className="numero">
+                                        <p className='textNameForInput'>Número</p>
+                                        <Input style={{ width: '100px' }} size='default size' placeholder='000' value={telefone} onChange={(telefone) => {
+                                            setTelefone(telefone.target.value)
+                                        }
+                                        } />
+                                    </div>
+                                    <div className="bairro">
+                                        <p className='textNameForInput'>Bairro</p>
+                                        <Input style={{ width: '225px' }} size='default size' value={telefone} onChange={(telefone) => {
+                                            setTelefone(telefone.target.value)
+                                        }
+                                        } />
+                                    </div>
+                                </div>
+                                <div className="cidade">
+                                    <p className='textNameForInput'>Cidade</p>
+                                    <Input style={{ width: '550px' }} size='default size' value={telefone} onChange={(telefone) => {
+                                        setTelefone(telefone.target.value)
+                                    }
+                                    } />
+                                </div>
+                            </InfoCardGym>
+                        </div>
+                        <div className="operation_colors">
+                            <InfoCardGym sizeDiv={840} title='Horario de Funcionamento' >
+                                <div className="days_week">
+                                    <DayWeek dayString='Domingo' dayOfWeek='domingo' />
+                                    <DayWeek dayString='Segunda' dayOfWeek='segunda' />
+                                    <DayWeek dayString='Terça' dayOfWeek='terca' />
+                                    <DayWeek dayString='Quarta' dayOfWeek='quarta' />
+                                    <DayWeek dayString='Quinta' dayOfWeek='quinta' />
+                                    <DayWeek dayString='Sexta' dayOfWeek='sexta' />
+                                    <DayWeek dayString='Sabado' dayOfWeek='sabado' />
+                                </div>
 
-                        </InfoCardGym>
-                        <InfoCardGym title='Cores' >
-                            <div className="colors_picker">
-                                <div className="color_primary">
-                                    <p className='textNameForInput'>Cor primaria</p>
-                                    <ColorPicker showText />
+                            </InfoCardGym>
+                            <InfoCardGym sizeDiv={400} title='Cores' >
+                                <div className="colors_picker">
+                                    <div className="color_primary">
+                                        <p className='textNameForInput'>Cor primaria</p>
+                                        <ColorPicker showText />
+                                    </div>
+                                    <div className="color_secundary">
+                                        <p className='textNameForInput'>Cor secundaria</p>
+                                        <ColorPicker showText />
+                                    </div>
                                 </div>
-                                <div className="color_secundary">
-                                    <p className='textNameForInput'>Cor secundaria</p>
-                                    <ColorPicker showText />
-                                </div>
-                            </div>
-                        </InfoCardGym>
+                            </InfoCardGym>
+                        </div>
+                        <div className="corporation_data"></div>
                     </div>
-                    <div className="corporation_data"></div>
                 </div>
             </div>
         </div>

@@ -38,11 +38,9 @@
   gap: 2rem;
 }
 .img_gym {
-  width: 209px;
-  height: 209px;
   display: grid;
   place-items: center;
-  border-radius: 209px;
+  border-radius: 100%;
   border: 8px solid #fbfbfb;
 }
 .name_type_operation {

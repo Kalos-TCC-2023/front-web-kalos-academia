@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import moment from 'moment'
-import { Input, Switch, Avatar, Badge, Drawer, Card, Button } from 'antd'
+import { Input, Switch, Avatar, Badge, Drawer, Card } from 'antd'
 import { BellOutlined, UserOutlined } from '@ant-design/icons'
 import { MomentDate } from '../MomentDate/MomentDate'
 import 'moment/dist/locale/pt-br'
 import './Header.css'
+import axios from 'axios'
 moment.locale('pt-br')
 const { Search } = Input
 
 export const Header = () => {
 
   const [open, setOpen] = useState(false)
+  const id = localStorage.getItem("id_academia")
+  const [objectGym, setObjectGym] = useState({})
+  const [stateGymApi, setStateGymApis] = useState(0)
 
   const showDrawer = () => {
     setOpen(true);
@@ -25,6 +29,21 @@ export const Header = () => {
 
   const atual_day = moment().format('ll').toString()
   const format_day = atual_day.replace(' de', '')
+  const nameGym = objectGym.nome
+
+  useEffect(() => {
+    axios.get(`https://kaloscorp.cyclic.cloud/kalos/academia/id/${id}`)
+      .then(({ data }) => {
+        console.log(data)
+        setObjectGym(data.academia)
+        setStateGymApis(data.status)
+
+      }).catch((erro) => {
+        console.log(erro)
+      })
+
+  }, [])
+
 
   return (
     <div className='header_bar'>
@@ -52,8 +71,8 @@ export const Header = () => {
             </Badge>
           </div>
           <div className="data_gym">
-            <Avatar style={{ backgroundColor: '#F5F7F9', color: '#D9D9D9' }} size="default" icon={<UserOutlined />} />
-            <span className='gym_name'>Academia Original</span>
+            <Avatar src={objectGym.foto} style={{ backgroundColor: '#F5F7F9', color: '#D9D9D9' }} size="default" icon={<UserOutlined />} />
+            <span className='gym_name'>{nameGym}</span>
             <div className="date_day_div">
               <span className='date_day'>{format_day}</span>
             </div>

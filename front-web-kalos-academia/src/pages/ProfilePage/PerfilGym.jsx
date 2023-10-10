@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CountUp from 'react-countup';
+import axios from 'axios';
 import { Helmet } from 'react-helmet'
 import { Statistic, FloatButton, Avatar, Tag } from 'antd';
 import { EditOutlined, UserOutlined, MailFilled, PhoneFilled, PushpinFilled, InstagramFilled, FacebookFilled, LinkedinFilled } from '@ant-design/icons'
@@ -7,9 +8,8 @@ import { SubPagesProfile } from '../../components/SubPagesProfile/SubPagesProfil
 import { InfoCardGym } from '../../components/InfoCardGym/InfoCardGym';
 import { InfoDescription } from '../../components/InfoDescription/InfoDescription';
 import { Link } from 'react-router-dom';
-import './Profile.css'
-import axios from 'axios';
 import { Loader } from '../../components/Loader/Loader';
+import './Profile.css'
 
 
 export const PerfilGym = () => {
@@ -35,14 +35,9 @@ export const PerfilGym = () => {
 
   console.log(objectGym)
 
-  const nameGym = objectGym.nome
-  const typeGym = objectGym.categoria
-  const operationGym = 'Aberto - Fecha ás 22:00'
-  const emailGym = objectGym.email
-  const telefoneGym = objectGym.telefone
 
+  const operationGym = 'Aberto - Fecha ás 22:00'
   const enderecoGym = `${objectGym.logradouro}, ${objectGym.numero_endereco} - ${objectGym.complemento}, ${objectGym.cidade} - ${objectGym.estado}, ${objectGym.cep}`
-  const gymDescription = objectGym.descricao
 
   return (
     <div className='profile_gym'>
@@ -61,11 +56,11 @@ export const PerfilGym = () => {
                 <div className="img_name_type_operation">
                   <div className="img_name_gym">
                     <div className="img_gym">
-                      <Avatar size={190} icon={<UserOutlined />} />
+                      <Avatar src={objectGym.foto} size={209} icon={<UserOutlined />} />
                     </div>
                     <div className="name_type_operation">
-                      <span className='name_gym'>{nameGym}</span>
-                      <span className='type_gym'>{typeGym}</span>
+                      <span className='name_gym'>{objectGym.nome}</span>
+                      <span className='type_gym'>{objectGym.categoria}</span>
                       <span className='operation_gym'>{operationGym}</span>
                     </div>
                   </div>
@@ -97,11 +92,11 @@ export const PerfilGym = () => {
                     <InfoCardGym title='Info'>
                       <div className="email_profile">
                         <MailFilled style={{ color: '#ffb800', fontSize: '20px' }} />
-                        <InfoDescription title='E-mail' description={emailGym} />
+                        <InfoDescription title='E-mail' description={objectGym.email} />
                       </div>
                       <div className="telefone">
                         <PhoneFilled style={{ color: '#ffb800', fontSize: '20px' }} />
-                        <InfoDescription title='Telefone' description={telefoneGym} />
+                        <InfoDescription title='Telefone' description={objectGym.telefone} />
 
                       </div>
                       <div className="endereco">
@@ -112,7 +107,7 @@ export const PerfilGym = () => {
                   </div>
                   <div className="description_gym">
                     <InfoCardGym title='Descrição'>
-                      <InfoDescription title='Sobre nós' description={gymDescription} />
+                      <InfoDescription title='Sobre nós' description={objectGym.descricao} />
                       <p className='social_midia_title'>Redes Sociais</p>
                       <div className="social_midia">
                         <div className="instagram_social_midia" >

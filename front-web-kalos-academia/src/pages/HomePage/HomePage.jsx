@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { NoData } from '../../components/NoData/NoData'
 import { ButtonPrimary } from './../../components/Button/ButtonPrimary'
@@ -6,16 +6,29 @@ import { MomentDate } from '../../components/MomentDate/MomentDate'
 import { UserCard } from '../../components/UserCard/UserCard'
 import { ReportDev } from '../../components/ReportDev/ReportDev'
 import { CalenderHome } from '../../components/Calender/CalenderHome'
+import axios from 'axios'
 import './HomePage.css'
 
 
 export const HomePage = () => {
+
+    const [lastStudents, setLastStudents] = useState([])
     const contadorTreinos = 0
     const price = 592.99
 
+    const idGym = localStorage.getItem("id_academia")
+
     console.log(localStorage.getItem("id_academia"))
 
-    
+    useEffect(() => {
+        axios.get(`https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/${idGym}`)
+        .then(({ data }) => {
+
+        }).catch((erro) => {
+            
+        })
+    })
+
 
     return (
         <div className='home_page'>
@@ -51,6 +64,7 @@ export const HomePage = () => {
                                 </div>
                             </div>
                             <div className="new_students">
+                                {}
                                 <UserCard name={'Artur Alves'} id={'#10000'} />
                                 <UserCard name={'Artur Alves'} id={'#10000'} />
                                 <UserCard name={'Artur Alves'} id={'#10000'} />
@@ -63,6 +77,7 @@ export const HomePage = () => {
                     <div className="new_students_products_weights_data">
                         <div className="new_students_dahsboard">
                             <div className="view_students">
+                                
                                 <NoData description='Ainda não existem dados de novos estudantes' />
                                 {/* <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR TODOS OS ALUNOS' /> */}
                             </div>
