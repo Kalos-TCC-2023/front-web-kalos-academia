@@ -49,8 +49,9 @@ export const PerfilGym = () => {
   useEffect(() => {
     axios.get(`https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/${id}`)
     .then(({ data }) => {
-      console.log(data.ultimos_alunos.length)
-      setCounterStudents(data.ultimos_alunos.length)
+      console.log(data)
+      console.log(data.alunos.length)
+      setCounterStudents(data.alunos.length)
     }).catch((erro) => {
       console.log(erro)
     })
