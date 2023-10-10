@@ -8,3 +8,4 @@ export const ButtonPrimary = ({ nameButton, size, onClickFuction, disabled, shap
     </div>
   )
 }
+
