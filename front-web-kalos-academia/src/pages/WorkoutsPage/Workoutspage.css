@@ -1,0 +1,21 @@
+.container-header-galeria-exercicios{
+    margin: 30px;
+    width: 100%;
+    height: 90px;
+    border-top: 0.5px  rgba(102, 102, 102, 0.31) solid;
+ 
+}
+
+
+.container-header-galeria-exercicios > p{
+    margin: 20px;
+    font-size: 32px;
+    font-weight: 600;
+}
+.buttonsExercise{
+
+width: 100%;
+display: flex;
+justify-content: space-around;
+align-items: center;
+}
