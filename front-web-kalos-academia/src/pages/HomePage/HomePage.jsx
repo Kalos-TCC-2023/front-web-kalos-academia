@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
+import { Statistic } from 'antd';
+import CountUp from 'react-countup';
 import { NoData } from '../../components/NoData/NoData'
 import { ButtonPrimary } from './../../components/Button/ButtonPrimary'
 import { MomentDate } from '../../components/MomentDate/MomentDate'
@@ -8,26 +10,42 @@ import { ReportDev } from '../../components/ReportDev/ReportDev'
 import { CalenderHome } from '../../components/Calender/CalenderHome'
 import axios from 'axios'
 import './HomePage.css'
+import { Loader } from '../../components/Loader/Loader';
+import ChartsNewStudents from '../../components/DashboardNewStudents/ChartsNewStudents';
 
 
 export const HomePage = () => {
 
+    const formatter = (value) => <CountUp end={value} separator="," />;
+
     const [lastStudents, setLastStudents] = useState([])
-    const contadorTreinos = 0
+    const [counterWorkouts, setCounterWorkouts] = useState(0)
+
     const price = 592.99
 
     const idGym = localStorage.getItem("id_academia")
 
-    console.log(localStorage.getItem("id_academia"))
+
 
     useEffect(() => {
         axios.get(`https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/${idGym}`)
-        .then(({ data }) => {
+            .then(({ data }) => {
+                console.log(data.alunos)
+                setLastStudents(data.alunos)
+            }).catch((erro) => {
+                console.log(erro)
+            })
+    }, [])
 
-        }).catch((erro) => {
-            
-        })
-    })
+    useEffect(() => {
+        axios.get(`https://kaloscorp.cyclic.cloud/kalos/treinoNivelCategoria/idAcademia/${idGym}`)
+            .then(({ data }) => {
+                console.log(data.informacoes.length)
+                setCounterWorkouts(data.informacoes.length)
+            }).catch((erro) => {
+                console.log(erro)
+            })
+    }, [])
 
 
     return (
@@ -46,7 +64,7 @@ export const HomePage = () => {
                                 <span className='title_home'>TREINOS</span>
                                 <span className="description_home">A ACADEMIA POSSUI:</span>
                                 <div className='counter_div'>
-                                    <span className='counter'>{contadorTreinos}</span>
+                                    <span className='counter'>{counterWorkouts}</span>
                                     <span className='number_description'>TREINOS</span>
                                 </div>
                                 <div className="create_workout">
@@ -64,12 +82,14 @@ export const HomePage = () => {
                                 </div>
                             </div>
                             <div className="new_students">
-                                {}
-                                <UserCard name={'Artur Alves'} id={'#10000'} />
-                                <UserCard name={'Artur Alves'} id={'#10000'} />
-                                <UserCard name={'Artur Alves'} id={'#10000'} />
-                                <UserCard name={'Artur Alves'} id={'#10000'} />
-                                <UserCard name={'Artur Alves'} id={'#10000'} />
+                                {
+                                    lastStudents.length == 0 ? <Loader /> : (
+                                        lastStudents.map((student) => (
+
+                                            <UserCard photo={student.foto} keyId={student.id} name={student.nome} id={'#' + 10 + student.id} />
+                                        ))
+                                    )}
+
                             </div>
                         </div>
                     </div>
@@ -77,9 +97,12 @@ export const HomePage = () => {
                     <div className="new_students_products_weights_data">
                         <div className="new_students_dahsboard">
                             <div className="view_students">
-                                
-                                <NoData description='Ainda não existem dados de novos estudantes' />
-                                {/* <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR TODOS OS ALUNOS' /> */}
+                                <span className="title_recent_students">
+                                    TAXA DE NOVOS ALUNOS
+                                </span>
+                                < ChartsNewStudents />
+                                {/* <NoData description='Ainda não existem dados de novos estudantes' /> */}
+                                <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR TODOS OS ALUNOS' />
                             </div>
                         </div>
                         <div className="products">

@@ -7,7 +7,6 @@ export const Chatpage = () => {
       <Helmet>
         <title>Kalos - Chat</title>
       </Helmet>
-      Chatpage
     </div>
   )
 }
