@@ -5,17 +5,49 @@
     border-top: 0.5px  rgba(102, 102, 102, 0.31) solid;
  
 }
-
-
 .container-header-galeria-exercicios > p{
-    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
     font-size: 32px;
     font-weight: 600;
 }
-.buttonsExercise{
+.selects-exercises {
+    display: flex;
+    align-items: center;
 
-width: 100%;
+    justify-content: space-around;
+    width: 100%;
+}
+.selects{
+    display: flex;
+   gap: 20px;
+
+
+}
+.buttonsExercise{
 display: flex;
-justify-content: space-around;
-align-items: center;
+gap: 20px;
+
+
+}
+
+.container-galery-workouts {
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+.card-workouts{
+    width: 358px;
+    height: 191px;
+    border: 1px solid black;
+    border-radius: 20px;
+
+
+
 }

@@ -13,7 +13,7 @@ import { ErrorPage } from './pages/ErrorPage/ErrorPage.jsx'
 import { StudentsPage } from './pages/StudentsPage/StudentsPage.jsx'
 import { Productspage } from './pages/ProductsPage/Productspage.jsx'
 import { Chatpage } from './pages/ChatPage/Chatpage.jsx'
-import { Workoutspage } from './pages/WorkoutsPage/Workoutspage.jsx'
+import Workoutspage from './pages/WorkoutsPage/Workoutspage';
 import { PostsPage } from './pages/PostsPage/PostsPage.jsx'
 import { SuccessPage } from './components/SuccessPage/SuccessPage.jsx'
 import { EditProfile } from './pages/EditProfilePage/EditProfile.jsx'
