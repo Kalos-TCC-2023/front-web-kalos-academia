@@ -67,14 +67,19 @@
   background-color: #ffffff;
   border-color: #ffffff;
 }
-
+.create_new_workout button {
+  color: #000 !important;
+  background-color: #00fe90;
+  border-color: #00fe90;
+}
 .create_workout button {
   color: #000 !important;
   background-color: #00fe90;
   border-color: #00fe90;
 }
 .create_workout .ant-btn:hover,
-.view_students .ant-btn:hover {
+.view_students .ant-btn:hover,
+.create_new_workout .ant-btn:hover {
   background-color: #000000 !important;
   border-color: #000000 !important;
   color: #ffffff !important;
@@ -130,14 +135,14 @@
 }
 .products {
   width: 28vw;
-  height: 144px;
+  height: 264px;
   border-radius: 20px;
   background: #00fe90;
   padding-left: 22px;
   padding-right: 22px;
   display: grid;
-  place-items: center;
-  
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .weights {
   width: 28vw;

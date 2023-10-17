@@ -1,0 +1,9 @@
+.students_page {
+    
+}
+.students_gym{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}

@@ -12,6 +12,7 @@ import axios from 'axios'
 import './HomePage.css'
 import { Loader } from '../../components/Loader/Loader';
 import ChartsNewStudents from '../../components/DashboardNewStudents/ChartsNewStudents';
+import { DashboardProductReservation } from '../../components/DashboardProductReservation/DashboardProductReservation';
 
 
 export const HomePage = () => {
@@ -106,7 +107,12 @@ export const HomePage = () => {
                             </div>
                         </div>
                         <div className="products">
-                            <NoData description='Ainda não existem dados de novos produtos' />
+                            <span className="title_recent_students">
+                                TAXA DE RESERVA DE PRODUTOS
+                            </span>
+                            <DashboardProductReservation />
+                            {/* <NoData description='Ainda não existem dados de novos produtos' /> */}
+                            <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR DAS AS RESERVAS' />
                         </div>
                         <div className="weights">
                             <NoData description='Ainda não existem dados de pesos pegos' />

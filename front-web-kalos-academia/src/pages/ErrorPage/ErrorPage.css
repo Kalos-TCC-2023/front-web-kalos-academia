@@ -1,0 +1,23 @@
+.error_message{
+    display: flex;
+    flex-direction: column;
+}
+.error_page{
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+}
+.img_error_page{
+    text-align: center;
+}
+.title_error{
+    color: #000;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 32px;
+    font-weight: 600;
+}
+.erro_message{
+    text-align: center;
+}
