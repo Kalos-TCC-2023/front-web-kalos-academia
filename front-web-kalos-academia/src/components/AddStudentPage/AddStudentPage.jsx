@@ -4,7 +4,7 @@ import { Breadcrumb, Input, Button } from 'antd'
 import { Link } from 'react-router-dom'
 const { Search } = Input
 import { UserAddStudents } from '../UserAddStudents/UserAddStudents'
-import './AddStudenPage.css'
+import './AddStudentPage.css'
 
 export const AddStudentPage = () => {
 
