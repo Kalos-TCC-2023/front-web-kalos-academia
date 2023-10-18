@@ -42,12 +42,101 @@ gap: 20px;
     gap: 10px;
 
 }
-.card-workouts{
-    width: 358px;
-    height: 191px;
-    border: 1px solid black;
+.card-workouts {
+    width: 360px;
+    height: 200px;
     border-radius: 20px;
-
-
+    position: relative;
+    overflow: hidden; /* Para esconder a imagem que excede o cartão */
+    transition: transform 0.3s; /* Adiciona uma transição suave para o efeito de escala */
+  }
+  
+  .card-workouts:hover {
+    transform: scale(1.03); /* Aumenta a escala em 10% no hover */
+  }
+  
+  .img-card-workouts {
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    border-radius: 20px;
+  }
+.change-card{
+  position: absolute;
+  right: 10px;
+  bottom: 165px;
+  z-index: 10;
+  font-size: 2.5rem;
+  color:rgb(0, 254, 144, 1);
+  cursor: pointer;
+font-weight: 800;
+   
+}
+.workout-name{
+    position: absolute;
+  left: 20px;
+  bottom: 60px;
+  z-index: 10;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.workout-category-name{
+    position: absolute;
+    left: 20px;
+    bottom: 40px;
+    z-index: 10;
+    color: white;
+    font-weight: 400;
+    font-size: 1.0rem;
+    font-family: ;
 
 }
+.workout-data{
+    width: 80px;
+    height: 23px;
+    border-radius:50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  
+    background-color: rgba(255, 255, 255, 0.394);
+
+}
+.p-workout-data{
+    color: white;
+    font-weight: 400;
+    font-size: 10px;
+}
+.img-calendar-workout{
+    width: 13px;
+    height: 13px;
+}
+.container-data-user{
+    display: flex;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    justify-content: space-between;
+}
+.user-workouts{
+    display: flex;
+
+}
+.userCard{
+width: 18px;
+height: 18px;
+border-radius: 50%;
+background-color:rgb(0, 254, 144, 1);
+margin: -4px;
+
+}
+
+.userCard:nth-child(:last-child){
+    margin-right: 30px;
+    
+    }
