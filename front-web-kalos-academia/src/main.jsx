@@ -17,6 +17,7 @@ import Workoutspage from './pages/WorkoutsPage/Workoutspage';
 import { PostsPage } from './pages/PostsPage/PostsPage.jsx'
 import { SuccessPage } from './components/SuccessPage/SuccessPage.jsx'
 import { EditProfile } from './pages/EditProfilePage/EditProfile.jsx'
+import { AddStudentPage } from './components/AddStudentPage/AddStudentPage.jsx'
 
 
 const router = createBrowserRouter([
@@ -56,7 +57,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/menu/alunos",
-        element: <StudentsPage />
+        element: <StudentsPage />,
+      },
+      {
+        path: "/menu/alunos/novo_aluno",
+        element: <AddStudentPage /> 
       },
       {
         path: "/menu/produtos",
