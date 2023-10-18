@@ -5,6 +5,9 @@ import ButtonDefaultKalos from '../../components/Button/ButtonDefaultKalos';
 import SelectDefaultKalos from '../../components/Select/Select';
 import { Input } from 'antd';
 import { loadAllWorkouts } from './Api/ApiWorkoutatagym';
+import calendar from './images/Calendar.png'
+import workoutPhoto from './images/workoutgymTraine.jpeg'
+
 
 class Workoutspage extends Component {
   state = {
@@ -95,10 +98,38 @@ class Workoutspage extends Component {
         <div className='container-galery-workouts'>
           {informacoes.map((workout, index) => (
             <div className="card-workouts" key={index}>
-              {workout.nome}
+              <div className='change-card'>...</div>
+
+              {workout.foto !== "a" ? (
+                <img className='img-card-workouts' src={workout.foto} alt={workout.nome} />
+              ) : (
+                <img className='img-card-workouts' src={workoutPhoto} alt="Imagem Padrão" />
+
+
+              )}
+
+              <div className='workout-name'>{workout.nome}</div>
+              <div className='workout-category-name'>{workout.nome_categoria_treino}</div>
+              <div className='container-data-user'>
+                <div className='workout-data'>
+                  <img className="img-calendar-workout" src={calendar} alt="" />
+                  <p className='p-workout-data'>
+                    {workout.data_criacao}
+                  </p>
+                </div>
+
+                <div className='user-workouts'>
+                  <div className='userCard'></div>
+                  <div className='userCard'></div>
+                  <div className='userCard'></div>
+
+                </div>
+              </div>
             </div>
+
           ))}
         </div>
+
       </div>
     );
   }
