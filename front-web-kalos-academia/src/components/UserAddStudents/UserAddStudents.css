@@ -1,0 +1,49 @@
+.user_add_card {
+    display: flex;
+    background-color: #FBFBFB;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.section_information_students {
+    display: flex;
+    gap: 10px;
+}
+
+.name_id {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.name_student {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.id_student {
+    color: #666;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+}
+.buttons_actions{
+    display: flex;
+    gap: 5px;
+}
+.delete_student, .information_student{
+    width: 21px;
+    height: 21px;
+    border-radius: 90px;
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+    background-color: #00FE90;
+    cursor: pointer;
+}
