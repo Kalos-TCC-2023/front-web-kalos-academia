@@ -70,7 +70,7 @@ export const StudentsPage = () => {
             {
               studentsGym.length == 0 ? <Loader /> : (
                 studentsGym.map((student) => (
-                  <UserAddStudents key={student.id} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto}/>
+                  <UserAddStudents idStudent={student.id} key={student.id} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto}/>
                 ))
               )
             }
