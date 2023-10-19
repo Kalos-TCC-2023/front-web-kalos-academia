@@ -7,16 +7,21 @@ import { Input } from 'antd';
 import { loadAllWorkouts } from './Api/ApiWorkoutatagym';
 import calendar from './images/Calendar.png'
 import workoutPhoto from './images/workoutgymTraine.jpeg'
+import { Link } from 'react-router-dom'
 
 
 class Workoutspage extends Component {
   state = {
     informacoes: [],
+    showCrudCard: false, 
+
   };
 
   onSearch = (value, _e, info) => {
     console.log(info?.source, value);
   }
+
+  
 
   componentDidMount() {
     loadAllWorkouts()
@@ -37,12 +42,9 @@ class Workoutspage extends Component {
       { value: 'Crossfit', label: 'Crossfit' },
     ];
 
-    const optionsData = [
-      { value: '12/05/2005', label: '12/05/2005' },
-      { value: '12/05/2005', label: '12/05/2005' },
-      { value: '12/05/2005', label: '12/05/2005' },
-      { value: '12/05/2005', label: '12/05/2005' },
-    ];
+    
+
+   
 
     const { informacoes } = this.state;
 
@@ -56,41 +58,54 @@ class Workoutspage extends Component {
           <div className='selects-exercises'>
             <div className='selects'>
               <SelectDefaultKalos defaultValue="Filtrar Categoria" options={optionsCategoria} className="selectDefault" />
-              <SelectDefaultKalos defaultValue="Filtrar data" options={optionsData} className="selectDefault" />
             </div>
             <div className='search'>
               <Input.Search
-                className='search_header'
+                className='search_header-workout search_header'
                 placeholder="Buscar treinos..."
                 onSearch={this.onSearch}
                 size='large'
               />
             </div>
             <div className='buttonsExercise'>
-              <ButtonDefaultKalos
-                textButton="TREINOS"
-                width="150px"
-                height="40px"
-                primaryColor="rgb(245, 247, 249)"
-                secondaryColor="rgb(0, 254, 144, 1)"
-                className="buttonDefault"
-              />
-              <ButtonDefaultKalos
-                textButton="CRIAR NOVO TREINO"
-                width="200px"
-                height="40px"
-                primaryColor="rgb(245, 247, 249)"
-                secondaryColor="rgb(0, 254, 144, 1)"
-                className="buttonDefault"
-              />
-              <ButtonDefaultKalos
-                textButton="GALERIA DOS EXERCÍCIOS"
-                width="200px"
-                height="40px"
-                primaryColor="rgb(245, 247, 249)"
-                secondaryColor="rgb(0, 254, 144, 1)"
-                className="buttonDefault"
-              />
+
+
+              <Link to='/menu/treinos'>
+
+                <ButtonDefaultKalos
+                  textButton="TREINOS"
+                  width="150px"
+                  height="40px"
+                  primaryColor="rgb(245, 247, 249)"
+                  secondaryColor="rgb(0, 254, 144, 1)"
+                  className="buttonDefault"
+                />
+
+              </Link>
+
+              <Link to='/menu/criarTreinos'>
+                <ButtonDefaultKalos
+                  textButton="CRIAR NOVO TREINO"
+                  width="200px"
+                  height="40px"
+                  primaryColor="rgb(245, 247, 249)"
+                  secondaryColor="rgb(0, 254, 144, 1)"
+                  className="buttonDefault"
+                />
+
+              </Link>
+              <Link to='/menu/galeria_exercicios'>
+
+                <ButtonDefaultKalos
+                  textButton="GALERIA DOS EXERCÍCIOS"
+                  width="200px"
+                  height="40px"
+                  primaryColor="rgb(245, 247, 249)"
+                  secondaryColor="rgb(0, 254, 144, 1)"
+                  className="buttonDefault"
+                />
+              </Link>
+
             </div>
           </div>
         </div>
@@ -98,7 +113,7 @@ class Workoutspage extends Component {
         <div className='container-galery-workouts'>
           {informacoes.map((workout, index) => (
             <div className="card-workouts" key={index}>
-              <div className='change-card'>...</div>
+              <div className='change-card' onClick={ this.showCrudCard()}>...</div>
 
               {workout.foto !== "a" ? (
                 <img className='img-card-workouts' src={workout.foto} alt={workout.nome} />

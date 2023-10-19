@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import {BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider} from 'react-router-dom'
+import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ForgotPass } from './pages/ForgotPass/ForgotPass.jsx'
 import { RegisterPage } from './pages/RegisterPage/RegisterPage.jsx'
 import { HomePage } from './pages/HomePage/HomePage.jsx'
@@ -18,7 +18,8 @@ import { PostsPage } from './pages/PostsPage/PostsPage.jsx'
 import { SuccessPage } from './components/SuccessPage/SuccessPage.jsx'
 import { EditProfile } from './pages/EditProfilePage/EditProfile.jsx'
 import { AddStudentPage } from './components/AddStudentPage/AddStudentPage.jsx'
-
+import { CreateWorkouts } from './pages/CreateWorkouts/CreateWorkouts.jsx'
+import { GaleryWorkouts } from './pages/GaleryWokouts.jsx/GaleryWorkouts.jsx'
 
 const router = createBrowserRouter([
   {
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/menu/home",
-        element: <HomePage /> 
+        element: <HomePage />
       },
       {
         path: "/menu/perfil",
@@ -63,8 +64,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/menu/alunos/novo_aluno",
-        element: <AddStudentPage /> 
+        element: <AddStudentPage />
       },
+     
       {
         path: "/menu/produtos",
         element: <Productspage />
@@ -72,7 +74,19 @@ const router = createBrowserRouter([
       {
         path: "/menu/treinos",
         element: <Workoutspage />
+
       },
+      {
+        path: "/menu/criarTreinos",
+        element: <CreateWorkouts />
+        
+      },
+      {
+        path: "/menu/galeria_exercicios",
+        element: <GaleryWorkouts />
+        
+      },
+   
       {
         path: "/menu/chat",
         element: <Chatpage />
@@ -82,7 +96,7 @@ const router = createBrowserRouter([
         element: <PostsPage />
       },
     ]
-    
+
   }
 ])
 
