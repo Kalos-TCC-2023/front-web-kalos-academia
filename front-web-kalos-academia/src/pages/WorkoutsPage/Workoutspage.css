@@ -1,37 +1,61 @@
-.container-header-galeria-exercicios{
+.workouts_page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 70px;
+    padding-right: 70px;
+
+
+}
+
+.container-header-galeria-exercicios {
     margin: 30px;
     width: 100%;
     height: 90px;
-    border-top: 0.5px  rgba(102, 102, 102, 0.31) solid;
- 
+    border-top: 0.5px rgba(102, 102, 102, 0.31) solid;
 }
-.container-header-galeria-exercicios > p{
+
+.container-header-galeria-exercicios>p {
     margin-top: 20px;
     margin-bottom: 20px;
 
     font-size: 32px;
     font-weight: 600;
 }
+
 .selects-exercises {
     display: flex;
     align-items: center;
-
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
 }
-.selects{
+
+.selects {
     display: flex;
-   gap: 20px;
-
-
-}
-.buttonsExercise{
-display: flex;
-gap: 20px;
+    gap: 20px;
 
 
 }
 
+.buttonsExercise {
+    display: flex;
+    gap: 20px;
+
+
+
+}
+.search_header-workout{
+}
+
+
+.container-crud-card{
+    width: 250px;
+    height: 300px;
+    background-color: white;
+    
+}
 .container-galery-workouts {
     margin-top: 100px;
     width: 100%;
@@ -39,49 +63,57 @@ gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
+
 
 }
+
 .card-workouts {
-    width: 360px;
+    width: 20%;
     height: 200px;
     border-radius: 20px;
     position: relative;
-    overflow: hidden; /* Para esconder a imagem que excede o cartão */
-    transition: transform 0.3s; /* Adiciona uma transição suave para o efeito de escala */
-  }
-  
-  .card-workouts:hover {
-    transform: scale(1.03); /* Aumenta a escala em 10% no hover */
-  }
-  
-  .img-card-workouts {
+    overflow: hidden;
+    /* Para esconder a imagem que excede o cartão */
+    transition: transform 0.3s;
+    /* Adiciona uma transição suave para o efeito de escala */
+}
+
+.card-workouts:hover {
+    transform: scale(1.03);
+    /* Aumenta a escala em 10% no hover */
+}
+
+.img-card-workouts {
     width: 100%;
     height: 100%;
     z-index: 9;
     border-radius: 20px;
-  }
-.change-card{
-  position: absolute;
-  right: 10px;
-  bottom: 165px;
-  z-index: 10;
-  font-size: 2.5rem;
-  color:rgb(0, 254, 144, 1);
-  cursor: pointer;
-font-weight: 800;
-   
 }
-.workout-name{
+
+.change-card {
     position: absolute;
-  left: 20px;
-  bottom: 60px;
-  z-index: 10;
-  color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
+    right: 10px;
+    bottom: 165px;
+    z-index: 10;
+    font-size: 2.5rem;
+    color: rgb(0, 254, 144, 1);
+    cursor: pointer;
+    font-weight: 800;
+
 }
-.workout-category-name{
+
+.workout-name {
+    position: absolute;
+    left: 20px;
+    bottom: 60px;
+    z-index: 10;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.workout-category-name {
     position: absolute;
     left: 20px;
     bottom: 40px;
@@ -92,27 +124,31 @@ font-weight: 800;
     font-family: ;
 
 }
-.workout-data{
+
+.workout-data {
     width: 80px;
     height: 23px;
-    border-radius:50px;
+    border-radius: 50px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-  
+
     background-color: rgba(255, 255, 255, 0.394);
 
 }
-.p-workout-data{
+
+.p-workout-data {
     color: white;
     font-weight: 400;
     font-size: 10px;
 }
-.img-calendar-workout{
+
+.img-calendar-workout {
     width: 13px;
     height: 13px;
 }
-.container-data-user{
+
+.container-data-user {
     display: flex;
     width: 100%;
     position: absolute;
@@ -123,20 +159,22 @@ font-weight: 800;
 
     justify-content: space-between;
 }
-.user-workouts{
+
+.user-workouts {
     display: flex;
 
 }
-.userCard{
-width: 18px;
-height: 18px;
-border-radius: 50%;
-background-color:rgb(0, 254, 144, 1);
-margin: -4px;
+
+.userCard {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: rgb(0, 254, 144, 1);
+    margin: -4px;
 
 }
 
-.userCard:nth-child(:last-child){
+.userCard:nth-child(:last-child) {
     margin-right: 30px;
-    
-    }
+
+}
