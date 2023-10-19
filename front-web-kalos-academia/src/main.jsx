@@ -58,6 +58,8 @@ const router = createBrowserRouter([
       {
         path: "/menu/alunos",
         element: <StudentsPage />,
+       
+        
       },
       {
         path: "/menu/alunos/novo_aluno",

@@ -70,7 +70,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
       } else {
 
         // http://10.107.144.6:8080
-        axios.post('http://10.107.144.11:8080/kalos/academia', {
+        axios.post('https://kaloscorp.cyclic.cloud/kalos/academia', {
           nome: data.nome,
           email: data.email,
           senha: data.senha,
