@@ -10,7 +10,7 @@ const config = {
     content: 'esse aluno será excluido permanentemente da sua academia'
 }
 
-export const UserAddStudents = ({nameStudent, idStudentFormt, imgSrcStudent}) => {
+export const UserAddStudents = ({nameStudent, idStudentFormt, imgSrcStudent, idStudent}) => {
 
     const [modal, contextHolder] = Modal.useModal()
 

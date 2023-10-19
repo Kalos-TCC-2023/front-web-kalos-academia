@@ -1,18 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Breadcrumb, Input, Button } from 'antd'
 import { Link } from 'react-router-dom'
 const { Search } = Input
 import { UserAddStudents } from '../UserAddStudents/UserAddStudents'
 import './AddStudentPage.css'
+import { UserCardNewStudent } from '../UserCardNewStudent/UserCardNewStudent'
+import axios from 'axios'
+import { Loader } from '../Loader/Loader'
 
 export const AddStudentPage = () => {
+
+    const [students, setStudents] = useState([])
 
     const onSearch = (value, _e, info) => {
         console.log(info?.source, value)
     }
 
-    
+   
+  const id = localStorage.getItem("id_academia")
+
+  useEffect(() => {
+    axios.get(`https://kaloscorp.cyclic.cloud/kalos/aluno`)
+    .then(({ data }) => {
+      console.log(data)
+      console.log(data.alunos)
+      setStudents(data.alunos)
+    }).catch((erro) => {
+      console.log(erro)
+    })
+  }, []) 
 
     return (
         <div className='students_page'>
@@ -44,7 +61,7 @@ export const AddStudentPage = () => {
                     <div className="buttons_add_students_my_students">
 
                         <Link to='/menu/alunos'>
-                            <Button shape='circle'>MEUS ALUNOS</Button>
+                            <Button className='my_students' shape='circle'>MEUS ALUNOS</Button>
                         </Link>
                         <Link to='/menu/alunos/novo_aluno'>
                             <Button shape='circle'>ADICIONAR NOVO ALUNO</Button>
@@ -53,10 +70,12 @@ export const AddStudentPage = () => {
                 </div>
                 <div className="my_students_gym">
                     {
-
+                        students.length == 0 ? <Loader /> : (
+                            students.map((student) => (
+                                <UserCardNewStudent key={student.id} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto}/>
+                            ))
+                        )
                     }
-                    <UserAddStudents />
-                    <UserAddStudents />
                 </div>
             </div>
         </div>
