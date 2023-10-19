@@ -87,7 +87,7 @@ export const HomePage = () => {
                                     lastStudents.length == 0 ? <Loader /> : (
                                         lastStudents.map((student) => (
 
-                                            <UserCard photo={student.foto} keyId={student.id} name={student.nome} id={'#' + 10 + student.id} />
+                                            <UserCard key={student.id} photo={student.foto} keyId={student.id} name={student.nome} id={'#' + 10 + student.id} />
                                         ))
                                     )}
 

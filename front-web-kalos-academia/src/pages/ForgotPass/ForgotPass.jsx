@@ -116,7 +116,7 @@ export const ForgotPass = () => {
       console.log(userEmail)
       return
     } else {
-      axios.post(`http://10.107.144.11:8080/kalos/academia/esqueci_senha`, {
+      axios.post(`https://kaloscorp.cyclic.cloud/kalos/academia/esqueci_senha`, {
         email: userEmail.toString()
       })
         .then(({ data }) => {
@@ -133,7 +133,7 @@ export const ForgotPass = () => {
     if (tokenCode == '' || tokenCode.length < 5) {
       return
     } else {
-      axios.post(`http://10.107.144.11:8080/kalos/academia/validar_token`, {
+      axios.post(`https://kaloscorporation.cyclic.cloud/kalos/academia/validar_token`, {
         email: userEmail.toString(),
         token: tokenCode.toString()
       })
@@ -156,7 +156,7 @@ export const ForgotPass = () => {
     if(submitPassword == '' || submitPassword == null){
       return
     } else {
-      axios.put(`http://10.107.144.11:8080/kalos/academia/redefinir_senha`, {
+      axios.put(`https://kaloscorporation.cyclic.cloud/kalos/academia/redefinir_senha`, {
         email: userEmail.toString(),
         senha: submitPassword.toString()
       }).then(({ data }) => {
