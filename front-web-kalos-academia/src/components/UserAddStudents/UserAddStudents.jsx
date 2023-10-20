@@ -1,7 +1,9 @@
-import React, { createContext } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { Avatar, Modal } from 'antd'
 import { CloseOutlined, IdcardOutlined, UserOutlined } from '@ant-design/icons';
 import './UserAddStudents.css'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const ReachableContext = createContext(null);
 const UnreachableContext = createContext(null);
 
@@ -13,6 +15,20 @@ const config = {
 export const UserAddStudents = ({nameStudent, idStudentFormt, imgSrcStudent, idStudent}) => {
 
     const [modal, contextHolder] = Modal.useModal()
+    const [deleteStudent, setDeleteStudent] = useState('')
+    const navigate = useNavigate()
+
+    const aboutStudent = () => {
+        localStorage.setItem('id_aluno', idStudent)
+        const idAluno = localStorage.getItem('id_aluno')
+        navigate("/menu/alunos/sobre_aluno")
+        
+        console.log(idAluno)
+    }
+
+    useEffect(() => {
+        
+    })
 
     return (
         <div className='user_add_card'>
@@ -25,7 +41,9 @@ export const UserAddStudents = ({nameStudent, idStudentFormt, imgSrcStudent, idS
             </div>
 
             <div className="buttons_actions">
-                <div className="information_student"><IdcardOutlined /></div>
+                <div onClick={() => (
+                    aboutStudent()
+                )} className="information_student"><IdcardOutlined /></div>
                 <div onClick={async () => {
                     const confirmed = await modal.confirm(config);
                     console.log('Confirmed: ', confirmed, idStudent);

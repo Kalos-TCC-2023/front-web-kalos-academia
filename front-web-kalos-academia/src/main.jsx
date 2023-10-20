@@ -20,6 +20,7 @@ import { EditProfile } from './pages/EditProfilePage/EditProfile.jsx'
 import { AddStudentPage } from './components/AddStudentPage/AddStudentPage.jsx'
 import { CreateWorkouts } from './pages/CreateWorkouts/CreateWorkouts.jsx'
 import { GaleryWorkouts } from './pages/GaleryWokouts.jsx/GaleryWorkouts.jsx'
+import { AboutStudent } from './pages/AboutStudent/AboutStudent.jsx'
 
 const router = createBrowserRouter([
   {
@@ -59,14 +60,15 @@ const router = createBrowserRouter([
       {
         path: "/menu/alunos",
         element: <StudentsPage />,
-       
-        
       },
       {
         path: "/menu/alunos/novo_aluno",
         element: <AddStudentPage />
       },
-     
+      {
+        path: "/menu/alunos/sobre_aluno",
+        element: <AboutStudent />,
+      },
       {
         path: "/menu/produtos",
         element: <Productspage />
