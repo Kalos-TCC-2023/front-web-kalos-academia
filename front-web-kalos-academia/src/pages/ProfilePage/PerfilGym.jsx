@@ -26,7 +26,7 @@ export const PerfilGym = () => {
   useEffect(() => {
     axios.get(`https://kaloscorp.cyclic.cloud/kalos/academia/id/${id}`)
       .then(({ data }) => {
-        console.log(data)
+        
         setObjectGym(data.academia)
         setStateGymApis(data.status)
 
@@ -39,7 +39,7 @@ export const PerfilGym = () => {
   useEffect(() => {
     axios.get(`https://kaloscorp.cyclic.cloud/kalos/treinoNivelCategoria/idAcademia/${id}`)
     .then(({ data }) => {
-      console.log(data.informacoes.length)
+      
       setCounterWorkouts(data.informacoes.length)
     }).catch((erro) => {
       console.log(erro)
@@ -47,9 +47,8 @@ export const PerfilGym = () => {
   }, [])
 
   useEffect(() => {
-    axios.get(`https://kaloscorporation.cyclic.cloud/kalos/alunoAcademia/idAcademia/${id}`)
+    axios.get(`https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/${id}`)
     .then(({ data }) => {
-      console.log(data)
       console.log(data.alunos.length)
       setCounterStudents(data.alunos.length)
     }).catch((erro) => {

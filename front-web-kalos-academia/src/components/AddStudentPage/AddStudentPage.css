@@ -31,6 +31,13 @@
     padding-left: 7px;
     padding-right: 7px;
 }
+.all_students .ant-btn{
+    background-color: #00FE90 !important;
+    border: 1px solid #F5F7F9 !important;
+    border-radius: 300px;
+    color: rgb(0, 0, 0);
+    transition: all 0.3s;
+}
 .buttons_add_students_my_students .ant-btn:hover {
     color: white !important;
     background-color: #00FE90 !important;
@@ -44,4 +51,7 @@
     flex-direction: column;
     gap: 10px;
     overflow: auto;
+}
+.pagination_students{
+    margin-top: 15px;
 }
