@@ -5,23 +5,25 @@ import ButtonDefaultKalos from '../../components/Button/ButtonDefaultKalos';
 import SelectDefaultKalos from '../../components/Select/Select';
 import { Input } from 'antd';
 import { loadAllWorkouts } from './Api/ApiWorkoutatagym';
-import calendar from './images/Calendar.png'
-import workoutPhoto from './images/workoutgymTraine.jpeg'
-import { Link } from 'react-router-dom'
+import calendar from './images/Calendar.png';
+import workoutPhoto from './images/workoutgymTraine.jpeg';
+import { Link } from 'react-router-dom';
+import CrudWokoutCard from './componentsWorkoutPage/CrudWorkoutsCard';
+import { loadRegistererStudents } from './Api/ApiShowRegistered';
 
 
 class Workoutspage extends Component {
   state = {
     informacoes: [],
-    showCrudCard: false, 
-
+    alunosMatriculados: [],
+    selectedCard: null, // Track the selected card
   };
 
-  onSearch = (value, _e, info) => {
-    console.log(info?.source, value);
-  }
-
-  
+  toggleCardVisibility = (index) => {
+    this.setState((prevState) => ({
+      selectedCard: prevState.selectedCard === index ? null : index,
+    }));
+  };
 
   componentDidMount() {
     loadAllWorkouts()
@@ -32,6 +34,13 @@ class Workoutspage extends Component {
       .catch((error) => {
         console.error('Ocorreu um erro ao carregar os dados:', error);
       });
+
+    loadRegistererStudents().then((data) => {
+      const alunosMatriculadosApi = data.informacoes;
+      this.setState({ alunosMatriculados: alunosMatriculadosApi })
+    }).catch((error) => {
+      console.error('Ocorreu um erro ao carregar os dados:', error);
+    });
   }
 
   render() {
@@ -42,12 +51,9 @@ class Workoutspage extends Component {
       { value: 'Crossfit', label: 'Crossfit' },
     ];
 
-    
+    const { informacoes, alunosMatriculados, selectedCard } = this.state;
 
-   
-
-    const { informacoes } = this.state;
-
+    localStorage.setItem(informacoes.id, "id_treino_Categoria")
     return (
       <div className='workouts_page'>
         <Helmet>
@@ -68,10 +74,7 @@ class Workoutspage extends Component {
               />
             </div>
             <div className='buttonsExercise'>
-
-
               <Link to='/menu/treinos'>
-
                 <ButtonDefaultKalos
                   textButton="TREINOS"
                   width="150px"
@@ -80,9 +83,7 @@ class Workoutspage extends Component {
                   secondaryColor="rgb(0, 254, 144, 1)"
                   className="buttonDefault"
                 />
-
               </Link>
-
               <Link to='/menu/criarTreinos'>
                 <ButtonDefaultKalos
                   textButton="CRIAR NOVO TREINO"
@@ -92,10 +93,8 @@ class Workoutspage extends Component {
                   secondaryColor="rgb(0, 254, 144, 1)"
                   className="buttonDefault"
                 />
-
               </Link>
               <Link to='/menu/galeria_exercicios'>
-
                 <ButtonDefaultKalos
                   textButton="GALERIA DOS EXERCÍCIOS"
                   width="200px"
@@ -105,7 +104,6 @@ class Workoutspage extends Component {
                   className="buttonDefault"
                 />
               </Link>
-
             </div>
           </div>
         </div>
@@ -113,16 +111,17 @@ class Workoutspage extends Component {
         <div className='container-galery-workouts'>
           {informacoes.map((workout, index) => (
             <div className="card-workouts" key={index}>
-              <div className='change-card' onClick={ this.showCrudCard()}>...</div>
-
+              <div className={`change-card ${selectedCard === index ? 'visible' : ''}`} onClick={() => this.toggleCardVisibility(index)}>
+                ...
+                {selectedCard === index && (
+                  <CrudWokoutCard className="container-crud-workouts" />
+                )}
+              </div>
               {workout.foto !== "a" ? (
                 <img className='img-card-workouts' src={workout.foto} alt={workout.nome} />
               ) : (
                 <img className='img-card-workouts' src={workoutPhoto} alt="Imagem Padrão" />
-
-
               )}
-
               <div className='workout-name'>{workout.nome}</div>
               <div className='workout-category-name'>{workout.nome_categoria_treino}</div>
               <div className='container-data-user'>
@@ -134,20 +133,21 @@ class Workoutspage extends Component {
                 </div>
 
                 <div className='user-workouts'>
-                  <div className='userCard'></div>
-                  <div className='userCard'></div>
-                  <div className='userCard'></div>
+                  {
+                    alunosMatriculados.forEach((matriculados) => {
 
-                </div>
+                      <img src={matriculados.foto}><img />      
+                                      })
+                  }
+
+                      </div>
               </div>
-            </div>
-
+              </div>
           ))}
-        </div>
-
+            </div>
       </div>
-    );
+        );
   }
 }
 
-export default Workoutspage;
+        export default Workoutspage;
