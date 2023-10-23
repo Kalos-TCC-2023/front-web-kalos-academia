@@ -26,10 +26,10 @@ export const HomePage = () => {
 
     const idGym = localStorage.getItem("id_academia")
 
-
+    // https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/${idGym}`)
+        axios.get(`http://10.107.144.11:8080/kalos/alunoAcademia/idAcademia/${idGym}`)
             .then(({ data }) => {
                 console.log(data.alunos)
                 setLastStudents(data.alunos)

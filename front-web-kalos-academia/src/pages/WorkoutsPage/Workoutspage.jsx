@@ -141,7 +141,8 @@ class Workoutspage extends Component {
           ))}
         </div>
       </div>
-    );
+    );}}
     
 
         export default Workoutspage;
+                  

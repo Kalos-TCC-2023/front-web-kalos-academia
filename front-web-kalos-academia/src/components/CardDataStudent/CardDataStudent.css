@@ -5,18 +5,20 @@
   background: #fbfbfb;
   display: flex;
   flex-direction: column;
+  padding-top: 5px;
+  padding-left: 5px;
 }
 .title_data_student {
   color: #000;
   font-family: Inter;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 600;
 
 }
 .text_data_student {
   color: #666;
   font-family: Inter;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 400;
 
 }

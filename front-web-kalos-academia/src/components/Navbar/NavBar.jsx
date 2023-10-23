@@ -56,13 +56,6 @@ export const NavBar = () => {
                             </div>
                         </Tooltip>
                     </Link>
-                    <Link to='/menu/chat'>
-                        <Tooltip placement="right" title="Chat da academia">
-                            <div className="icon_font_awesome">
-                                <FontAwesomeIcon icon={faComments} size='lg' style={{ color: '#33ffa7' }} />
-                            </div>
-                        </Tooltip>
-                    </Link>
                 </div>
                 <p>Sair</p>
             </div>
