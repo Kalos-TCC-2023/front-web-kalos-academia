@@ -1,0 +1,102 @@
+.data_students{
+  
+  width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  overflow: auto;
+}
+.data_basic_buttons {
+  display: flex;
+  gap: 63px;
+}
+.name_student_record {
+  color: #000;
+
+  text-align: center;
+  font-family: Inter;
+  font-size: 48px;
+  font-weight: 500;
+}
+.token {
+  color: #d2d2d2;
+  text-align: center;
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 400;
+}
+.weight_height_age {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-top: 13px;
+}
+.weight,
+.height,
+.age {
+  display: flex;
+  flex-direction: column;
+}
+.green {
+  color: #00fe90;
+
+  font-family: Montserrat;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 3px;
+}
+.number {
+  color: #000;
+
+  font-family: Montserrat;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.complement {
+  color: #000;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+}
+.goal {
+  color: #00fe91;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+}
+.goal_gym_student {
+  color: #666;
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.student_record {
+  margin-top: 28px;
+  height: 100%;
+  width: 100%;
+}
+.title_record_student {
+  color: #666;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+}
+.table_data_one, 
+.table_data_two,
+.table_data_three{
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.ajuste{
+  overflow: auto;
+}
