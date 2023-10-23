@@ -107,12 +107,12 @@ class Workoutspage extends Component {
             </div>
           </div>
         </div>
-
+    
         <div className='container-galery-workouts'>
           {informacoes.map((workout, index) => (
             <div className="card-workouts" key={index}>
               <div className={`change-card ${selectedCard === index ? 'visible' : ''}`} onClick={() => this.toggleCardVisibility(index)}>
-                ...
+                {/* ... */}
                 {selectedCard === index && (
                   <CrudWokoutCard className="container-crud-workouts" />
                 )}
@@ -131,23 +131,17 @@ class Workoutspage extends Component {
                     {workout.data_criacao}
                   </p>
                 </div>
-
                 <div className='user-workouts'>
-                  {
-                    alunosMatriculados.forEach((matriculados) => {
-
-                      <img src={matriculados.foto}><img />      
-                                      })
-                  }
-
-                      </div>
+                  {alunosMatriculados.map((matriculados, matriculadoIndex) => (
+                    <img key={matriculadoIndex} src={matriculados.foto} alt="" />
+                  ))}
+                </div>
               </div>
-              </div>
-          ))}
             </div>
+          ))}
+        </div>
       </div>
-        );
-  }
-}
+    );
+    
 
         export default Workoutspage;
