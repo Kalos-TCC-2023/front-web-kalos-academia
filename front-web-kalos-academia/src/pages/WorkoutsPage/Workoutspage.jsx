@@ -12,11 +12,12 @@ import CrudWokoutCard from './componentsWorkoutPage/CrudWorkoutsCard';
 import { loadRegistererStudents } from './Api/ApiShowRegistered';
 
 
-class Workoutspage extends Component {
+ class Workoutspage extends Component {
   state = {
     informacoes: [],
     alunosMatriculados: [],
     selectedCard: null, // Track the selected card
+    onSearch: null
   };
 
   toggleCardVisibility = (index) => {
@@ -51,7 +52,7 @@ class Workoutspage extends Component {
       { value: 'Crossfit', label: 'Crossfit' },
     ];
 
-    const { informacoes, alunosMatriculados, selectedCard } = this.state;
+    const { informacoes, alunosMatriculados, selectedCard, onSearch } = this.state;
 
     localStorage.setItem(informacoes.id, "id_treino_Categoria")
     return (
@@ -69,7 +70,7 @@ class Workoutspage extends Component {
               <Input.Search
                 className='search_header-workout search_header'
                 placeholder="Buscar treinos..."
-                onSearch={this.onSearch}
+                onSearch={onSearch}
                 size='large'
               />
             </div>
@@ -110,7 +111,7 @@ class Workoutspage extends Component {
     
         <div className='container-galery-workouts'>
           {informacoes.map((workout, index) => (
-            <div className="card-workouts" key={index}>
+            <div className="card-workouts" key={index}>  
               <div className={`change-card ${selectedCard === index ? 'visible' : ''}`} onClick={() => this.toggleCardVisibility(index)}>
                 {/* ... */}
                 {selectedCard === index && (
@@ -141,7 +142,7 @@ class Workoutspage extends Component {
           ))}
         </div>
       </div>
-    );
+    )}}
     
 
-        export default Workoutspage;
+   export default Workoutspage;
