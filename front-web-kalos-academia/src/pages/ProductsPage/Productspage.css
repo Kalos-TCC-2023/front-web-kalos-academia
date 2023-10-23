@@ -1,0 +1,41 @@
+.product_page{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    
+}
+.products_gym{
+    margin-top: 35px;
+}
+.header_modal{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.buttons_add_product_my_product{
+    display: flex;
+    gap: 10px;
+}
+.buttons_add_product_my_product .ant-btn{
+    border: 1px solid #F5F7F9 !important;
+    border-radius: 300px;
+    color: rgb(0, 0, 0);
+    transition: all 0.3s;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+.my_students_button .ant-btn{
+    background-color: #00FE90 !important;
+    border: 1px solid #F5F7F9 !important;
+    border-radius: 300px;
+    color: rgb(0, 0, 0);
+    transition: all 0.3s;
+}
+.buttons_add_product_my_product .ant-btn:hover {
+    color: white !important;
+    background-color: #00FE90 !important;
+    border-color: #00FE90 !important;
+}
