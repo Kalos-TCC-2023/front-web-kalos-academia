@@ -35,17 +35,17 @@ export const NavBar = () => {
                             </div>
                         </Tooltip>
                     </Link>
-                    <Link to='/menu/produtos'>
-                        <Tooltip placement="right" title="Produtos">
-                            <div className="icon_font_awesome">
-                                <FontAwesomeIcon icon={faBoxOpen} size='lg' style={{ color: '#33ffa7' }} />
-                            </div>
-                        </Tooltip>
-                    </Link>
                     <Link to='/menu/treinos'>
                         <Tooltip placement="right" title="Treinos da academia">
                             <div className="icon_font_awesome">
                                 <FontAwesomeIcon icon={faDumbbell} size='lg' style={{ color: '#33ffa7' }} />
+                            </div>
+                        </Tooltip>
+                    </Link>
+                    <Link to='/menu/produtos'>
+                        <Tooltip placement="right" title="Produtos">
+                            <div className="icon_font_awesome">
+                                <FontAwesomeIcon icon={faBoxOpen} size='lg' style={{ color: '#33ffa7' }} />
                             </div>
                         </Tooltip>
                     </Link>

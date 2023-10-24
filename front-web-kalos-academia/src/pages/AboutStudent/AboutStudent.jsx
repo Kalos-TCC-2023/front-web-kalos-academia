@@ -44,7 +44,7 @@ export const AboutStudent = () => {
                     />
                 </div>
                 <div className="initial_information_student">
-                    <InitialDataStudent data={aboutStudents} status={stateStudent} />
+                    <InitialDataStudent idStudent={idAluno} data={aboutStudents} status={stateStudent} />
                 </div>
             </div>
 

@@ -1,0 +1,10 @@
+.add_new_student_page{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
+.new_student_gym{
+    margin-top: 35px;
+}

@@ -28,7 +28,7 @@ export const Productspage = () => {
       </Helmet>
       <div className="products_gym">
         <div className="raiz_title">
-          <h1 className='title_edit_page'>Produtos</h1>
+          <h1 className='title_edit_page'>Minha loja</h1>
           <Breadcrumb
             items={[
               {

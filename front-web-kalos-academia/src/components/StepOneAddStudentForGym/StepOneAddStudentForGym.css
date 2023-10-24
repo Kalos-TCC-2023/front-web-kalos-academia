@@ -1,0 +1,21 @@
+.step_one{
+    width: 70vw;
+    height: 100%;
+    display: grid;
+    place-content: center;
+}
+.step_one_add_student_gym {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step_one_add_student_gym p {
+    color: #393939;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: 400;
+    width: 360px;
+
+}
