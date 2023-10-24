@@ -24,7 +24,7 @@ export class CreateWorkouts extends Component {
           </div>
           <div className='container-header-components'>
             <div className='arrow-back-create-workouts'>
-              <Link to='/menu/treinos'>
+              <Link to='/menu/treinos'></ Link>
               <img className="arrow-back-create-workouts" src={arrowBack} alt="" />
                 <Link/>
             </div>
