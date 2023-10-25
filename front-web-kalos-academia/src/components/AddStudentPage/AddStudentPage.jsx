@@ -80,7 +80,7 @@ export const AddStudentPage = () => {
                     {
                         students.length == 0 ? <Loader /> : (
                             currentStudents.map((student) => (
-                                <UserCardNewStudent key={student.id} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
+                                <UserCardNewStudent key={student.id} studentRealId={student.id} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
                             ))
                         )
                     }

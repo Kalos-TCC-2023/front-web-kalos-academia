@@ -6,31 +6,41 @@ import { Loader } from '../Loader/Loader';
 import { CardDataStudent } from '../CardDataStudent/CardDataStudent';
 import { RecordCardStudent } from '../RecordCardStudent/RecordCardStudent';
 import moment from 'moment';
+import axios from 'axios';
 
-export const InitialDataStudent = ({ data, status }) => {
+export const InitialDataStudent = ({ data, status, idStudent }) => {
+
+    console.log(status)
+    console.log(data)
+    console.log(idStudent)
 
     const [ageStudentFormat, setAge] = useState('')
     const [data_de_nascimento_formart, setDate] = useState('')
 
+
     useEffect(() => {
 
-        const dataNascimento = data.data_nascimento
+        axios.get(`https://kaloscorp.cyclic.cloud/kalos/aluno/id/${idStudent}`)
+            .then(({ data }) => {
 
-        console.log(dataNascimento)
+                console.log(data)
 
-        const newFormatDate = dataNascimento.replace('T00:00:00.000Z', '')
-        const data_de_nascimento_formart = moment(newFormatDate).format('L')
-        setDate(data_de_nascimento_formart)
-        const formatOneDate = newFormatDate.replace('-', '').replace('-', '')
+                const dataNascimento = data.aluno.data_nascimento
 
-        const dataNascimentoNowFormat = moment(formatOneDate, "YYYYMMDD").fromNow()
-        const ageStudentFormat = dataNascimentoNowFormat.replace('há', '').replace('anos', '')
-        setAge(ageStudentFormat)
+                console.log(dataNascimento)
 
-    }, [])
+                const newFormatDate = dataNascimento.replace('T00:00:00.000Z', '')
+                const data_de_nascimento_formart = moment(newFormatDate).format('L')
+                setDate(data_de_nascimento_formart)
+                const formatOneDate = newFormatDate.replace('-', '').replace('-', '')
 
+                const dataNascimentoNowFormat = moment(formatOneDate, "YYYYMMDD").fromNow()
+                const ageStudentFormat = dataNascimentoNowFormat.replace('há', '').replace('anos', '')
+                setAge(ageStudentFormat)
 
+            })
 
+    }, [ageStudentFormat, data_de_nascimento_formart])
 
 
     return (
@@ -74,7 +84,6 @@ export const InitialDataStudent = ({ data, status }) => {
                             </div>
                         </div>
                         <RecordCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} />
-
                     </div>
                 )}
         </div>
