@@ -10,7 +10,7 @@ export const StepOneAddStudentForGym = ({ idStudent, updateFielHandler }) => {
 
     useEffect(() => {
 
-        axios.get(`http://10.107.144.2:8080/kalos/aluno/id/20`)
+        axios.get(`http://10.107.144.2:8080/kalos/aluno/id/${idStudent}`)
             .then(({ data }) => {
                 console.log(data)
                 setDataOfStudent(data.aluno)

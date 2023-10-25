@@ -12,6 +12,8 @@ export const UserCardNewStudent = ({nameStudent, idStudentFormt, imgSrcStudent, 
     <div onClick={() => { 
         localStorage.setItem("id_novo_aluno_add", studentRealId)
         console.log(studentRealId)
+        navigate('/menu/alunos/novo_aluno/add_novo_aluno')
+        
     }} className='user_add_card'>
         <div className="section_information_students">
                 <Avatar src={imgSrcStudent} size={40}><UserOutlined /></Avatar>
