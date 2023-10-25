@@ -29,7 +29,7 @@ export const HomePage = () => {
     // https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/
 
     useEffect(() => {
-        axios.get(`http://10.107.144.11:8080/kalos/alunoAcademia/idAcademia/${idGym}`)
+        axios.get(`http://10.107.144.2:8080/kalos/alunoAcademia/idAcademia/${idGym}`)
             .then(({ data }) => {
                 console.log(data.alunos)
                 setLastStudents(data.alunos)

@@ -36,7 +36,7 @@ export const StudentsPage = () => {
   const id = localStorage.getItem("id_academia")
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/${id}`)
+    axios.get(`http://10.107.144.2:8080/kalos/alunoAcademia/idAcademia/${id}`)
       .then(({ data }) => {
         console.log(data)
         console.log(data.alunos)
