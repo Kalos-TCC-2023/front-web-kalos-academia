@@ -19,6 +19,10 @@ const addNewStudentTemplate = {
 
 export const AddNewStudentPage = ({ idStudent }) => {
 
+  const id = localStorage.getItem("id_novo_aluno_add")
+  const [idAddStundet, setIdAddStundet] = useState(id)
+  
+  console.log()
   const [dataNewStundetAdd, setDataNewStundetAdd] = useState(addNewStudentTemplate)
 
   const updateFielHanlder = (key, value) => {
@@ -27,7 +31,7 @@ export const AddNewStudentPage = ({ idStudent }) => {
     })
   }
 
-  const formComponent = [<StepOneAddStudentForGym updateFielHandler={updateFielHanlder} idStudent={idStudent}/>, < StepTwoAddStudentForGym updateFielHandler={updateFielHanlder}/> ]
+  const formComponent = [<StepOneAddStudentForGym updateFielHandler={updateFielHanlder} idStudent={idAddStundet}/>, < StepTwoAddStudentForGym updateFielHandler={updateFielHanlder}/> ]
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep } = registerForm(formComponent)
 
 
@@ -54,8 +58,8 @@ export const AddNewStudentPage = ({ idStudent }) => {
             ]}
           />
         </div>
-        {/* {currentComponent} */}
-        <StepOneAddStudentForGym idStudent={idStudent} />
+        {currentComponent}
+        {/* <StepOneAddStudentForGym idStudent={idStudent} /> */}
 
       </div>
 
