@@ -20,7 +20,7 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
 
     useEffect(() => {
 
-        axios.get(`https://kaloscorp.cyclic.cloud/kalos/aluno/id/${idStudent}`)
+        axios.get(`http://10.107.144.2:8080/kalos/aluno/id/${idStudent}`)
             .then(({ data }) => {
 
                 console.log(data)
