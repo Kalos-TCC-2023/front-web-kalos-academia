@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet'
 import { Breadcrumb, Input, Button, Pagination } from 'antd'
 import { Link } from 'react-router-dom'
 const { Search } = Input
-import { UserAddStudents } from '../UserAddStudents/UserAddStudents'
 import './AddStudentPage.css'
 import { UserCardNewStudent } from '../UserCardNewStudent/UserCardNewStudent'
 import axios from 'axios'
@@ -28,7 +27,7 @@ export const AddStudentPage = () => {
     const id = localStorage.getItem("id_academia")
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.cloud/kalos/aluno`)
+        axios.get(`http://10.107.144.2:8080/kalos/aluno`)
             .then(({ data }) => {
                 console.log(data)
                 console.log(data.alunos)
