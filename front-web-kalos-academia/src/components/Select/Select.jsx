@@ -5,12 +5,13 @@ const handleChange = (value) => {
   console.log(`selected ${value}`);
 };
 
-const SelectDefaultKalos = ({ defaultValue, options }) => (
+const SelectDefaultKalos = ({ defaultValue, options, width, height }) => (
   <Space wrap>
     <Select
       defaultValue={defaultValue}
       style={{
-        width: 180,
+        width: width,
+        height: height
       }}
       onChange={handleChange}
       options={options}
