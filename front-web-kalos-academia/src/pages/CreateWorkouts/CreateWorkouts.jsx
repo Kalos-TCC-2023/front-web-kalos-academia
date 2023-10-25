@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import './CreateWorkouts.css';
 import arrowBack from './image/arrow-back-create-workout.png';
-import { Input } from 'antd';
 import ButtonDefaultKalos from '../../components/Button/ButtonDefaultKalos';
 import { Link } from 'react-router-dom';
 import SelectDefaultKalos from '../../components/Select/Select';
