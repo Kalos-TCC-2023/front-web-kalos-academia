@@ -24,7 +24,7 @@ export const PerfilGym = () => {
   const formatter = (value) => <CountUp end={value} separator="," />;
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.cloud/kalos/academia/id/${id}`)
+    axios.get(`https://kaloscorp.cyclic.app/kalos/academia/id/${id}`)
       .then(({ data }) => {
         
         setObjectGym(data.academia)

@@ -34,7 +34,7 @@ export const LoginPage = () => {
                     setSubmitButton(false)
                 } else {
                     setStatusInput('')
-                    axios.post(`http://10.107.144.2:8080/kalos/academia/autenticar`, {
+                    axios.post(`https://kaloscorp.cyclic.app/kalos/academia/autenticar`, {
                 email: email,
                 senha: password
             })
