@@ -29,7 +29,7 @@ export const HomePage = () => {
     // https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/
 
     useEffect(() => {
-        axios.get(`http://10.107.144.2:8080/kalos/alunoAcademia/idAcademia/${idGym}`)
+        axios.get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${idGym}`)
             .then(({ data }) => {
                 console.log(data.alunos)
                 setLastStudents(data.alunos)
@@ -39,7 +39,7 @@ export const HomePage = () => {
     }, [])
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.cloud/kalos/treinoNivelCategoria/idAcademia/${idGym}`)
+        axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${idGym}`)
             .then(({ data }) => {
                 console.log(data.informacoes.length)
                 setCounterWorkouts(data.informacoes.length)
