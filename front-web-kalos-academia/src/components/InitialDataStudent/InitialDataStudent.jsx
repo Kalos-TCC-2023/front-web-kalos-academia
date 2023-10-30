@@ -20,7 +20,7 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
 
     useEffect(() => {
 
-        axios.get(`http://10.107.144.2:8080/kalos/aluno/id/${idStudent}`)
+        axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idStudent}`)
             .then(({ data }) => {
 
                 console.log(data)
@@ -48,12 +48,11 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
 
             {status !== 200 ? <Loader className='loadera' />
                 : (
-
                     <div className='ajuste'>
                         <div className="data_basic_buttons">
                             <Avatar size={250} src={data.foto} icon={<UserOutlined />} />
                             <div className="buttons_data_basic">
-                                <div className="buttons">aaaaa</div>
+                                <div className="buttons"></div>
                                 <div className="data_information_student">
                                     <div className="name_token">
                                         <span className="name_student_record">{data.nome}</span>
@@ -83,9 +82,13 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
                                 </div>
                             </div>
                         </div>
+                        
                         <RecordCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} />
+                        
                     </div>
+
                 )}
+                
         </div>
     )
 }
