@@ -1,0 +1,69 @@
+.galery-workouts{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+.header-galery{
+    margin: 33px;
+    width: 100%;
+    height: 90px;
+    border-top: 0.5px rgba(102, 102, 102, 0.31) solid;
+}
+.title-galery{
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-size: 32px;
+    font-weight: 600;
+}
+.container-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.container-cards-galery-workouts{
+width: 100%;
+margin: 30px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+.container-exercise-empty{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.title-empty-galeryworkouts{
+    font-weight: 700;
+    font-size: 36px;
+    background-image: linear-gradient(to right, #00FE90, #164B60); /* Defina as cores do seu degradê aqui */
+    -webkit-background-clip: text; /* Para navegadores Webkit (Chrome, Safari) */
+    background-clip: text;
+    color: transparent; /* Torna o texto original transparente */
+}
+.text-empty-galeryworkouts{
+    font-size: 12px;
+    font-weight: 400;
+
+  text-align: center;
+}
+.btn-upload-make{
+    width: 250px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00FE90;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+}
