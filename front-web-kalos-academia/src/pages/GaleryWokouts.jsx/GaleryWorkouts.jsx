@@ -29,6 +29,8 @@ export default class GaleryWokouts extends Component {
   render() {
     return (
       <div className='galery-workouts'>
+                <div className='page-default'>
+
         <Helmet>
           <title>Kalos - Criar Treinos</title>
         </Helmet>
@@ -98,6 +100,7 @@ export default class GaleryWokouts extends Component {
               )}
             </div>
           </div>
+        </div>
         </div>
       </div>
     );

@@ -5,17 +5,23 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-padding-left: 70px;
-padding-right: 70px;  
+
 
     
 }
 .header-create-workouts{
 width: 100%;
 border-top: 0.5px rgba(102, 102, 102, 0.31) solid;
-margin: 30px;
+margin-top: 30px;
 
 
+}
+.page-default{
+    width: 1300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .container-header-components{
     display: flex;
