@@ -14,7 +14,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "animate.css": "^4.1.1",
-    "antd": "^5.8.5",
+    "antd": "^5.10.3",
     "axios": "^1.5.0",
     "confetti-js": "^0.0.18",
     "firebase": "^10.4.0",

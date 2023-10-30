@@ -37,7 +37,7 @@ export const PerfilGym = () => {
   }, [])
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.cloud/kalos/treinoNivelCategoria/idAcademia/${id}`)
+    axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${id}`)
     .then(({ data }) => {
       
       setCounterWorkouts(data.informacoes.length)
@@ -47,7 +47,7 @@ export const PerfilGym = () => {
   }, [])
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/${id}`)
+    axios.get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${id}`)
     .then(({ data }) => {
       console.log(data.alunos.length)
       setCounterStudents(data.alunos.length)
@@ -82,8 +82,8 @@ export const PerfilGym = () => {
                       <Avatar src={objectGym.foto} size={209} icon={<UserOutlined />} />
                     </div>
                     <div className="name_type_operation">
-                      <span className='name_gym'>{objectGym.nome}</span>
-                      <span className='type_gym'>{objectGym.categoria}</span>
+                      <span className='name_gym' style={{ color: `${objectGym.cor_primaria}` }}>{objectGym.nome}</span>
+                      <span className='type_gym' style={{ color: `${objectGym.cor_secundaria}` }} >{objectGym.categoria}</span>
                       <span className='operation_gym'>{operationGym}</span>
                     </div>
                   </div>
@@ -101,11 +101,11 @@ export const PerfilGym = () => {
                 {/* PRIMEIRA FILEIRA */}
                 <div className="basic_data_gym">
                   <div className="tags_gym">
-                    <span className="title_tags">Tags</span>
+                    <span className="title_tags" style={{ color: `${objectGym.cor_secundaria}` }}>Tags</span>
                     <div className="tags_gym">
                     {
                       objectGym.tags.map(tag => (
-                        <Tag key={tag.id_tags} color="#ffb800">{tag.nome_tags}</Tag>
+                        <Tag key={tag.id_tags} color={objectGym.cor_primaria} >{tag.nome_tags}</Tag>
                       ))
                     }
                   
@@ -114,16 +114,16 @@ export const PerfilGym = () => {
                   <div className="info_gym">
                     <InfoCardGym title='Info'>
                       <div className="email_profile">
-                        <MailFilled style={{ color: '#ffb800', fontSize: '20px' }} />
+                        <MailFilled style={{ color: `${objectGym.cor_primaria}`, fontSize: '20px' }} />
                         <InfoDescription title='E-mail' description={objectGym.email} />
                       </div>
                       <div className="telefone">
-                        <PhoneFilled style={{ color: '#ffb800', fontSize: '20px' }} />
+                        <PhoneFilled style={{ color: `${objectGym.cor_primaria}`, fontSize: '20px' }} />
                         <InfoDescription title='Telefone' description={objectGym.telefone} />
 
                       </div>
                       <div className="endereco">
-                        <PushpinFilled style={{ color: '#ffb800', fontSize: '20px' }} />
+                        <PushpinFilled style={{ color: `${objectGym.cor_primaria}`, fontSize: '20px' }} />
                         <InfoDescription title='Endereço' description={enderecoGym} />
                       </div>
                     </InfoCardGym>
@@ -131,15 +131,15 @@ export const PerfilGym = () => {
                   <div className="description_gym">
                     <InfoCardGym title='Descrição'>
                       <InfoDescription title='Sobre nós' description={objectGym.descricao} />
-                      <p className='social_midia_title'>Redes Sociais</p>
+                      <p className='social_midia_title' style={{ color: `${objectGym.cor_secundaria}` }}>Redes Sociais</p>
                       <div className="social_midia">
-                        <div className="instagram_social_midia" >
+                        <div className="instagram_social_midia" style={{ background: `${objectGym.cor_primaria}` }} >
                           <InstagramFilled style={{ fontSize: '35px' }} />
                         </div>
-                        <div className="facebook_social_midia">
+                        <div className="facebook_social_midia" style={{ background: `${objectGym.cor_primaria}` }}>
                           <FacebookFilled style={{ fontSize: '35px' }} />
                         </div>
-                        <div className="instagram_social_midia">
+                        <div className="instagram_social_midia" style={{ background: `${objectGym.cor_primaria}` }}>
                           <LinkedinFilled style={{ fontSize: '35px' }} />
                         </div>
                       </div>

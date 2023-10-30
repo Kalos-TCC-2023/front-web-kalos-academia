@@ -6,6 +6,7 @@ import ButtonDefaultKalos from '../../components/Button/ButtonDefaultKalos';
 import { Link } from 'react-router-dom';
 import SelectDefaultKalos from '../../components/Select/Select';
 import workoutPhoto from './image/workoutgymTraine.jpeg'
+import { ArrowLeftOutlined  } from '@ant-design/icons'
 
 
 export class CreateWorkouts extends Component {
@@ -46,9 +47,8 @@ export class CreateWorkouts extends Component {
           </div>
           <div className='container-header-components'>
             <div className='arrow-back-create-workouts'>
-              <Link to='/menu/treinos'></ Link>
-              <img className="arrow-back-create-workouts" src={arrowBack} alt="" />
-              <Link />
+              <Link to='/menu/treinos'> <ArrowLeftOutlined /> </ Link>
+              
             </div>
             <div className='buttonsExercise'>
               <Link to='/menu/treinos'>
@@ -153,8 +153,7 @@ export class CreateWorkouts extends Component {
             <p className='p-preview-create-workout'>Preview</p>
             <img  className="image-preview"src={workoutPhoto} alt="" />
           </div>
-
-
+        
         </div>
 
       </div>

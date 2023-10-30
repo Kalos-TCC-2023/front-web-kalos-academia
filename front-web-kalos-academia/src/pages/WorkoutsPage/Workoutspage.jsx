@@ -112,6 +112,7 @@ import { loadRegistererStudents } from './Api/ApiShowRegistered';
         <div className='container-galery-workouts'>
           {informacoes.map((workout, index) => (
             <div className="card-workouts" key={index}>  
+
               <div className={`change-card ${selectedCard === index ? 'visible' : ''}`} onClick={() => this.toggleCardVisibility(index)}>
                 {/* ... */}
                 {selectedCard === index && (
@@ -132,14 +133,17 @@ import { loadRegistererStudents } from './Api/ApiShowRegistered';
                     {workout.data_criacao}
                   </p>
                 </div>
+                
                 <div className='user-workouts'>
                   {alunosMatriculados.map((matriculados, matriculadoIndex) => (
                     <img key={matriculadoIndex} src={matriculados.foto} alt="" />
                   ))}
+                  
                 </div>
               </div>
             </div>
           ))}
+          
         </div>
       </div>
     )}}

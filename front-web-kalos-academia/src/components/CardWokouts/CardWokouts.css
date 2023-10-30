@@ -1,0 +1,59 @@
+.card_wokouts {
+    background-color: antiquewhite;
+    width: 358px;
+    height: 191px;
+    border-radius: 30px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin-top: 15px;
+}
+
+.nome_categoria {
+    display: flex;
+    flex-direction: column;
+}
+
+.title_wokouts_gym {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.category_wokouts_gym {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 0.7rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    text-transform: uppercase;
+}
+
+.data_gym_wokouts_div {
+    width: 70px;
+   display: grid;
+   place-items: center;
+    height: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.60);
+}
+
+.data_wokouts_gym {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 0.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.footer_data_wokouts {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
