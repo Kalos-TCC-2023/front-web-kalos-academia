@@ -17,7 +17,7 @@ import { SuccessPage } from './components/SuccessPage/SuccessPage.jsx'
 import { EditProfile } from './pages/EditProfilePage/EditProfile.jsx'
 import { AddStudentPage } from './components/AddStudentPage/AddStudentPage.jsx'
 import { CreateWorkouts } from './pages/CreateWorkouts/CreateWorkouts.jsx'
-import { GaleryWorkouts } from './pages/GaleryWokouts.jsx/GaleryWorkouts.jsx'
+import  GaleryWorkouts  from './pages/GaleryWokouts.jsx/GaleryWorkouts.jsx'
 import { AboutStudent } from './pages/AboutStudent/AboutStudent.jsx'
 import { AddNewStudentPage } from './pages/AddNewStudentPage/AddNewStudentPage.jsx'
 
