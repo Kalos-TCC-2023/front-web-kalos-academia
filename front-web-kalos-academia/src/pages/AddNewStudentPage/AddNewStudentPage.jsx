@@ -7,6 +7,7 @@ import { StepOneAddStudentForGym } from '../../components/StepOneAddStudentForGy
 import { registerForm } from '../../hooks/registerForm' 
 import './AddNewStudentPage.css'
 import { StepTwoAddStudentForGym } from '../../components/StepTwoAddStudentForGym/StepTwoAddStudentForGym'
+import { StepThreeAddStundetForGym } from '../../components/StepThreeAddStundetForGym/StepThreeAddStundetForGym'
 
 const addNewStudentTemplate = {
   frequencia_cardiaca: '',
@@ -31,7 +32,7 @@ export const AddNewStudentPage = ({ idStudent }) => {
     })
   }
 
-  const formComponent = [<StepOneAddStudentForGym updateFielHandler={updateFielHanlder} idStudent={idAddStundet}/>, < StepTwoAddStudentForGym updateFielHandler={updateFielHanlder}/> ]
+  const formComponent = [<StepOneAddStudentForGym updateFielHandler={updateFielHanlder} idStudent={idAddStundet}/>, < StepTwoAddStudentForGym updateFielHandler={updateFielHanlder} idStudent={idAddStundet}/>, <StepThreeAddStundetForGym updateFielHandler={updateFielHanlder} idStudent={idAddStundet} /> ]
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep } = registerForm(formComponent)
 
 

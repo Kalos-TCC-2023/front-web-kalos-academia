@@ -1,4 +1,12 @@
-.data_students {
+.data_student{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+}
+.ajuste {
   width: 100%;
   height: 100%;
   display: flex;
@@ -6,7 +14,6 @@
   align-items: center;
   overflow: auto;
 }
-
 .data_basic_buttons {
   display: flex;
   gap: 63px;

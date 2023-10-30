@@ -10,7 +10,7 @@ export const StepOneAddStudentForGym = ({ idStudent, updateFielHandler }) => {
 
     useEffect(() => {
 
-        axios.get(`http://10.107.144.2:8080/kalos/aluno/id/${idStudent}`)
+        axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idStudent}`)
             .then(({ data }) => {
                 console.log(data)
                 setDataOfStudent(data.aluno)
@@ -26,7 +26,7 @@ export const StepOneAddStudentForGym = ({ idStudent, updateFielHandler }) => {
                     <span className="name_student_record">{dataOfStudent.nome}</span>
                     <span className='token'> {'#'+ 10 + dataOfStudent.id}</span>
                 </div>
-                <p>Perfeito! Vamos cuidar disso, apenas precisamos que responda algumas perguntas sobre seu aluno</p>
+                <p>Perfeito! Vamos cuidar disso, apenas precisamos que responda algumas perguntas sobre seu aluno.</p>
             </div>
         </div>
 

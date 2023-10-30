@@ -32,7 +32,7 @@ export const Header = () => {
   const nameGym = objectGym.nome
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.cloud/kalos/academia/id/${id}`)
+    axios.get(`https://kaloscorp.cyclic.app/kalos/academia/id/${id}`)
       .then(({ data }) => {
         console.log(data)
         setObjectGym(data.academia)

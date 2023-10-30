@@ -36,7 +36,7 @@ export const StudentsPage = () => {
   const id = localStorage.getItem("id_academia")
 
   useEffect(() => {
-    axios.get(`http://10.107.144.2:8080/kalos/alunoAcademia/idAcademia/${id}`)
+    axios.get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${id}`)
       .then(({ data }) => {
         console.log(data)
         console.log(data.alunos)
@@ -88,8 +88,8 @@ export const StudentsPage = () => {
         <div className="my_students_gym">
 
           {filteredStudens.length > 0 && (
-            filteredStudens.map((student) => (
-              <UserAddStudents idStudent={student.id} key={student.id} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
+            filteredStudens.map((student, index) => (
+              <UserAddStudents idStudent={student.id} key={index} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
             ))
 
           )}
