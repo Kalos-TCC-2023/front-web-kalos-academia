@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import arrowBack from './image/arrow-back-create-workout.png';
 import { Input } from 'antd';
 import './GaleryWorkouts.css';
-import emptyGaleryPhoto from './image/empty-galery.png';
+import emptyGaleryPhoto from './image/galerykalos.svg';
 import AddExercise from '../../components/AddExercise/AddExercise';
+import { ArrowLeftOutlined  } from '@ant-design/icons'
 
 
 export default class GaleryWokouts extends Component {
@@ -29,6 +30,8 @@ export default class GaleryWokouts extends Component {
   render() {
     return (
       <div className='galery-workouts'>
+                <div className='page-default'>
+
         <Helmet>
           <title>Kalos - Criar Treinos</title>
         </Helmet>
@@ -37,7 +40,7 @@ export default class GaleryWokouts extends Component {
           <div className='container-header'>
             <div className='arrow-back-create-workouts'>
               <Link to='/menu/treinos'>
-                <img className="arrow-back-create-workouts" src={arrowBack} alt="" />
+              <ArrowLeftOutlined />
               </Link>
             </div>
             <div className='search-group-workouts'>
@@ -98,6 +101,7 @@ export default class GaleryWokouts extends Component {
               )}
             </div>
           </div>
+        </div>
         </div>
       </div>
     );

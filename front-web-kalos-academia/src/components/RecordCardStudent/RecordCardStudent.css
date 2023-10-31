@@ -2,6 +2,7 @@
     margin-top: 28px;
     height: 100%;
     width: 100%;
+    overflow: auto;
 }
 .title_record_student {
     color: #666;

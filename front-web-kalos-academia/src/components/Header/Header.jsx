@@ -32,7 +32,7 @@ export const Header = () => {
   const nameGym = objectGym.nome
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.cloud/kalos/academia/id/${id}`)
+    axios.get(`https://kaloscorp.cyclic.app/kalos/academia/id/${id}`)
       .then(({ data }) => {
         console.log(data)
         setObjectGym(data.academia)
@@ -72,9 +72,9 @@ export const Header = () => {
           </div>
           <div className="data_gym">
             <Avatar src={objectGym.foto} style={{ backgroundColor: '#F5F7F9', color: '#D9D9D9' }} size="default" icon={<UserOutlined />} />
-            <span className='gym_name'>{nameGym}</span>
+            <span className='gym_name' style={{ color: `${objectGym.cor_primaria}`}}>{nameGym}</span>
             <div className="date_day_div">
-              <span className='date_day'>{format_day}</span>
+              <span className='date_day' style={{ color: `${objectGym.cor_primaria}`}}>{format_day}</span>
             </div>
           </div>
         </div>

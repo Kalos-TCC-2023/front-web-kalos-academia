@@ -1,11 +1,12 @@
 .galery-workouts{
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     padding-left: 70px;
     padding-right: 70px;
+    overflow: auto;
 }
 .header-galery{
     margin: 33px;
@@ -13,6 +14,14 @@
     height: 90px;
     border-top: 0.5px rgba(102, 102, 102, 0.31) solid;
 }
+.page-default{
+    width: 1300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .title-galery{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -28,7 +37,7 @@
 }
 .container-cards-galery-workouts{
 width: 100%;
-margin: 30px;
+margin: 50px;
 display: flex;
 flex-direction: column;
 align-items: center;

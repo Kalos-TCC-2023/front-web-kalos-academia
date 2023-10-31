@@ -8,4 +8,6 @@
 }
 .student_gym{
     margin-top: 35px;
+    
+    overflow: auto;
 }
