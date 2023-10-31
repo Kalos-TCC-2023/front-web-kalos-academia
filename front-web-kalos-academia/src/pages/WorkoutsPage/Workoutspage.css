@@ -1,12 +1,12 @@
 .workouts_page {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     padding-left: 70px;
     padding-right: 70px;
-   
+    overflow: auto;
 
 }
 .page-default{
