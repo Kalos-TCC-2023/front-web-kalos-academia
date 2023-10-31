@@ -7,7 +7,7 @@ import { CardDataStudent } from '../CardDataStudent/CardDataStudent';
 import { Select, Input } from 'antd';
 const { TextArea } = Input;
 
-export const StepTwoAddStudentForGym = ({ updateFielHandler, idStudent }) => {
+export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idStudent }) => {
 
   const [ageStudentFormat, setAge] = useState('')
   const [data_de_nascimento_formart, setDate] = useState('')
@@ -22,39 +22,50 @@ export const StepTwoAddStudentForGym = ({ updateFielHandler, idStudent }) => {
 
   const handleChangeSleepQuality = (value) => {
     setQualidadeSono(value)
+    updateFielHandler('id_qualidade_sono', value)
     console.log(`Qualidade de sono ${value}`);
   }
 
   const handleChangeExperienciaExercicios = (value) => {
     setExperienciaExercicios(value)
+    updateFielHandler('id_nivel_experiencia', value)
     console.log(`Experiencia com exercicios ${value}`);
   }
 
   const handleChangeFrenquenciaTreinos = (value) => {
     setFrequenciaTreinoSemanal(value)
-    console.log(`Frequencia de treinos ${value}`);
+    updateFielHandler('frequencia_treino_semanal', value)
+
+    console.log(dataStundetGym);
   }
 
+
   useEffect(() => {
+    console.log(data)
+    if (data == {}) {
+      axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idStudent}`)
+        .then(({ data }) => {
 
-    axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idStudent}`)
-      .then(({ data }) => {
+          const dataNascimento = data.aluno.data_nascimento
 
-        const dataNascimento = data.aluno.data_nascimento
+          const newFormatDate = dataNascimento.replace('T00:00:00.000Z', '')
+          const data_de_nascimento_formart = moment(newFormatDate).format('L')
+          setDate(data_de_nascimento_formart)
+          const formatOneDate = newFormatDate.replace('-', '').replace('-', '')
 
-        const newFormatDate = dataNascimento.replace('T00:00:00.000Z', '')
-        const data_de_nascimento_formart = moment(newFormatDate).format('L')
-        setDate(data_de_nascimento_formart)
-        const formatOneDate = newFormatDate.replace('-', '').replace('-', '')
+          const dataNascimentoNowFormat = moment(formatOneDate, "YYYYMMDD").fromNow()
+          const ageStudentFormat = dataNascimentoNowFormat.replace('há', '').replace('anos', '')
+          setAge(ageStudentFormat)
+          setData(data.aluno)
 
-        const dataNascimentoNowFormat = moment(formatOneDate, "YYYYMMDD").fromNow()
-        const ageStudentFormat = dataNascimentoNowFormat.replace('há', '').replace('anos', '')
-        setAge(ageStudentFormat)
-        setData(data.aluno)
+        }).catch((err) => {
+          console.log(err)
+        })
+    } else {
+      return
+    }
 
-      })
-
-  }, [ageStudentFormat, data_de_nascimento_formart])
+  }, [])
 
   return (
     <div className='step_two_add_student_gym'>
@@ -118,7 +129,7 @@ export const StepTwoAddStudentForGym = ({ updateFielHandler, idStudent }) => {
                   label: 'Pleno',
                 },
                 {
-                  value: 2,
+                  value: 3,
                   label: 'Senior',
                 },
 
@@ -137,7 +148,10 @@ export const StepTwoAddStudentForGym = ({ updateFielHandler, idStudent }) => {
             <span className='textNameForInput'>Quantidade de tempo em pé</span>
             <Input style={{
               width: 204,
-            }} value={quantidadeTempoPe} onChange={(e) => setQuantidadeTempoPe(e.target.value)}/>
+            }} value={quantidadeTempoPe} onChange={(e) => {
+              updateFielHandler('tempo_em_pe', e.target.value)
+              console.log(dataStundetGym)
+            }} />
           </div>
           <div className="qualidade_sono">
             <span className='textNameForInput'>Frequencia de Treino Semanal</span>
@@ -149,31 +163,31 @@ export const StepTwoAddStudentForGym = ({ updateFielHandler, idStudent }) => {
               onChange={handleChangeFrenquenciaTreinos}
               options={[
                 {
-                  value: '1',
+                  value: 1,
                   label: '1',
                 },
                 {
-                  value: '2',
+                  value: 2,
                   label: '2',
                 },
                 {
-                  value: '3',
+                  value: 3,
                   label: '3',
                 },
                 {
-                  value: '4',
+                  value: 4,
                   label: '4',
                 },
                 {
-                  value: '5',
+                  value: 5,
                   label: '5',
                 },
                 {
-                  value: '6',
+                  value: 6,
                   label: '6',
                 },
                 {
-                  value: '7',
+                  value: 7,
                   label: '7',
                 },
               ]}
@@ -184,11 +198,11 @@ export const StepTwoAddStudentForGym = ({ updateFielHandler, idStudent }) => {
           <div className="frequencia_cardiaca_record">
             <span className='textNameForInput'>Observações</span>
             <TextArea
-            style={{
-              width: 664,
-            }}
+              style={{
+                width: 664,
+              }}
               value={observacoesAdicionais}
-              onChange={(e) => setObservacoesAdicionais(e.target.value)}
+              onChange={(e) => updateFielHandler('rotina_regular', e.target.value)}
               placeholder="Faça aqui observações adicionais sobre seu aluno"
               autoSize={{
                 minRows: 3,
