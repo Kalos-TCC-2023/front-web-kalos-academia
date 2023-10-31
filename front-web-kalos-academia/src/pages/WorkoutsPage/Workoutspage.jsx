@@ -17,7 +17,8 @@ class Workoutspage extends Component {
     informacoes: [],
     alunosMatriculados: [],
     selectedCard: null,
-    searchInput: '', // Store the search input value
+    searchInput: '', // Valor de pesquisa
+    searchResults: [], // Resultados da pesquisa
   };
 
   toggleCardVisibility = (index) => {
@@ -39,38 +40,22 @@ class Workoutspage extends Component {
     loadRegistererStudents()
       .then((data) => {
         const alunosMatriculadosApi = data.informacoes;
-        console.log(alunosMatriculadosApi);
-
         this.setState({ alunosMatriculados: alunosMatriculadosApi });
       })
       .catch((error) => {
         console.error('Ocorreu um erro ao carregar os dados:', error);
       });
-
-      SearchWorkout(value)
-      .then((data) => {
-        const filteredWorkouts = this.state.informacoes.filter((workout) => {
-          return workout.nome.toLowerCase().includes(value.toLowerCase());
-
-        this.setState({ informacoes: filteredWorkouts, searchInput: value });
-      })
-      .catch((error) => {
-        console.error('Ocorreu um erro ao carregar os dados:', error);
-      });
-
-
-
   }
 
-  
-
-  // handleSearch = (value) => {
-  //   // Implement the search logic here based on your criteria
-  //   const filteredWorkouts = this.state.informacoes.filter((workout) => {
-  //     return workout.nome.toLowerCase().includes(value.toLowerCase());
-  //   });
-
-    this.setState({ informacoes: filteredWorkouts, searchInput: value });
+  handleSearch = (value) => {
+    SearchWorkout(value)
+      .then((data) => {
+        const informacoesApi = data.informacoes;
+        this.setState({ searchResults: informacoesApi, searchInput: value });
+      })
+      .catch((error) => {
+        console.error('Ocorreu um erro ao carregar os dados da pesquisa:', error);
+      });
   };
 
   render() {
@@ -81,8 +66,9 @@ class Workoutspage extends Component {
       { value: 'Crossfit', label: 'Crossfit' },
     ];
 
-    const { informacoes, alunosMatriculados, selectedCard, searchInput } = this.state;
+    const { informacoes, alunosMatriculados, selectedCard, searchInput, searchResults } = this.state;
 
+    
     return (
       <div className='workouts_page'>
         <div className='page-default'>
@@ -105,8 +91,9 @@ class Workoutspage extends Component {
                 <Input.Search
                   className='search_header-workout search_header'
                   placeholder="Buscar treinos..."
-                  onSearch={this.handleSearch} // Use the handleSearch function
-                  value={searchInput} // Bind the input value to searchInput
+                  onChange={e => this.setState({searchInput: e.target.value})}
+                  onSearch={this.handleSearch}
+                  value={searchInput}
                   size='large'
                 />
               </div>
@@ -146,41 +133,75 @@ class Workoutspage extends Component {
           </div>
 
           <div className='container-galery-workouts'>
-            {informacoes.map((workout, index) => {
-              localStorage.setItem("id_treino_categoria", workout.id)
-              return (
-                <div className="card-workouts" key={index}>
-                  <div
-                    className={`change-card ${selectedCard === index ? 'visible' : ''}`}
-                    onClick={() => this.toggleCardVisibility(index)}
-                  >
-                    {/* ... */}
-                    {selectedCard === index && (
-                      <CrudWokoutCard className="container-crud-workouts" />
-                    )}
-                  </div>
-                  {workout.foto !== "a" ? (
-                    <img className='img-card-workouts' src={workout.foto} alt={workout.nome} />
-                  ) : (
-                    <img className='img-card-workouts' src={workoutPhoto} alt="Imagem Padrão" />
-                  )}
-                  <div className='workout-name'>{workout.nome}</div>
-                  <div className='workout-category-name'>{workout.nome_categoria_treino}</div>
-                  <div className='container-data-user'>
-                    <div className='workout-data'>
-                      <img className="img-calendar-workout" src={calendar} alt="" />
-                      <p className='p-workout-data'>{workout.data_criacao}</p>
+            {searchResults.length > 0
+              ? searchResults.map((workout, index) => {
+                  return (
+                    <div className="card-workouts" key={index}>
+                      <div
+                        className={`change-card ${selectedCard === index ? 'visible' : ''}`}
+                        onClick={() => this.toggleCardVisibility(index)}
+                      >
+                        {/* ... */}
+                        {selectedCard === index && (
+                          <CrudWokoutCard className="container-crud-workouts" />
+                        )}
+                      </div>
+                      {workout.foto !== "a" ? (
+                        <img className='img-card-workouts' src={workout.foto} alt={workout.nome} />
+                      ) : (
+                        <img className='img-card-workouts' src={workoutPhoto} alt="Imagem Padrão" />
+                      )}
+                      <div className='workout-name'>{workout.nome}</div>
+                      <div className='workout-category-name'>{workout.nome_categoria_treino}</div>
+                      <div className='container-data-user'>
+                        <div className='workout-data'>
+                          <img className="img-calendar-workout" src={calendar} alt="" />
+                          <p className='p-workout-data'>{workout.data_criacao}</p>
+                        </div>
+                        <div className='user-workouts'>
+                          {alunosMatriculados.slice(0, 5).map((matriculados, matriculadoIndex) => (
+                            <img key={matriculadoIndex} src={matriculados.foto} className='userCard' alt="" />
+                          ))}
+                          <p className='userCard'>{alunosMatriculados.length}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className='user-workouts'>
-                    {alunosMatriculados.slice(0, 5).map((matriculados, matriculadoIndex) => (
-  <img key={matriculadoIndex} src={matriculados.foto} className='userCard' alt="" />
-))}
-<p className='userCard'>{alunosMatriculados.length}</p>
+                  );
+                })
+              : informacoes.map((workout, index) => {
+                  return (
+                    <div className="card-workouts" key={index}>
+                      <div
+                        className={`change-card ${selectedCard === index ? 'visible' : ''}`}
+                        onClick={() => this.toggleCardVisibility(index)}
+                      >
+                        ...
+                        {selectedCard === index && (
+                          <CrudWokoutCard className="container-crud-workouts" />
+                        )}
+                      </div>
+                      {workout.foto !== "a" ? (
+                        <img className='img-card-workouts' src={workout.foto} alt={workout.nome} />
+                      ) : (
+                        <img className='img-card-workouts' src={workoutPhoto} alt="Imagem Padrão" />
+                      )}
+                      <div className='workout-name'>{workout.nome}</div>
+                      <div className='workout-category-name'>{workout.nome_categoria_treino}</div>
+                      <div className='container-data-user'>
+                        <div className='workout-data'>
+                          <img className="img-calendar-workout" src={calendar} alt="" />
+                          <p className='p-workout-data'>{workout.data_criacao}</p>
+                        </div>
+                        <div className='user-workouts'>
+                          {alunosMatriculados.slice(0, 5).map((matriculados, matriculadoIndex) => (
+                            <img key={matriculadoIndex} src={matriculados.foto} className='userCard' alt="" />
+                          ))}
+                          <p className='userCard'>{alunosMatriculados.length}</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                })}
           </div>
         </div>
       </div>
