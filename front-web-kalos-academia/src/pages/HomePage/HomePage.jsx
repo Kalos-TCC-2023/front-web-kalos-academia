@@ -29,10 +29,10 @@ export const HomePage = () => {
     // https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${idGym}`)
+        axios.get(`https://kaloscorp.cyclic.app/kalos/ultimosAlunos/idAcademia/51`)
             .then(({ data }) => {
-                console.log(data.alunos)
-                setLastStudents(data.alunos)
+                
+                setLastStudents(data.ultimos_alunos)
             }).catch((erro) => {
                 console.log(erro)
             })

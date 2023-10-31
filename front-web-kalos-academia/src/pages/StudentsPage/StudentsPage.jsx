@@ -87,6 +87,7 @@ export const StudentsPage = () => {
         </div>
         <div className="my_students_gym">
 
+            
           {filteredStudens.length > 0 && (
             filteredStudens.map((student, index) => (
               <UserAddStudents idStudent={student.id} key={index} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
