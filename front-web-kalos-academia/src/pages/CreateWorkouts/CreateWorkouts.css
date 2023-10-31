@@ -1,5 +1,6 @@
 .create-workouts {
 
+<<<<<<< HEAD
     width: 100%;
     height: 100%;
     display: flex;
@@ -8,8 +9,17 @@
     padding-left: 70px;
     padding-right: 70px;
     overflow: auto;
+=======
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+>>>>>>> main
 
 }
+<<<<<<< HEAD
 
 .header-create-workouts {
     width: 100%;
@@ -20,6 +30,23 @@
 }
 
 .container-header-components {
+=======
+.header-create-workouts{
+width: 100%;
+border-top: 0.5px rgba(102, 102, 102, 0.31) solid;
+margin-top: 30px;
+
+
+}
+.page-default{
+    width: 1300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-header-components{
+>>>>>>> main
     display: flex;
     align-items: center;
     justify-content: space-between;

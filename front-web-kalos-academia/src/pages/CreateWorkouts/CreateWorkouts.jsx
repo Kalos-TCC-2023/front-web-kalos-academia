@@ -38,6 +38,8 @@ export class CreateWorkouts extends Component {
     ];
     return (
       <div className='create-workouts'>
+                <div className='page-default'>
+
         <Helmet>
           <title>Kalos - Criar Treinos</title>
         </Helmet>
@@ -156,6 +158,7 @@ export class CreateWorkouts extends Component {
         
         </div>
 
+</div>
       </div>
     );
   }
