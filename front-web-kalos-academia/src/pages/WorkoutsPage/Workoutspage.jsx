@@ -109,6 +109,48 @@ class Workoutspage extends Component {
                   value={searchInput} // Bind the input value to searchInput
                   size='large'
                 />
+<<<<<<< HEAD
+              </Link>
+            </div>
+          </div>
+        </div>
+    
+        <div className='container-galery-workouts'>
+          {informacoes.map((workout, index) => (
+            <div className="card-workouts" key={index}>  
+
+              <div className={`change-card ${selectedCard === index ? 'visible' : ''}`} onClick={() => this.toggleCardVisibility(index)}>
+                {/* ... */}
+                {selectedCard === index && (
+                  <CrudWokoutCard className="container-crud-workouts" />
+                )}
+              </div>
+              {workout.foto !== "a" ? (
+                <img className='img-card-workouts' src={workout.foto} alt={workout.nome} />
+              ) : (
+                <img className='img-card-workouts' src={workoutPhoto} alt="Imagem Padrão" />
+              )}
+              <div className='workout-name'>{workout.nome}</div>
+              <div className='workout-category-name'>{workout.nome_categoria_treino}</div>
+              <div className='container-data-user'>
+                <div className='workout-data'>
+                  <img className="img-calendar-workout" src={calendar} alt="" />
+                  <p className='p-workout-data'>
+                    {workout.data_criacao}
+                  </p>
+                </div>
+                
+                <div className='user-workouts'>
+                  {alunosMatriculados.map((matriculados, matriculadoIndex) => (
+                    <img key={matriculadoIndex} src={matriculados.foto} alt="" />
+                  ))}
+                  
+                </div>
+              </div>
+            </div>
+          ))}
+          
+=======
               </div>
               <div className='buttonsExercise'>
                 <Link to='/menu/treinos'>
@@ -182,6 +224,7 @@ class Workoutspage extends Component {
               );
             })}
           </div>
+>>>>>>> main
         </div>
       </div>
     );

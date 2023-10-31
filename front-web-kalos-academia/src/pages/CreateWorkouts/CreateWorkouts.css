@@ -1,14 +1,36 @@
-.create-workouts{
+.create-workouts {
 
+<<<<<<< HEAD
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 70px;
+    padding-right: 70px;
+    overflow: auto;
+=======
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
+>>>>>>> main
 
-    
 }
+<<<<<<< HEAD
+
+.header-create-workouts {
+    width: 100%;
+    border-top: 0.5px rgba(102, 102, 102, 0.31) solid;
+    margin: 30px;
+
+
+}
+
+.container-header-components {
+=======
 .header-create-workouts{
 width: 100%;
 border-top: 0.5px rgba(102, 102, 102, 0.31) solid;
@@ -24,42 +46,49 @@ margin-top: 30px;
     align-items: center;
 }
 .container-header-components{
+>>>>>>> main
     display: flex;
     align-items: center;
     justify-content: space-between;
 
 }
-.container-new-workout{
+
+.container-new-workout {
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
 
 }
-.arrow-back-create-workouts{
+
+.arrow-back-create-workouts {
     cursor: pointer;
 }
-.create-new-workout{
+
+.create-new-workout {
     width: 400px;
 }
-.selects-new-workouts{
+
+.selects-new-workouts {
     width: 400px;
     display: flex;
-flex-direction: column;
-gap: 150px;
+    flex-direction: column;
+    gap: 150px;
 }
-.title-create-workout{
+
+.title-create-workout {
     font-size: 32px;
     margin-bottom: 20px;
     width: 100%;
 }
 
-.color-gray{
+.color-gray {
     color: rgba(102, 102, 102, 1);
     font-weight: 600;
-    margin: 10px ;
+    margin: 10px;
 
 }
+
 .input-name-workout {
     width: 100%;
     height: 40px;
@@ -72,10 +101,12 @@ gap: 150px;
     border: 1px solid rgba(217, 217, 217, 1);
 
 }
-.input-name-workout:hover{
+
+.input-name-workout:hover {
     border: 2px solid rgba(217, 217, 217, 1);
 
 }
+
 .input-description-workout {
     width: 100%;
     height: 100px;
@@ -88,15 +119,17 @@ gap: 150px;
     border-radius: 10px;
     padding: 0px;
     margin: 0px;
-    resize: none; 
+    resize: none;
     border: 1px solid rgba(217, 217, 217, 1);
 
 }
-.input-description-workout:hover{
+
+.input-description-workout:hover {
     border: 2px solid rgba(217, 217, 217, 1);
 
 }
-.container-change-file{
+
+.container-change-file {
     width: 100%;
     height: 40px;
     border: 1px solid rgba(217, 217, 217, 1);
@@ -106,10 +139,12 @@ gap: 150px;
 
 
 }
-.p-load-workout{
+
+.p-load-workout {
     margin-top: 20px;
 }
-.change-file{
+
+.change-file {
     width: 50%;
     height: 100%;
     background-color: rgba(102, 102, 102, 1);
@@ -120,13 +155,14 @@ gap: 150px;
     cursor: pointer;
 
 }
-.change-file > p{
-color: white;
-font-weight: 600;
+
+.change-file>p {
+    color: white;
+    font-weight: 600;
 
 }
 
-.changed-file{
+.changed-file {
     width: 50%;
     height: 100%;
     border-radius: 10px;
@@ -134,12 +170,14 @@ font-weight: 600;
     align-items: center;
     justify-content: center;
 }
-.changed-file > p{
-color: rgba(102, 102, 102, 1);
-font-weight: 600;
+
+.changed-file>p {
+    color: rgba(102, 102, 102, 1);
+    font-weight: 600;
 
 }
-.input-date-workout{
+
+.input-date-workout {
     width: 200px;
     height: 40px;
     border: none;
@@ -152,14 +190,16 @@ font-weight: 600;
     padding: 10px;
 
 }
-.container-preview-workouts{
+
+.container-preview-workouts {
     width: 400px;
 }
-.btn-add-exercise{
+
+.btn-add-exercise {
     width: 200px;
     height: 40px;
     border-radius: 10px;
-    background: rgba(0, 254, 145, 1); 
+    background: rgba(0, 254, 145, 1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -167,16 +207,19 @@ font-weight: 600;
     cursor: pointer;
 
 }
-.select-Default-kalos-create-workout{
+
+.select-Default-kalos-create-workout {
     width: 300px;
     height: 40px;
 }
-.p-preview-create-workout{
+
+.p-preview-create-workout {
     color: rgba(0, 254, 144, 1);
     font-weight: 600;
     margin: 10px;
 }
-.image-preview{
+
+.image-preview {
     width: 100%;
     height: 200px;
     border-radius: 20px;
@@ -184,4 +227,3 @@ font-weight: 600;
     background-repeat: no-repeat;
     background-size: cover;
 }
-
