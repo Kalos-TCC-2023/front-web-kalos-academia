@@ -11,6 +11,8 @@ import { Loader } from '../Loader/Loader'
 export const AddStudentPage = () => {
 
     const [students, setStudents] = useState([])
+    const [allStudents, setAllStudents] = useState([])
+    const [searchStudens, setSearchStudens] = useState('')
     const [studensPerPage, setStudentsPerPage] = useState(15)
     const [current, setCurrentPage] = useState(0)
 
@@ -18,11 +20,26 @@ export const AddStudentPage = () => {
     const startIndex = current * studensPerPage
     const endIndex = startIndex + studensPerPage
     const currentStudents = students.slice(startIndex, endIndex)
-    
 
     const onSearch = (value, _e, info) => {
         console.log(info?.source, value)
+        const search = students.filter((student) => student.nome.toLowerCase().includes(value.toLowerCase()))
+        console.log(search)
     }
+
+    const filteredStudens = !!searchStudens ? allStudents.filter((student) => {
+        return student.nome.toLowerCase().includes(
+          searchStudens.toLocaleLowerCase()
+        )
+      }) : students
+
+      const handleChange = (e) => {
+        const { value } = e.target
+    
+        setSearchStudens(value)
+        console.log(searchStudens)
+      }
+
 
     const id = localStorage.getItem("id_academia")
 
@@ -33,6 +50,7 @@ export const AddStudentPage = () => {
                 console.log(data.alunos)
 
                 setStudents(data.alunos)
+                setAllStudents(data.alunos)
             }).catch((erro) => {
                 console.log(erro)
             })
@@ -63,12 +81,14 @@ export const AddStudentPage = () => {
                         className='search_header'
                         placeholder="Adicionar novo aluno..."
                         onSearch={onSearch}
+                        value={searchStudens}
+                        onChange={handleChange}
                         size='large'
                     />
                     <div className="buttons_add_students_my_students">
 
                         <Link to='/menu/alunos'>
-                            <Button  shape='circle'>MEUS ALUNOS</Button>
+                            <Button shape='circle'>MEUS ALUNOS</Button>
                         </Link>
                         <Link className='all_students' to='/menu/alunos/novo_aluno'>
                             <Button shape='circle'>ADICIONAR NOVO ALUNO</Button>
@@ -88,7 +108,7 @@ export const AddStudentPage = () => {
 
             </div>
             <div className="pagination_students">
-                
+
                 {Array.from(Array(pages), (item, index) => {
                     return <Button key={index} type='text' value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}>{index + 1}</Button>
                 })}
