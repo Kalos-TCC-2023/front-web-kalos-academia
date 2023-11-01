@@ -19,6 +19,7 @@ const addNewStudentTemplate = {
   rotina_regular: '',
   tempo_em_pe: '',
   id_aluno: '',
+  treinos_aluno: [],
   id_academia: parseInt(id)
 }
 
