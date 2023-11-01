@@ -85,7 +85,7 @@ export default class GaleryWokouts extends Component {
             </div>
           </div>
 
-          <div className='container-cards-galery-workouts'>
+          {/* <div className='container-cards-galery-workouts'>
             <div className='container-exercise-empty'>
               <img src={emptyGaleryPhoto} alt="empty photo" />
               <p className='title-empty-galeryworkouts'>GALERIA VÁZIA...</p>
@@ -100,7 +100,7 @@ export default class GaleryWokouts extends Component {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
         </div>
       </div>
