@@ -6,7 +6,7 @@ export const InfoCardGym = ({ children, title, sizeDiv }) => {
     
     return (
         <Space direction="vertical" size={25}>
-            <Card title={title} size="small"  style={{ width: `${sizeDiv}px` }}>
+            <Card title={title} size="small"  style={{width: `${sizeDiv}`}}>
                 {children}
             </Card>
         </Space>
