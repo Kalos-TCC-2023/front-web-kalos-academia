@@ -35,19 +35,19 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
   const handleChangeFrenquenciaTreinos = (value) => {
     setFrequenciaTreinoSemanal(value)
     updateFielHandler('frequencia_treino_semanal', value)
-
+    console.log(data.id)
     console.log(dataStundetGym);
   }
 
 
   useEffect(() => {
-    console.log(data)
-    if (data == {}) {
+    
+    if (data == '') {
       axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idStudent}`)
         .then(({ data }) => {
 
           const dataNascimento = data.aluno.data_nascimento
-
+          console.log(data)
           const newFormatDate = dataNascimento.replace('T00:00:00.000Z', '')
           const data_de_nascimento_formart = moment(newFormatDate).format('L')
           setDate(data_de_nascimento_formart)
