@@ -101,8 +101,15 @@ const router = createBrowserRouter([
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  
+  <React.StrictMode>
     <RouterProvider router={router} />
-    
-  
+    {/* <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<App />}/>
+        <Route path='/esqueciSenha' element={<ForgotPass/>}/>
+        <Route path='/cadastro' element={<RegisterPage/>}/>
+        <Route path='/home' element={<HomePage/>}/>
+      </Routes>
+    </BrowserRouter> */}
+  </React.StrictMode>,
 )

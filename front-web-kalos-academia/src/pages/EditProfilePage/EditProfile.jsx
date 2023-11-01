@@ -10,6 +10,7 @@ import '../../components/TextField/TextField.css'
 import './EditProfile.css'
 import { UploadImage } from '../../components/UploadImage/UploadImage';
 import axios from 'axios';
+import { DropDownMenu } from '../../components/DropDownMenu/DropDownMenu';
 
 export const EditProfile = () => {
 
@@ -17,6 +18,7 @@ export const EditProfile = () => {
         console.log(`selected ${value}`);
     }
 
+    const [categorySelected, setCategorySelected] = useState('Categoria')
     const [nameGym, setNameGym] = useState('')
     const [description, setDescription] = useState('')
     const [telefone, setTelefone] = useState('')
@@ -101,73 +103,86 @@ export const EditProfile = () => {
     const [timeFriday, setTimeFriday] = useState('')
     const [timeSaturday, setTimeSaturday] = useState('')
 
-    console.log(operation)
+    console.log(categoryApi)
 
     useEffect(() => {
         axios.get('https://kaloscorp.cyclic.app/kalos/tags')
-          .then(({ data }) => {
-            if (tagsApi.length === 0) {
-              console.log(data.tags)
-    
-              const items_api = data.tags.map((tag) => {
-                const newTags = {}
-                newTags.value = tag.id
-                newTags.label = tag.nome
-                tagsApi.push(newTags)
-                
-              })
-    
-            } else {
-              return
-            }
-    
-          }).catch((erro) => {
-            console.log(erro)
-          })
-      }, [])
+            .then(({ data }) => {
+                if (tagsApi.length === 0) {
+                    console.log(data.tags)
 
-    useEffect(() => {
-        axios.get('https://kaloscorp.cyclic.app/kalos/tags')
-          .then(({ data }) => {
-            if (tagsApi.length === 0) {
-              console.log(data.tags)
-    
-              const items_api = data.tags.map((tag) => {
-                const newTags = {}
-                newTags.value = tag.id
-                newTags.label = tag.nome
-                tagsApi.push(newTags)
-                
-              })
-    
-            } else {
-              return
-            }
-    
-          }).catch((erro) => {
-            console.log(erro)
-          })
-      }, [])
-    
-      useEffect(() => {
-        axios.get('https://kaloscorp.cyclic.app/kalos/categoria')
-        .then(({ data }) => {
-          
-          if(categoryApi.length === 0){
-            const items_api = data.categorias.map((categoria) => {
-              const newCategories = {}
-              newCategories.value = categoria.id
-              newCategories.label = categoria.nome
-              categoryApi.push(newCategories)
+                    const items_api = data.tags.map((tag) => {
+                        const newTags = {}
+                        newTags.key = tag.id
+                        newTags.label = tag.nome
+                        tagsApi.push(newTags)
+
+                    })
+
+                } else {
+                    return
+                }
+
+            }).catch((erro) => {
+                console.log(erro)
             })
-            console.log(data.categorias)
-          } else {
-            return
+    }, [])
+
+    useEffect(() => {
+        axios.get('https://kaloscorp.cyclic.app/kalos/tags')
+            .then(({ data }) => {
+                if (tagsApi.length === 0) {
+
+                    const items_api = data.tags.map((tag) => {
+                        const newTags = {}
+                        newTags.value = tag.id
+                        newTags.label = tag.nome
+                        tagsApi.push(newTags)
+
+                    })
+
+                } else {
+                    return
+                }
+
+            }).catch((erro) => {
+                console.log(erro)
+            })
+    }, [])
+
+    useEffect(() => {
+        axios.get('https://kaloscorp.cyclic.app/kalos/categoria')
+            .then(({ data }) => {
+
+                if (categoryApi.length === 0) {
+                    const items_api = data.categorias.map((categoria) => {
+                        const newCategories = {}
+                        newCategories.key = categoria.id
+                        newCategories.label = categoria.nome
+                        categoryApi.push(newCategories)
+                    })
+                    console.log(categoryApi)
+                } else {
+                    return
+                }
+            }).catch((erro) => {
+                console.log(erro)
+            })
+    }, [])
+
+    const handleCategoryClick = (item) => {
+        console.log(item)
+        categoryApi.map((category) => {
+          if (item.key == category.key) {
+    
+            setCategorySelected(category.label)
+            const categoryName = parseInt(item.key)
+            console.log(categoryName)
+            
           }
-        }).catch((erro) => {
-          console.log(erro)
         })
-      }, [])
+    
+      }
 
 
     return (
@@ -205,14 +220,17 @@ export const EditProfile = () => {
                                     </div>
                                     <div className="category_gym">
                                         <p className='textNameForInput'>Categoria</p>
-                                        <Select
+                                        <DropDownMenu className='edit_category_gym' items={categoryApi} itemSelected={categorySelected} onClickFuction={handleCategoryClick}/>
+                                        {/* <Select
                                             defaultValue="Academia"
                                             style={{
                                                 width: 180,
                                             }}
                                             onChange={handleChange}
-                                            options={categoryApi}
-                                        />
+                                            options={
+                                                categoryApi
+                                            }
+                                        /> */}
                                     </div>
 
                                 </div>
@@ -233,7 +251,7 @@ export const EditProfile = () => {
                                 <Select
                                     defaultValue="Acessibilidade"
                                     style={{
-                                        width: 250,
+                                        width: 550,
                                     }}
                                     onChange={handleChange}
                                     options={tagsApi}
