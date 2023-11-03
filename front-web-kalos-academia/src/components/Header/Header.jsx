@@ -62,6 +62,7 @@ export const Header = () => {
           placeholder="Buscar funcionalidade..."
           onSearch={onSearch}
           size='large'
+          
         />
         <div className="itens_gym">
           <Switch className='header_switch' defaultChecked />

@@ -113,8 +113,6 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
 
   }
 
-  console.log(data)
-
 
   return (
     <div className='profile_corporation_form animate__animated animate__fadeInRight'>

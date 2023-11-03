@@ -4,20 +4,11 @@ import { Dropdown, Space, Button } from 'antd'
 
 export const DropDownMenu = ({ onClickFuction, nameDropDown, items, className, itemSelected }) => {
 
-    // ENVIAR ESTADOS PARA PROFILE CORPORATION
-
 
     const menuProps = {
         items,
         onClick: onClickFuction,
     }
-
-   
-    const handleButtonClick = (e) => {
-        console.log('heylick', e);
-    };
-
-    
 
     return (
         <div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Breadcrumb, FloatButton, Input, Select, ColorPicker } from 'antd';
 import { SaveFilled } from '@ant-design/icons'
 import { Link } from 'react-router-dom';
@@ -8,6 +8,9 @@ import { DayWeek } from '../../components/DayWeek/DayWeek';
 import { Helmet } from 'react-helmet'
 import '../../components/TextField/TextField.css'
 import './EditProfile.css'
+import { UploadImage } from '../../components/UploadImage/UploadImage';
+import axios from 'axios';
+import { DropDownMenu } from '../../components/DropDownMenu/DropDownMenu';
 
 export const EditProfile = () => {
 
@@ -15,6 +18,7 @@ export const EditProfile = () => {
         console.log(`selected ${value}`);
     }
 
+    const [categorySelected, setCategorySelected] = useState('Categoria')
     const [nameGym, setNameGym] = useState('')
     const [description, setDescription] = useState('')
     const [telefone, setTelefone] = useState('')
@@ -32,6 +36,16 @@ export const EditProfile = () => {
     const [razaoSocial, setRazaoSocial] = useState('')
     const [dataAbertura, setDataAbertura] = useState('')
     const [cnae, setCnae] = useState('')
+    const [categoryApi, setCategoryApi] = useState([])
+    const [tagsApi, setTagsApi] = useState([])
+    const [imageDb, setImageDb] = useState('https://firebasestorage.googleapis.com/v0/b/kalos-corp-academia.appspot.com/o/images%2F360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg?alt=media&token=d76e9efb-e14a-42d7-8daa-4cdbd0b85dea&_gl=1*bx9q1z*_ga*MzU5MzIyMzYwLjE2OTY0NTc2MDM.*_ga_CW55HF8NVT*MTY5NjQ2MzkyNC4yLjEuMTY5NjQ3MDUyMy4xMi4wLjA.')
+    const [fileList, setFileList] = useState([
+        {
+            uid: '-5',
+            url: 'https://firebasestorage.googleapis.com/v0/b/kalos-corp-academia.appspot.com/o/images%2F360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg?alt=media&token=d76e9efb-e14a-42d7-8daa-4cdbd0b85dea&_gl=1*bx9q1z*_ga*MzU5MzIyMzYwLjE2OTY0NTc2MDM.*_ga_CW55HF8NVT*MTY5NjQ2MzkyNC4yLjEuMTY5NjQ3MDUyMy4xMi4wLjA.',
+            status: 'done'
+        },
+    ])
 
     const operationCorporation = {
         id_academia: '',
@@ -81,7 +95,7 @@ export const EditProfile = () => {
         })
     }
 
-    const [timeSunday, setTimeSunday] = useState([''])
+    const [timeSunday, setTimeSunday] = useState('')
     const [timeMonday, setTimeMonday] = useState('')
     const [timeTuesday, setTimeTuesday] = useState('')
     const [timeWednesday, setTimeWednesday] = useState('')
@@ -89,8 +103,86 @@ export const EditProfile = () => {
     const [timeFriday, setTimeFriday] = useState('')
     const [timeSaturday, setTimeSaturday] = useState('')
 
-    console.log(operation)
+    console.log(categoryApi)
 
+    useEffect(() => {
+        axios.get('https://kaloscorp.cyclic.app/kalos/tags')
+            .then(({ data }) => {
+                if (tagsApi.length === 0) {
+                    console.log(data.tags)
+
+                    const items_api = data.tags.map((tag) => {
+                        const newTags = {}
+                        newTags.key = tag.id
+                        newTags.label = tag.nome
+                        tagsApi.push(newTags)
+
+                    })
+
+                } else {
+                    return
+                }
+
+            }).catch((erro) => {
+                console.log(erro)
+            })
+    }, [])
+
+    useEffect(() => {
+        axios.get('https://kaloscorp.cyclic.app/kalos/tags')
+            .then(({ data }) => {
+                if (tagsApi.length === 0) {
+
+                    const items_api = data.tags.map((tag) => {
+                        const newTags = {}
+                        newTags.value = tag.id
+                        newTags.label = tag.nome
+                        tagsApi.push(newTags)
+
+                    })
+
+                } else {
+                    return
+                }
+
+            }).catch((erro) => {
+                console.log(erro)
+            })
+    }, [])
+
+    useEffect(() => {
+        axios.get('https://kaloscorp.cyclic.app/kalos/categoria')
+            .then(({ data }) => {
+
+                if (categoryApi.length === 0) {
+                    const items_api = data.categorias.map((categoria) => {
+                        const newCategories = {}
+                        newCategories.key = categoria.id
+                        newCategories.label = categoria.nome
+                        categoryApi.push(newCategories)
+                    })
+                    console.log(categoryApi)
+                } else {
+                    return
+                }
+            }).catch((erro) => {
+                console.log(erro)
+            })
+    }, [])
+
+    const handleCategoryClick = (item) => {
+        console.log(item)
+        categoryApi.map((category) => {
+          if (item.key == category.key) {
+    
+            setCategorySelected(category.label)
+            const categoryName = parseInt(item.key)
+            console.log(categoryName)
+            
+          }
+        })
+    
+      }
 
 
     return (
@@ -115,7 +207,7 @@ export const EditProfile = () => {
                     <div className="elements_edit_profile">
                         <div className="photo_basic_information">
                             <InfoCardGym sizeDiv={500} title='Foto de Perfil' >
-
+                                <UploadImage fileList={fileList} imageDb={imageDb} setImageDb={setImageDb} setFileList={setFileList} />
                             </InfoCardGym>
                             <InfoCardGym sizeDiv={580} title='Informações Basicas' >
                                 <div className="category_name_gym">
@@ -128,32 +220,17 @@ export const EditProfile = () => {
                                     </div>
                                     <div className="category_gym">
                                         <p className='textNameForInput'>Categoria</p>
-                                        <Select
+                                        <DropDownMenu className='edit_category_gym' items={categoryApi} itemSelected={categorySelected} onClickFuction={handleCategoryClick}/>
+                                        {/* <Select
                                             defaultValue="Academia"
                                             style={{
                                                 width: 180,
                                             }}
                                             onChange={handleChange}
-                                            options={[
-                                                {
-                                                    value: '1',
-                                                    label: 'Academia',
-                                                },
-                                                {
-                                                    value: '2',
-                                                    label: 'Luta',
-                                                },
-                                                {
-                                                    value: '2',
-                                                    label: 'Crossfith',
-                                                },
-                                                {
-                                                    value: '3',
-                                                    label: 'Natação',
-
-                                                },
-                                            ]}
-                                        />
+                                            options={
+                                                categoryApi
+                                            }
+                                        /> */}
                                     </div>
 
                                 </div>
@@ -174,33 +251,15 @@ export const EditProfile = () => {
                                 <Select
                                     defaultValue="Acessibilidade"
                                     style={{
-                                        width: 250,
+                                        width: 550,
                                     }}
                                     onChange={handleChange}
-                                    options={[
-                                        {
-                                            value: '1',
-                                            label: 'Acessibilidade',
-                                        },
-                                        {
-                                            value: '2',
-                                            label: 'Luta',
-                                        },
-                                        {
-                                            value: '2',
-                                            label: 'Crossfith',
-                                        },
-                                        {
-                                            value: '3',
-                                            label: 'Natação',
-
-                                        },
-                                    ]}
+                                    options={tagsApi}
                                 />
                             </InfoCardGym>
                             <InfoCardGym sizeDiv={580} title='Contato' >
                                 <p className='textNameForInput'>E-mail</p>
-                                <Input value={email} onChange={(email) => {
+                                <Input value={email} style={{ width: '550px' }} onChange={(email) => {
                                     setEmail(email.target.value)
                                 }
                                 } />
@@ -214,18 +273,18 @@ export const EditProfile = () => {
                         <div className="social_midia_endereco">
                             <InfoCardGym sizeDiv={500} title='Redes Sociais' >
                                 <p className='textNameForInput'>Instagram</p>
-                                <Input size='default size' value={email} onChange={(email) => {
-                                    setEmail(email.target.value)
+                                <Input size='default size' style={{ width: '550px' }} value={instagram} onChange={(instagram) => {
+                                    setInstagram(instagram.target.value)
                                 }
                                 } />
                                 <p className='textNameForInput'>Facebook</p>
-                                <Input size='default size' value={telefone} onChange={(telefone) => {
-                                    setTelefone(telefone.target.value)
+                                <Input size='default size' value={facebook} onChange={(facebook) => {
+                                    setFacebook(facebook.target.value)
                                 }
                                 } />
                                 <p className='textNameForInput'>Whatsapp</p>
-                                <Input size='default size' value={telefone} onChange={(telefone) => {
-                                    setTelefone(telefone.target.value)
+                                <Input size='default size' value={whatsApp} onChange={(whatsApp) => {
+                                    setWhatsapp(whatsApp.target.value)
                                 }
                                 } />
                             </InfoCardGym>
@@ -233,15 +292,15 @@ export const EditProfile = () => {
                                 <div className="cep_rua">
                                     <div className="cep">
                                         <p className='textNameForInput'>Cep</p>
-                                        <Input size='default size' value={telefone} onChange={(telefone) => {
-                                            setTelefone(telefone.target.value)
+                                        <Input size='default size' value={cep} onChange={(cep) => {
+                                            setCep(cep.target.value)
                                         }
                                         } />
                                     </div>
                                     <div className="rua">
                                         <p className='textNameForInput'>Rua</p>
-                                        <Input style={{ width: '345px' }} size='default size' value={telefone} onChange={(telefone) => {
-                                            setTelefone(telefone.target.value)
+                                        <Input style={{ width: '345px' }} size='default size' value={rua} onChange={(rua) => {
+                                            setRua(rua.target.value)
                                         }
                                         } />
                                     </div>
@@ -249,30 +308,30 @@ export const EditProfile = () => {
                                 <div className="complemento_numero_bairro">
                                     <div className="complemento">
                                         <p className='textNameForInput'>Complemento</p>
-                                        <Input size='default size' placeholder='00 0000-0000' value={telefone} onChange={(telefone) => {
-                                            setTelefone(telefone.target.value)
+                                        <Input size='default size' placeholder='00 0000-0000' value={complemento} onChange={(complemento) => {
+                                            setComplemento(complemento.target.value)
                                         }
                                         } />
                                     </div>
                                     <div className="numero">
                                         <p className='textNameForInput'>Número</p>
-                                        <Input style={{ width: '100px' }} size='default size' placeholder='000' value={telefone} onChange={(telefone) => {
-                                            setTelefone(telefone.target.value)
+                                        <Input style={{ width: '100px' }} size='default size' placeholder='000' value={numero} onChange={(numero) => {
+                                            setNumero(numero.target.value)
                                         }
                                         } />
                                     </div>
                                     <div className="bairro">
                                         <p className='textNameForInput'>Bairro</p>
-                                        <Input style={{ width: '225px' }} size='default size' value={telefone} onChange={(telefone) => {
-                                            setTelefone(telefone.target.value)
+                                        <Input style={{ width: '225px' }} size='default size' value={bairro} onChange={(bairro) => {
+                                            setBairro(bairro.target.value)
                                         }
                                         } />
                                     </div>
                                 </div>
                                 <div className="cidade">
                                     <p className='textNameForInput'>Cidade</p>
-                                    <Input style={{ width: '550px' }} size='default size' value={telefone} onChange={(telefone) => {
-                                        setTelefone(telefone.target.value)
+                                    <Input style={{ width: '550px' }} size='default size' value={cidade} onChange={(cidade) => {
+                                        setCidade(cidade.target.value)
                                     }
                                     } />
                                 </div>
