@@ -4,7 +4,7 @@ import { Breadcrumb, FloatButton } from 'antd'
 import { ArrowRightOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { StepOneAddStudentForGym } from '../../components/StepOneAddStudentForGym/StepOneAddStudentForGym'
-import { registerForm } from '../../hooks/registerForm' 
+import { registerForm } from '../../hooks/registerForm'
 import './AddNewStudentPage.css'
 import { StepTwoAddStudentForGym } from '../../components/StepTwoAddStudentForGym/StepTwoAddStudentForGym'
 import { StepThreeAddStundetForGym } from '../../components/StepThreeAddStundetForGym/StepThreeAddStundetForGym'
@@ -27,25 +27,25 @@ export const AddNewStudentPage = ({ idStudent }) => {
 
   const id = localStorage.getItem("id_novo_aluno_add")
   const [idAddStundet, setIdAddStundet] = useState(id)
-  
-  
-  
+
+
+
   const [dataNewStundetAdd, setDataNewStundetAdd] = useState(addNewStudentTemplate)
-  
+
 
   const updateFielHanlder = (key, value) => {
     setDataNewStundetAdd((prev) => {
-      return {...prev, [key]: value}
+      return { ...prev, [key]: value }
     })
   }
- 
-  const formComponent = [<StepOneAddStudentForGym dataStundetGym={addNewStudentTemplate} updateFielHandler={updateFielHanlder} idStudent={idAddStundet}/>, < StepTwoAddStudentForGym dataStundetGym={dataNewStundetAdd} updateFielHandler={updateFielHanlder} idStudent={idAddStundet}/>, <StepThreeAddStundetForGym dataStundetGym={addNewStudentTemplate} updateFielHandler={updateFielHanlder} idStudent={idAddStundet} /> ]
+
+  const formComponent = [<StepOneAddStudentForGym dataStundetGym={addNewStudentTemplate} updateFielHandler={updateFielHanlder} idStudent={idAddStundet} />, < StepTwoAddStudentForGym dataStundetGym={dataNewStundetAdd} updateFielHandler={updateFielHanlder} idStudent={idAddStundet} />, <StepThreeAddStundetForGym dataStundetGym={addNewStudentTemplate} updateFielHandler={updateFielHanlder} idStudent={idAddStundet} />]
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep } = registerForm(formComponent)
 
-console.log(dataNewStundetAdd)
+  console.log(dataNewStundetAdd)
   return (
     <div className='add_new_student_page'>
-      <FloatButton icon={<ArrowRightOutlined />} tooltip={<div>Avançar</div>} onClick={(e) => changeStep(currentStep + 1, e)}/>
+      <FloatButton icon={<ArrowRightOutlined />} tooltip={<div>Avançar</div>} onClick={(e) => changeStep(currentStep + 1, e)} />
       <Helmet>
         <title>Kalos - Estudantes</title>
       </Helmet>

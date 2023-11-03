@@ -3,28 +3,20 @@ import { AntDesignOutlined, UserOutlined } from '@ant-design/icons'
 import { Avatar, Divider, Tooltip } from 'antd'
 import './CardWokouts.css'
 
-export const CardWokouts = ({ idWokouts, nomeWokouts, dataWokouts, categoriaWokouts, nivelWokouts }) => {
-
-    const nome = 'Treino de perna'
-    const descricao = 'Treino para perna'
-    const foto = ''
-    const data = '04/04/2023'
-    const nivel = 'Iniciante'
-    const categoria = 'Natação'
+export const CardWokouts = ({ idWokouts, nomeWokouts, dataWokouts, categoriaWokouts, nivelWokouts, alunosWokouts, imgWokouts, onClickFunction }) => {
 
     return (
         <div className='wokouts_card'>
-            <div className="card_wokouts" onClick={() => {
-                console.log(nome)
-            }}>
-                <div className="data_wokouts">
+            <div className="card_wokouts" style={{backgroundImage: `url('${imgWokouts}' )`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}} 
+            onClick={onClickFunction}>
+                <div className="data_wokouts" >
                     <div className="nome_categoria">
-                        <span className='title_wokouts_gym'>{nome}</span>
-                        <span className='category_wokouts_gym'>{categoria}</span>
+                        <span className='title_wokouts_gym'>{nomeWokouts}</span>
+                        <span className='category_wokouts_gym'>{categoriaWokouts}</span>
                     </div>
                     <div className="footer_data_wokouts">
                         <div className="data_gym_wokouts_div">
-                            <span className='data_wokouts_gym'>{data}</span>
+                            <span className='data_wokouts_gym'>{dataWokouts}</span>
                         </div>
                         <div className="students_by_wokouts">
                             <Avatar.Group>
