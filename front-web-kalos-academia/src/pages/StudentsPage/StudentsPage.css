@@ -24,6 +24,7 @@
 }
 .buttons_add_students_my_students .ant-btn{
     border: 1px solid #F5F7F9 !important;
+    border: 1px solid #F5F7F9 !important;
     border-radius: 300px;
     color: rgb(0, 0, 0);
     transition: all 0.3s;
@@ -37,7 +38,7 @@
     color: rgb(0, 0, 0);
     transition: all 0.3s;
 }
-.buttons_add_students_my_students .ant-btn:hover {
+.my_students_button .ant-btn:hover {
     color: white !important;
     background-color: #00FE90 !important;
     border-color: #00FE90 !important;

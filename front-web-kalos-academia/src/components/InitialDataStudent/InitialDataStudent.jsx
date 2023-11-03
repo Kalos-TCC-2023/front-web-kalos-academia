@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Divider } from 'antd';
+import { Avatar, Divider, Button } from 'antd';
 import './InitialDataStudent.css'
 import { Loader } from '../Loader/Loader';
 import { CardDataStudent } from '../CardDataStudent/CardDataStudent';
 import { RecordCardStudent } from '../RecordCardStudent/RecordCardStudent';
 import moment from 'moment';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export const InitialDataStudent = ({ data, status, idStudent }) => {
 
-    console.log(status)
-    console.log(data)
-    console.log(idStudent)
-
     const [ageStudentFormat, setAge] = useState('')
     const [data_de_nascimento_formart, setDate] = useState('')
+    const [wokoutsInformations, setWokoutsInformation] = useState('')
+
 
 
     useEffect(() => {
@@ -42,6 +41,9 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
 
     }, [ageStudentFormat, data_de_nascimento_formart])
 
+    useEffect(() => {
+        
+    })
 
     return (
         <div className='data_student'>
@@ -52,7 +54,14 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
                         <div className="data_basic_buttons">
                             <Avatar size={250} src={data.foto} icon={<UserOutlined />} />
                             <div className="buttons_data_basic">
-                                <div className="buttons"></div>
+                                <div className="buttons_initial_data_student_options">
+                                    <Link className='about_student_initial_data_gym' to=''>
+                                        <Button shape='circle'>SOBRE O ALUNO</Button>
+                                    </Link>
+                                    <Link className='idit_student_gym' to=''>
+                                        <Button shape='circle'>EDITAR ALUNO</Button>
+                                    </Link>
+                                </div>
                                 <div className="data_information_student">
                                     <div className="name_token">
                                         <span className="name_student_record">{data.nome}</span>
@@ -81,14 +90,17 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
                                     <span className='goal'>Meta: <span className='goal_gym_student'>“{data.objetivo}”</span></span>
                                 </div>
                             </div>
+
                         </div>
-                        
+
                         <RecordCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} />
-                        
+                        <div className='wokouts_student_gym'>
+
+                        </div>
                     </div>
 
                 )}
-                
+
         </div>
     )
 }

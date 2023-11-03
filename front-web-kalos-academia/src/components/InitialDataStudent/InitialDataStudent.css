@@ -1,6 +1,5 @@
 .data_student{
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,4 +94,41 @@
 
 .ajuste {
   overflow: auto;
+}
+.buttons_initial_data_student_options{
+  display: flex;
+  gap: 6px;
+}
+.buttons_initial_data_student_options .ant-btn{
+  background-color: #F5F7F9 !important;
+  border: 1px solid #F5F7F9 !important;
+  border-radius: 300px;
+  color: rgb(0, 0, 0);
+  transition: all 0.3s;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+.about_student_initial_data_gym .ant-btn{
+  background-color: #00FE90 !important;
+  border: 1px solid #F5F7F9 !important;
+  border-radius: 300px;
+  color: black;
+  transition: all 0.3s;
+}
+.about_student_initial_data_gym .ant-btn:hover {
+  color: white !important;
+  background-color: #00FE90 !important;
+  border-color: #00FE90 !important;
+}
+.idit_student_gym .ant-btn:hover {
+  color: white !important;
+  background-color: #00FE90 !important;
+  border-color: #00FE90 !important;
+}
+.wokouts_student_gym{
+  width: 800px;
+  justify-content: center;
+  gap: 25px;
+  display: flex;
+  flex-flow: wrap-reverse;
 }
