@@ -87,7 +87,7 @@ export const AddStudentPage = () => {
                     />
                     <div className="buttons_add_students_my_students">
 
-                        <Link to='/menu/alunos'>
+                        <Link className='' to='/menu/alunos'>
                             <Button shape='circle'>MEUS ALUNOS</Button>
                         </Link>
                         <Link className='all_students' to='/menu/alunos/novo_aluno'>
