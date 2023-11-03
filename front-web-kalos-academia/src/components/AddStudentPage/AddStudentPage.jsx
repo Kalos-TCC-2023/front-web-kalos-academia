@@ -29,16 +29,16 @@ export const AddStudentPage = () => {
 
     const filteredStudens = !!searchStudens ? allStudents.filter((student) => {
         return student.nome.toLowerCase().includes(
-          searchStudens.toLocaleLowerCase()
+            searchStudens.toLocaleLowerCase()
         )
-      }) : students
+    }) : students
 
-      const handleChange = (e) => {
+    const handleChange = (e) => {
         const { value } = e.target
-    
+
         setSearchStudens(value)
         console.log(searchStudens)
-      }
+    }
 
 
     const id = localStorage.getItem("id_academia")
