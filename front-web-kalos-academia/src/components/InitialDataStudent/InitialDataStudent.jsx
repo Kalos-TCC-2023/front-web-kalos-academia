@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Divider, Button } from 'antd';
+import { Avatar, Divider, Button, Input } from 'antd';
 import './InitialDataStudent.css'
 import { Loader } from '../Loader/Loader';
 import { CardDataStudent } from '../CardDataStudent/CardDataStudent';
@@ -8,12 +8,18 @@ import { RecordCardStudent } from '../RecordCardStudent/RecordCardStudent';
 import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { PreviewCardWokouts } from '../PreviewCardWokouts/PreviewCardWokouts';
 
 export const InitialDataStudent = ({ data, status, idStudent }) => {
 
     const [ageStudentFormat, setAge] = useState('')
     const [data_de_nascimento_formart, setDate] = useState('')
     const [wokoutsInformations, setWokoutsInformation] = useState('')
+    const [testeNomeTreino, setTeste] = useState('')
+    const [testeCategoriaTreino, setTesteCategoriaTreino] = useState('')
+    const [testeDataTreino, setTesteDataTreino] = useState('')
+    const [testeCapaTreino, setTesteCapaTreino] = useState('https://newmillen.com.br/wp-content/uploads/2021/09/tipos-de-academia-1.jpeg')
+    console.log(testeNomeTreino)
 
 
 
@@ -42,7 +48,7 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
     }, [ageStudentFormat, data_de_nascimento_formart])
 
     useEffect(() => {
-        
+
     })
 
     return (
@@ -96,6 +102,16 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
                         <RecordCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} />
                         <div className='wokouts_student_gym'>
 
+                            {/* <PreviewCardWokouts nomeTreino={testeNomeTreino} dataTreino={testeDataTreino} categoriaTreino={testeCategoriaTreino} foto={testeCapaTreino} />
+                            <Input size='default size' value={testeNomeTreino} onChange={(e) => {
+                                setTeste(e.target.value)
+                            }} />
+                            <Input size='default size' value={testeCategoriaTreino} onChange={(e) => {
+                                setTesteCategoriaTreino(e.target.value)
+                            }} />
+                            <Input size='default size' value={testeDataTreino} onChange={(e) => {
+                                setTesteDataTreino(e.target.value)
+                            }} /> */}
                         </div>
                     </div>
 
