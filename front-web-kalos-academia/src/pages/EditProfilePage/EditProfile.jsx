@@ -173,16 +173,16 @@ export const EditProfile = () => {
     const handleCategoryClick = (item) => {
         console.log(item)
         categoryApi.map((category) => {
-          if (item.key == category.key) {
-    
-            setCategorySelected(category.label)
-            const categoryName = parseInt(item.key)
-            console.log(categoryName)
-            
-          }
+            if (item.key == category.key) {
+
+                setCategorySelected(category.label)
+                const categoryName = parseInt(item.key)
+                console.log(categoryName)
+
+            }
         })
-    
-      }
+
+    }
 
 
     return (
@@ -220,7 +220,7 @@ export const EditProfile = () => {
                                     </div>
                                     <div className="category_gym">
                                         <p className='textNameForInput'>Categoria</p>
-                                        <DropDownMenu className='edit_category_gym' items={categoryApi} itemSelected={categorySelected} onClickFuction={handleCategoryClick}/>
+                                        <DropDownMenu className='edit_category_gym' items={categoryApi} itemSelected={categorySelected} onClickFuction={handleCategoryClick} />
                                         {/* <Select
                                             defaultValue="Academia"
                                             style={{
