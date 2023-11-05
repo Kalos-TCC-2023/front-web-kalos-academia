@@ -32,7 +32,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   ])
 
   useEffect(() => {
-    axios.get('https://kaloscorp.cyclic.cloud/kalos/tags')
+    axios.get('https://kaloscorp.cyclic.app/kalos/tags')
       .then(({ data }) => {
         if (tagsApi.length === 0) {
           console.log(data.tags)
@@ -55,7 +55,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   }, [imageDb])
 
   useEffect(() => {
-    axios.get('https://kaloscorp.cyclic.cloud/kalos/categoria')
+    axios.get('https://kaloscorp.cyclic.app/kalos/categoria')
     .then(({ data }) => {
       
       if(categoryApi.length === 0){

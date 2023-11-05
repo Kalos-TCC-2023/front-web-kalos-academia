@@ -149,7 +149,7 @@ export const PerfilGym = () => {
                 {/* SEGUNDA FILEIRA */}
                 <div className="data_post_workouts_products">
                   <div className="pages_gym">
-                    <SubPagesProfile />
+                    <SubPagesProfile color={objectGym.cor_primaria} />
                   </div>
                 </div>
               </div>

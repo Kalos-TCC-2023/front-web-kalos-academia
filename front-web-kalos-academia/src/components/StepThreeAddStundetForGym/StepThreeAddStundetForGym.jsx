@@ -24,7 +24,7 @@ export const StepThreeAddStundetForGym = ({ updateFielHandler, idStudent }) => {
 
     }, [])
 
-    
+
 
     return (
         <div className='add_wokouts_gym'>

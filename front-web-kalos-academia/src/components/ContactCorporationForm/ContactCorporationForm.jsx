@@ -70,7 +70,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
       } else {
 
         // http://10.107.144.6:8080
-        axios.post('https://kaloscorp.cyclic.cloud/kalos/academia', {
+        axios.post('https://kaloscorp.cyclic.app/kalos/academia', {
           nome: data.nome,
           email: data.email,
           senha: data.senha,
@@ -112,7 +112,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
 
   useEffect(() => {
     if (idAcademia !== '') {
-      axios.post('https://kaloscorp.cyclic.cloud/kalos/funcionamento', {
+      axios.post('https://kaloscorp.cyclic.app/kalos/funcionamento', {
         id_academia: idAcademia,
         segunda: {
           status: operationCorporation.segunda['status'],
