@@ -1,7 +1,28 @@
-.posts_profile_component_page{
-    width: 100%;
-    overflow: auto;
-    /* display: flex;
+.posts_profile_component_page {
+  width: 100%;
+  overflow: auto;
+  /* display: flex;
     flex-direction: column;
     align-items: center; */
 }
+.posts_title_gym {
+  font-family: Roboto;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+}
+.new_post_gym{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+  .new_post_gym button {
+    color: #ffffff !important;
+    background-color: #000000;
+    border-color: #000000;
+  }
+  .new_post_gym .ant-btn:hover{
+    background-color: #00fe90 !important;
+    border-color: #00fe90 !important;
+    color: #ffffff !important;
+  }

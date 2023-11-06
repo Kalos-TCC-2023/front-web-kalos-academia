@@ -5,7 +5,7 @@ import { ProductsComponentProfile } from '../ProductsComponentProfile/ProductsCo
 import { WorkoutsComponentProfile } from '../WorkoutsComponentProfile/WorkoutsComponentProfile';
 import './SubPagesProfile.css'
 
-export const SubPagesProfile = () => {
+export const SubPagesProfile = ({ color }) => {
     const onChange = (key) => {
         console.log(key);
     };
@@ -13,12 +13,12 @@ export const SubPagesProfile = () => {
         {
             key: '1',
             label: 'Posts',
-            children: <PostsComponentProfile />,
+            children: <PostsComponentProfile color={color} />,
         },
         {
             key: '2',
             label: 'Treinos',
-            children: <WorkoutsComponentProfile />,
+            children: <WorkoutsComponentProfile color={color} />,
         },
         {
             key: '3',
