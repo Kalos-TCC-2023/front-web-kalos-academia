@@ -25,6 +25,8 @@ export default class EditExercise extends Component {
       <Modal
         visible={true} // Define a visibilidade do modal
         onCancel={this.handleHideAddExercise} // Função chamada ao fechar o modal
+        closable={false} // Impede que o ícone "X" seja exibido
+
         footer={null} // Remove o rodapé padrão
         wrapClassName="custom-modal" // Classe personalizada para o modal
  className='modal-edit-exercise'

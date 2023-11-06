@@ -26,12 +26,14 @@ export default class
             <Modal
                 visible={true} // Define a visibilidade do modal
                 onCancel={this.handleHideAddExercise} // Função chamada ao fechar o modal
+                closable={false} // Impede que o ícone "X" seja exibido
                 footer={null} // Remove o rodapé padrão
-                wrapClassName="custom-modal" // Classe personalizada para o modal
+                wrapClassName="custom-modal-remove" // Classe personalizada para o modal
                 className='modal-remove-exercise'
+
             >
                 <div className='card-remove-exercise'>
-                    <p>O Treino será apagado!</p>
+                    <p className='title-workout-remove-exercise'>O Treino será apagado!</p>
                     <p>Deseja seguir com a ação?</p>
 
 

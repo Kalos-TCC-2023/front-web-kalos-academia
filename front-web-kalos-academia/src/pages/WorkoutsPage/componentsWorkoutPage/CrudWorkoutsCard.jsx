@@ -20,16 +20,16 @@ const CrudWorkoutCard = () => {
 
   return (
     <div className='crud-card'>
-      <Link to='/menu/adicionar_exercicio'>
-      <Button type="primary" onClick={handleRemoveClick}>
+      <Link className='.link-crud-exercise' to='/menu/adicionar_exercicio'>
+      <Button className='btn-card-workout-card' type="primary" onClick={handleRemoveClick}>
         Adicionar aluno
       </Button>
       </Link>
       
-      <Button type="primary" onClick={handleRemoveClick}>
+      <Button  className='btn-card-workout-card' type="primary" onClick={handleRemoveClick}>
         Editar
       </Button>
-      <Button type="primary" onClick={handleRemoveClick}>
+      <Button className='btn-card-workout-card'  type="primary" onClick={handleRemoveClick}>
         Excluir
       </Button>
 

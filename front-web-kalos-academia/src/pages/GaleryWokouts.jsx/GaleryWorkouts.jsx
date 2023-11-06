@@ -129,7 +129,14 @@ export default class GaleryWokouts extends Component {
               ) : (
                 <div className='container-exercises-all'>
                   <div className='add-exercise'>
-                    <p className='more-exercise'>+</p>
+
+                  {this.state.showAddExercise ? (
+                      <AddExercise onHideAddExercise={this.handleHideAddExercise} />
+                    ) : (
+                      <div className='more-exercise' onClick={this.handleShowAddExercise}>
+                        <p>+</p>
+                      </div>
+                    )}
                   </div>
                   {exercises.map((exercise, index) => (
                     <div className='card-exercise' key={exercise.id}>
@@ -145,7 +152,7 @@ export default class GaleryWokouts extends Component {
                         {selectedCard === index && (
                           <CrudWokoutCardExercise  className="container-crud-workouts" />
                         )}
-                        <div>
+                        <div className='text-exercise-card'>
                           <p className='name-exercise-card'>{exercise.nome}</p>
                           <p className='description-exercise-card'>{exercise.descricao}</p>
                         </div>

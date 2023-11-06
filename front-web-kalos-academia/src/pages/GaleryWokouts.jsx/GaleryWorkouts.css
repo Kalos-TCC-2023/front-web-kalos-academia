@@ -137,9 +137,24 @@
 
 
 }
+.text-exercise-card{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+justify-content: flex-end;
+color: white;
+font-size: 16px;
+padding: 20px;
+
+}
 
 .name-exercise-card {
     font-weight: 800;
+
+}
+.description-exercise-card{
+    font-weight: 400;
 
 }
 
@@ -164,6 +179,12 @@
 
 .more-exercise {
     font-size: 5.0rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .visible {
