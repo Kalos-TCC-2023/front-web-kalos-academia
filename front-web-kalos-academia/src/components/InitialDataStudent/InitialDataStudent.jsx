@@ -102,7 +102,7 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
                         <RecordCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} />
                         <div className='wokouts_student_gym'>
 
-                            {/* <PreviewCardWokouts nomeTreino={testeNomeTreino} dataTreino={testeDataTreino} categoriaTreino={testeCategoriaTreino} foto={testeCapaTreino} />
+                            <PreviewCardWokouts nomeTreino={testeNomeTreino} dataTreino={testeDataTreino} categoriaTreino={testeCategoriaTreino} foto={testeCapaTreino} />
                             <Input size='default size' value={testeNomeTreino} onChange={(e) => {
                                 setTeste(e.target.value)
                             }} />
@@ -111,7 +111,7 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
                             }} />
                             <Input size='default size' value={testeDataTreino} onChange={(e) => {
                                 setTesteDataTreino(e.target.value)
-                            }} /> */}
+                            }} />
                         </div>
                     </div>
 
