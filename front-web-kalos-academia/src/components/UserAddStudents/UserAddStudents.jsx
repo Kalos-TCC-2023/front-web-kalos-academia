@@ -9,7 +9,7 @@ const UnreachableContext = createContext(null);
 
 const config = {
     title: 'Você realmente quer excluir esse aluno?',
-    content: 'esse aluno será excluido permanentemente da sua academia'
+    content: 'esse aluno será excluido permanentemente da sua academia.'
 }
 
 export const UserAddStudents = ({nameStudent, idStudentFormt, imgSrcStudent, idStudent}) => {

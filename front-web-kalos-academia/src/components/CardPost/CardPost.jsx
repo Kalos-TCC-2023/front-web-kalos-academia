@@ -11,7 +11,7 @@ export const CardPost = ({ title, description, photo}) => {
             style={{
                 width: 600
             }}
-            cover={<img style={{ width: '100%' }} alt="example" src="https://media.kasperskydaily.com/wp-content/uploads/sites/94/2021/12/24035824/online-scam-red-flags-featured.jpg" />}
+            cover={<img style={{ width: '100%' }} alt="example" src={photo || "https://media.kasperskydaily.com/wp-content/uploads/sites/94/2021/12/24035824/online-scam-red-flags-featured.jpg"} />}
             actions={[
                 <EditOutlined key="edit" />,
                 <EllipsisOutlined key="ellipsis" />

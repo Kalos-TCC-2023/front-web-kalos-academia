@@ -29,16 +29,16 @@ export const AddStudentPage = () => {
 
     const filteredStudens = !!searchStudens ? allStudents.filter((student) => {
         return student.nome.toLowerCase().includes(
-          searchStudens.toLocaleLowerCase()
+            searchStudens.toLocaleLowerCase()
         )
-      }) : students
+    }) : students
 
-      const handleChange = (e) => {
+    const handleChange = (e) => {
         const { value } = e.target
-    
+
         setSearchStudens(value)
         console.log(searchStudens)
-      }
+    }
 
 
     const id = localStorage.getItem("id_academia")
@@ -87,7 +87,7 @@ export const AddStudentPage = () => {
                     />
                     <div className="buttons_add_students_my_students">
 
-                        <Link to='/menu/alunos'>
+                        <Link className='' to='/menu/alunos'>
                             <Button shape='circle'>MEUS ALUNOS</Button>
                         </Link>
                         <Link className='all_students' to='/menu/alunos/novo_aluno'>

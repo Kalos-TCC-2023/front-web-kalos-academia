@@ -1,0 +1,13 @@
+.workouts_profile_component_page {
+  width: 800px;
+  justify-content: center;
+  gap: 25px;
+  display: flex;
+  flex-flow: wrap-reverse;
+}
+.wokouts_title_gym {
+  font-family: Roboto;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+}
