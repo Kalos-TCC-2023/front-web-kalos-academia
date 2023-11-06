@@ -10,10 +10,10 @@ export const SearchWorkout = (WorkoutName) => {
       })
       .then((data) => {
         console.log(data);
-        return data; // Você pode retornar os dados se quiser
+        return data;
       })
       .catch((error) => {
         console.error(error);
       });
   };
-  ``
+  

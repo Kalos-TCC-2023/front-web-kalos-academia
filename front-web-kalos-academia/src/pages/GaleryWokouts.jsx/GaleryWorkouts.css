@@ -1,4 +1,4 @@
-.galery-workouts{
+.galery-workouts {
     width: 100%;
     height: 100%;
     display: flex;
@@ -7,15 +7,17 @@
     padding-left: 70px;
     padding-right: 70px;
     overflow: auto;
-    
+
 }
-.header-galery{
+
+.header-galery {
     margin: 33px;
     width: 100%;
     height: 90px;
     border-top: 0.5px rgba(102, 102, 102, 0.31) solid;
 }
-.page-default{
+
+.page-default {
     width: 1300px;
     display: flex;
     flex-direction: column;
@@ -23,28 +25,31 @@
     align-items: center;
 }
 
-.title-galery{
+.title-galery {
     margin-top: 20px;
     margin-bottom: 20px;
 
     font-size: 32px;
     font-weight: 600;
 }
-.container-header{
+
+.container-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 }
-.container-cards-galery-workouts{
-width: 100%;
-margin: 50px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
+
+.container-cards-galery-workouts-empty {
+    width: 100%;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-.container-exercise-empty{
+
+.container-exercise-empty {
     width: 300px;
     display: flex;
     flex-direction: column;
@@ -52,21 +57,27 @@ justify-content: center;
     justify-content: center;
     gap: 20px;
 }
-.title-empty-galeryworkouts{
+
+.title-empty-galeryworkouts {
     font-weight: 700;
     font-size: 36px;
-    background-image: linear-gradient(to right, #00FE90, #164B60); /* Defina as cores do seu degradê aqui */
-    -webkit-background-clip: text; /* Para navegadores Webkit (Chrome, Safari) */
+    background-image: linear-gradient(to right, #00FE90, #164B60);
+    /* Defina as cores do seu degradê aqui */
+    -webkit-background-clip: text;
+    /* Para navegadores Webkit (Chrome, Safari) */
     background-clip: text;
-    color: transparent; /* Torna o texto original transparente */
+    color: transparent;
+    /* Torna o texto original transparente */
 }
-.text-empty-galeryworkouts{
+
+.text-empty-galeryworkouts {
     font-size: 12px;
     font-weight: 400;
 
-  text-align: center;
+    text-align: center;
 }
-.btn-upload-make{
+
+.btn-upload-make {
     width: 250px;
     height: 41px;
     display: flex;
@@ -76,4 +87,107 @@ justify-content: center;
     font-weight: bold;
     cursor: pointer;
     border-radius: 10px;
+}
+
+.container-exercises-all {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 30px;
+
+}
+
+.card-exercise {
+    width: 25%;
+    height: 200px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.change-exercise {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 2.5rem;
+    color: rgb(0, 254, 144, 1);
+    cursor: pointer;
+}
+
+.change-exercise>div {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: red;
+}
+
+.change-exercise>div>p {
+    color: white;
+
+
+}
+.text-exercise-card{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+justify-content: flex-end;
+color: white;
+font-size: 16px;
+padding: 20px;
+
+}
+
+.name-exercise-card {
+    font-weight: 800;
+
+}
+.description-exercise-card{
+    font-weight: 400;
+
+}
+
+.image-card-exercise {
+    width: 100%;
+    height: 100%;
+
+}
+
+.add-exercise {
+    width: 15%;
+    height: 200px;
+    background-color: black;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+
+}
+
+.more-exercise {
+    font-size: 5.0rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.visible {
+    background-color: rgba(0, 0, 0, 0.507);
+
 }

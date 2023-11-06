@@ -7,7 +7,7 @@ import { Input } from 'antd';
 import calendar from './images/Calendar.png';
 import workoutPhoto from './images/workoutgymTraine.jpeg';
 import { Link } from 'react-router-dom';
-import CrudWokoutCard from './componentsWorkoutPage/CrudWorkoutsCard';
+import CrudWorkoutCard from './componentsWorkoutPage/CrudWorkoutsCard';
 import { loadAllWorkouts } from './Api/ApiWorkoutatagym';
 import { loadRegistererStudents } from './Api/ApiShowRegistered';
 import { SearchWorkout } from './Api/ApiSearchWorkout';
@@ -19,6 +19,7 @@ class Workoutspage extends Component {
     selectedCard: null,
     searchInput: '', // Valor de pesquisa
     searchResults: [], // Resultados da pesquisa
+    showRemoveExercise: false,
   };
 
   toggleCardVisibility = (index) => {
@@ -46,6 +47,12 @@ class Workoutspage extends Component {
         console.error('Ocorreu um erro ao carregar os dados:', error);
       });
   }
+  handleShowRemoveWorkout = ()=>{
+    this.setState({showRemoveWorkout: true})
+  }
+  handleHiddenRemoveWorkout = ()=>{
+    this.setState({showRemoveWorkout: false})
+  }
 
   handleSearch = (value) => {
     SearchWorkout(value)
@@ -66,7 +73,7 @@ class Workoutspage extends Component {
       { value: 'Crossfit', label: 'Crossfit' },
     ];
 
-    const { informacoes, alunosMatriculados, selectedCard, searchInput, searchResults } = this.state;
+    const { informacoes, alunosMatriculados, selectedCard, searchInput, searchResults ,} = this.state;
 
     
     return (
@@ -141,9 +148,9 @@ class Workoutspage extends Component {
                         className={`change-card ${selectedCard === index ? 'visible' : ''}`}
                         onClick={() => this.toggleCardVisibility(index)}
                       >
-                        {/* ... */}
+                          
                         {selectedCard === index && (
-                          <CrudWokoutCard className="container-crud-workouts" />
+                          <CrudWorkoutCard className="container-crud-workouts" />
                         )}
                       </div>
                       {workout.foto !== "a" ? (
@@ -175,9 +182,8 @@ class Workoutspage extends Component {
                         className={`change-card ${selectedCard === index ? 'visible' : ''}`}
                         onClick={() => this.toggleCardVisibility(index)}
                       >
-                        ...
                         {selectedCard === index && (
-                          <CrudWokoutCard className="container-crud-workouts" />
+                          <CrudWorkoutCard className="container-crud-workouts" />
                         )}
                       </div>
                       {workout.foto !== "a" ? (

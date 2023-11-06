@@ -1,0 +1,57 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.ant-modal-content   {
+height: 0px !important;
+visibility: visible !important;
+position: absolute;
+background-color: transparent !important;
+box-shadow: none !important;
+}
+.ant-modal-content > Button{
+    visibility: visible !important;
+
+}
+
+.custom-modal-remove {
+    border-radius: none;
+    border-radius: 10px;
+    padding-left: 200px;
+    padding-top: 100px;
+}
+
+.card-remove-exercise {
+    width: 380px;
+    height: 150px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+
+}
+
+
+
+
+.buttonDefaultAddExercise {
+    border-radius: none;
+}
+
+.container-buttons-exercise {
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+}
+.title-workout-remove-exercise{
+    font-weight: 600;
+    font-size: 1.2rem;
+
+}
