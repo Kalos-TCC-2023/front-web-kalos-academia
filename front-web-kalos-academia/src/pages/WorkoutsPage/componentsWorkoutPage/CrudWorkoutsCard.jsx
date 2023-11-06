@@ -1,27 +1,43 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
-const CrudWokoutCard = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
+import './componentWorkout.css';
+import RemoveExercise from '../../../components/CrudExercise/RemoveExercise';
+import { Link } from 'react-router-dom';
+
+const CrudWorkoutCard = () => {
+  const [isRemoveExerciseVisible, setRemoveExerciseVisible] = useState(false);
+
+  const handleRemoveClick = () => {
+
+   setRemoveExerciseVisible(true);
+    
+
   };
-  const handleOk = () => {
-    setIsModalOpen(false);
+
+  const handleCloseRemoveExercise = () => {
+    setRemoveExerciseVisible(false);
   };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+
   return (
-    <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
+    <div className='crud-card'>
+      <Link to='/menu/adicionar_exercicio'>
+      <Button type="primary" onClick={handleRemoveClick}>
+        Adicionar aluno
       </Button>
-      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
-    </>
+      </Link>
+      
+      <Button type="primary" onClick={handleRemoveClick}>
+        Editar
+      </Button>
+      <Button type="primary" onClick={handleRemoveClick}>
+        Excluir
+      </Button>
+
+      {isRemoveExerciseVisible && (
+        <RemoveExercise onHideRemoveExercise={handleCloseRemoveExercise} />
+      )}
+    </div>
   );
 };
-export default CrudWokoutCard;
+
+export default CrudWorkoutCard;

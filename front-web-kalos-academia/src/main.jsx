@@ -20,6 +20,8 @@ import { CreateWorkouts } from './pages/CreateWorkouts/CreateWorkouts.jsx'
 import  GaleryWorkouts  from './pages/GaleryWokouts.jsx/GaleryWorkouts.jsx'
 import { AboutStudent } from './pages/AboutStudent/AboutStudent.jsx'
 import { AddNewStudentPage } from './pages/AddNewStudentPage/AddNewStudentPage.jsx'
+import { AddExerciseRepetsSets } from './pages/AddExerciseReptsSets/AddExerciseReptsSets'
+
 
 const router = createBrowserRouter([
   {
@@ -95,6 +97,10 @@ const router = createBrowserRouter([
         path: "/menu/posts",
         element: <PostsPage />
       },
+      {
+        path: "/menu/adicionar_exercicio",
+        element: <AddExerciseRepetsSets/>
+      }
     ]
 
   }
