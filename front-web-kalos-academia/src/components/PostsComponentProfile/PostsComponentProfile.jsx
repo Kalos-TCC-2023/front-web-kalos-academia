@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { CardPost } from '../CardPost/CardPost'
-import { Loader } from '../Loader/Loader'
 import './PostsComponentProfile.css'
 import axios from 'axios'
 import { Button } from 'antd'
+import { NoData } from '../NoData/NoData'
+import { Link } from 'react-router-dom'
 
 export const PostsComponentProfile = ({ color }) => {
 
@@ -29,7 +30,9 @@ export const PostsComponentProfile = ({ color }) => {
         <div className='posts_profile_component_page'>
             <div className="new_post_gym">
                 <p className='posts_title_gym' style={{ color: `${color}` }}>Posts</p>
-                <Button type="primary" className='create_workout'>Novo Post</Button>
+                <Link to='/menu/posts'>
+                    <Button type="primary" className='create_workout'>Novo Post</Button>
+                </Link>
             </div>
             {
                 postsGym.length == '' ? <NoData description='Ainda não existem posts na academia!' /> : (

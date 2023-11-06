@@ -1,0 +1,48 @@
+.post_page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+}
+.new_post_gym_page {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 35px;
+}
+
+.data_new_post_gym {
+  display: flex;
+  gap: 80px;
+}
+.post_data{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.description_new_post {
+  color: #666;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+}
+.description_post{
+    width: 386px;
+}
+.title_new_post {
+  display: flex;
+  flex-direction: column;
+}
+.data_new_post_gym button {
+  color: #ffffff !important;
+  background-color: #000000;
+  border-color: #000000;
+}
+.data_new_post_gym .ant-btn:hover {
+  background-color: #00fe90 !important;
+  border-color: #00fe90 !important;
+  color: #ffffff !important;
+}

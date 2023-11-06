@@ -41,7 +41,7 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
 
 
   useEffect(() => {
-    
+
     if (data == '') {
       axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idStudent}`)
         .then(({ data }) => {
