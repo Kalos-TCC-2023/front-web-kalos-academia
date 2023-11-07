@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Divider, Space, Input } from 'antd'
+import { Divider, Space, Input, message } from 'antd'
 import { LockOutlined } from '@ant-design/icons'
 import { Link, useNavigate } from 'react-router-dom'
 import { TextField } from '../../components/TextField/TextField'
@@ -19,8 +19,37 @@ export const LoginPage = () => {
     const [statusInput, setStatusInput] = useState('')
     const [forgotPassPage, setforgotPassPage] = useState(false)
     const [submitButton, setSubmitButton] = useState(false)
+    const [statusCode, setStatusCode] = useState(0)
     const toforgotPass = forgotPassPage ? '/esqueciSenha' : ''
     const navigate = useNavigate()
+
+    const [messageApi, contextHolder] = message.useMessage();
+
+
+    const error = () => {
+        messageApi.open({
+          type: 'error',
+          content: 'Verifique seu e-mail e senha novamente!',
+        });
+      };
+
+      const errorApi = () => {
+        messageApi.open({
+          type: 'error',
+          content: 'Parece que tivemos um erro inesperado, aguarde enquanto nossos desenvolvedores resolvem o problema!',
+        });
+      }
+
+      const loading = () => {
+        messageApi
+          .open({
+            type: 'loading',
+            content: 'Action in progress..',
+            duration: statusCode == 0,
+          })
+          
+      };
+
 
     const handleChange = (e) => {
         const { value } = e.target
@@ -40,12 +69,20 @@ export const LoginPage = () => {
             })
                 .then(({ data }) => {
                     console.log(data.academia.id)
+                    setStatusCode(200)
                     localStorage.setItem('id_academia', data.academia.id)
                     setSubmitButton(false)
                     navigate("/menu/home")
                     
                 }).catch((erro) => {
-                    console.log(erro)
+                    if(erro.response.status == 401){
+                        setSubmitButton(false)
+                        error()
+                    } else {   
+                        setSubmitButton(false) 
+                        errorApi()
+                    }
+                    
                 })
                 }
                 
@@ -72,6 +109,7 @@ export const LoginPage = () => {
                 <title>Login - Kalos</title>
             </Helmet>
             <div className="align_itens_container">
+            {contextHolder}
                 <div className="login_container">
                     <Space className='logotipo_kalos' size={10}>
                         <img className='logo-kalos' src={logo_kalos} />
@@ -101,6 +139,7 @@ export const LoginPage = () => {
                         </div>
                         <div className="login_button_register">
                             <ButtonPrimary nameButton="Entrar" size='large' onClickFuction={(e) => {
+                                loading()
                                 setSubmitButton(true)
                                 }} />
                             <p>É uma academia e não possui uma conta?</p>
