@@ -3,6 +3,7 @@ import { Modal } from 'antd';
 import ButtonDefaultKalos from '../Button/ButtonDefaultKalos';
 import './RemoveExercise.css';
 import PropTypes from 'prop-types';
+import { removeExercise } from '../../pages/GaleryWokouts.jsx/api/apiRemoveExercise';
 
 export default class
     RemoveExercise extends Component {
@@ -21,6 +22,22 @@ export default class
         }
     };
 
+    handleRemoveExercise = () => {
+        const exerciseId = localStorage.getItem("idExercicio");
+      
+        removeExercise(exerciseId)
+          .then((data) => {
+            console.log('Exercício Removido com sucesso:', data);
+            if (this.props.onHideRemoveExercise) {
+              this.props.onHideRemoveExercise();
+              window.location.reload();
+            }
+          })
+          .catch((error) => {
+            console.error('Erro ao remover exercício:', error);
+          });
+      }
+      
     render() {
         return (
             <Modal
@@ -45,6 +62,8 @@ export default class
                             primaryColor="rgb(0, 254, 144, 1)"
                             secondaryColor="rgb(0, 254, 144, 1)"
                             className="buttonDefaultAddExercise"
+                            onClick={this.handleRemoveExercise} // Chama a função de edição ao clicar no botão "OK"
+
                         />
 
                         <ButtonDefaultKalos
