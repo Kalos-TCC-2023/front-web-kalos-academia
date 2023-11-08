@@ -140,7 +140,7 @@ export default class GaleryWokouts extends Component {
                   </div>
                   {exercises.map((exercise, index) => (
                     <div className='card-exercise' key={exercise.id}>
-                      {exercise.anexo === "anexo2.png" ? (
+                      {exercise.anexo === "" ? (
                         <img className='image-card-exercise' src={photoDefaultExercise} alt={exercise.nome} />
                       ) : (
                         <img className='image-card-exercise' src={exercise.anexo} alt={exercise.nome} />
@@ -150,6 +150,7 @@ export default class GaleryWokouts extends Component {
                         onClick={() => this.toggleCardVisibility(index)}
                       >
                         {selectedCard === index && (
+                          localStorage.setItem("idExercicio", exercise.id),
                           <CrudWokoutCardExercise  className="container-crud-workouts" />
                         )}
                         <div className='text-exercise-card'>
