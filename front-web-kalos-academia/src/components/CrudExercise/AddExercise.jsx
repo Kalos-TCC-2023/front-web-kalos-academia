@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 import ButtonDefaultKalos from '../Button/ButtonDefaultKalos';
 import './AddExercise.css';
 import PropTypes from 'prop-types';
-import { AddtExerciseApi } from '../../pages/GaleryWokouts.jsx/api/apiAddExercise';
+import { AddExerciseApi } from '../../pages/GaleryWokouts.jsx/api/apiAddExercise';
 
 export default class AddtExercise extends Component {
   static propTypes = {
@@ -39,13 +39,13 @@ export default class AddtExercise extends Component {
   handleAddExercise = () => {
     const { exerciseName, exerciseUrl, exerciseDescription } = this.state;
     const exerciseId = localStorage.getItem("idExercicio")
-    AddtExerciseApi(exerciseId, exerciseName, exerciseUrl, exerciseDescription)
+    AddExerciseApi(exerciseId, exerciseName, exerciseUrl, exerciseDescription)
     
       .then((data) => {
-        // if (this.props.onHideAddExercise) {
-        //   this.props.onHideAddExercise();
-        //   window.location.reload();
-        // }
+        if (this.props.onHideAddExercise) {
+          this.props.onHideAddExercise();
+          window.location.reload();
+        }
         const { nome, anexo, descricao } = data;
     
 

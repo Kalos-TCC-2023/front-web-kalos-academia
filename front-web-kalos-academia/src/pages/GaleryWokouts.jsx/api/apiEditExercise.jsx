@@ -20,7 +20,7 @@ export const EditExerciseName = (exerciseId, newName, newUrl, newDescription) =>
 
       // Em seguida, faça uma solicitação PUT para atualizar os dados na API
       return fetch(url, {
-        method: 'post', // Ou 'POST' dependendo da API
+        method: 'put', // Ou 'POST' dependendo da API
         headers: {
           'Content-Type': 'application/json',
         },

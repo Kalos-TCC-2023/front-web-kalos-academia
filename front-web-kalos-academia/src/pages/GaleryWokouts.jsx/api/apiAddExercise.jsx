@@ -1,44 +1,37 @@
-export const AddtExerciseApi = (exerciseId, newName, newUrl, newDescription) => {
-    const url = `https://kaloscorp.cyclic.app/kalos/exercicio`;
-    const id = localStorage.getItem("id_academia");
-  
-  
-    return fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Erro na solicitação de dados');
-        }
-        return response.json();
+export const AddExerciseApi = (exerciseId, newName, newUrl, newDescription) => {
+  // URL da API
+  const url = `https://kaloscorp.cyclic.app/kalos/exercicio`;
 
-      })
-      .then((exercicios) => {
-        console.log(exercicios);
-        exercicios.nome = newName;
-        exercicios.anexo = newUrl;
-        exercicios.descricao = newDescription;
-        exercicios.id_academia = id
-  
-        return fetch(url, {
-          method: 'post', // Ou 'POST' dependendo da API
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(exercicios),
-        });
+  // Obter o ID da academia a partir do armazenamento local
+  const id = localStorage.getItem("id_academia");
 
-      })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Erro na solicitação de criação de dados');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log('Exercício criação com sucesso:', data);
-        return data;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  // Definir os dados do exercício a ser adicionado
+  const exerciseData = {
+    nome: newName,
+    anexo: newUrl,
+    descricao: newDescription,
+    id_academia: id,
   };
-  
+
+  // Enviar a solicitação POST para a API
+  return fetch(url, {
+    method: 'POST', // Método HTTP POST para adicionar um exercício
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(exerciseData), // Converter o objeto para JSON
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Erro na solicitação de criação de dados');
+      }
+      return response.json(); // Analisar a resposta JSON
+    })
+    .then((data) => {
+      console.log('Exercício criado com sucesso:', data);
+      return data; // Retornar os dados do exercício criado
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
