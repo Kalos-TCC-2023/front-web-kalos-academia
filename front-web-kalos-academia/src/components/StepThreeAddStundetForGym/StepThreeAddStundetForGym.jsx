@@ -25,7 +25,6 @@ export const StepThreeAddStundetForGym = ({ updateFielHandler, idStudent }) => {
     }, [])
 
 
-
     return (
         <div className='add_wokouts_gym'>
             <CardStudentAdd idStudent={idStudent} />
@@ -39,6 +38,7 @@ export const StepThreeAddStundetForGym = ({ updateFielHandler, idStudent }) => {
                                     addWouktsForStudent.push(wokouts.id)
                                     console.log(wokouts.id)
                                     console.log(addWouktsForStudent)
+                                    updateFielHandler('treinos_aluno', addWouktsForStudent)
                                 }} key={wokouts.id} idWokouts={wokouts.id} nomeWokouts={wokouts.nome} categoriaWokouts={wokouts.nome_categoria_treino} dataWokouts={wokouts.data_criacao} imgWokouts={wokouts.foto} />
                             ))
                         )

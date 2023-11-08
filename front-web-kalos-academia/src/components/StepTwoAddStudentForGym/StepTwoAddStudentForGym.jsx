@@ -7,7 +7,7 @@ import { CardDataStudent } from '../CardDataStudent/CardDataStudent';
 import { Select, Input } from 'antd';
 const { TextArea } = Input;
 
-export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idStudent }) => {
+export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idStudent, setValidation }) => {
 
   const [ageStudentFormat, setAge] = useState('')
   const [data_de_nascimento_formart, setDate] = useState('')
@@ -23,22 +23,17 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
   const handleChangeSleepQuality = (value) => {
     setQualidadeSono(value)
     updateFielHandler('id_qualidade_sono', value)
-    console.log(`Qualidade de sono ${value}`);
   }
 
   const handleChangeExperienciaExercicios = (value) => {
     setExperienciaExercicios(value)
     updateFielHandler('id_nivel_experiencia', value)
-    console.log(`Experiencia com exercicios ${value}`);
   }
 
   const handleChangeFrenquenciaTreinos = (value) => {
     setFrequenciaTreinoSemanal(value)
     updateFielHandler('frequencia_treino_semanal', value)
-    console.log(data.id)
-    console.log(dataStundetGym);
   }
-
 
   useEffect(() => {
 
@@ -57,6 +52,7 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
           const ageStudentFormat = dataNascimentoNowFormat.replace('há', '').replace('anos', '')
           setAge(ageStudentFormat)
           setData(data.aluno)
+          updateFielHandler('id_aluno', idStudent)
 
         }).catch((err) => {
           console.log(err)
@@ -85,7 +81,12 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
         <div className="options_gym_one">
           <div className="frequencia_cardiaca_record">
             <span className='textNameForInput'>Frequência Cardíaca</span>
-            <Input addonAfter='bpm' value={frequenciaCardiaca} onChange={(e) => setFrequenciaCardiaca(e.target.value)} />
+            <Input addonAfter='bpm' value={frequenciaCardiaca} onChange={(e) => {
+              setFrequenciaCardiaca(e.target.value)
+              updateFielHandler('frequencia_cardiaca', e.target.value)
+            }
+              
+            } />
           </div>
           <div className="qualidade_sono">
             <span className='textNameForInput'>Qualidade de sono</span>
@@ -142,13 +143,18 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
             <span className='textNameForInput'>Rotina Regular</span>
             <Input style={{
               width: 204,
-            }} value={rotinaRegular} onChange={(e) => setRotinaRegular(e.target.value)} />
+            }} value={rotinaRegular} onChange={(e) => {
+              setRotinaRegular(e.target.value)
+              updateFielHandler('rotina_regular', e.target.value)
+            }
+            }  />
           </div>
           <div className="frequencia_cardiaca_record">
             <span className='textNameForInput'>Quantidade de tempo em pé</span>
             <Input style={{
               width: 204,
             }} value={quantidadeTempoPe} onChange={(e) => {
+              setQuantidadeTempoPe(e.target.value)
               updateFielHandler('tempo_em_pe', e.target.value)
               console.log(dataStundetGym)
             }} />
@@ -194,7 +200,7 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
             />
           </div>
         </div>
-        <div className="observation_student">
+        {/* <div className="observation_student">
           <div className="frequencia_cardiaca_record">
             <span className='textNameForInput'>Observações</span>
             <TextArea
@@ -210,7 +216,7 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
               }}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
