@@ -13,6 +13,8 @@ export const StudentsPage = () => {
   const [studentsGym, setStudentsGym] = useState([])
   const [allStudens, setAllStudents] = useState([])
   const [searchStudens, setSearchStudens] = useState('')
+  const [deleteState, setDeleteState] = useState(0)
+
 
   const onSearch = (value, _e, info) => {
     console.log(info?.source, value)
@@ -45,7 +47,7 @@ export const StudentsPage = () => {
       }).catch((erro) => {
         console.log(erro)
       })
-  }, [])
+  }, [deleteState])
 
 
   return (
@@ -90,7 +92,7 @@ export const StudentsPage = () => {
             
           {filteredStudens.length > 0 && (
             filteredStudens.map((student, index) => (
-              <UserAddStudents idStudent={student.id} key={index} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
+              <UserAddStudents setDeleteState={setDeleteState} idStudent={student.id} key={index} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
             ))
 
           )}

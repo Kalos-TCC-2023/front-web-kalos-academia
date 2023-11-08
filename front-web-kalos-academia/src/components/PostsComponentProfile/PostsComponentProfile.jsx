@@ -37,7 +37,7 @@ export const PostsComponentProfile = ({ color }) => {
             {
                 postsGym.length == '' ? <NoData description='Ainda não existem posts na academia!' /> : (
                     postsGym.map((posts) => (
-                        <CardPost key={posts.id} photo={posts.anexo} title={posts.titulo} description={posts.corpo} />
+                        <CardPost key={posts.id} photo={posts.anexo} title={posts.titulo} data={posts.data} time={posts.hora} description={posts.corpo} />
                     ))
                 )
             }
