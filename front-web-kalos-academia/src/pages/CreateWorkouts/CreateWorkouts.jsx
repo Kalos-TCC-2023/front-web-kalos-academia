@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import './CreateWorkouts.css';
 import arrowBack from './image/arrow-back-create-workout.png';
 import ButtonDefaultKalos from '../../components/Button/ButtonDefaultKalos';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import SelectDefaultKalos from '../../components/Select/Select';
 import workoutPhoto from './image/workoutgymTraine.jpeg'
 import { ArrowLeftOutlined  } from '@ant-design/icons'
@@ -15,14 +15,16 @@ export class CreateWorkouts extends Component {
 
 
   };
-
   handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     this.setState({ selectedFile });
   }
 
 
+
+
   render() {
+    
 
     const optionsCategoria = [
       { value: 'Boxe', label: 'Boxe' },
@@ -124,7 +126,9 @@ export class CreateWorkouts extends Component {
             </div>
             <div>
             <div className='btn-add-exercise'>
-                <p>ADICIONAR EXERCÍCIOS</p>
+              <Link to="/menu/adicionar_exercicio">
+                <p  className='add-exercise-btn'>ADICIONAR EXERCÍCIOS</p>
+                </Link>
               </div>
             </div>
 
