@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { Avatar, Modal } from 'antd'
+import { Avatar, Modal, message } from 'antd'
 import { CloseOutlined, IdcardOutlined, UserOutlined } from '@ant-design/icons';
 import './UserAddStudents.css'
 import axios from 'axios';
@@ -12,23 +12,39 @@ const config = {
     content: 'esse aluno será excluido permanentemente da sua academia.'
 }
 
-export const UserAddStudents = ({nameStudent, idStudentFormt, imgSrcStudent, idStudent}) => {
+export const UserAddStudents = ({ nameStudent, idStudentFormt, imgSrcStudent, idStudent, setDeleteState }) => {
 
     const [modal, contextHolder] = Modal.useModal()
     const [deleteStudent, setDeleteStudent] = useState('')
     const navigate = useNavigate()
+    const idAcademia = localStorage.getItem("id_academia")
 
     const aboutStudent = () => {
         localStorage.setItem('id_aluno', idStudent)
         const idAluno = localStorage.getItem('id_aluno')
         navigate("/menu/alunos/sobre_aluno")
-        
+
         console.log(idAluno)
     }
 
     useEffect(() => {
-        
+
     })
+
+    const deleteStudentForGym = (idStundet, idAcademia, confirm) => {
+        if (confirm == true) {
+            axios.delete(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAluno/${idStundet}/idAcademia/${idAcademia}`)
+                .then(({ data }) => {
+                    console.log(data)
+                    setDeleteState(idStudent)
+                }).catch(({ erro }) => {
+                    console.log(erro)
+                })
+        } else {
+            return
+        }
+
+    }
 
     return (
         <div className='user_add_card'>
@@ -46,7 +62,9 @@ export const UserAddStudents = ({nameStudent, idStudentFormt, imgSrcStudent, idS
                 )} className="information_student"><IdcardOutlined /></div>
                 <div onClick={async () => {
                     const confirmed = await modal.confirm(config);
-                    console.log('Confirmed: ', confirmed, idStudent);
+
+                    console.log('Confirmed: ', confirmed, idStudent)
+                    deleteStudentForGym(idStudent, idAcademia, confirmed)
                 }} className="delete_student"><CloseOutlined /></div>
             </div>
             {contextHolder}

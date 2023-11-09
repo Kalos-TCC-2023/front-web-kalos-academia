@@ -12,7 +12,7 @@ import { StepFinalAddStundetForGym } from '../../components/StepFinalAddStundetF
 import axios from 'axios'
 
 
-const id = localStorage.getItem("id_academia")
+const idAcademia = localStorage.getItem("id_academia")
 const idAluno = localStorage.getItem("id_novo_aluno_add")
 
 const addNewStudentTemplate = {
@@ -24,7 +24,7 @@ const addNewStudentTemplate = {
   tempo_em_pe: '',
   id_aluno: parseInt(idAluno),
   treinos_aluno: [],
-  id_academia: parseInt(id)
+  id_academia: parseInt(idAcademia)
 }
 
 export const AddNewStudentPage = ({ idStudent }) => {
@@ -71,10 +71,11 @@ export const AddNewStudentPage = ({ idStudent }) => {
         // enviar usuario para pagina de add novo estudante
       } else {
         axios.post(`https://kaloscorp.cyclic.app/kalos/alunoAcademia`, {
-          id_academia: id,
+          id_academia: idAcademia,
           id_aluno: idAluno
         })
           .then(({ data }) => {
+            console.log(data)
             updateAddStudent(data.status)
           }).catch(({ erro }) => {
             erroApi()
@@ -89,8 +90,8 @@ export const AddNewStudentPage = ({ idStudent }) => {
   }, [isLastStep])
 
   const updateAddStudent = (statusAdd) => {
-    if (statusAdd == 200) {
-      axios.update(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/id/${idAluno}`, {
+    if (statusAdd == 201) {
+      axios.put(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/id/${idAluno}`, {
         frequencia_cardiaca: dataNewStundetAdd.frequencia_cardiaca,
         tempo_em_pe: dataNewStundetAdd.tempo_em_pe,
         rotina_regular: dataNewStundetAdd.rotina_regular,
@@ -106,7 +107,7 @@ export const AddNewStudentPage = ({ idStudent }) => {
         console.log('erro do update', errorUpdate)
       })
     } else {
-
+      console.log('sem chance bro')
     }
   }
 

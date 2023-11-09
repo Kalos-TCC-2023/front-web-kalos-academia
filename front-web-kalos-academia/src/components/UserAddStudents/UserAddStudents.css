@@ -47,3 +47,9 @@
     background-color: #00FE90;
     cursor: pointer;
 }
+.ant-modal-body{
+    padding: 10px;
+    border-radius: 10px;
+    width: 500px !important;
+    background-color: #ffffff;
+}

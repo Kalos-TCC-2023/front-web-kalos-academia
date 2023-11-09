@@ -29,7 +29,7 @@ export const WorkoutsComponentProfile = ({ color }) => {
                 {
                     wokoutsInformations.length == 0 ? <NoData description='Academia não possui treinos ainda!' /> : (
                         wokoutsInformations.map((wokouts) => (
-                            <CardWokouts key={wokouts.id} idWokouts={wokouts.id} nomeWokouts={wokouts.nome} categoriaWokouts={wokouts.nome_categoria_treino} dataWokouts={wokouts.data_criacao} imgWokouts={wokouts.foto} />
+                            <CardWokouts key={wokouts.id} alunosWokouts={wokouts.alunos} idWokouts={wokouts.id} nomeWokouts={wokouts.nome} categoriaWokouts={wokouts.nome_categoria_treino} dataWokouts={wokouts.data_criacao} imgWokouts={wokouts.foto} />
                         ))
                     )
                 }
