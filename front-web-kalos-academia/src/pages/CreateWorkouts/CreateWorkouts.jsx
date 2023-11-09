@@ -7,6 +7,8 @@ import { Link, Navigate } from 'react-router-dom';
 import SelectDefaultKalos from '../../components/Select/Select';
 import workoutPhoto from './image/workoutgymTraine.jpeg'
 import { ArrowLeftOutlined  } from '@ant-design/icons'
+import { ArrowRightOutlined } from '@ant-design/icons'
+import { FloatButton } from 'antd'
 
 
 export class CreateWorkouts extends Component {
@@ -39,8 +41,12 @@ export class CreateWorkouts extends Component {
       { value: 'Experiente', label: 'Experiente' },
     ];
     return (
+      
       <div className='create-workouts'>
                 <div className='page-default'>
+                  <Link to='/menu/adicionar_exercicio'>
+                <FloatButton icon={<ArrowRightOutlined />} tooltip={<div>Avançar</div>} />
+                </Link>
 
         <Helmet>
           <title>Kalos - Criar Treinos</title>
@@ -167,3 +173,4 @@ export class CreateWorkouts extends Component {
     );
   }
 }
+
