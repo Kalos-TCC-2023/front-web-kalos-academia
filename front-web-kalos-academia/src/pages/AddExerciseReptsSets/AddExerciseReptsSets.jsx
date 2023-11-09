@@ -9,17 +9,44 @@ import workoutPhoto from './image/workoutgymTraine.jpeg';
 import { FloatButton } from 'antd'
 import { ArrowRightOutlined } from '@ant-design/icons'
 import { ArrowLeftOutlined } from '@ant-design/icons'
+import { AddWorkouts } from './Api/addExerciseReptsSetsApi';
 
 
 
 
 export class AddExerciseRepetsSets extends Component {
     state = {
-
+        workoutName: "", 
+        workouTPhoto: "",
+         workoutDescrpiton: "",
+          workoutDate:""
 
     };
 
+    handleAddWorkout = () => {
+        const { workoutName, workouTPhoto, workoutDescrpiton, workoutDate } = this.state;
+        AddWorkouts(workoutName, workouTPhoto, workoutDescrpiton, workoutDate)
+        
+          .then((data) => {
+         
+            const { nome, foto, descricao,  data_criacao} = data;
+        
+    
+    
+            this.setState({
+                workoutName: nome,
+                workouTPhoto: foto,
+                workoutDescrpiton: descricao,
+                workoutDate: data_criacao
 
+            });
+          
+    
+          })
+          .catch((error) => {
+            console.error('Erro ao adicionar exercício:', error);
+          });
+      };
 
 
     render() {
@@ -79,7 +106,7 @@ export class AddExerciseRepetsSets extends Component {
                     <div className='page-default-add-exercise-repts-sets'>
                         <div className='content-header'>
                             <h1>Treinos</h1>
-                            <Link to='/menu/treinos'> <ArrowLeftOutlined /> </ Link>
+                            <Link to='/menu/criarTreinos'> <ArrowLeftOutlined /> </ Link>
                         </div>
                     </div>
 
