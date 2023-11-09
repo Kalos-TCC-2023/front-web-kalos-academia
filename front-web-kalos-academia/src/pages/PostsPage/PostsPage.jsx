@@ -4,6 +4,7 @@ import './PostsPage.css'
 import { Breadcrumb, Button, Input } from 'antd'
 import { Link } from 'react-router-dom'
 const { TextArea } = Input;
+import { CardPostPreview } from '../../components/CardPostPreview/CardPostPreview'
 
 export const PostsPage = () => {
 
@@ -64,7 +65,7 @@ export const PostsPage = () => {
 
           </div>
           <div className="post_preview">
-
+              <CardPostPreview tituloPostPreview={titlePost} bodyPostPreview={bodyPost} />
           </div>
         </div>
       </div>

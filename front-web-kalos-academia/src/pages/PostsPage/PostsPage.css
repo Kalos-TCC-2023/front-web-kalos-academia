@@ -16,6 +16,7 @@
 .data_new_post_gym {
   display: flex;
   gap: 80px;
+  align-items: center;
 }
 .post_data{
     display: flex;
