@@ -39,7 +39,7 @@ export const StepThreeAddStundetForGym = ({ updateFielHandler, idStudent }) => {
                                     console.log(wokouts.id)
                                     console.log(addWouktsForStudent)
                                     updateFielHandler('treinos_aluno', addWouktsForStudent)
-                                }} key={wokouts.id} idWokouts={wokouts.id} nomeWokouts={wokouts.nome} categoriaWokouts={wokouts.nome_categoria_treino} dataWokouts={wokouts.data_criacao} imgWokouts={wokouts.foto} />
+                                }} key={wokouts.id} alunosWokouts={wokouts.alunos} idWokouts={wokouts.id} nomeWokouts={wokouts.nome} categoriaWokouts={wokouts.nome_categoria_treino} dataWokouts={wokouts.data_criacao} imgWokouts={wokouts.foto} />
                             ))
                         )
                     }

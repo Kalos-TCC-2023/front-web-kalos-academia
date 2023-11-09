@@ -12,10 +12,9 @@ const config = {
     content: 'esse aluno será excluido permanentemente da sua academia.'
 }
 
-export const UserAddStudents = ({ nameStudent, idStudentFormt, imgSrcStudent, idStudent, setDeleteState }) => {
+export const UserAddStudents = ({ nameStudent, idStudentFormt, imgSrcStudent, idStudent, setDeletePost }) => {
 
     const [modal, contextHolder] = Modal.useModal()
-    const [deleteStudent, setDeleteStudent] = useState('')
     const navigate = useNavigate()
     const idAcademia = localStorage.getItem("id_academia")
 
@@ -27,16 +26,12 @@ export const UserAddStudents = ({ nameStudent, idStudentFormt, imgSrcStudent, id
         console.log(idAluno)
     }
 
-    useEffect(() => {
-
-    })
-
     const deleteStudentForGym = (idStundet, idAcademia, confirm) => {
         if (confirm == true) {
             axios.delete(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAluno/${idStundet}/idAcademia/${idAcademia}`)
                 .then(({ data }) => {
                     console.log(data)
-                    setDeleteState(idStudent)
+                    setDeletePost(idStudent)
                 }).catch(({ erro }) => {
                     console.log(erro)
                 })

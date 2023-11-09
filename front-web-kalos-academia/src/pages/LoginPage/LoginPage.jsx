@@ -44,7 +44,7 @@ export const LoginPage = () => {
         messageApi
           .open({
             type: 'loading',
-            content: 'Action in progress..',
+            content: 'Carregando seus dados',
             duration: statusCode == 0,
           })
           
