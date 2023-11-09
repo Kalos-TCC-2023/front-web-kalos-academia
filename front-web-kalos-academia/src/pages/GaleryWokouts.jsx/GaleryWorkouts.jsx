@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import ButtonDefaultKalos from '../../components/Button/ButtonDefaultKalos';
 import { Link } from 'react-router-dom';
-import arrowBack from './image/arrow-back-create-workout.png';
 import { Input } from 'antd';
 import './GaleryWorkouts.css';
 import emptyGaleryPhoto from './image/galerykalos.svg';
@@ -13,7 +12,7 @@ import AddExercise from '../../components/CrudExercise/AddExercise';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { ShowAllExercises } from './api/apiShowAllExercises';
 import CrudWokoutCardExercise from './componentGaleryWorkout/CrudWorkoutCardExercise';
-
+import { Loader } from '../../components/Loader/Loader';
 export default class GaleryWokouts extends Component {
   state = {
     selectedFile: null,
@@ -22,6 +21,7 @@ export default class GaleryWokouts extends Component {
     showEditExercise: false,
     exercises: [],
     selectedCard: null,
+    loading: true,
   };
 
   handleShowAddExercise = () => {
@@ -32,10 +32,6 @@ export default class GaleryWokouts extends Component {
     this.setState({ showAddExercise: false });
   };
 
-  handleShowExercise = () =>{
-    this.setState({showEditExercise: true});
-  }
-
   toggleCardVisibility = (index) => {
     this.setState({ selectedCard: index });
   };
@@ -44,15 +40,17 @@ export default class GaleryWokouts extends Component {
     ShowAllExercises()
       .then((data) => {
         const exercisesApi = data.exercicios;
-        this.setState({ exercises: exercisesApi });
+        this.setState({ exercises: exercisesApi, loading: false });
       })
       .catch((error) => {
         console.error('Ocorreu um erro ao carregar os dados:', error);
+        this.setState({ loading: false });
       });
   }
 
   render() {
-    const { exercises, selectedCard } = this.state;
+    const { exercises, selectedCard, loading } = this.state;
+
     return (
       <div className='galery-workouts'>
         <div className='page-default'>
@@ -108,60 +106,62 @@ export default class GaleryWokouts extends Component {
                 </Link>
               </div>
             </div>
-            <div>
-              {exercises.length === 0 ? (
-                <div className='container-cards-galery-workouts-empty'>
-                  <div className='container-exercise-empty'>
-                    <img src={emptyGaleryPhoto} alt="empty photo" />
-                    <p className='title-empty-galeryworkouts'>GALERIA VÁZIA...</p>
-                    <div className='text-empty-galeryworkouts'>
-                      Para anexar mídia a seus treinos faça upload de imagens e vídeos que ajudem os alunos a treinar!
-                    </div>
-                    {this.state.showAddExercise ? (
-                      <AddExercise onHideAddExercise={this.handleHideAddExercise} />
-                    ) : (
-                      <div className='btn-upload-make' onClick={this.handleShowAddExercise}>
-                        FAZER UPLOAD
-                      </div>
-                    )}
-                  </div>
-                </div>
+            <div className='container-exercises-galery-workouts'>
+              {loading ? (
+                <Loader />
               ) : (
-                <div className='container-exercises-all'>
-                  <div className='add-exercise'>
-
-                  {this.state.showAddExercise ? (
-                      <AddExercise onHideAddExercise={this.handleHideAddExercise} />
-                    ) : (
-                      <div className='more-exercise' onClick={this.handleShowAddExercise}>
-                        <p>+</p>
+                exercises.length === 0 ? (
+                  <div className='container-cards-galery-workouts-empty'>
+                    <div className='container-exercise-empty'>
+                      <img src={emptyGaleryPhoto} alt="empty photo" />
+                      <p className='title-empty-galeryworkouts'>GALERIA VÁZIA...</p>
+                      <div className='text-empty-galeryworkouts'>
+                        Para anexar mídia a seus treinos faça upload de imagens e vídeos que ajudem os alunos a treinar!
                       </div>
-                    )}
-                  </div>
-                  {exercises.map((exercise, index) => (
-                    <div className='card-exercise' key={exercise.id}>
-                      {exercise.anexo === "anexo2.png" ? (
-                        <img className='image-card-exercise' src={photoDefaultExercise} alt={exercise.nome} />
+                      {this.state.showAddExercise ? (
+                        <AddExercise onHideAddExercise={this.handleHideAddExercise} />
                       ) : (
-                        <img className='image-card-exercise' src={exercise.anexo} alt={exercise.nome} />
-                      )}
-                      <div
-                        className={`change-card ${selectedCard === index ? 'visible' : ''}`}
-                        onClick={() => this.toggleCardVisibility(index)}
-                      >
-                        {selectedCard === index && (
-                          <CrudWokoutCardExercise  className="container-crud-workouts" />
-                        )}
-                        <div className='text-exercise-card'>
-                          <p className='name-exercise-card'>{exercise.nome}</p>
-                          <p className='description-exercise-card'>{exercise.descricao}</p>
+                        <div className='btn-upload-make' onClick={this.handleShowAddExercise}>
+                          FAZER UPLOAD
                         </div>
-
-                      </div>
-
+                      )}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ) : (
+                  <div className='container-exercises-all'>
+                    <div className='add-exercise'>
+                      {this.state.showAddExercise ? (
+                        <AddExercise onHideAddExercise={this.handleHideAddExercise} />
+                      ) : (
+                        <div className='more-exercise' onClick={this.handleShowAddExercise}>
+                          <p>+</p>
+                        </div>
+                      )}
+                    </div>
+                    {exercises.map((exercise, index) => (
+                      <div className='card-exercise' key={exercise.id}>
+                        {exercise.anexo === "" ? (
+                          <img className='image-card-exercise' src={photoDefaultExercise} alt={exercise.nome} />
+                        ) : (
+                          <img className='image-card-exercise' src={exercise.anexo} alt={exercise.nome} />
+                        )}
+                        <div
+                          className={`change-card ${selectedCard === index ? 'visible' : ''}`}
+                          onClick={() => this.toggleCardVisibility(index)}
+                        >
+                          {selectedCard === index && (
+                            localStorage.setItem("idExercicio", exercise.id),
+                            <CrudWokoutCardExercise className="container-crud-workouts" />
+                          )}
+                          <div className='text-exercise-card'>
+                            <p className='name-exercise-card'>{exercise.nome}</p>
+                            <p className='description-exercise-card'>{exercise.descricao}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )
               )}
             </div>
           </div>

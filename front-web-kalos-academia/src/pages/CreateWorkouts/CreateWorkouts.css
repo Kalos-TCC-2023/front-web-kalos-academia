@@ -200,3 +200,11 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+.add-exercise-btn{
+    color: white;
+    text-decoration: none;
+    
+}
+a{
+    text-decoration: none;
+}

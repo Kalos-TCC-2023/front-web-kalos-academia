@@ -11,6 +11,7 @@ import CrudWorkoutCard from './componentsWorkoutPage/CrudWorkoutsCard';
 import { loadAllWorkouts } from './Api/ApiWorkoutatagym';
 import { loadRegistererStudents } from './Api/ApiShowRegistered';
 import { SearchWorkout } from './Api/ApiSearchWorkout';
+import { Loader } from '../../components/Loader/Loader';
 
 class Workoutspage extends Component {
   state = {
@@ -47,12 +48,14 @@ class Workoutspage extends Component {
         console.error('Ocorreu um erro ao carregar os dados:', error);
       });
   }
-  handleShowRemoveWorkout = ()=>{
-    this.setState({showRemoveWorkout: true})
-  }
-  handleHiddenRemoveWorkout = ()=>{
-    this.setState({showRemoveWorkout: false})
-  }
+
+  handleShowRemoveWorkout = () => {
+    this.setState({ showRemoveWorkout: true });
+  };
+
+  handleHiddenRemoveWorkout = () => {
+    this.setState({ showRemoveWorkout: false });
+  };
 
   handleSearch = (value) => {
     SearchWorkout(value)
@@ -73,9 +76,8 @@ class Workoutspage extends Component {
       { value: 'Crossfit', label: 'Crossfit' },
     ];
 
-    const { informacoes, alunosMatriculados, selectedCard, searchInput, searchResults ,} = this.state;
+    const { informacoes, alunosMatriculados, selectedCard, searchInput, searchResults } = this.state;
 
-    
     return (
       <div className='workouts_page'>
         <div className='page-default'>
@@ -98,7 +100,7 @@ class Workoutspage extends Component {
                 <Input.Search
                   className='search_header-workout search_header'
                   placeholder="Buscar treinos..."
-                  onChange={e => this.setState({searchInput: e.target.value})}
+                  onChange={(e) => this.setState({ searchInput: e.target.value })}
                   onSearch={this.handleSearch}
                   value={searchInput}
                   size='large'
@@ -140,15 +142,51 @@ class Workoutspage extends Component {
           </div>
 
           <div className='container-galery-workouts'>
-            {searchResults.length > 0
-              ? searchResults.map((workout, index) => {
+            {searchResults.length > 0 ? (
+              searchResults.map((workout, index) => {
+                return (
+                  <div className="card-workouts" key={index}>
+                    <div
+                      className={`change-card ${selectedCard === index ? 'visible' : ''}`}
+                      onClick={() => this.toggleCardVisibility(index)}
+                    >
+                      {selectedCard === index && (
+                        <CrudWorkoutCard className="container-crud-workouts" />
+                      )}
+                    </div>
+                    {workout.foto !== "a" ? (
+                      <img className='img-card-workouts' src={workout.foto} alt={workout.nome} />
+                    ) : (
+                      <img className='img-card-workouts' src={workoutPhoto} alt="Imagem Padrão" />
+                    )}
+                    <div className='workout-name'>{workout.nome}</div>
+                    <div className='workout-category-name'>{workout.nome_categoria_treino}</div>
+                    <div className='container-data-user'>
+                      <div className='workout-data'>
+                        <img className="img-calendar-workout" src={calendar} alt="" />
+                        <p className='p-workout-data'>{workout.data_criacao}</p>
+                      </div>
+                      <div className='user-workouts'>
+                        {alunosMatriculados.slice(0, 5).map((matriculados, matriculadoIndex) => (
+                          <img key={matriculadoIndex} src={matriculados.foto} className='userCard' alt="" />
+                        ))}
+                        <p className='userCard'>{alunosMatriculados.length}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              informacoes.length === 0 ? (
+                <Loader />
+              ) : (
+                informacoes.map((workout, index) => {
                   return (
                     <div className="card-workouts" key={index}>
                       <div
                         className={`change-card ${selectedCard === index ? 'visible' : ''}`}
                         onClick={() => this.toggleCardVisibility(index)}
                       >
-                          
                         {selectedCard === index && (
                           <CrudWorkoutCard className="container-crud-workouts" />
                         )}
@@ -175,39 +213,8 @@ class Workoutspage extends Component {
                     </div>
                   );
                 })
-              : informacoes.map((workout, index) => {
-                  return (
-                    <div className="card-workouts" key={index}>
-                      <div
-                        className={`change-card ${selectedCard === index ? 'visible' : ''}`}
-                        onClick={() => this.toggleCardVisibility(index)}
-                      >
-                        {selectedCard === index && (
-                          <CrudWorkoutCard className="container-crud-workouts" />
-                        )}
-                      </div>
-                      {workout.foto !== "a" ? (
-                        <img className='img-card-workouts' src={workout.foto} alt={workout.nome} />
-                      ) : (
-                        <img className='img-card-workouts' src={workoutPhoto} alt="Imagem Padrão" />
-                      )}
-                      <div className='workout-name'>{workout.nome}</div>
-                      <div className='workout-category-name'>{workout.nome_categoria_treino}</div>
-                      <div className='container-data-user'>
-                        <div className='workout-data'>
-                          <img className="img-calendar-workout" src={calendar} alt="" />
-                          <p className='p-workout-data'>{workout.data_criacao}</p>
-                        </div>
-                        <div className='user-workouts'>
-                          {alunosMatriculados.slice(0, 5).map((matriculados, matriculadoIndex) => (
-                            <img key={matriculadoIndex} src={matriculados.foto} className='userCard' alt="" />
-                          ))}
-                          <p className='userCard'>{alunosMatriculados.length}</p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+              )
+            )}
           </div>
         </div>
       </div>
