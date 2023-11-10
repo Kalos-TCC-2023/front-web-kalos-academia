@@ -16,9 +16,9 @@ export const RecordCardStudent = ({ data, dataNascimentoFormat }) => {
                 <CardDataStudent title='Medicamentos atuais' text={data.questao_medicamento} />
             </div>
             <div className="table_data_three">
-                <CardDataStudent title='Frequência Cardíaca' text='-' />
-                <CardDataStudent title='Qualidade de Sono' text='-' />
-                <CardDataStudent title='Experiencia com exercícios' text='-' />
+                <CardDataStudent title='Frequência Cardíaca' text={data.frequencia_cardiaca} />
+                <CardDataStudent title='Qualidade de Sono' text={data.id_qualidade_do_sono} />
+                <CardDataStudent title='Experiencia com exercícios' text={data.id_nivel_experiencia} />
             </div>
         </div>
     )

@@ -5,6 +5,7 @@ import { Breadcrumb, Button, Input } from 'antd'
 import { Link } from 'react-router-dom'
 const { TextArea } = Input;
 import { CardPostPreview } from '../../components/CardPostPreview/CardPostPreview'
+import { UploadImgGym } from '../../components/UploadImgGym/UploadImgGym'
 
 export const PostsPage = () => {
 
@@ -60,7 +61,15 @@ export const PostsPage = () => {
                 maxRows: 10,
               }}
             />
+            
           </div>
+
+          <div className="title_new_post">
+            <span className='textNameForInput'>Capa do post</span>
+            <UploadImgGym />
+            
+          </div>
+
             <Button type="primary" className='create_post'>Postar</Button>
 
           </div>

@@ -30,6 +30,8 @@ const addNewStudentTemplate = {
 export const AddNewStudentPage = ({ idStudent }) => {
 
   const id = localStorage.getItem("id_novo_aluno_add")
+  const idAcademiaGym = localStorage.getItem("id_academia")
+
   const [idAddStundet, setIdAddStundet] = useState(id)
 
   const [validation, setValidation] = useState(true)
@@ -52,6 +54,13 @@ export const AddNewStudentPage = ({ idStudent }) => {
     })
   }
 
+  const sucess = () => {
+    messageApi.open({
+      type: 'sucess',
+      content: 'Aluno adicionado com sucesso!',
+    })
+  }
+
   const erroApi = () => {
     messageApi.open({
       type: 'error',
@@ -64,34 +73,41 @@ export const AddNewStudentPage = ({ idStudent }) => {
 
   useEffect(() => {
     if (isLastStep == true) {
+      console.log(idAluno)
       if (dataNewStundetAdd.frequencia_cardiaca == '' || dataNewStundetAdd.frequencia_treino_semanal == '' || dataNewStundetAdd.id_academia == ''
         || dataNewStundetAdd.id_aluno == '' || dataNewStundetAdd.id_nivel_experiencia == '' || dataNewStundetAdd.id_qualidade_sono == '' || dataNewStundetAdd.rotina_regular == ''
         || dataNewStundetAdd.tempo_em_pe == '' || dataNewStundetAdd.treinos_aluno == []) {
         warning()
-        // enviar usuario para pagina de add novo estudante
       } else {
-        axios.post(`https://kaloscorp.cyclic.app/kalos/alunoAcademia`, {
-          id_academia: idAcademia,
-          id_aluno: idAluno
-        })
-          .then(({ data }) => {
-            console.log(data)
-            updateAddStudent(data.status)
-          }).catch(({ erro }) => {
-            erroApi()
-            console.log(erro)
-          })
+       addAluno(idAcademiaGym, id)
       }
-
     } else {
       return
     }
 
   }, [isLastStep])
 
-  const updateAddStudent = (statusAdd) => {
-    if (statusAdd == 201) {
-      axios.put(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/id/${idAluno}`, {
+  const addAluno = (idGym, idStudent) => {
+    axios.post(`https://kaloscorp.cyclic.app/kalos/alunoAcademia`, {
+      id_academia: idGym,
+      id_aluno: idStudent
+    })
+      .then(({ data }) => {
+        console.log(data.status)
+        setStatusCode(data.status)
+        updateAddStudent()
+      }).catch(({ erro }) => {
+        erroApi()
+        localStorage.removeItem('id_novo_aluno_add')
+        console.log(erro)
+        console.log(idAcademia)
+        console.log(idAluno)
+      })
+  }
+
+  const updateAddStudent = () => {
+    
+      axios.put(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/id/${id}`, {
         frequencia_cardiaca: dataNewStundetAdd.frequencia_cardiaca,
         tempo_em_pe: dataNewStundetAdd.tempo_em_pe,
         rotina_regular: dataNewStundetAdd.rotina_regular,
@@ -101,14 +117,19 @@ export const AddNewStudentPage = ({ idStudent }) => {
         id_aluno: dataNewStundetAdd.id_aluno,
         id_academia: dataNewStundetAdd.id_academia
       }).then(({ data }) => {
+        localStorage.removeItem('id_novo_aluno_add')
         console.log(data)
+        sucess()
       }).catch(({ errorUpdate }) => {
         erroApi()
-        console.log('erro do update', errorUpdate)
+        console.log(errorUpdate)
+        localStorage.removeItem('id_novo_aluno_add')
       })
-    } else {
-      console.log('sem chance bro')
-    }
+   
+  }
+
+  const addStudentWokouts = () => {
+
   }
 
   console.log(isLastStep)
