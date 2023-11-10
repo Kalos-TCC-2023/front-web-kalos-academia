@@ -1,11 +1,9 @@
 import React from 'react';
 import { Select, Space } from 'antd';
 
-const handleChange = (value) => {
-  console.log(`selected ${value}`);
-};
 
-const SelectDefaultKalos = ({ defaultValue, options, width, height }) => (
+
+const SelectDefaultKalos = ({ defaultValue, options, width, height, handleChange }) => (
   <Space wrap>
     <Select
       defaultValue={defaultValue}

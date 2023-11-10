@@ -88,13 +88,13 @@ class Workoutspage extends Component {
             <p>{"Treinos"}</p>
             <div className='selects-exercises'>
               <div className='selects'>
-                <SelectDefaultKalos
+                {/* <SelectDefaultKalos
                   defaultValue="Filtrar Categoria"
                   options={optionsCategoria}
                   className="selectDefault"
                   width={"200px"}
                   height={"40px"}
-                />
+                /> */}
               </div>
               <div className='search'>
                 <Input.Search
