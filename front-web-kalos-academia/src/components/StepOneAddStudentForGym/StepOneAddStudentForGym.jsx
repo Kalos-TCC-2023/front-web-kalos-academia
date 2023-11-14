@@ -3,6 +3,7 @@ import { Avatar } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import './StepOneAddStudentForGym.css'
 import axios from 'axios'
+import { Loader } from '../Loader/Loader'
 
 export const StepOneAddStudentForGym = ({ idStudent, updateFielHandler }) => {
 
@@ -12,7 +13,7 @@ export const StepOneAddStudentForGym = ({ idStudent, updateFielHandler }) => {
 
         axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idStudent}`)
             .then(({ data }) => {
-                console.log(data)
+                console.log(data.aluno)
                 setDataOfStudent(data.aluno)
             })
 
@@ -20,6 +21,7 @@ export const StepOneAddStudentForGym = ({ idStudent, updateFielHandler }) => {
 
     return (
         <div className="step_one">
+            { dataOfStudent == '' ? <Loader /> : (
             <div className='step_one_add_student_gym'>
                 <Avatar src={dataOfStudent.foto} size={304} icon={<UserOutlined />} />
                 <div className="name_token">
@@ -28,6 +30,7 @@ export const StepOneAddStudentForGym = ({ idStudent, updateFielHandler }) => {
                 </div>
                 <p>Perfeito! Vamos cuidar disso, apenas precisamos que responda algumas perguntas sobre seu aluno.</p>
             </div>
+             ) }
         </div>
 
     )

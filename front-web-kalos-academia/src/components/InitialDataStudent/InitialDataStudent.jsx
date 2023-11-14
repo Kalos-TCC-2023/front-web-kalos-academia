@@ -64,7 +64,7 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
                                     <Link className='about_student_initial_data_gym' to=''>
                                         <Button shape='circle'>SOBRE O ALUNO</Button>
                                     </Link>
-                                    <Link className='idit_student_gym' to=''>
+                                    <Link className='idit_student_gym' to='/menu/alunos/sobre_aluno/editar_aluno'>
                                         <Button shape='circle'>EDITAR ALUNO</Button>
                                     </Link>
                                 </div>
@@ -102,7 +102,7 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
                         <RecordCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} />
                         <div className='wokouts_student_gym'>
 
-                            <PreviewCardWokouts nomeTreino={testeNomeTreino} dataTreino={testeDataTreino} categoriaTreino={testeCategoriaTreino} foto={testeCapaTreino} />
+                            {/* <PreviewCardWokouts nomeTreino={testeNomeTreino} dataTreino={testeDataTreino} categoriaTreino={testeCategoriaTreino} foto={testeCapaTreino} />
                             <Input size='default size' value={testeNomeTreino} onChange={(e) => {
                                 setTeste(e.target.value)
                             }} />
@@ -111,7 +111,7 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
                             }} />
                             <Input size='default size' value={testeDataTreino} onChange={(e) => {
                                 setTesteDataTreino(e.target.value)
-                            }} />
+                            }} /> */}
                         </div>
                     </div>
 

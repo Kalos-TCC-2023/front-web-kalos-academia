@@ -27,24 +27,31 @@ export const StepThreeAddStundetForGym = ({ updateFielHandler, idStudent }) => {
 
     return (
         <div className='add_wokouts_gym'>
-            <CardStudentAdd idStudent={idStudent} />
-            <div className="add_wokouts_stundet">
-                <span className='title_record_student_wourkt'>ADICIONAR TREINOS</span>
-                <div className="wokouts_gym">
-                    {
-                        wokoutsInformations.length == 0 ? <Loader /> : (
-                            wokoutsInformations.map((wokouts) => (
-                                <CardWokouts onClickFunction={(e) => {
-                                    addWouktsForStudent.push(wokouts.id)
-                                    console.log(wokouts.id)
-                                    console.log(addWouktsForStudent)
-                                    updateFielHandler('treinos_aluno', addWouktsForStudent)
-                                }} key={wokouts.id} alunosWokouts={wokouts.alunos} idWokouts={wokouts.id} nomeWokouts={wokouts.nome} categoriaWokouts={wokouts.nome_categoria_treino} dataWokouts={wokouts.data_criacao} imgWokouts={wokouts.foto} />
-                            ))
-                        )
-                    }
+
+            {wokoutsInformations == '' ? <Loader /> : (
+                <div>
+                    <CardStudentAdd idStudent={idStudent} />
+                    <div className="add_wokouts_stundet">
+                        <span className='title_record_student_wourkt'>ADICIONAR TREINOS</span>
+                        <div className="wokouts_gym">
+                            {
+                                wokoutsInformations.length == 0 ? <Loader /> : (
+                                    wokoutsInformations.map((wokouts) => (
+                                        <CardWokouts onClickFunction={(e) => {
+                                            addWouktsForStudent.push(wokouts.id)
+                                            console.log(wokouts.id)
+                                            console.log(addWouktsForStudent)
+                                            updateFielHandler('treinos_aluno', addWouktsForStudent)
+                                        }} key={wokouts.id} alunosWokouts={wokouts.alunos} idWokouts={wokouts.id} nomeWokouts={wokouts.nome} categoriaWokouts={wokouts.nome_categoria_treino} dataWokouts={wokouts.data_criacao} imgWokouts={wokouts.foto} />
+                                    ))
+                                )
+                            }
+                        </div>
+                    </div>
                 </div>
-            </div>
+            )}
+
+
         </div>
     )
 }

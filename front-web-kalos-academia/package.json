@@ -15,7 +15,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "animate.css": "^4.1.1",
     "antd": "^5.10.3",
-    "axios": "^1.5.0",
+    "axios": "^1.6.1",
     "confetti-js": "^0.0.18",
     "firebase": "^10.4.0",
     "history": "^5.3.0",
@@ -27,7 +27,8 @@
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.18.0",
-    "recharts": "^2.9.0"
+    "recharts": "^2.9.0",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.22.15",

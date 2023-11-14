@@ -1,0 +1,18 @@
+.upload_img{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.submitButton_gym{
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+ 
+.submitButton_gym:hover, .submitButton_gym:hover{
+    background-color: #00fe90;
+    border-color: #00fe90;
+} 

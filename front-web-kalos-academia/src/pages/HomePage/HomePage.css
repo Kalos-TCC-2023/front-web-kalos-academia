@@ -131,7 +131,6 @@
   padding-right: 22px;
   display: grid;
   place-items: center;
-  
 }
 .products {
   width: 28vw;
@@ -171,7 +170,7 @@
   border-radius: 100px;
   display: flex;
   align-items: center;
-  color: #FFF;
+  color: #fff;
   font-family: Montserrat;
   font-size: 20px;
   font-style: normal;
@@ -182,7 +181,7 @@
   width: 225px;
   height: 98px;
   border-radius: 500px;
-  background: #00FE90;
+  background: #00fe90;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -192,7 +191,7 @@
   font-size: 25px;
   font-weight: 600;
 }
-.total_description{
+.total_description {
   color: #000;
   font-family: Montserrat;
   font-size: 15px;
@@ -210,7 +209,7 @@
   }
   .new_students_dahsboard {
     width: 40vw;
-    height: 790px;
+    height: 990px;
   }
   .recent_students {
     width: 22vw;
@@ -218,10 +217,13 @@
   }
   .products {
     width: 40vw;
-    height: 144px;
+    height: 350px;
   }
   .weights {
     width: 40vw;
     height: 244px;
+  }
+  .extras_items {
+    gap: 5rem;
   }
 }

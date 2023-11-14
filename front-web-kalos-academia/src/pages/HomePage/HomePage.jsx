@@ -13,6 +13,7 @@ import './HomePage.css'
 import { Loader } from '../../components/Loader/Loader';
 import ChartsNewStudents from '../../components/DashboardNewStudents/ChartsNewStudents';
 import { DashboardProductReservation } from '../../components/DashboardProductReservation/DashboardProductReservation';
+import { Link } from 'react-router-dom'
 
 
 export const HomePage = () => {
@@ -31,7 +32,7 @@ export const HomePage = () => {
     useEffect(() => {
         axios.get(`https://kaloscorp.cyclic.app/kalos/ultimosAlunos/idAcademia/51`)
             .then(({ data }) => {
-                
+
                 setLastStudents(data.ultimos_alunos)
             }).catch((erro) => {
                 console.log(erro)
@@ -103,7 +104,9 @@ export const HomePage = () => {
                                 </span>
                                 < ChartsNewStudents />
                                 {/* <NoData description='Ainda não existem dados de novos estudantes' /> */}
-                                <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR TODOS OS ALUNOS' />
+                                <Link to='/menu/alunos'>
+                                    <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR TODOS OS ALUNOS' />
+                                </Link>
                             </div>
                         </div>
                         <div className="products">

@@ -1,14 +1,19 @@
-export const AddWorkouts = ( newName, newUrl, newDescription, newDateCreation) => {
-    const url = `https://kaloscorp.cyclic.app/kalos/treino`;
+export const AddWorkouts = ( newName, newDescription,newUrl,newDateCreation, idNivel, idCategoriaTreino,idAcademia) => {
+    const url = `https://kaloscorp.cyclic.app/kalos/treino;`
   
   
     const workoutData = {
       nome: newName,
       descricao: newDescription,
       foto: newUrl,
-      data_criacao: newDateCreation
+      data_criacao: newDateCreation,
+      id_nivel: idNivel,
+      idCategoriaTreino: idCategoriaTreino,
+      id_academia: idAcademia
       
     };
+
+    
   
     // Enviar a solicitação POST para a API
     return fetch(url, {

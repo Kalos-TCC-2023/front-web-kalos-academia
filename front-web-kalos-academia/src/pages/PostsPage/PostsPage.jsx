@@ -5,12 +5,16 @@ import { Breadcrumb, Button, Input } from 'antd'
 import { Link } from 'react-router-dom'
 const { TextArea } = Input;
 import { CardPostPreview } from '../../components/CardPostPreview/CardPostPreview'
+import { UploadImgGym } from '../../components/UploadImgGym/UploadImgGym'
 
 export const PostsPage = () => {
 
   const [titlePost, setTitlePost] = useState('')
   const [bodyPost, setBodyPost] = useState('')
   const [imgPost, setImgPost] = useState('')
+  const [img, setImg] = useState('')
+
+  console.log(img)
 
   return (
     <div className='post_page'>
@@ -60,12 +64,20 @@ export const PostsPage = () => {
                 maxRows: 10,
               }}
             />
+            
           </div>
-            <Button type="primary" className='create_post'>Postar</Button>
+   
+
+          <div className="title_new_post">
+            <span className='textNameForInput'>Capa do post</span>
+            <UploadImgGym foto={imgPost} setImg={setImg} titlePost={titlePost} bodyPost={bodyPost} />
+            
+          </div>
+
 
           </div>
           <div className="post_preview">
-              <CardPostPreview tituloPostPreview={titlePost} bodyPostPreview={bodyPost} />
+              <CardPostPreview anexoPostPreview={img} tituloPostPreview={titlePost} bodyPostPreview={bodyPost} />
           </div>
         </div>
       </div>
