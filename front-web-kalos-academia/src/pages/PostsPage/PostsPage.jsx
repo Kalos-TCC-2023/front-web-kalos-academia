@@ -12,6 +12,9 @@ export const PostsPage = () => {
   const [titlePost, setTitlePost] = useState('')
   const [bodyPost, setBodyPost] = useState('')
   const [imgPost, setImgPost] = useState('')
+  const [img, setImg] = useState('')
+
+  console.log(img)
 
   return (
     <div className='post_page'>
@@ -67,7 +70,7 @@ export const PostsPage = () => {
 
           <div className="title_new_post">
             <span className='textNameForInput'>Capa do post</span>
-            <UploadImgGym foto={imgPost} />
+            <UploadImgGym foto={imgPost} setImg={setImg} titlePost={titlePost} bodyPost={bodyPost} />
             
           </div>
 
@@ -75,7 +78,7 @@ export const PostsPage = () => {
 
           </div>
           <div className="post_preview">
-              <CardPostPreview tituloPostPreview={titlePost} bodyPostPreview={bodyPost} />
+              <CardPostPreview anexoPostPreview={img} tituloPostPreview={titlePost} bodyPostPreview={bodyPost} />
           </div>
         </div>
       </div>
