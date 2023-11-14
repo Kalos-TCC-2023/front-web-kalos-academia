@@ -49,13 +49,7 @@ export const NavBar = () => {
                             </div>
                         </Tooltip>
                     </Link>
-                    <Link to='/menu/posts'>
-                        <Tooltip placement="right" title="Postagem da academia">
-                            <div className="icon_font_awesome">
-                                <FontAwesomeIcon icon={faImages} size='lg' style={{ color: '#33ffa7' }} />
-                            </div>
-                        </Tooltip>
-                    </Link>
+                    
                 </div>
                 <p>Sair</p>
             </div>

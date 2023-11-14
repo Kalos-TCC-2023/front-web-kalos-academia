@@ -64,7 +64,7 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
                                     <Link className='about_student_initial_data_gym' to=''>
                                         <Button shape='circle'>SOBRE O ALUNO</Button>
                                     </Link>
-                                    <Link className='idit_student_gym' to=''>
+                                    <Link className='idit_student_gym' to='/menu/alunos/sobre_aluno/editar_aluno'>
                                         <Button shape='circle'>EDITAR ALUNO</Button>
                                     </Link>
                                 </div>
