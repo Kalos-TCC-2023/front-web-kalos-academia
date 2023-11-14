@@ -74,7 +74,6 @@ export const PostsPage = () => {
             
           </div>
 
-            <Button type="primary" className='create_post'>Postar</Button>
 
           </div>
           <div className="post_preview">

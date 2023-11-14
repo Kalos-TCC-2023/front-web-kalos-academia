@@ -1,16 +1,33 @@
-import React, { useRef, useState } from 'react';
-import { storage } from '../../adapters/firebase';
-import { uploadBytesResumable, getDownloadURL, ref } from 'firebase/storage';
-import axios from 'axios';
+import React, { useRef, useState } from 'react'
+import { storage } from '../../adapters/firebase'
+import { uploadBytesResumable, getDownloadURL, ref } from 'firebase/storage'
+import axios from 'axios'
+import './UploadImgGym.css'
+import { message } from 'antd';
+
 
 export const UploadImgGym = ({ setImg, titlePost, bodyPost }) => {
   const [selectFileName, setSelectFileName] = useState('');
-  const [imgDb, setImageDb] = useState('')
+  const [imgDb, setImageDb] = useState(null)
+  const [messageApi, contextHolder] = message.useMessage();
+
   console.log(imgDb)
   console.log(titlePost)
   console.log(bodyPost)
 
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Post realizado!',
+    })
+  }
 
+  const errorForget = () => {
+    messageApi.open({
+      type: 'warning',
+      content: 'Parece que você esqueceu de colocar um titulo ou/e um corpo para seu post!',
+    });
+  };
 
   const handleFileChange = (e) => {
     const selectFileName = e.target.files[0];
@@ -46,33 +63,59 @@ export const UploadImgGym = ({ setImg, titlePost, bodyPost }) => {
 
     const file = event.target[0]?.files[0]
 
-    if (!file) return console.log('error')
+    const nullImg = null
 
-    const storageRef = ref(storage, `images/${file.name}`)
-    const uploadTask = uploadBytesResumable(storageRef, file)
+    if (!file) {
+      newPost(nullImg)
+    } else {
+      const storageRef = ref(storage, `images/${file.name}`)
+      const uploadTask = uploadBytesResumable(storageRef, file)
 
-    uploadTask.on(
-      "state_changed",
-      snapshot => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
 
-        console.log(progress)
-      },
-      error => {
-        console.log(error)
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then(url => {
-          setImageDb(url)
+          console.log(progress)
+        },
+        error => {
+          console.log(error)
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(url => {
+            setImageDb(url)
+            newPost(url)
+          })
+        }
+      )
+    }
 
-        })
-      }
-    )
+
 
   }
 
-  const newPost = () => {
-    axios.post()
+  const id = localStorage.getItem("id_academia")
+
+
+  const newPost = (img) => {
+    if (titlePost == '' || bodyPost == '') {
+      errorForget()
+    } else {
+      axios.post('https://kaloscorp.cyclic.app/kalos/postagem', {
+        titulo: titlePost,
+        corpo: bodyPost,
+        anexo: img,
+        id_academia: id
+      }).then(({ data }) => {
+        setImageDb(null)
+        console.log(data)
+        success()
+      }).catch(({ error }) => {
+        console.log(error)
+
+      })
+    }
+
   }
 
 
@@ -80,6 +123,7 @@ export const UploadImgGym = ({ setImg, titlePost, bodyPost }) => {
 
 
     <form className='upload_img' onSubmit={handleChange}>
+      {contextHolder}
       <div className="container-change-file">
         <div className="change-file" onClick={() => fileInput.current.click()}>
           <p>Escolher arquivos</p>
@@ -95,7 +139,7 @@ export const UploadImgGym = ({ setImg, titlePost, bodyPost }) => {
         />
 
       </div>
-      <button className='submitButton' type='submit'>Enviar</button>
+      <button className='submitButton_gym' type='submit'>Postar</button>
     </form>
 
 
