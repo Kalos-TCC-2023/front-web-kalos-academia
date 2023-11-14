@@ -10,6 +10,7 @@ import { FloatButton } from 'antd';
 import { AddWorkouts } from '../AddExerciseReptsSets/Api/addExerciseReptsSetsApi';
 import { PreviewCardWokouts } from '../../components/PreviewCardWokouts/PreviewCardWokouts';
 
+
 export class CreateWorkouts extends Component {
   state = {
     selectedFileWorkout: null,
@@ -38,7 +39,8 @@ export class CreateWorkouts extends Component {
     localStorage.setItem('nivel_treino', workoutIdNivel);
     localStorage.setItem('categoria_treino', workoutCategory);
 
-    
+
+
       console.log('Nome do Treino:', localStorage.getItem('nome_treino'));
       console.log('Foto do Treino:', localStorage.getItem('foto_treino'));
       console.log('Descrição do Treino:', localStorage.getItem('descricao_treino'));
@@ -53,20 +55,49 @@ export class CreateWorkouts extends Component {
     this.setState({ workoutName: event.target.value });
   };
 
-  handleFileChange = (e) => {
+
+  shortenURL = async (url) => {
+    const apiUrl = `https://api.tinyurl.com/dev/api-create.php?url=${encodeURIComponent(url)}`;
+  
+    try {
+      const response = await fetch(apiUrl);
+      if (response.ok) {
+        const shortenedURL = await response.text();
+        console.log('URL encurtada com sucesso:', shortenedURL);
+        return shortenedURL;
+      } else {
+        console.error('Erro ao encurtar a URL:', response.statusText);
+        return url; // Retorna a URL original em caso de erro
+      }
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+      return url; // Retorna a URL original em caso de erro
+    }
+  };
+  
+  handleFileChange = async (e) => {
     const selectedFileWorkout = e.target.files[0];
   
     if (selectedFileWorkout) {
       const reader = new FileReader();
   
-      reader.onload = (event) => {
+      reader.onload = async (event) => {
         const fileDataURL = event.target.result;
-        this.setState({ selectedFileWorkout: fileDataURL });
+  
+        try {
+          const shortenedURL = await this.shortenURL(fileDataURL);
+          this.setState({ selectedFileWorkout: shortenedURL, shortenedURL });
+        } catch (error) {
+          console.error('Erro ao encurtar a URL do arquivo:', error);
+        }
       };
   
       reader.readAsDataURL(selectedFileWorkout);
     }
-  };;
+  };
+  
+
+  
 
   
    handleChangeCategoria = (value, {label}) => {

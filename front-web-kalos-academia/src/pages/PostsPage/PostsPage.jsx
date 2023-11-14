@@ -63,10 +63,11 @@ export const PostsPage = () => {
             />
             
           </div>
+   
 
           <div className="title_new_post">
             <span className='textNameForInput'>Capa do post</span>
-            <UploadImgGym />
+            <UploadImgGym foto={imgPost} />
             
           </div>
 
