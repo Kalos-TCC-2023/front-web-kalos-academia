@@ -23,7 +23,6 @@ box-shadow: none !important;
 }
 
 .card-remove-exercise {
-    width: 380px;
     height: 150px !important;
     display: flex;
     align-items: center;
