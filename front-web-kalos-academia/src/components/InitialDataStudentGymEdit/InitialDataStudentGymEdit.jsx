@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Divider, Button, Input } from 'antd';
-import './InitialDataStudent.css'
+import './InitialDataStudentGymEdit.css'
 import { Loader } from '../Loader/Loader';
 import { RecordCardStudent } from '../RecordCardStudent/RecordCardStudent';
 import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export const InitialDataStudent = ({ data, status, idStudent }) => {
+export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
 
     const [ageStudentFormat, setAge] = useState('')
     const [data_de_nascimento_formart, setDate] = useState('')
@@ -17,9 +17,6 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
     const [testeCategoriaTreino, setTesteCategoriaTreino] = useState('')
     const [testeDataTreino, setTesteDataTreino] = useState('')
     const [testeCapaTreino, setTesteCapaTreino] = useState('https://newmillen.com.br/wp-content/uploads/2021/09/tipos-de-academia-1.jpeg')
-    console.log(testeNomeTreino)
-
-
 
     useEffect(() => {
 
@@ -45,10 +42,6 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
 
     }, [ageStudentFormat, data_de_nascimento_formart])
 
-    useEffect(() => {
-
-    })
-
     return (
         <div className='data_student'>
 
@@ -58,11 +51,11 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
                         <div className="data_basic_buttons">
                             <Avatar size={250} src={data.foto} icon={<UserOutlined />} />
                             <div className="buttons_data_basic">
-                                <div className="buttons_initial_data_student_options">
-                                    <Link className='about_student_initial_data_gym' to='/menu/alunos/sobre_aluno'>
+                                <div className="buttons_initial_data_student_options_edit">
+                                    <Link className='about_student_initial_data_gym_edit' to='/menu/alunos/sobre_aluno'>
                                         <Button shape='circle'>SOBRE O ALUNO</Button>
                                     </Link>
-                                    <Link className='idit_student_gym' to='/menu/alunos/sobre_aluno/editar_aluno'>
+                                    <Link className='idit_student_gym_edit' to='/menu/alunos/sobre_aluno/editar_aluno'>
                                         <Button shape='circle'>EDITAR ALUNO</Button>
                                     </Link>
                                 </div>
