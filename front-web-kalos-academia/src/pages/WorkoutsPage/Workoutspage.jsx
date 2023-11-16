@@ -3,7 +3,7 @@ import './Workoutspage.css';
 import { Helmet } from 'react-helmet';
 import ButtonDefaultKalos from '../../components/Button/ButtonDefaultKalos';
 import SelectDefaultKalos from '../../components/Select/Select';
-import { Input } from 'antd';
+import { Breadcrumb, Button, Input } from 'antd';
 import calendar from './images/Calendar.png';
 import workoutPhoto from './images/workoutgymTraine.jpeg';
 import { Link } from 'react-router-dom';
@@ -12,6 +12,7 @@ import { loadAllWorkouts } from './Api/ApiWorkoutatagym';
 import { loadRegistererStudents } from './Api/ApiShowRegistered';
 import { SearchWorkout } from './Api/ApiSearchWorkout';
 import { Loader } from '../../components/Loader/Loader';
+import { CardCrudWorkouts } from '../../components/CardCrudWorkouts/CardCrudWorkouts';
 
 class Workoutspage extends Component {
   state = {
@@ -85,7 +86,17 @@ class Workoutspage extends Component {
             <title>Kalos - Treinos</title>
           </Helmet>
           <div className='container-header-galeria-exercicios'>
-            <p>{"Treinos"}</p>
+            <div className="raiz_title">
+              <h1 className='title_edit_page'> Treinos </h1>
+              <Breadcrumb
+                items={[
+                  {
+                    title: <Link to='/menu/treinos'>Treino</Link>,
+                  },
+
+                ]}
+              />
+            </div>
             <div className='selects-exercises'>
               <div className='selects'>
                 {/* <SelectDefaultKalos
@@ -107,7 +118,7 @@ class Workoutspage extends Component {
                 />
               </div>
               <div className='buttonsExercise'>
-                <Link to='/menu/treinos'>
+                {/* <Link to='/menu/treinos'>
                   <ButtonDefaultKalos
                     textButton="TREINOS"
                     width="150px"
@@ -116,8 +127,19 @@ class Workoutspage extends Component {
                     secondaryColor="rgb(0, 254, 144, 1)"
                     className="buttonDefault"
                   />
-                </Link>
-                <Link to='/menu/criarTreinos'>
+                </Link> */}
+                <div className="buttons_add_students_my_students">
+                <Link className='my_students_button' to='/menu/criarTreinos'>
+                    <Button shape='circle'>TREINOS</Button>
+                  </Link>
+                  <Link className='my_students_button' to='/menu/criarTreinos'>
+                    <Button shape='circle'>CRIAR NOVO TREINO</Button>
+                  </Link>
+                  <Link to='/menu/galeria_exercicios'>
+                    <Button shape='circle'>GALERIA DE EXERCICIOS</Button>
+                  </Link>
+                </div>
+                {/* <Link to='/menu/criarTreinos'>
                   <ButtonDefaultKalos
                     textButton="CRIAR NOVO TREINO"
                     width="200px"
@@ -136,7 +158,7 @@ class Workoutspage extends Component {
                     secondaryColor="rgb(0, 254, 144, 1)"
                     className="buttonDefault"
                   />
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
@@ -182,35 +204,37 @@ class Workoutspage extends Component {
               ) : (
                 informacoes.map((workout, index) => {
                   return (
-                    <div className="card-workouts" key={index}>
-                      <div
-                        className={`change-card ${selectedCard === index ? 'visible' : ''}`}
-                        onClick={() => this.toggleCardVisibility(index)}
-                      >
-                        {selectedCard === index && (
-                          <CrudWorkoutCard className="container-crud-workouts" />
-                        )}
-                      </div>
-                      {workout.foto !== "a" ? (
-                        <img className='img-card-workouts' src={workout.foto} alt={workout.nome} />
-                      ) : (
-                        <img className='img-card-workouts' src={workoutPhoto} alt="Imagem Padrão" />
-                      )}
-                      <div className='workout-name'>{workout.nome}</div>
-                      <div className='workout-category-name'>{workout.nome_categoria_treino}</div>
-                      <div className='container-data-user'>
-                        <div className='workout-data'>
-                          <img className="img-calendar-workout" src={calendar} alt="" />
-                          <p className='p-workout-data'>{workout.data_criacao}</p>
-                        </div>
-                        <div className='user-workouts'>
-                          {alunosMatriculados.slice(0, 5).map((matriculados, matriculadoIndex) => (
-                            <img key={matriculadoIndex} src={matriculados.foto} className='userCard' alt="" />
-                          ))}
-                          <p className='userCard'>{alunosMatriculados.length}</p>
-                        </div>
-                      </div>
-                    </div>
+                    <CardCrudWorkouts key={index} idWokouts={index} dataWokouts={workout.data_criacao} alunosWokouts={workout.alunos} nomeWokouts={workout.nome} categoriaWokouts='Iniciante' imgWokouts={workout.foto} />
+
+                    // <div className="card-workouts" key={index}>
+                    //   <div
+                    //     className={`change-card ${selectedCard === index ? 'visible' : ''}`}
+                    //     onClick={() => this.toggleCardVisibility(index)}
+                    //   >
+                    //     {selectedCard === index && (
+                    //       <CrudWorkoutCard className="container-crud-workouts" />
+                    //     )}
+                    //   </div>
+                    //   {workout.foto !== "a" ? (
+                    //     <img className='img-card-workouts' src={workout.foto} alt={workout.nome} />
+                    //   ) : (
+                    //     <img className='img-card-workouts' src={workoutPhoto} alt="Imagem Padrão" />
+                    //   )}
+                    //   <div className='workout-name'>{workout.nome}</div>
+                    //   <div className='workout-category-name'>{workout.nome_categoria_treino}</div>
+                    //   <div className='container-data-user'>
+                    //     <div className='workout-data'>
+                    //       <img className="img-calendar-workout" src={calendar} alt="" />
+                    //       <p className='p-workout-data'>{workout.data_criacao}</p>
+                    //     </div>
+                    //     <div className='user-workouts'>
+                    //       {alunosMatriculados.slice(0, 5).map((matriculados, matriculadoIndex) => (
+                    //         <img key={matriculadoIndex} src={matriculados.foto} className='userCard' alt="" />
+                    //       ))}
+                    //       <p className='userCard'>{alunosMatriculados.length}</p>
+                    //     </div>
+                    //   </div>
+                    // </div>
                   );
                 })
               )

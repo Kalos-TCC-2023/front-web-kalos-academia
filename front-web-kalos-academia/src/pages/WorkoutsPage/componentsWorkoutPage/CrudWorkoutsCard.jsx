@@ -20,7 +20,7 @@ const CrudWorkoutCard = () => {
 
   return (
     <div className='crud-card'>
-      <Link className='.link-crud-exercise' to='/menu/adicionar_exercicio'>
+      <Link className='.link-crud-exercise' to='/menu/treinos/adicionar_novo_aluno_no_treino'>
       <Button className='btn-card-workout-card' type="primary" onClick={handleRemoveClick}>
         Adicionar aluno
       </Button>

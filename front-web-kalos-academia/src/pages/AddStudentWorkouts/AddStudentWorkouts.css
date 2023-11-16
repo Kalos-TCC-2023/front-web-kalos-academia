@@ -1,0 +1,32 @@
+.add_student_workouts {
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    overflow: auto;
+}
+.data_add_student_workouts_page{
+    height: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.add_student_workouts_page {
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 35px;
+}
+.add_student_workouts_cards{
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+}
