@@ -22,6 +22,7 @@ import { AboutStudent } from './pages/AboutStudent/AboutStudent.jsx'
 import { AddNewStudentPage } from './pages/AddNewStudentPage/AddNewStudentPage.jsx'
 import { AddExerciseRepetsSets } from './pages/AddExerciseReptsSets/AddExerciseReptsSets'
 import { EditStudentGym } from './components/EditStudentGym/EditStudentGym.jsx'
+import { AddStudentWorkouts } from './pages/AddStudentWorkouts/AddStudentWorkouts'
 
 
 const router = createBrowserRouter([
@@ -96,6 +97,11 @@ const router = createBrowserRouter([
       {
         path: "/menu/galeria_exercicios",
         element: <GaleryWorkouts />
+        
+      },
+      {
+        path: "/menu/treinos/adicionar_novo_aluno_no_treino",
+        element: <AddStudentWorkouts />
         
       },
       {
