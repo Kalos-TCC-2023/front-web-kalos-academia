@@ -9,22 +9,24 @@ import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { FloatButton } from 'antd';
 import { AddWorkouts } from '../AddExerciseReptsSets/Api/addExerciseReptsSetsApi';
 import { PreviewCardWokouts } from '../../components/PreviewCardWokouts/PreviewCardWokouts';
-
+import { storage } from '../../adapters/firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 export class CreateWorkouts extends Component {
   state = {
-    selectedFileWorkout: null,
     workoutName: '',
     workoutDescription: '',
     workoutDate: '',
     workoutIdNivel: '',
     workoutCategory: '',
-    workoutCategoryName: ""
+    workoutCategoryName: "",
+    imageFirebase: "",
+    selectFile: ""
   };
 
   handleSendData = () => {
     const {
-      selectedFileWorkout,
+      imageFirebase,
       workoutName,
       workoutDescription,
       workoutDate,
@@ -33,14 +35,13 @@ export class CreateWorkouts extends Component {
     } = this.state;
 
     localStorage.setItem('nome_treino', workoutName);
-    localStorage.setItem('foto_treino', selectedFileWorkout);
+    localStorage.setItem('foto_treino', imageFirebase);
     localStorage.setItem('descricao_treino', workoutDescription);
     localStorage.setItem('data_treino', workoutDate);
     localStorage.setItem('nivel_treino', workoutIdNivel);
     localStorage.setItem('categoria_treino', workoutCategory);
 
-
-
+    
       console.log('Nome do Treino:', localStorage.getItem('nome_treino'));
       console.log('Foto do Treino:', localStorage.getItem('foto_treino'));
       console.log('Descrição do Treino:', localStorage.getItem('descricao_treino'));
@@ -56,46 +57,32 @@ export class CreateWorkouts extends Component {
   };
 
 
-  shortenURL = async (url) => {
-    const apiUrl = `https://api.tinyurl.com/dev/api-create.php?url=${encodeURIComponent(url)}`;
+
   
-    try {
-      const response = await fetch(apiUrl);
-      if (response.ok) {
-        const shortenedURL = await response.text();
-        console.log('URL encurtada com sucesso:', shortenedURL);
-        return shortenedURL;
-      } else {
-        console.error('Erro ao encurtar a URL:', response.statusText);
-        return url; // Retorna a URL original em caso de erro
+
+  handleFileChange = (event) => {
+    event.preventDefault();
+    const file = event.target.files[0];
+    this.setState({selectFile: file})
+
+    if (!file) return console.log('Erro: nenhum arquivo selecionado.');
+
+    const storageRef = ref(storage, `images/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      'state_changed',
+      null,
+      (error) => {
+        console.log('Erro ao enviar arquivo:', error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          this.setState({ imageFirebase: url });
+        });
       }
-    } catch (error) {
-      console.error('Erro na requisição:', error);
-      return url; // Retorna a URL original em caso de erro
-    }
+    );
   };
-  
-  handleFileChange = async (e) => {
-    const selectedFileWorkout = e.target.files[0];
-  
-    if (selectedFileWorkout) {
-      const reader = new FileReader();
-  
-      reader.onload = async (event) => {
-        const fileDataURL = event.target.result;
-  
-        try {
-          const shortenedURL = await this.shortenURL(fileDataURL);
-          this.setState({ selectedFileWorkout: shortenedURL, shortenedURL });
-        } catch (error) {
-          console.error('Erro ao encurtar a URL do arquivo:', error);
-        }
-      };
-  
-      reader.readAsDataURL(selectedFileWorkout);
-    }
-  };
-  
 
   
 
@@ -172,21 +159,22 @@ export class CreateWorkouts extends Component {
       // };
 
     const {
-      selectedFileWorkout,
       workoutName,
       workoutDescription,
       workoutDate,
       workoutIdNivel,
       workoutCategory,
-      workoutCategoryName
+      workoutCategoryName,
+      imageFirebase,
+      selectFile
     } = this.state;
 
     return (
       <div className="create-workouts">
         <div className="page-default">
-          {/* <Link to="/menu/adicionar_exercicio"> */}
+          <Link to="/menu/escolher_exercicio">
             <FloatButton icon={<ArrowRightOutlined onClick={this.handleSendData} />} tooltip={<div>Avançar</div>} />
-          {/* </Link> */}
+          </Link>
 
           <Helmet>
             <title>Kalos - Criar Treinos</title>
@@ -256,7 +244,7 @@ export class CreateWorkouts extends Component {
                     <p>Escolher arquivos</p>
                   </div>
                   <div className="changed-file">
-                    <p>{selectedFileWorkout ? selectedFileWorkout.name : 'Nenhum arquivo escolhido'}</p>
+                    <p>{selectFile ? selectFile.name : 'Nenhum arquivo escolhido'}</p>
                   </div>
                   <input
                     type="file"
@@ -291,7 +279,7 @@ export class CreateWorkouts extends Component {
             <div className="container-preview-workouts">
               <p className="p-preview-create-workout">Preview</p>
 
-              <PreviewCardWokouts nomeTreino={workoutName} categoriaTreino={workoutCategoryName} dataTreino={workoutDate } foto={selectedFileWorkout}/>
+              <PreviewCardWokouts nomeTreino={workoutName} categoriaTreino={workoutCategoryName} dataTreino={workoutDate } foto={imageFirebase}/>
             </div>
           </div>
         </div>

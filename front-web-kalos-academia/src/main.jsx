@@ -112,6 +112,11 @@ const router = createBrowserRouter([
         path: "/menu/adicionar_exercicio",
         element: <AddExerciseRepetsSets/>
       }
+      ,
+      {
+        path: "/menu/escolher_exercicio",
+        element: <ChangeExercise/>
+      }
     ]
 
   }
