@@ -128,7 +128,7 @@ export default class GaleryWokouts extends Component {
                     </div>
                   </div>
                 ) : (
-                  <div className='container-exercises-all'>
+                  <div className='container-exercises-all-galery'>
                     <div className='add-exercise'>
                       {this.state.showAddExercise ? (
                         <AddExercise onHideAddExercise={this.handleHideAddExercise} />
@@ -140,10 +140,10 @@ export default class GaleryWokouts extends Component {
                     </div>
                     {exercises.map((exercise, index) => (
                       <div className='card-exercise' key={exercise.id}>
-                        {exercise.anexo === "" ? (
+                        {exercise.anexo == "" || exercise.anexo == null || exercise.anexo.length == 0 ? (
                           <img className='image-card-exercise' src={photoDefaultExercise} alt={exercise.nome} />
                         ) : (
-                          <img className='image-card-exercise' src={exercise.anexo} alt={exercise.nome} />
+                          <img className='image-card-exercise' src={exercise.anexo } alt={exercise.nome} />
                         )}
                         <div
                           className={`change-card ${selectedCard === index ? 'visible' : ''}`}
