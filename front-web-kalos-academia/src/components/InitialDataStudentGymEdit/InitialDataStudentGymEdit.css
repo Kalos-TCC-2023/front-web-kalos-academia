@@ -1,0 +1,31 @@
+.buttons_initial_data_student_options_edit {
+  display: flex;
+  gap: 6px;
+}
+.buttons_initial_data_student_options_edit .ant-btn {
+  background-color: #f5f7f9 !important;
+  border: 1px solid #f5f7f9 !important;
+  border-radius: 300px;
+  color: rgb(0, 0, 0);
+  transition: all 0.3s;
+  padding-left: 7px;
+  padding-right: 7px;
+  gap: 10px;
+}
+.idit_student_gym_edit .ant-btn {
+  background-color: #00fe90 !important;
+  border: 1px solid #f5f7f9 !important;
+  border-radius: 300px;
+  color: black;
+  transition: all 0.3s;
+}
+.about_student_initial_data_gym_edit .ant-btn:hover {
+  color: white !important;
+  background-color: #00fe90 !important;
+  border-color: #00fe90 !important;
+}
+.idit_student_gym_edit .ant-btn:hover {
+  color: white !important;
+  background-color: #00fe90 !important;
+  border-color: #00fe90 !important;
+}
