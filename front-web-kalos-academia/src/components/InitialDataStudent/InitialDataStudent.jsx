@@ -3,12 +3,10 @@ import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Divider, Button, Input } from 'antd';
 import './InitialDataStudent.css'
 import { Loader } from '../Loader/Loader';
-import { CardDataStudent } from '../CardDataStudent/CardDataStudent';
 import { RecordCardStudent } from '../RecordCardStudent/RecordCardStudent';
 import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { PreviewCardWokouts } from '../PreviewCardWokouts/PreviewCardWokouts';
 
 export const InitialDataStudent = ({ data, status, idStudent }) => {
 
@@ -54,14 +52,14 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
     return (
         <div className='data_student'>
 
-            {status !== 200 ? <Loader className='loadera' />
+            {status !== 200 ? <Loader className='spinner' />
                 : (
                     <div className='ajuste'>
                         <div className="data_basic_buttons">
                             <Avatar size={250} src={data.foto} icon={<UserOutlined />} />
                             <div className="buttons_data_basic">
                                 <div className="buttons_initial_data_student_options">
-                                    <Link className='about_student_initial_data_gym' to=''>
+                                    <Link className='about_student_initial_data_gym' to='/menu/alunos/sobre_aluno'>
                                         <Button shape='circle'>SOBRE O ALUNO</Button>
                                     </Link>
                                     <Link className='idit_student_gym' to='/menu/alunos/sobre_aluno/editar_aluno'>
@@ -101,17 +99,6 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
 
                         <RecordCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} />
                         <div className='wokouts_student_gym'>
-
-                            {/* <PreviewCardWokouts nomeTreino={testeNomeTreino} dataTreino={testeDataTreino} categoriaTreino={testeCategoriaTreino} foto={testeCapaTreino} />
-                            <Input size='default size' value={testeNomeTreino} onChange={(e) => {
-                                setTeste(e.target.value)
-                            }} />
-                            <Input size='default size' value={testeCategoriaTreino} onChange={(e) => {
-                                setTesteCategoriaTreino(e.target.value)
-                            }} />
-                            <Input size='default size' value={testeDataTreino} onChange={(e) => {
-                                setTesteDataTreino(e.target.value)
-                            }} /> */}
                         </div>
                     </div>
 
