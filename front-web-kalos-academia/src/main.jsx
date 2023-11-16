@@ -22,7 +22,7 @@ import { AboutStudent } from './pages/AboutStudent/AboutStudent.jsx'
 import { AddNewStudentPage } from './pages/AddNewStudentPage/AddNewStudentPage.jsx'
 import { AddExerciseRepetsSets } from './pages/AddExerciseReptsSets/AddExerciseReptsSets'
 import { EditStudentGym } from './components/EditStudentGym/EditStudentGym.jsx'
-
+import ChangeExercise from './pages/ChangeExercise/changeExerciseForWorkout.jsx'
 
 const router = createBrowserRouter([
   {
@@ -105,6 +105,11 @@ const router = createBrowserRouter([
       {
         path: "/menu/adicionar_exercicio",
         element: <AddExerciseRepetsSets/>
+      }
+      ,
+      {
+        path: "/menu/escolher_exercicio",
+        element: <ChangeExercise/>
       }
     ]
 

@@ -1,0 +1,174 @@
+.galery-workouts {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 70px;
+    padding-right: 70px;
+    overflow: auto;
+}
+
+.header-galery {
+    margin: 33px;
+    width: 100%;
+    height: 90px;
+    border-top: 0.5px rgba(102, 102, 102, 0.31) solid;
+}
+
+.page-default {
+    width: 1300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-galery {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.container-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.container-cards-galery-workouts-empty {
+    width: 100%;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-exercise-empty {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.title-empty-galeryworkouts {
+    font-weight: 700;
+    font-size: 36px;
+    background-image: linear-gradient(to right, #00FE90, #164B60);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.text-empty-galeryworkouts {
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.btn-upload-make {
+    width: 250px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00FE90;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.container-exercises-all {
+    width: 100%;
+    min-height: 800px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+
+.card-exercise-change {
+    width: 25%;
+    height: 200px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    position: relative;
+}
+
+.change-exercise {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 2.5rem;
+    color: rgb(0, 254, 144, 1);
+    cursor: pointer;
+}
+
+.change-exercise-overlay {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: red;
+}
+
+.change-exercise-overlay > p {
+    color: white;
+}
+
+.text-exercise-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: white;
+    font-size: 16px;
+    padding: 20px;
+}
+
+.name-exercise-card {
+    font-weight: 800;
+}
+
+.description-exercise-card {
+    font-weight: 400;
+}
+
+.image-card-exercise {
+    width: 100%;
+    height: 100%;
+}
+
+.more-exercise {
+    font-size: 5.0rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selectCard {
+    border: 3px solid #00FE90;
+    transition: 0.2s;
+}
+
+.container-exercises-galery-workouts {
+    margin-top: 70px;
+}

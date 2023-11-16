@@ -11,7 +11,6 @@ import { AddWorkouts } from '../AddExerciseReptsSets/Api/addExerciseReptsSetsApi
 import { PreviewCardWokouts } from '../../components/PreviewCardWokouts/PreviewCardWokouts';
 import { storage } from '../../adapters/firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import axios from 'axios'
 
 export class CreateWorkouts extends Component {
   state = {
@@ -21,7 +20,8 @@ export class CreateWorkouts extends Component {
     workoutIdNivel: '',
     workoutCategory: '',
     workoutCategoryName: "",
-    imageFirebase: ""
+    imageFirebase: "",
+    selectFile: ""
   };
 
   handleSendData = () => {
@@ -63,6 +63,7 @@ export class CreateWorkouts extends Component {
   handleFileChange = (event) => {
     event.preventDefault();
     const file = event.target.files[0];
+    this.setState({selectFile: file})
 
     if (!file) return console.log('Erro: nenhum arquivo selecionado.');
 
@@ -164,15 +165,16 @@ export class CreateWorkouts extends Component {
       workoutIdNivel,
       workoutCategory,
       workoutCategoryName,
-      imageFirebase
+      imageFirebase,
+      selectFile
     } = this.state;
 
     return (
       <div className="create-workouts">
         <div className="page-default">
-          {/* <Link to="/menu/adicionar_exercicio"> */}
+          <Link to="/menu/escolher_exercicio">
             <FloatButton icon={<ArrowRightOutlined onClick={this.handleSendData} />} tooltip={<div>Avançar</div>} />
-          {/* </Link> */}
+          </Link>
 
           <Helmet>
             <title>Kalos - Criar Treinos</title>
@@ -242,7 +244,7 @@ export class CreateWorkouts extends Component {
                     <p>Escolher arquivos</p>
                   </div>
                   <div className="changed-file">
-                    <p>{imageFirebase ? imageFirebase.name : 'Nenhum arquivo escolhido'}</p>
+                    <p>{selectFile ? selectFile.name : 'Nenhum arquivo escolhido'}</p>
                   </div>
                   <input
                     type="file"
