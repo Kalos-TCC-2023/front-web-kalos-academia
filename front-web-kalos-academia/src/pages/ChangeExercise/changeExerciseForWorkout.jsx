@@ -1,42 +1,28 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import ButtonDefaultKalos from '../../components/Button/ButtonDefaultKalos';
 import { Link } from 'react-router-dom';
 import { Input } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Loader } from '../../components/Loader/Loader';
 import { ShowAllExercises } from '../GaleryWokouts.jsx/api/apiShowAllExercises';
+import { FloatButton } from 'antd';
+import { ArrowRightOutlined } from '@ant-design/icons';
+import AddExercise from '../../components/CrudExercise/AddExercise';
 import './changeExerciseForWorkout.css';
+import emptyGaleryPhoto from './image/galerykalos.svg';
 
 export default class ChangeExercise extends Component {
   state = {
-    selectedFile: null,
-    onSearch: null,
-    showAddExercise: false,
-    showEditExercise: false,
     exercises: [],
-    selectedCard: null,
     loading: true,
-  };
-
-  handleShowAddExercise = () => {
-    this.setState({ showAddExercise: true });
-  };
-
-  handleHideAddExercise = () => {
-    this.setState({ showAddExercise: false });
-  };
-
-  toggleCardVisibility = (index) => {
-    this.setState({ selectedCard: index });
-  };
-
-  onSearch = (value) => {
-    // Implement your search logic here
-    console.log('Search value:', value);
+    selectedExercises: [],
   };
 
   componentDidMount() {
+    this.fetchExercises();
+  }
+
+  fetchExercises = () => {
     ShowAllExercises()
       .then((data) => {
         const exercisesApi = data.exercicios;
@@ -46,14 +32,50 @@ export default class ChangeExercise extends Component {
         console.error('Ocorreu um erro ao carregar os dados:', error);
         this.setState({ loading: false });
       });
-  }
+  };
+
+  toggleCardSelection = (exerciseId) => {
+    const { selectedExercises } = this.state;
+    const maxSelection = 10;
+
+    const isAlreadySelected = selectedExercises.includes(exerciseId);
+
+    if (isAlreadySelected) {
+      const updatedSelection = selectedExercises.filter((id) => id !== exerciseId);
+      this.setState({ selectedExercises: updatedSelection }, () => this.updateLocalStorage(updatedSelection));
+    } else if (selectedExercises.length < maxSelection) {
+      const updatedSelection = [...selectedExercises, exerciseId];
+      this.setState({ selectedExercises: updatedSelection }, () => this.updateLocalStorage(updatedSelection));
+    }
+  };
+
+  updateLocalStorage = (selectedExercises) => {
+    const exercisesData = selectedExercises.map((exerciseId) => {
+      const exercise = this.state.exercises.find((ex) => ex.id === exerciseId);
+      return {
+        id: exercise.id,
+        nome: exercise.nome,
+        foto: exercise.anexo,
+        descricao: exercise.descricao,
+      };
+    });
+    localStorage.setItem('selectedExercises', JSON.stringify(exercisesData));
+    console.log( localStorage.getItem('selectedExercises')
+    );
+  };
 
   render() {
-    const { exercises, selectedCard, loading } = this.state;
+    const { exercises, loading, selectedExercises } = this.state;
 
     return (
+      
       <div className='galery-workouts'>
         <div className='page-default'>
+
+        <Link to="/menu/adicionar_exercicio">
+            <FloatButton icon={<ArrowRightOutlined onClick={this.handleSendData} />} tooltip={<div>Avançar</div>} />
+          </Link>
+
           <Helmet>
             <title>Kalos - Escolher Exercícios</title>
           </Helmet>
@@ -68,59 +90,51 @@ export default class ChangeExercise extends Component {
               <div className='search-group-workouts'>
                 <Input.Search
                   className='search_header-workout search_header'
-                  placeholder="Buscar exercicios..."
-                  onSearch={this.onSearch}
+                  placeholder='Buscar exercicios...'
                   size='large'
                 />
               </div>
-             
             </div>
             <div className='container-exercises-galery-workouts'>
               {loading ? (
                 <Loader />
-              ) : (
-                exercises.length === 0 ? (
-                  <div className='container-cards-galery-workouts-empty'>
-                    <div className='container-exercise-empty'>
-                      <p className='title-empty-galeryworkouts'>GALERIA VÁZIA...</p>
-                      <div className='text-empty-galeryworkouts'>
-                        Para anexar mídia a seus treinos faça upload de imagens e vídeos que ajudem os alunos a treinar!
-                      </div>
-                      {this.state.showAddExercise ? (
-                        <p>teste</p>
-                      ) : (
-                        <div className='btn-upload-make' onClick={this.handleShowAddExercise}>
-                          FAZER UPLOAD
-                        </div>
-                      )}
+              ) : exercises.length === 0 ? (
+                <div className='container-cards-galery-workouts-empty'>
+                  <div className='container-exercise-empty'>
+                    <img src={emptyGaleryPhoto} alt='empty photo' />
+                    <p className='title-empty-galeryworkouts'>GALERIA VÁZIA...</p>
+                    <div className='text-empty-galeryworkouts'>
+                      Para anexar mídia a seus treinos faça upload de imagens e vídeos que ajudem os alunos a treinar!
+                    </div>
+                    <div className='btn-upload-make' onClick={this.fetchExercises}>
+                      FAZER UPLOAD
                     </div>
                   </div>
-                ) : (
-                  <div className='container-exercises-all'>
-               
-                    {exercises.map((exercise, index) => (
-                      <div className='card-exercise-change' key={exercise.id}>
-                        {exercise.anexo === "" ? (
-                          <img className='image-card-exercise' src={exercise.anexo} alt={exercise.nome} />
-                        ) : (
-                          <img className='image-card-exercise' src={exercise.anexo} alt={exercise.nome} />
-                        )}
-                        <div
-                          className={`change-card ${selectedCard === index ? 'selectCard' : ''}`}
-                          onClick={() => this.toggleCardVisibility(index)}
-                        >
-                          {selectedCard === index && (
-                            localStorage.setItem("idExercicio", exercise.id),
-                            <p>teste</p>)}
-                          <div className='text-exercise-card'>
-                            <p className='name-exercise-card'>{exercise.nome}</p>
-                            <p className='description-exercise-card'>{exercise.descricao}</p>
-                          </div>
+                </div>
+              ) : (
+                <div className='container-exercises-all'>
+                  {exercises.map((exercise) => (
+                    <div className='card-exercise-change' key={exercise.id}>
+                      {exercise.anexo === '' ? (
+                        <img className='image-card-exercise-change' src={exercise.anexo} alt={exercise.nome} />
+                      ) : (
+                        <img className='image-card-exercise-change' src={exercise.anexo} alt={exercise.nome} />
+                      )}
+                      <div
+                        className={`change-card ${selectedExercises.includes(exercise.id) ? 'selectCard' : ''}`}
+                        onClick={() =>
+                          this.toggleCardSelection(exercise.id, exercise.nome, exercise.anexo, exercise.descricao)
+                        }
+                      >
+                        {selectedExercises.includes(exercise.id) && <div className='exercise-selected'>✔</div>}
+                        <div className='text-exercise-card-change'>
+                          <p className='name-exercise-card'>{exercise.nome}</p>
+                          <p className='description-exercise-card'>{exercise.descricao}</p>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                )
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           </div>

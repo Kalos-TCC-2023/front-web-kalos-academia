@@ -90,14 +90,11 @@
     border-radius: 10px;
 }
 
-.container-exercises-all {
+.container-exercises-all-galery {
     width: 100%;
-    min-height: 800px;
     max-width: 100%;
     display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 30px;
+    gap: 20px;
     flex-wrap: wrap;
 
 

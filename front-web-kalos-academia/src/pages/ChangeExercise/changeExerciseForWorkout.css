@@ -85,10 +85,8 @@
 
 .container-exercises-all {
     width: 100%;
-    min-height: 800px;
     max-width: 100%;
     display: flex;
-    justify-content: center;
     gap: 30px;
     padding: 30px;
     flex-wrap: wrap;
@@ -97,12 +95,13 @@
 .card-exercise-change {
     width: 25%;
     height: 200px;
-    border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
     position: relative;
+    border-radius: 10px;
+
 }
 
 .change-exercise {
@@ -114,6 +113,7 @@
     font-size: 2.5rem;
     color: rgb(0, 254, 144, 1);
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .change-exercise-overlay {
@@ -124,22 +124,21 @@
     width: 100%;
     height: 100%;
     padding: 20px;
-    background-color: red;
 }
 
 .change-exercise-overlay > p {
     color: white;
 }
 
-.text-exercise-card {
-    width: 100%;
-    height: 100%;
+.text-exercise-card-change{
+    
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     color: white;
     font-size: 16px;
     padding: 20px;
+    height: 100%;
 }
 
 .name-exercise-card {
@@ -150,7 +149,7 @@
     font-weight: 400;
 }
 
-.image-card-exercise {
+.image-card-exercise-change {
     width: 100%;
     height: 100%;
 }
@@ -165,10 +164,25 @@
 }
 
 .selectCard {
-    border: 3px solid #00FE90;
     transition: 0.2s;
+    position: absolute;
+    border: 2px solid #00FE90;
+    border-radius: 10px;
 }
 
 .container-exercises-galery-workouts {
     margin-top: 70px;
+}
+.exercise-selected{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #00FE90;
+    color: white;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    position: absolute;
 }
