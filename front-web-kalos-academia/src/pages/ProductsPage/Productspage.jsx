@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Breadcrumb, Input, Button, Select } from 'antd'
 const { Search } = Input
 import axios from 'axios'
 import './Productspage.css'
 import { Link } from 'react-router-dom'
+import { CardProductGym } from '../../components/CardProductGym/CardProductGym'
 
 export const Productspage = () => {
 
   const [searchProducts, setSearchProducts] = useState('')
+  const [products, setProducts] = useState([])
+
+  // kalos/produtoByIdAcademia/id/{idAcademia}
+
 
   const handleChangeSelect = (value) => {
     console.log(`selected ${value}`);
@@ -76,6 +81,9 @@ export const Productspage = () => {
             <Button shape='circle'>ADICONAR NOVO PRODUTO</Button>
           </div>
 
+        </div>
+        <div className="products_for_gym">
+          <CardProductGym />
         </div>
       </div>
 

@@ -7,19 +7,19 @@ import { RecordCardStudent } from '../RecordCardStudent/RecordCardStudent';
 import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { CardWokouts } from '../../components/CardWokouts/CardWokouts.jsx'
+import { NoData } from '../NoData/NoData'
+
 
 export const InitialDataStudent = ({ data, status, idStudent }) => {
 
+    const id = localStorage.getItem("id_academia")
     const [ageStudentFormat, setAge] = useState('')
     const [data_de_nascimento_formart, setDate] = useState('')
-    const [wokoutsInformations, setWokoutsInformation] = useState('')
+    const [wokoutsInformations, setWokoutsInformation] = useState([])
     const [testeNomeTreino, setTeste] = useState('')
-    const [testeCategoriaTreino, setTesteCategoriaTreino] = useState('')
-    const [testeDataTreino, setTesteDataTreino] = useState('')
+
     const [testeCapaTreino, setTesteCapaTreino] = useState('https://newmillen.com.br/wp-content/uploads/2021/09/tipos-de-academia-1.jpeg')
-    console.log(testeNomeTreino)
-
-
 
     useEffect(() => {
 
@@ -45,9 +45,20 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
 
     }, [ageStudentFormat, data_de_nascimento_formart])
 
-    useEffect(() => {
 
-    })
+
+    useEffect(() => {
+        axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAluno/${idStudent}/idAcademia/${id}`)
+            .then(({ data }) => {
+
+                console.log(data.informacoes)
+                setWokoutsInformation(data.informacoes)
+
+            }).catch(({ erro }) => {
+                console.log(erro)
+            })
+
+    }, [])
 
     return (
         <div className='data_student'>
@@ -98,8 +109,20 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
                         </div>
 
                         <RecordCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} />
-                        <div className='wokouts_student_gym'>
+                        <div className="treinos_do_aluno">
+                            <p className='title_record_student'>TREINOS DO ALUNO</p>
+                            <div className='wokouts_student_gym'>
+
+                                {
+                                    wokoutsInformations.length == 0 ? <NoData description='o aluno não possui treinos ainda!' /> : (
+                                        wokoutsInformations.map((wokouts) => (
+                                            <CardWokouts key={wokouts.id} alunosWokouts={wokouts.alunos} idWokouts={wokouts.id} nomeWokouts={wokouts.nome} categoriaWokouts={wokouts.nome_categoria_treino} dataWokouts={wokouts.data_criacao} imgWokouts={wokouts.foto} />
+                                        ))
+                                    )
+                                }
+                            </div>
                         </div>
+
                     </div>
 
                 )}
