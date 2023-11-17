@@ -7,6 +7,7 @@ import { RecordCardStudent } from '../RecordCardStudent/RecordCardStudent';
 import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { RecordEditCardStudent } from '../RecordEditCardStudent/RecordEditCardStudent';
 
 export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
 
@@ -90,7 +91,7 @@ export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
 
                         </div>
 
-                        <RecordCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} />
+                        <RecordEditCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} />
                         <div className='wokouts_student_gym'>
                         </div>
                     </div>

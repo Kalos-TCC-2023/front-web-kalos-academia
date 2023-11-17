@@ -97,10 +97,17 @@ export const AddStudentPage = () => {
                 </div>
                 <div className="my_students_gym">
                     {
-                        students.length == 0 ? <Loader /> : (
+                        searchStudens.length == 0 ? (
                             currentStudents.map((student) => (
                                 <UserCardNewStudent key={student.id} studentRealId={student.id} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
                             ))
+                        ) : (
+
+                            filteredStudens.map((student, index) => (
+                                <UserCardNewStudent key={student.id} studentRealId={student.id} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
+                            ))
+
+
                         )
                     }
 
@@ -108,6 +115,7 @@ export const AddStudentPage = () => {
 
             </div>
             <div className="pagination_students">
+                
 
                 {Array.from(Array(pages), (item, index) => {
                     return <Button key={index} type='text' value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}>{index + 1}</Button>

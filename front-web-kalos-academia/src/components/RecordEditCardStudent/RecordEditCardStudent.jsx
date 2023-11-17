@@ -1,92 +1,50 @@
-import React, { useEffect, useState } from 'react'
-import './StepTwoAddStudentForGym.css'
-import axios from 'axios'
-import moment from 'moment';
-import { CardStudentAdd } from '../CardStudentAdd/CardStudentAdd';
-import { CardDataStudent } from '../CardDataStudent/CardDataStudent';
-import { Select, Input } from 'antd';
-const { TextArea } = Input;
-import { Loader } from '../Loader/Loader'
+import React, { useState } from 'react'
+import { CardDataStudent } from '../CardDataStudent/CardDataStudent'
+import { Input, Select } from 'antd'
+import './RecordEditCardStudent.css'
 
-export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idStudent, setValidation }) => {
+export const RecordEditCardStudent = ({ data, dataNascimentoFormat }) => {
 
-  const [ageStudentFormat, setAge] = useState('')
-  const [data_de_nascimento_formart, setDate] = useState('')
-  const [data, setData] = useState('')
-  const [frequenciaCardiaca, setFrequenciaCardiaca] = useState('')
-  const [qualidadeSono, setQualidadeSono] = useState('')
-  const [experienciaExercicios, setExperienciaExercicios] = useState('')
-  const [rotinaRegular, setRotinaRegular] = useState('')
-  const [quantidadeTempoPe, setQuantidadeTempoPe] = useState('')
-  const [frequenciaTreinoSemanal, setFrequenciaTreinoSemanal] = useState('')
-  const [observacoesAdicionais, setObservacoesAdicionais] = useState('')
+  const [frequenciaCardiaca, setFrequenciaCardiaca] = useState(data.frequencia_cardiaca)
+  const [qualidadeSono, setQualidadeSono] = useState(data.qualidade_do_sono)
+  const [experienciaExercicios, setExperienciaExercicios] = useState(data.nome_nivel)
+  const [rotinaRegular, setRotinaRegular] = useState(data.rotina_regular)
+  const [quantidadeTempoPe, setQuantidadeTempoPe] = useState(data.tempo_em_pe)
+  const [frequenciaTreinoSemanal, setFrequenciaTreinoSemanal] = useState(data.frequencia_treino_semanal)
 
   const handleChangeSleepQuality = (value) => {
     setQualidadeSono(value)
-    updateFielHandler('id_qualidade_sono', value)
+    console.log(qualidadeSono)
   }
 
   const handleChangeExperienciaExercicios = (value) => {
     setExperienciaExercicios(value)
-    updateFielHandler('id_nivel_experiencia', value)
+    console.log(experienciaExercicios)
+
   }
 
   const handleChangeFrenquenciaTreinos = (value) => {
     setFrequenciaTreinoSemanal(value)
-    updateFielHandler('frequencia_treino_semanal', value)
+    console.log(frequenciaTreinoSemanal)
   }
+    
 
-  useEffect(() => {
-
-    if (data == '') {
-      axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idStudent}`)
-        .then(({ data }) => {
-
-          const dataNascimento = data.aluno.data_nascimento
-          console.log(data)
-          const newFormatDate = dataNascimento.replace('T00:00:00.000Z', '')
-          const data_de_nascimento_formart = moment(newFormatDate).format('L')
-          setDate(data_de_nascimento_formart)
-          const formatOneDate = newFormatDate.replace('-', '').replace('-', '')
-
-          const dataNascimentoNowFormat = moment(formatOneDate, "YYYYMMDD").fromNow()
-          const ageStudentFormat = dataNascimentoNowFormat.replace('há', '').replace('anos', '')
-          setAge(ageStudentFormat)
-          setData(data.aluno)
-          updateFielHandler('id_aluno', idStudent)
-          setFrequenciaCardiaca(data.frequencia_cardiaca)
-
-        }).catch((err) => {
-          console.log(err)
-        })
-    } else {
-      return
-    }
-
-  }, [])
-
-  return (
-
-    <div className='step_two_add_student_gym'>
-      {data == '' ? <Loader /> : (
-        <div>
-          <CardStudentAdd idStudent={idStudent} />
-          <div className="student_record">
-          <span className='title_record_student'>FICHA DO ALUNO</span>
-          <div className="table_data_one">
-            <CardDataStudent title='Data de Nascimento' text={data_de_nascimento_formart} />
-            <CardDataStudent title='Gênero' text={data.genero} />
-            <CardDataStudent title='Lesôes Recentes' text={data.questao_lesoes} />
-          </div>
-          <div className="table_data_one">
-            <CardDataStudent title='Condições Médicas' text={data.questao_condicao_medica} />
-            <CardDataStudent title='Medicamentos atuais' text={data.questao_medicamento} />
-          </div>
-          <span className='title_record_student_wourkt'>FICHA DE TREINAMENTO</span>
-          <div className="options_gym_one">
+    return (
+        <div className="student_record">
+            <p className='title_record_student'>FICHA DO ALUNO</p>
+            <div className="table_data_one">
+                <CardDataStudent title='Data de Nascimento' text={dataNascimentoFormat} />
+                <CardDataStudent title='Gênero' text={data.genero} />
+                <CardDataStudent title='Lesôes Recentes' text={data.questao_lesoes} />
+            </div>
+            <div className="table_data_two">
+                <CardDataStudent title='Condições Médicas' text={data.questao_condicao_medica} />
+                <CardDataStudent title='Medicamentos atuais' text={data.questao_medicamento} />
+            </div>
+            <div className="options_gym_one_edit">
             <div className="frequencia_cardiaca_record">
               <span className='textNameForInput'>Frequência Cardíaca</span>
-              <Input addonAfter='bpm' value={frequenciaCardiaca} onChange={(e) => {
+              <Input addonAfter='bpm' width={800} value={frequenciaCardiaca} onChange={(e) => {
                 setFrequenciaCardiaca(e.target.value)
                 updateFielHandler('frequencia_cardiaca', e.target.value)
               }
@@ -95,10 +53,10 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
             </div>
             <div className="qualidade_sono">
               <span className='textNameForInput'>Qualidade de sono</span>
-              <Select
-                defaultValue="Selecionar"
+              <Select 
+                defaultValue={qualidadeSono}
                 style={{
-                  width: 204,
+                  width: 294,
                 }}
                 onChange={handleChangeSleepQuality}
                 options={[
@@ -120,23 +78,23 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
             <div className="experiencia_exercicios">
               <span className='textNameForInput'>Experiencia com exercícios</span>
               <Select
-                defaultValue="Selecionar"
+                defaultValue={experienciaExercicios}
                 style={{
-                  width: 204,
+                  width: 294,
                 }}
                 onChange={handleChangeExperienciaExercicios}
                 options={[
                   {
                     value: 1,
-                    label: 'Junior',
+                    label: 'Iniciante',
                   },
                   {
                     value: 2,
-                    label: 'Pleno',
+                    label: 'Intermediário',
                   },
                   {
                     value: 3,
-                    label: 'Senior',
+                    label: 'Avançado',
                   },
 
                 ]}
@@ -157,7 +115,7 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
             <div className="frequencia_cardiaca_record">
               <span className='textNameForInput'>Quantidade de tempo em pé</span>
               <Input style={{
-                width: 204,
+                width: 294,
               }} value={quantidadeTempoPe} onChange={(e) => {
                 setQuantidadeTempoPe(e.target.value)
                 updateFielHandler('tempo_em_pe', e.target.value)
@@ -167,9 +125,9 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
             <div className="qualidade_sono">
               <span className='textNameForInput'>Frequencia de Treino Semanal</span>
               <Select
-                defaultValue="Selecionar"
+                defaultValue={frequenciaTreinoSemanal || 'Selecionar'}
                 style={{
-                  width: 204,
+                  width: 294,
                 }}
                 onChange={handleChangeFrenquenciaTreinos}
                 options={[
@@ -207,10 +165,5 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
           </div>
 
         </div>
-        </div>
-        
-      )}
-
-    </div>
-  )
+    )
 }

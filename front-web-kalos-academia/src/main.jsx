@@ -24,7 +24,6 @@ import { AddExerciseRepetsSets } from './pages/AddExerciseReptsSets/AddExerciseR
 import { EditStudentGym } from './components/EditStudentGym/EditStudentGym.jsx'
 import { AddStudentWorkouts } from './pages/AddStudentWorkouts/AddStudentWorkouts'
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -112,11 +111,7 @@ const router = createBrowserRouter([
         path: "/menu/adicionar_exercicio",
         element: <AddExerciseRepetsSets/>
       }
-      ,
-      {
-        path: "/menu/escolher_exercicio",
-        element: <ChangeExercise/>
-      }
+     
     ]
 
   }
