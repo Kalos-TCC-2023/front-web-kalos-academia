@@ -1,23 +1,32 @@
 import React, { useState } from 'react'
 import { Avatar, Checkbox, Modal, message } from 'antd'
-import { CloseOutlined, IdcardOutlined, UserOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 
-export const CardAddStundentWorkouts = ({ nameStudent, idStudentFormt, imgSrcStudent, idStudent, setDeleteState }) => {
+export const CardAddStundentWorkouts = ({ checked, arrayStundetWorkouts, nameStudent, idStudentFormt, imgSrcStudent, idStudent, setDeleteState }) => {
 
 
-    const [arrayStudent, setArrayStudent] = useState([])
-    console.log('array', arrayStudent)
+    const [checkedStudent, setCheckedStudent] = useState(checked)
 
     const onChange = (checkedValues) => {
-        arrayStudent.push(idStudent)
-        
+        setCheckedStudent(checkedValues.target.checked)
 
         console.log('checked = ', checkedValues.target.checked);
         console.log('aluno', idStudent)
-        console.log('array', arrayStudent)
 
+        if (checkedValues.target.checked == true) {
+            arrayStundetWorkouts.push(idStudent)
+        } else if (checkedValues.target.checked == false) {
+            arrayStundetWorkouts.map((student, index) => {
+                if(student == idStudent){
+                    arrayStundetWorkouts.splice(index, 1)
+                    console.log(arrayStundetWorkouts)
+                }
+            })
+        }
 
-    };
+    }
+
+    console.log(arrayStundetWorkouts)
 
     return (
         <div className='user_add_card'>
@@ -30,7 +39,7 @@ export const CardAddStundentWorkouts = ({ nameStudent, idStudentFormt, imgSrcStu
             </div>
 
             <div className="buttons_actions">
-                <Checkbox onClick={onChange}></Checkbox>
+                <Checkbox checked={checkedStudent} onChange={onChange}></Checkbox>
             </div>
         </div>
     )

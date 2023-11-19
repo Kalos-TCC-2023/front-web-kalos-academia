@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { DownOutlined, UserOutlined, CloseOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import './CardCrudWorkouts.css'
 
 export const CardCrudWorkouts = ({ idWokouts, nomeWokouts, dataWokouts, categoriaWokouts, nivelWokouts, alunosWokouts, imgWokouts, onClickFunction }) => {
 
@@ -39,10 +39,15 @@ export const CardCrudWorkouts = ({ idWokouts, nomeWokouts, dataWokouts, categori
             })
     }
 
+    const handleIdStorage = () => {
+        localStorage.setItem("id_treino", idWokouts);
+    }
+
     const items = [
         {
             label: <Link to='/menu/treinos/adicionar_novo_aluno_no_treino'>Adicionar novo aluno</Link>,
             key: '1',
+            onClick: handleIdStorage
 
         },
         {
@@ -67,8 +72,7 @@ export const CardCrudWorkouts = ({ idWokouts, nomeWokouts, dataWokouts, categori
             {contextHolder}
             <div className="card_wokouts" style={{ backgroundImage: `url('${imgWokouts}' )`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
                 onClick={onClickFunction}>
-
-                <div className="data_wokouts" >
+                <div className="drop_options">
                     <Dropdown menu={menuProps}>
                         <Button>
                             <Space>
@@ -76,6 +80,10 @@ export const CardCrudWorkouts = ({ idWokouts, nomeWokouts, dataWokouts, categori
                             </Space>
                         </Button>
                     </Dropdown>
+                </div>
+
+                <div className="data_wokouts" >
+
                     <div className="nome_categoria">
                         <span className='title_wokouts_gym'>{nomeWokouts}</span>
                         <span className='category_wokouts_gym'>{categoriaWokouts}</span>

@@ -28,67 +28,67 @@ export const LoginPage = () => {
 
     const error = () => {
         messageApi.open({
-          type: 'error',
-          content: 'Verifique seu e-mail e senha novamente!',
+            type: 'error',
+            content: 'Verifique seu e-mail e senha novamente!',
         });
-      };
+    };
 
-      const errorApi = () => {
+    const errorApi = () => {
         messageApi.open({
-          type: 'error',
-          content: 'Parece que tivemos um erro inesperado, aguarde enquanto nossos desenvolvedores resolvem o problema!',
+            type: 'error',
+            content: 'Parece que tivemos um erro inesperado, aguarde enquanto nossos desenvolvedores resolvem o problema!',
         });
-      }
+    }
 
-      const loading = () => {
+    const loading = () => {
         messageApi
-          .open({
-            type: 'loading',
-            content: 'Carregando seus dados',
-            duration: statusCode == 0,
-          })
-          
-      };
+            .open({
+                type: 'loading',
+                content: 'Carregando seus dados',
+                duration: statusCode == 0,
+            })
+
+    };
 
 
     const handleChange = (e) => {
         const { value } = e.target
         setEmail(value)
     }
-    
-        useEffect(() => {
-            if(submitButton === true){
-                if(email == '' || password == ''){
-                    setStatusInput('error')
-                    setSubmitButton(false)
-                } else {
-                    setStatusInput('')
-                    axios.post(`https://kaloscorp.cyclic.app/kalos/academia/autenticar`, {
-                email: email,
-                senha: password
-            })
-                .then(({ data }) => {
-                    console.log(data.academia.id)
-                    setStatusCode(200)
-                    localStorage.setItem('id_academia', data.academia.id)
-                    setSubmitButton(false)
-                    navigate("/menu/home")
-                    
-                }).catch((erro) => {
-                    if(erro.response.status == 401){
-                        setSubmitButton(false)
-                        error()
-                    } else {   
-                        setSubmitButton(false) 
-                        errorApi()
-                    }
-                    
+
+    useEffect(() => {
+        if (submitButton === true) {
+            if (email == '' || password == '') {
+                setStatusInput('error')
+                setSubmitButton(false)
+            } else {
+                setStatusInput('')
+                axios.post(`https://kaloscorp.cyclic.app/kalos/academia/autenticar`, {
+                    email: email,
+                    senha: password
                 })
-                }
-                
-            } 
-            
-        }, [submitButton, email, password])
+                    .then(({ data }) => {
+                        console.log(data.academia.id)
+                        setStatusCode(200)
+                        localStorage.setItem('id_academia', data.academia.id)
+                        setSubmitButton(false)
+                        navigate("/menu/home")
+
+                    }).catch((erro) => {
+                        if (erro.response.status == 401) {
+                            setSubmitButton(false)
+                            error()
+                        } else {
+                            setSubmitButton(false)
+                            errorApi()
+                        }
+
+                    })
+            }
+
+        }
+
+    }, [submitButton, email, password])
 
     const refP = useRef()
 
@@ -109,7 +109,7 @@ export const LoginPage = () => {
                 <title>Login - Kalos</title>
             </Helmet>
             <div className="align_itens_container">
-            {contextHolder}
+                {contextHolder}
                 <div className="login_container">
                     <Space className='logotipo_kalos' size={10}>
                         <img className='logo-kalos' src={logo_kalos} />
@@ -141,7 +141,7 @@ export const LoginPage = () => {
                             <ButtonPrimary nameButton="Entrar" size='large' onClickFuction={(e) => {
                                 loading()
                                 setSubmitButton(true)
-                                }} />
+                            }} />
                             <p>É uma academia e não possui uma conta?</p>
                             <Link className='route_register' to='/cadastro'> Faça seu cadastro!</Link>
                         </div>

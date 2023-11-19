@@ -17,12 +17,14 @@ import { SuccessPage } from './components/SuccessPage/SuccessPage.jsx'
 import { EditProfile } from './pages/EditProfilePage/EditProfile.jsx'
 import { AddStudentPage } from './components/AddStudentPage/AddStudentPage.jsx'
 import { CreateWorkouts } from './pages/CreateWorkouts/CreateWorkouts.jsx'
-import  GaleryWorkouts  from './pages/GaleryWokouts.jsx/GaleryWorkouts.jsx'
+import GaleryWorkouts from './pages/GaleryWokouts.jsx/GaleryWorkouts.jsx'
 import { AboutStudent } from './pages/AboutStudent/AboutStudent.jsx'
 import { AddNewStudentPage } from './pages/AddNewStudentPage/AddNewStudentPage.jsx'
 import { AddExerciseRepetsSets } from './pages/AddExerciseReptsSets/AddExerciseReptsSets'
 import { EditStudentGym } from './components/EditStudentGym/EditStudentGym.jsx'
 import { AddStudentWorkouts } from './pages/AddStudentWorkouts/AddStudentWorkouts'
+import { ProductReservationPage } from './pages/ProductReservationPage/ProductReservationPage.jsx'
+import { NewProductPage } from './pages/NewProductPage/NewProductPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -84,6 +86,14 @@ const router = createBrowserRouter([
         element: <Productspage />
       },
       {
+        path: "/menu/produtos/reservas",
+        element: <ProductReservationPage />
+      },
+      {
+        path: "/menu/produtos/novo_produto",
+        element: <NewProductPage />
+      },
+      {
         path: "/menu/treinos",
         element: <Workoutspage />
 
@@ -91,17 +101,17 @@ const router = createBrowserRouter([
       {
         path: "/menu/criarTreinos",
         element: <CreateWorkouts />
-        
+
       },
       {
         path: "/menu/galeria_exercicios",
         element: <GaleryWorkouts />
-        
+
       },
       {
         path: "/menu/treinos/adicionar_novo_aluno_no_treino",
         element: <AddStudentWorkouts />
-        
+
       },
       {
         path: "/menu/posts",
@@ -109,9 +119,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/menu/adicionar_exercicio",
-        element: <AddExerciseRepetsSets/>
+        element: <AddExerciseRepetsSets />
       }
-     
+
     ]
 
   }

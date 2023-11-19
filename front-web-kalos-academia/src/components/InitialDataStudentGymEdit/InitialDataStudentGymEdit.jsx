@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Divider, Button, Input } from 'antd';
 import './InitialDataStudentGymEdit.css'
@@ -8,16 +8,30 @@ import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { RecordEditCardStudent } from '../RecordEditCardStudent/RecordEditCardStudent';
+import { CardWokouts } from '../CardWokouts/CardWokouts';
+import { NoData } from '../NoData/NoData';
 
 export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
 
     const [ageStudentFormat, setAge] = useState('')
     const [data_de_nascimento_formart, setDate] = useState('')
-    const [wokoutsInformations, setWokoutsInformation] = useState('')
-    const [testeNomeTreino, setTeste] = useState('')
-    const [testeCategoriaTreino, setTesteCategoriaTreino] = useState('')
-    const [testeDataTreino, setTesteDataTreino] = useState('')
-    const [testeCapaTreino, setTesteCapaTreino] = useState('https://newmillen.com.br/wp-content/uploads/2021/09/tipos-de-academia-1.jpeg')
+    const [wokoutsInformations, setWokoutsInformation] = useState([])
+    const [wokoutsStudentGym, setWokoutsStudentGym] = useState([])
+    const [border, setBorderAll] = useState('')
+
+
+    const refCard = useRef()
+
+    const workoutsStudent = wokoutsInformations.map((workout, indexa) => {
+        wokoutsStudentGym.map((workoutGym, index) => {
+            if(workout.id == workoutGym.id){
+                console.log(workoutGym)
+            } else {
+
+            }
+        })
+    })
+
 
     useEffect(() => {
 
@@ -42,6 +56,34 @@ export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
             })
 
     }, [ageStudentFormat, data_de_nascimento_formart])
+
+    const id = localStorage.getItem("id_academia")
+
+
+    useEffect(() =>{
+        axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${id}`)
+        .then(({data}) =>{
+            setWokoutsInformation(data.informacoes)
+
+        }).catch(({error}) => {
+            console.log(error)
+        })
+    }, [])
+
+
+    useEffect(() => {
+        axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAluno/${idStudent}/idAcademia/${id}`)
+            .then(({ data }) => {
+
+                console.log(data.informacoes)
+                setWokoutsStudentGym(data.informacoes)
+
+            }).catch(({ erro }) => {
+                console.log(erro)
+            })
+
+    }, [])
+
 
     return (
         <div className='data_student'>
@@ -92,7 +134,19 @@ export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
                         </div>
 
                         <RecordEditCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} />
+                        <p className='title_record_student'>TREINOS DO ALUNO</p>
+
                         <div className='wokouts_student_gym'>
+                            
+                        {
+                                    wokoutsInformations.length == 0 ? <NoData description='o aluno não possui treinos ainda!' /> : (
+                                        wokoutsInformations.map((wokouts) => (
+                                            <CardWokouts borderStyle={border} onClickFunction={(e) => {
+                                                console.log(wokouts.id)
+                                            }} key={wokouts.id} refComponent={refCard} alunosWokouts={wokouts.alunos} idWokouts={wokouts.id} nomeWokouts={wokouts.nome} categoriaWokouts={wokouts.nome_categoria_treino} dataWokouts={wokouts.data_criacao} imgWokouts={wokouts.foto} />
+                                        ))
+                                    )
+                                }
                         </div>
                     </div>
 
