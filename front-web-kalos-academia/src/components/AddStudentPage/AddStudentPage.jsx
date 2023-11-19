@@ -15,6 +15,7 @@ export const AddStudentPage = () => {
     const [searchStudens, setSearchStudens] = useState('')
     const [studensPerPage, setStudentsPerPage] = useState(15)
     const [current, setCurrentPage] = useState(0)
+    const [studentGym, setStudentsGym] = useState([])
 
     const pages = Math.ceil(students.length / studensPerPage)
     const startIndex = current * studensPerPage
@@ -43,18 +44,35 @@ export const AddStudentPage = () => {
 
     const id = localStorage.getItem("id_academia")
 
+
+    useEffect(() => {
+        axios.get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${id}`)
+            .then(({ data }) => {
+
+                setStudentsGym(data.alunos)
+            }).catch((erro) => {
+                console.log(erro)
+            })
+    }, [])
+
     useEffect(() => {
         axios.get(`https://kaloscorp.cyclic.app/kalos/aluno`)
             .then(({ data }) => {
-                console.log(data)
-                console.log(data.alunos)
-
                 setStudents(data.alunos)
                 setAllStudents(data.alunos)
             }).catch((erro) => {
                 console.log(erro)
             })
     }, [])
+
+    const studentForGym = allStudents.map((student, indexa) => {
+        studentGym.map((studentFgym, index) => {
+            if (student.id == studentFgym.id) {
+                allStudents.splice(indexa, 1)
+            }
+        })
+    })
+
 
     return (
         <div className='students_page'>
@@ -115,7 +133,7 @@ export const AddStudentPage = () => {
 
             </div>
             <div className="pagination_students">
-                
+
 
                 {Array.from(Array(pages), (item, index) => {
                     return <Button key={index} type='text' value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}>{index + 1}</Button>
