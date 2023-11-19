@@ -70,7 +70,9 @@ export const HomePage = () => {
                                     <span className='number_description'>TREINOS</span>
                                 </div>
                                 <div className="create_workout">
-                                    <ButtonPrimary className='create_new_workout' nameButton='CRIAR NOVO TREINO' />
+                                    <Link to='/menu/criarTreinos'>
+                                        <ButtonPrimary className='create_new_workout' nameButton='CRIAR NOVO TREINO' />
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +117,9 @@ export const HomePage = () => {
                             </span>
                             <DashboardProductReservation />
                             {/* <NoData description='Ainda não existem dados de novos produtos' /> */}
-                            <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR DAS AS RESERVAS' />
+                            <Link to='/menu/produtos/reservas'>
+                                <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR DAS AS RESERVAS' />
+                            </Link>
                         </div>
                         <div className="weights">
                             <NoData description='Ainda não existem dados de pesos pegos' />

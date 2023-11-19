@@ -1,10 +1,10 @@
 .photo {
   width: 250px;
-  
 }
 .card_product_gym {
   margin-top: 42px;
   display: flex;
+  align-items: center;
 }
 .products_for_gym {
   width: 100%;
@@ -47,11 +47,20 @@
   font-style: normal;
   font-weight: 500;
 }
-.products_options{
-    margin-top: 25px;
-    color: #a4a4a4;
-    display: flex;
-    gap: 10px;
-    font-size: 25px;
-    cursor: pointer;
+.products_options {
+  margin-top: 25px;
+  color: #a4a4a4;
+  display: flex;
+  gap: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+.products_more_options {
+  display: flex;
+  margin-left: 52px;
+  gap: 10px;
+}
+.products_more_options button:hover {
+  color: #ffffff;
+  background-color: #00fe91;
 }

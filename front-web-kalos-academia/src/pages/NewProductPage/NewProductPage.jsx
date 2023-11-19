@@ -32,54 +32,16 @@ export const NewProductPage = () => {
                             {
                                 title: <Link to='/menu/produtos'>Loja - Produtos</Link>,
                             },
+                            {
+                                title: <Link to='/menu/produtos/novo_produto'>Novo produto</Link>,
+                            },
+
 
                         ]}
                     />
                 </div>
 
-                <div className="header_modal">
-                    <div className="filtros">
-                        {/* <Select
-                            defaultValue="Selecionar Categoria"
-                            style={{
-                                width: 180,
-                            }}
-                            onChange={handleChangeSelect}
-                            options={[
-                                {
-                                    value: 'fitness',
-                                    label: 'Fitness',
-                                },
-                                {
-                                    value: 'yoga',
-                                    label: 'Yoga',
-                                },
-                                {
-                                    value: 'suplemento',
-                                    label: 'Suplemento',
-                                },
-                            ]}
-                        /> */}
-                    </div>
-                    <Search
-                        value={searchProducts}
-                        className='search_header'
-                        placeholder="Buscar produto..."
-                        onChange={handleChange}
-                        size='large'
-                    />
-                    <div className="buttons_add_product_my_product">
-                        <Link to='/menu/produtos'>
-                            <Button shape='circle'>MEUS PRODUTOS</Button>
-                        </Link>
-                        <Link to='/menu/produtos/reservas'>
-                            <Button shape='circle'>RESERVAS</Button>
-                        </Link>
-                        <Link to='/menu/produtos/novo_produto'>
-                            <Button shape='circle'>ADICONAR NOVO PRODUTO</Button>
-                        </Link>
-                    </div>
-                </div>
+               
             </div>
         </div>
     )
