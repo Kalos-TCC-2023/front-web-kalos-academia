@@ -11,7 +11,7 @@ export const EditStudentGym = () => {
     const [aboutStudents, setAboutStudens] = useState('')
     const [stateStudent, setStateStudent] = useState(0)
     const [dataStudent, setDataStudent] = useState('')
-
+ 
     useEffect(() => {
         axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idAluno}`)
             .then(({ data }) => {

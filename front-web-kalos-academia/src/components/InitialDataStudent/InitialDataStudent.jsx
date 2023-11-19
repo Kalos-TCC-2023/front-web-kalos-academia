@@ -17,9 +17,6 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
     const [ageStudentFormat, setAge] = useState('')
     const [data_de_nascimento_formart, setDate] = useState('')
     const [wokoutsInformations, setWokoutsInformation] = useState([])
-    const [testeNomeTreino, setTeste] = useState('')
-
-    const [testeCapaTreino, setTesteCapaTreino] = useState('https://newmillen.com.br/wp-content/uploads/2021/09/tipos-de-academia-1.jpeg')
 
     useEffect(() => {
 

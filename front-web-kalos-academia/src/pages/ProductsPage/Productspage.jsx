@@ -9,10 +9,29 @@ import { CardProductGym } from '../../components/CardProductGym/CardProductGym'
 
 export const Productspage = () => {
 
+  const idAcademia = localStorage.getItem('id_academia')
+
   const [searchProducts, setSearchProducts] = useState('')
   const [products, setProducts] = useState([])
 
   // kalos/produtoByIdAcademia/id/{idAcademia}
+
+  useEffect(() => {
+    axios.get(`https://kaloscorp.cyclic.app/kalos/produtoByIdAcademia/id/${idAcademia}`)
+      .then(({ data }) => {
+        console.log(data)
+        if (products.length == 0) {
+          setProducts(data.produto)
+        } else {
+          return
+        }
+
+      }).catch((erro) => {
+
+
+      })
+
+  }, [])
 
 
   const handleChangeSelect = (value) => {
@@ -76,14 +95,25 @@ export const Productspage = () => {
             size='large'
           />
           <div className="buttons_add_product_my_product">
-            <Button shape='circle'>MEUS PRODUTOS</Button>
-            <Button shape='circle'>RESERVAS</Button>
-            <Button shape='circle'>ADICONAR NOVO PRODUTO</Button>
+            <Link to='/menu/produtos'>
+              <Button shape='circle'>MEUS PRODUTOS</Button>
+            </Link>
+            <Link to='/menu/produtos/reservas'>
+              <Button shape='circle'>RESERVAS</Button>
+            </Link>
+            <Link to='/menu/produtos/novo_produto'>
+              <Button shape='circle'>ADICONAR NOVO PRODUTO</Button>
+            </Link>
           </div>
 
         </div>
         <div className="products_for_gym">
-          <CardProductGym />
+          {
+            products.map((product, index) => (
+              <CardProductGym productPhoto={product.fotos[0].url} productName={product.nome} productCategory={product.categoria} productDescription={product.descricao} productPrice={product.preco} />
+            ))
+
+          }
         </div>
       </div>
 

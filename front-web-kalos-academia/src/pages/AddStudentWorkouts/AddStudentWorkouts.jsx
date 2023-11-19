@@ -33,6 +33,18 @@ export const AddStudentWorkouts = () => {
             })
     }, [])
 
+    // useEffect(() => {
+    //     axios.get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${id}`)
+    //         .then(({ data }) => {
+    //             console.log(data)
+    //             console.log(data.alunos)
+    //             setStudentsGym(data.alunos)
+    //             setAllStudents(data.alunos)
+    //         }).catch((erro) => {
+    //             console.log(erro)
+    //         })
+    // }, [])
+
     return (
         <div className='add_student_workouts'>
             <div className="add_student_workouts_page">
@@ -62,7 +74,7 @@ export const AddStudentWorkouts = () => {
 
                         {
                             studentsGym.map((student, index) => (
-                                <CardAddStundentWorkouts  idStudent={student.id} key={index} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
+                                <CardAddStundentWorkouts arrayStundetWorkouts={arrayStundetWorkouts} idStudent={student.id} key={index} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
                             ))
 
                         }
