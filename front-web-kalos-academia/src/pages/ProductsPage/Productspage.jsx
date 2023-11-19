@@ -6,6 +6,9 @@ import axios from 'axios'
 import './Productspage.css'
 import { Link } from 'react-router-dom'
 import { CardProductGym } from '../../components/CardProductGym/CardProductGym'
+import { FloatButton } from 'antd'
+import { SkinOutlined } from '@ant-design/icons'
+
 
 export const Productspage = () => {
 
@@ -51,6 +54,9 @@ export const Productspage = () => {
         <title>Kalos - Produtos</title>
       </Helmet>
       <div className="products_gym">
+        <Link to='/menu/produtos/novo_produto'>
+          <FloatButton icon={<SkinOutlined />} onClick={() => console.log('click')} />
+        </Link>
         <div className="raiz_title">
           <h1 className='title_edit_page'>Minha loja</h1>
           <Breadcrumb
@@ -66,7 +72,7 @@ export const Productspage = () => {
         <div className="header_modal">
           <div className="filtros">
             <Select
-              defaultValue="Selecionar Categoria"
+              defaultValue="Selecionar categoria"
               style={{
                 width: 180,
               }}
@@ -101,9 +107,7 @@ export const Productspage = () => {
             <Link to='/menu/produtos/reservas'>
               <Button shape='circle'>RESERVAS</Button>
             </Link>
-            <Link to='/menu/produtos/novo_produto'>
-              <Button shape='circle'>ADICONAR NOVO PRODUTO</Button>
-            </Link>
+           
           </div>
 
         </div>

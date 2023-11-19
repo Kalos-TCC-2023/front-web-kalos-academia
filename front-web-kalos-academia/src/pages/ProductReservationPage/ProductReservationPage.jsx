@@ -3,6 +3,8 @@ import './ProductReservationPage.css'
 import { Breadcrumb, Select, Input, Button } from 'antd'
 import { Link } from 'react-router-dom'
 const { Search } = Input
+import { FloatButton } from 'antd'
+import { SkinOutlined } from '@ant-design/icons'
 
 export const ProductReservationPage = () => {
 
@@ -28,7 +30,7 @@ export const ProductReservationPage = () => {
                     <Breadcrumb
                         items={[
                             {
-                                title: <Link to='/menu/produtos'>Loja - Produtos</Link>,
+                                title: <Link to='/menu/produtos/reservas'>Loja - Reservas</Link>,
                             },
 
                         ]}
@@ -38,7 +40,7 @@ export const ProductReservationPage = () => {
                 <div className="header_modal">
                     <div className="filtros">
                         <Select
-                            defaultValue="Selecionar Categoria"
+                            defaultValue="Selecionar categoria"
                             style={{
                                 width: 180,
                             }}
@@ -62,7 +64,7 @@ export const ProductReservationPage = () => {
                     <Search
                         value={searchProducts}
                         className='search_header'
-                        placeholder="Buscar produto..."
+                        placeholder="Buscar reserva..."
                         onChange={handleChange}
                         size='large'
                     />
@@ -74,7 +76,7 @@ export const ProductReservationPage = () => {
                             <Button shape='circle'>RESERVAS</Button>
                         </Link>
                         <Link to='/menu/produtos/novo_produto'>
-                            <Button shape='circle'>ADICONAR NOVO PRODUTO</Button>
+                            <FloatButton icon={<SkinOutlined />} />
                         </Link>
                     </div>
                 </div>

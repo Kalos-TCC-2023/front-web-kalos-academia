@@ -1,5 +1,5 @@
 import React from 'react'
-import { Carousel } from 'antd'
+import { Button, Carousel } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import './CardProductGym.css'
 
@@ -39,8 +39,8 @@ export const CardProductGym = ({ productName, productCategory, productDescriptio
         </div>
       </div>
       <div className="products_more_options">
-        <span>...</span>
-        <span>...</span>
+        <Button style={{borderRadius: '300px', padding: '5px'}} shape='circle'>RESERVAS DO PRODUTO</Button>
+        <Button style={{borderRadius: '300px', padding: '5px'}} shape='circle'>ATUALIZAR PRODUTO</Button>
       </div>
     </div>
   )
