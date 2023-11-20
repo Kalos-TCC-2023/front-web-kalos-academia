@@ -3,7 +3,6 @@ import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Divider, Button, Input } from 'antd';
 import './InitialDataStudentGymEdit.css'
 import { Loader } from '../Loader/Loader';
-import { RecordCardStudent } from '../RecordCardStudent/RecordCardStudent';
 import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -24,7 +23,7 @@ export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
 
     const workoutsStudent = wokoutsInformations.map((workout, indexa) => {
         wokoutsStudentGym.map((workoutGym, index) => {
-            if(workout.id == workoutGym.id){
+            if (workout.id == workoutGym.id) {
                 console.log(workoutGym)
             } else {
 
@@ -60,14 +59,14 @@ export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
     const id = localStorage.getItem("id_academia")
 
 
-    useEffect(() =>{
+    useEffect(() => {
         axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${id}`)
-        .then(({data}) =>{
-            setWokoutsInformation(data.informacoes)
+            .then(({ data }) => {
+                setWokoutsInformation(data.informacoes)
 
-        }).catch(({error}) => {
-            console.log(error)
-        })
+            }).catch(({ error }) => {
+                console.log(error)
+            })
     }, [])
 
 
@@ -84,6 +83,7 @@ export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
 
     }, [])
 
+    
 
     return (
         <div className='data_student'>
@@ -91,6 +91,7 @@ export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
             {status !== 200 ? <Loader className='spinner' />
                 : (
                     <div className='ajuste'>
+                        
                         <div className="data_basic_buttons">
                             <Avatar size={250} src={data.foto} icon={<UserOutlined />} />
                             <div className="buttons_data_basic">
@@ -133,20 +134,20 @@ export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
 
                         </div>
 
-                        <RecordEditCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} />
+                        <RecordEditCardStudent data={data} dataNascimentoFormat={data_de_nascimento_formart} idStudent={idStudent} />
                         <p className='title_record_student'>TREINOS DO ALUNO</p>
 
                         <div className='wokouts_student_gym'>
-                            
-                        {
-                                    wokoutsInformations.length == 0 ? <NoData description='o aluno não possui treinos ainda!' /> : (
-                                        wokoutsInformations.map((wokouts) => (
-                                            <CardWokouts borderStyle={border} onClickFunction={(e) => {
-                                                console.log(wokouts.id)
-                                            }} key={wokouts.id} refComponent={refCard} alunosWokouts={wokouts.alunos} idWokouts={wokouts.id} nomeWokouts={wokouts.nome} categoriaWokouts={wokouts.nome_categoria_treino} dataWokouts={wokouts.data_criacao} imgWokouts={wokouts.foto} />
-                                        ))
-                                    )
-                                }
+
+                            {
+                                wokoutsInformations.length == 0 ? <NoData description='o aluno não possui treinos ainda!' /> : (
+                                    wokoutsInformations.map((wokouts) => (
+                                        <CardWokouts borderStyle={border} onClickFunction={(e) => {
+                                            console.log(wokouts.id)
+                                        }} key={wokouts.id} refComponent={refCard} alunosWokouts={wokouts.alunos} idWokouts={wokouts.id} nomeWokouts={wokouts.nome} categoriaWokouts={wokouts.nome_categoria_treino} dataWokouts={wokouts.data_criacao} imgWokouts={wokouts.foto} />
+                                    ))
+                                )
+                            }
                         </div>
                     </div>
 
