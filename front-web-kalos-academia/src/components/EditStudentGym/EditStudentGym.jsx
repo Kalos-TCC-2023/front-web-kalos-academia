@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { InitialDataStudent } from '../InitialDataStudent/InitialDataStudent'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Breadcrumb } from 'antd'
@@ -42,7 +41,7 @@ export const EditStudentGym = () => {
                     />
                 </div>
                 <div className="initial_information_student">
-                        <InitialDataStudentGymEdit idStudent={idAluno} data={aboutStudents} status={stateStudent} />
+                    <InitialDataStudentGymEdit idStudent={idAluno} data={aboutStudents} status={stateStudent} />
                 </div>
             </div>
 

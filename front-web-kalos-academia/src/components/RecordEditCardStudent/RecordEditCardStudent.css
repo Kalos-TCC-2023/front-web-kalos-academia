@@ -1,0 +1,11 @@
+.options_gym_one_edit{
+    width: 100%;
+    display: flex;
+    /* gap: 25px; */
+    margin-bottom: 25px;
+    justify-content: space-between;
+}
+
+.frequencia_cardiaca_record .ant-input-group >.ant-input:first-child, :where(.css-dev-only-do-not-override-190m0jy).ant-input-group .ant-input-group-addon:first-child {
+    width: 310px;
+}

@@ -147,7 +147,7 @@ export const StepTwoAddStudentForGym = ({ dataStundetGym, updateFielHandler, idS
             <div className="frequencia_cardiaca_record">
               <span className='textNameForInput'>Rotina Regular</span>
               <Input style={{
-                width: 204,
+                 width: 360,
               }} value={rotinaRegular} onChange={(e) => {
                 setRotinaRegular(e.target.value)
                 updateFielHandler('rotina_regular', e.target.value)

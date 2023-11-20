@@ -56,7 +56,7 @@ export const AddNewStudentPage = ({ idStudent }) => {
 
   const sucess = () => {
     messageApi.open({
-      type: 'sucess',
+      type: 'success',
       content: 'Aluno adicionado com sucesso!',
     })
   }

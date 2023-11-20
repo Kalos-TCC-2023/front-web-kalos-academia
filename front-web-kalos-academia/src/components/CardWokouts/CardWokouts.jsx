@@ -3,14 +3,13 @@ import { AntDesignOutlined, UserOutlined } from '@ant-design/icons'
 import { Avatar, Divider, Tooltip } from 'antd'
 import './CardWokouts.css'
 
-export const CardWokouts = ({ idWokouts, nomeWokouts, dataWokouts, categoriaWokouts, nivelWokouts, alunosWokouts, imgWokouts, onClickFunction }) => {
+export const CardWokouts = ({ idWokouts, nomeWokouts, dataWokouts, categoriaWokouts, nivelWokouts, alunosWokouts, imgWokouts, onClickFunction, refComponent, borderStyle }) => {
 
     const [stateStundets, setStateStudent] = useState(alunosWokouts)
-    console.log(stateStundets);
 
     return (
         <div className='wokouts_card'>
-            <div className="card_wokouts" style={{ backgroundImage: `url('${imgWokouts}' )`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
+            <div className="card_wokouts" ref={refComponent}  style={{ backgroundImage: `url('${imgWokouts}' )`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', border: `${borderStyle}` }}
                 onClick={onClickFunction}>
                 <div className="data_wokouts" >
                     <div className="nome_categoria">
@@ -26,7 +25,7 @@ export const CardWokouts = ({ idWokouts, nomeWokouts, dataWokouts, categoriaWoko
                                 {
                                     stateStundets.lenght == 0 ? [] : (
                                         stateStundets.map((student) => ( 
-                                            <Tooltip title={student.nome} placement="top">
+                                            <Tooltip key={student.id} title={student.nome} placement="top">
                                                 <Avatar key={student.id}
                                                     src={student.foto}
                                                 />
