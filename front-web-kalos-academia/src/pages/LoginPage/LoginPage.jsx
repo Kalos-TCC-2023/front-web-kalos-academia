@@ -75,6 +75,7 @@ export const LoginPage = () => {
                     navigate("/menu/home")
                     
                 }).catch((erro) => {
+                    console.log(erro.response.status);
                     if(erro.response.status == 401){
                         setSubmitButton(false)
                         error()
