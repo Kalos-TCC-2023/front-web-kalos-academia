@@ -55,7 +55,6 @@ export const LoginPage = () => {
         const { value } = e.target
         setEmail(value)
     }
-<<<<<<< HEAD
     
         useEffect(() => {
             if(submitButton === true){
@@ -85,19 +84,6 @@ export const LoginPage = () => {
                         errorApi()
                     }
                     
-=======
-
-    useEffect(() => {
-        if (submitButton === true) {
-            if (email == '' || password == '') {
-                setStatusInput('error')
-                setSubmitButton(false)
-            } else {
-                setStatusInput('')
-                axios.post(`https://kaloscorp.cyclic.app/kalos/academia/autenticar`, {
-                    email: email,
-                    senha: password
->>>>>>> 071c4710ae5bb756feb2aada9f0a9bfa8a435550
                 })
                     .then(({ data }) => {
                         console.log(data.academia.id)
