@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { Breadcrumb, Input, Button, Select } from 'antd'
+import { Breadcrumb, Input, Button, Select, Tooltip } from 'antd'
 const { Search } = Input
 import axios from 'axios'
 import './Productspage.css'
@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { CardProductGym } from '../../components/CardProductGym/CardProductGym'
 import { FloatButton } from 'antd'
 import { SkinOutlined } from '@ant-design/icons'
+import { Loader } from '../../components/Loader/Loader'
 
 
 export const Productspage = () => {
@@ -16,14 +17,15 @@ export const Productspage = () => {
 
   const [searchProducts, setSearchProducts] = useState('')
   const [products, setProducts] = useState([])
+  const [statusCode, setStatusCode] = useState(0)
 
-  // kalos/produtoByIdAcademia/id/{idAcademia}
 
   useEffect(() => {
     axios.get(`https://kaloscorp.cyclic.app/kalos/produtoByIdAcademia/id/${idAcademia}`)
       .then(({ data }) => {
         console.log(data)
         if (products.length == 0) {
+          setStatusCode(data.status)
           setProducts(data.produto)
         } else {
           return
@@ -55,8 +57,11 @@ export const Productspage = () => {
       </Helmet>
       <div className="products_gym">
         <Link to='/menu/produtos/novo_produto'>
-          <FloatButton icon={<SkinOutlined />} onClick={() => console.log('click')} />
+          <Tooltip placement='left' title="Adicionar novo produto">
+            <FloatButton icon={<SkinOutlined />} />
+          </Tooltip>
         </Link>
+
         <div className="raiz_title">
           <h1 className='title_edit_page'>Minha loja</h1>
           <Breadcrumb
@@ -107,15 +112,18 @@ export const Productspage = () => {
             <Link to='/menu/produtos/reservas'>
               <Button shape='circle'>RESERVAS</Button>
             </Link>
-           
+
           </div>
 
         </div>
         <div className="products_for_gym">
           {
-            products.map((product, index) => (
-              <CardProductGym productPhoto={product.fotos[0].url} productName={product.nome} productCategory={product.categoria} productDescription={product.descricao} productPrice={product.preco} />
-            ))
+            products.length == 0 ? <Loader /> : (
+              products.map((product, index) => (
+                <CardProductGym productPhoto={product.fotos[0].url} productName={product.nome} productCategory={product.categoria} productDescription={product.descricao} productPrice={product.preco} />
+              ))
+            )
+
 
           }
         </div>

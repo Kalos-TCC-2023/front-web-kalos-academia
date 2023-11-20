@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './ProductReservationPage.css'
-import { Breadcrumb, Select, Input, Button } from 'antd'
+import { Breadcrumb, Select, Input, Button, Tooltip } from 'antd'
 import { Link } from 'react-router-dom'
 const { Search } = Input
 import { FloatButton } from 'antd'
@@ -75,9 +75,13 @@ export const ProductReservationPage = () => {
                         <Link to='/menu/produtos/reservas'>
                             <Button shape='circle'>RESERVAS</Button>
                         </Link>
+
                         <Link to='/menu/produtos/novo_produto'>
-                            <FloatButton icon={<SkinOutlined />} />
+                            <Tooltip placement='left' title="Adicionar novo produto">
+                                <FloatButton icon={<SkinOutlined />} />
+                            </Tooltip>
                         </Link>
+
                     </div>
                 </div>
             </div>

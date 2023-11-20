@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { InitialDataStudent } from '../InitialDataStudent/InitialDataStudent'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Breadcrumb } from 'antd'
@@ -11,7 +10,7 @@ export const EditStudentGym = () => {
     const [aboutStudents, setAboutStudens] = useState('')
     const [stateStudent, setStateStudent] = useState(0)
     const [dataStudent, setDataStudent] = useState('')
- 
+
     useEffect(() => {
         axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idAluno}`)
             .then(({ data }) => {
@@ -42,7 +41,7 @@ export const EditStudentGym = () => {
                     />
                 </div>
                 <div className="initial_information_student">
-                        <InitialDataStudentGymEdit idStudent={idAluno} data={aboutStudents} status={stateStudent} />
+                    <InitialDataStudentGymEdit idStudent={idAluno} data={aboutStudents} status={stateStudent} />
                 </div>
             </div>
 
