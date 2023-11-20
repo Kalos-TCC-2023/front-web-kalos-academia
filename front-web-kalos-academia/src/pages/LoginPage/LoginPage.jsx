@@ -55,6 +55,37 @@ export const LoginPage = () => {
         const { value } = e.target
         setEmail(value)
     }
+<<<<<<< HEAD
+    
+        useEffect(() => {
+            if(submitButton === true){
+                if(email == '' || password == ''){
+                    setStatusInput('error')
+                    setSubmitButton(false)
+                } else {
+                    setStatusInput('')
+                    axios.post(`https://kaloscorp.cyclic.app/kalos/academia/autenticar`, {
+                email: email,
+                senha: password
+            })
+                .then(({ data }) => {
+                    console.log(data.academia.id)
+                    setStatusCode(200)
+                    localStorage.setItem('id_academia', data.academia.id)
+                    setSubmitButton(false)
+                    navigate("/menu/home")
+                    
+                }).catch((erro) => {
+                    console.log(erro.response.status);
+                    if(erro.response.status == 401){
+                        setSubmitButton(false)
+                        error()
+                    } else {   
+                        setSubmitButton(false) 
+                        errorApi()
+                    }
+                    
+=======
 
     useEffect(() => {
         if (submitButton === true) {
@@ -66,6 +97,7 @@ export const LoginPage = () => {
                 axios.post(`https://kaloscorp.cyclic.app/kalos/academia/autenticar`, {
                     email: email,
                     senha: password
+>>>>>>> 071c4710ae5bb756feb2aada9f0a9bfa8a435550
                 })
                     .then(({ data }) => {
                         console.log(data.academia.id)

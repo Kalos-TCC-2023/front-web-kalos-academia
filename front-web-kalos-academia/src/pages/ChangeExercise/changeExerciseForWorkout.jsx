@@ -57,6 +57,10 @@ export default class ChangeExercise extends Component {
         nome: exercise.nome,
         foto: exercise.anexo,
         descricao: exercise.descricao,
+        serie: "0",
+        repeticao:"0",
+        duracao:"00:00:00"
+
       };
     });
     localStorage.setItem('selectedExercises', JSON.stringify(exercisesData));

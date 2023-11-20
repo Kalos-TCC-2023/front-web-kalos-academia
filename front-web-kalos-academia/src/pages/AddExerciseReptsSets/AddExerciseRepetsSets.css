@@ -15,6 +15,10 @@
 
     
 }
+a{
+    text-decoration: none;
+    color: black;
+}
 .header-add-exercise-repts-sets{
     margin: 33px;
     width: 100%;
@@ -90,10 +94,7 @@ width: 400px;
     cursor: pointer;
 
 }
-.exercise:hover{
-    border: 1px solid #00FE90;
 
-}
 
 .number-exercise{
     font-weight: 800;
@@ -115,11 +116,27 @@ width: 400px;
 .text-serie-repts{
     font-size: 0.8rem;
     color: #666;
+    padding: 5px;
 }
 .delete-exercise{
 
-  color: #666;
+  color: black;
+  transition: 0.2s;
+  width: 30px;
+  height: 30px;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
+.delete-exercise:hover{
+
+    background-color: rgb(252, 50, 50);
+    color: white;
+    border-radius: 50%;
+    
+
+  }
 .container-preview-exercise{
     width: 400px;
     height: 550px;
@@ -163,4 +180,7 @@ width: 400px;
     background-color: #00fe9081;
  transition: 02s;
     
+}
+.exercise-clicked {
+    border: 1px solid #00FE90;
 }
