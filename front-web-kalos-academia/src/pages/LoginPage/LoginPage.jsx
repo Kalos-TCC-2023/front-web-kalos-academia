@@ -85,23 +85,7 @@ export const LoginPage = () => {
                     }
                     
                 })
-                    .then(({ data }) => {
-                        console.log(data.academia.id)
-                        setStatusCode(200)
-                        localStorage.setItem('id_academia', data.academia.id)
-                        setSubmitButton(false)
-                        navigate("/menu/home")
-
-                    }).catch((erro) => {
-                        if (erro.response.status == 401) {
-                            setSubmitButton(false)
-                            error()
-                        } else {
-                            setSubmitButton(false)
-                            errorApi()
-                        }
-
-                    })
+                
             }
 
         }
