@@ -14,6 +14,7 @@ export const AddStudentWorkouts = () => {
     const [searchStudens, setSearchStudens] = useState('')
     const [arrayStundetWorkouts, setArrayStudentWorkouts] = useState([])
     const [idStudentWorkouts, setIdStundetWorkouts] = useState('')
+    const [checked, setChecked] = useState(false)
 
     const onSearch = (value, _e, info) => {
         console.log(info?.source, value)
@@ -33,18 +34,37 @@ export const AddStudentWorkouts = () => {
             })
     }, [])
 
-    // useEffect(() => {
-    //     axios.get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${id}`)
-    //         .then(({ data }) => {
-    //             console.log(data)
-    //             console.log(data.alunos)
-    //             setStudentsGym(data.alunos)
-    //             setAllStudents(data.alunos)
-    //         }).catch((erro) => {
-    //             console.log(erro)
-    //         })
-    // }, [])
+    const treino = localStorage.getItem("id_treino")
+    console.log(treino)
 
+    const [teste, setTeste] = useState([])
+
+
+    useEffect(() => {
+        axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${id}/idTreinoNivelCategoria/${treino}`)
+          .then(({ data }) => {
+            console.log(data)
+            console.log(data.informacoes)
+            setTeste(data.informacoes)
+
+            studentsGym.map((student) => {
+                data.informacoes.map((studentWourkts) => {
+                  if (student.id == studentWourkts.id) {
+                    setChecked(true)
+                  } else {
+                    setChecked(false)
+                  }
+                })
+              })
+      
+    
+    
+          }).catch((erro) => {
+            console.log(erro)
+          })
+      }, [])
+
+  
     return (
         <div className='add_student_workouts'>
             <div className="add_student_workouts_page">
@@ -74,7 +94,7 @@ export const AddStudentWorkouts = () => {
 
                         {
                             studentsGym.map((student, index) => (
-                                <CardAddStundentWorkouts arrayStundetWorkouts={arrayStundetWorkouts} idStudent={student.id} key={index} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
+                                <CardAddStundentWorkouts checked={checked} students={studentsGym} arrayStundetWorkouts={arrayStundetWorkouts} idStudent={student.id} key={index} nameStudent={student.nome} idStudentFormt={'#' + 10 + student.id} imgSrcStudent={student.foto} />
                             ))
 
                         }

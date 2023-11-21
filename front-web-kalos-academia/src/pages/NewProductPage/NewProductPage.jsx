@@ -160,17 +160,14 @@ export const NewProductPage = () => {
                                     onChange={handleChange}
                                     options={[
                                         {
-                                            value: 'jack',
-                                            label: 'Jack',
+                                            value: 1,
+                                            label: 'Disponível',
                                         },
                                         {
-                                            value: 'lucy',
-                                            label: 'Lucy',
+                                            value: 2,
+                                            label: 'Indisponível',
                                         },
-                                        {
-                                            value: 'Yiminghe',
-                                            label: 'yiminghe',
-                                        },
+                                       
 
                                     ]}
                                 />
