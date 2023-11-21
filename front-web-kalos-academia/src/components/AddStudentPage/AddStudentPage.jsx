@@ -19,13 +19,15 @@ export const AddStudentPage = () => {
     const [teste, setTeste] = useState([])
 
     const studentForGym = allStudents.map((student, indexa) => {
-        studentGym.map((studentFgym, index) => {
+         studentGym.map((studentFgym, index) => {
             if (student.id == studentFgym.id) {
-                allStudents.splice(indexa, 1)
+                console.log(allStudents.splice(indexa, 1))
             }
         })
+        
     })
 
+   
     const pages = Math.ceil(students.length / studensPerPage)
     const startIndex = current * studensPerPage
     const endIndex = startIndex + studensPerPage
@@ -55,7 +57,7 @@ export const AddStudentPage = () => {
 
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${id}`)
+        axios.get(`http://10.107.144.4:8080/kalos/alunoAcademia/idAcademia/${id}`)
             .then(({ data }) => {
 
                 setStudentsGym(data.alunos)
@@ -65,7 +67,7 @@ export const AddStudentPage = () => {
     }, [])
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/aluno`)
+        axios.get(`http://10.107.144.4:8080/kalos/aluno`)
             .then(({ data }) => {
                 const AllStudents = data.alunos
                 setStudents(data.alunos)

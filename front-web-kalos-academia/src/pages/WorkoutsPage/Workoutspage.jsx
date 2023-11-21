@@ -204,7 +204,7 @@ class Workoutspage extends Component {
               ) : (
                 informacoes.map((workout, index) => {
                   return (
-                    <CardCrudWorkouts key={index} idWokouts={index} dataWokouts={workout.data_criacao} alunosWokouts={workout.alunos} nomeWokouts={workout.nome} categoriaWokouts='Iniciante' imgWokouts={workout.foto} />
+                    <CardCrudWorkouts key={index} idWokouts={workout.id} dataWokouts={workout.data_criacao} alunosWokouts={workout.alunos} nomeWokouts={workout.nome} categoriaWokouts='Iniciante' imgWokouts={workout.foto} />
 
                     // <div className="card-workouts" key={index}>
                     //   <div
