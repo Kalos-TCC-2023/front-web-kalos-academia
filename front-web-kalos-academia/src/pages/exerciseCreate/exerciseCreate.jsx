@@ -1,4 +1,4 @@
-import exerciseCreatedSucess from "./image/ExerciseCreatedSucess.svg";
+import exerciseCreatedSucess from "./image/exerciseCreatedSucess.svg";
 import "./exerciseCreate.css";
 import { Component } from "react";
 import { AddWorkouts } from "../AddExerciseReptsSets/Api/addExerciseReptsSetsApi";
