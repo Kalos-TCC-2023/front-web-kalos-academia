@@ -13,17 +13,20 @@ export const CardProductGym = ({ productName, productCategory, productDescriptio
     background: '#364d79',
   };
 
+  console.log(productPhoto)
 
   return (
     <div className='card_product_gym'>
       <div className="photo">
         <Carousel autoplay effect="fade" dotPosition='bottom'>
-          <div>
-            <img style={contentStyle} src={productPhoto} />
-          </div>
-          <div>
-            <img style={contentStyle} src={productPhoto} />
-          </div>
+          {
+            productPhoto.map((photo, index) => (
+              <div>
+                <img key={index} style={contentStyle} src={photo.url} />
+              </div>
+            ))
+          }
+
         </Carousel>
         {/* <img src={productPhoto} /> */}
       </div>
@@ -39,8 +42,8 @@ export const CardProductGym = ({ productName, productCategory, productDescriptio
         </div>
       </div>
       <div className="products_more_options">
-        <Button style={{borderRadius: '300px', padding: '5px'}} shape='circle'>RESERVAS DO PRODUTO</Button>
-        <Button style={{borderRadius: '300px', padding: '5px'}} shape='circle'>ATUALIZAR PRODUTO</Button>
+        <Button style={{ borderRadius: '300px', padding: '5px' }} shape='circle'>RESERVAS DO PRODUTO</Button>
+        <Button style={{ borderRadius: '300px', padding: '5px' }} shape='circle'>ATUALIZAR PRODUTO</Button>
       </div>
     </div>
   )

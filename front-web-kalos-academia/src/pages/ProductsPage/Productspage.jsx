@@ -120,7 +120,7 @@ export const Productspage = () => {
           {
             products.length == 0 ? <Loader /> : (
               products.map((product, index) => (
-                <CardProductGym productPhoto={product.fotos[0].url} productName={product.nome} productCategory={product.categoria} productDescription={product.descricao} productPrice={product.preco} />
+                <CardProductGym key={product.id} productPhoto={product.fotos} productName={product.nome} productCategory={product.categoria} productDescription={product.descricao} productPrice={product.preco} />
               ))
             )
 

@@ -114,7 +114,7 @@ export default class ChangeExercise extends Component {
                       FAZER UPLOAD
                     </div>
                   </div>
-                </div>
+                </div> 
               ) : (
                 <div className='container-exercises-all'>
                   {exercises.map((exercise) => (
