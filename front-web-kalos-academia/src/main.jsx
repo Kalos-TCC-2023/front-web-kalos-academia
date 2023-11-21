@@ -89,14 +89,14 @@ const router = createBrowserRouter([
         path: "/menu/produtos",
         element: <Productspage />
       },
-      // {
-      //   path: "/menu/produtos/reservas",
-      //   element: <ProductReservationPage />
-      // },
-      // {
-      //   path: "/menu/produtos/novo_produto",
-      //   element: <NewProductPage />
-      // },
+       {
+         path: "/menu/produtos/reservas",
+         element: <ProductReservationPage />
+       },
+       {
+         path: "/menu/produtos/novo_produto",
+         element: <NewProductPage />
+      },
       {
         path: "/menu/treinos",
         element: <Workoutspage />
@@ -141,15 +141,7 @@ const router = createBrowserRouter([
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <RouterProvider router={router} />
-    {/* <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<App />}/>
-        <Route path='/esqueciSenha' element={<ForgotPass/>}/>
-        <Route path='/cadastro' element={<RegisterPage/>}/>
-        <Route path='/home' element={<HomePage/>}/>
-      </Routes>
-    </BrowserRouter> */}
-  </React.StrictMode>,
+   
+  
 )

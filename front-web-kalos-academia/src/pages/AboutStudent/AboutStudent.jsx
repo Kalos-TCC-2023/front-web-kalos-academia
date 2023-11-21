@@ -15,7 +15,7 @@ export const AboutStudent = () => {
     const [dataStudent, setDataStudent] = useState('')
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idAluno}`)
+        axios.get(`http://10.107.144.4:8080/kalos/aluno/id/${idAluno}`)
             .then(({ data }) => {
                 console.log(data)
                 setAboutStudens(data.aluno)

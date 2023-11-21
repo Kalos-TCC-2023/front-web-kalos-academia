@@ -16,6 +16,8 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
   const [frequenciaTreinoSemanal, setFrequenciaTreinoSemanal] = useState(data.frequencia_treino_semanal)
   const [messageApi, contextHolder] = message.useMessage()
 
+  console.log(qualidadeSono)
+
   console.log(frequenciaCardiaca, qualidadeSono, experienciaExercicios, rotinaRegular, quantidadeTempoPe, frequenciaTreinoSemanal)
 
   const success = () => {
