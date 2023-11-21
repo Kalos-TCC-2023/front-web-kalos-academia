@@ -29,6 +29,7 @@ import { ProductReservationPage } from './pages/ProductReservationPage/ProductRe
 import { NewProductPage } from './pages/NewProductPage/NewProductPage.jsx'
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -88,14 +89,14 @@ const router = createBrowserRouter([
         path: "/menu/produtos",
         element: <Productspage />
       },
-      {
-        path: "/menu/produtos/reservas",
-        element: <ProductReservationPage />
-      },
-      {
-        path: "/menu/produtos/novo_produto",
-        element: <NewProductPage />
-      },
+      // {
+      //   path: "/menu/produtos/reservas",
+      //   element: <ProductReservationPage />
+      // },
+      // {
+      //   path: "/menu/produtos/novo_produto",
+      //   element: <NewProductPage />
+      // },
       {
         path: "/menu/treinos",
         element: <Workoutspage />
