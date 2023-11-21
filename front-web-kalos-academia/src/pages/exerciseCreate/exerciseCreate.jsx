@@ -1,4 +1,4 @@
-import ExerciseCreatedSucess from "./image/ExerciseCreatedSucess.svg";
+import exerciseCreatedSucess from "./image/ExerciseCreatedSucess.svg";
 import "./exerciseCreate.css";
 import { Component } from "react";
 import { AddWorkouts } from "../AddExerciseReptsSets/Api/addExerciseReptsSetsApi";
@@ -47,7 +47,7 @@ export class ExerciseCreated extends Component {
   render() {
     return (
       <div className="container_exercise_created_sucess">
-        <img src={ExerciseCreatedSucess} alt="exercício criado com sucesso" />
+        <img src={exerciseCreatedSucess} alt="exercício criado com sucesso" />
       </div>
     );
   }
