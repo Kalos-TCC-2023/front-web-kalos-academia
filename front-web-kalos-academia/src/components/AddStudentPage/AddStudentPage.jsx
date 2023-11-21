@@ -17,17 +17,34 @@ export const AddStudentPage = () => {
     const [current, setCurrentPage] = useState(0)
     const [studentGym, setStudentsGym] = useState([])
     const [teste, setTeste] = useState([])
+    const [excluidos, setExcluidos] = useState([])
+    console.log( 'excluidos:', excluidos);
+
+    // const studentForGym = allStudents.map((student, indexa) => {
+    //      studentGym.map((studentFgym, index) => {
+    //         if (student.id == studentFgym.id) {
+    //             console.log(student.id)
+    //             console.log(allStudents.splice(indexa, 1))
+    //         }
+    //     })
+
+    // })
+
+    console.log(studentGym)
 
     const studentForGym = allStudents.map((student, indexa) => {
-         studentGym.map((studentFgym, index) => {
+        studentGym.map((studentFgym, index) => {
+            console.log(studentFgym)
             if (student.id == studentFgym.id) {
-                console.log(allStudents.splice(indexa, 1))
+
+                const excluidos = allStudents.splice(indexa, 1)
+                setExcluidos(excluidos)
             }
         })
-        
+
     })
 
-   
+
     const pages = Math.ceil(students.length / studensPerPage)
     const startIndex = current * studensPerPage
     const endIndex = startIndex + studensPerPage
@@ -57,7 +74,7 @@ export const AddStudentPage = () => {
 
 
     useEffect(() => {
-        axios.get(`http://10.107.144.4:8080/kalos/alunoAcademia/idAcademia/${id}`)
+        axios.get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${id}`)
             .then(({ data }) => {
 
                 setStudentsGym(data.alunos)
@@ -67,7 +84,7 @@ export const AddStudentPage = () => {
     }, [])
 
     useEffect(() => {
-        axios.get(`http://10.107.144.4:8080/kalos/aluno`)
+        axios.get(`https://kaloscorp.cyclic.app/kalos/aluno`)
             .then(({ data }) => {
                 const AllStudents = data.alunos
                 setStudents(data.alunos)
@@ -78,7 +95,7 @@ export const AddStudentPage = () => {
             })
     }, [])
 
-    
+
 
 
     return (

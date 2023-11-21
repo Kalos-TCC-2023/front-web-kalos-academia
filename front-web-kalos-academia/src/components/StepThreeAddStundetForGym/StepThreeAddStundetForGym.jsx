@@ -10,7 +10,7 @@ export const StepThreeAddStundetForGym = ({ updateFielHandler, idStudent }) => {
     const id = localStorage.getItem("id_academia")
     const [wokoutsInformations, setWokoutsInformation] = useState('')
     const [addWouktsForStudent, setAddWouktsForStudent] = useState([])
-
+    const [teste, setTeste] = useState(null)
 
     useEffect(() => {
         axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${id}`)
@@ -24,6 +24,11 @@ export const StepThreeAddStundetForGym = ({ updateFielHandler, idStudent }) => {
 
     }, [])
 
+    const funcaoTeste = (index) => {
+        console.log(index)
+        setTeste(index)
+    }
+
 
     return (
         <div className='add_wokouts_gym'>
@@ -36,16 +41,17 @@ export const StepThreeAddStundetForGym = ({ updateFielHandler, idStudent }) => {
                         <div className="wokouts_gym">
                             {
                                 wokoutsInformations.length == 0 ? <Loader /> : (
-                                    wokoutsInformations.map((wokouts) => (
-                                        <CardWokouts onClickFunction={(e) => {
+                                    wokoutsInformations.map((wokouts, index) => (
+                                        <CardWokouts className={teste === index ? 'selectCard' : ''} onClickFunction={(e) => {
                                             addWouktsForStudent.push(wokouts.id)
                                             console.log(wokouts.id)
                                             console.log(addWouktsForStudent)
                                             updateFielHandler('treinos_aluno', addWouktsForStudent)
+                                            funcaoTeste(index)
                                         }} key={wokouts.id} alunosWokouts={wokouts.alunos} idWokouts={wokouts.id} nomeWokouts={wokouts.nome} categoriaWokouts={wokouts.nome_categoria_treino} dataWokouts={wokouts.data_criacao} imgWokouts={wokouts.foto} />
                                     ))
                                 )
-                            }
+                            } 
                         </div>
                     </div>
                 </div>
