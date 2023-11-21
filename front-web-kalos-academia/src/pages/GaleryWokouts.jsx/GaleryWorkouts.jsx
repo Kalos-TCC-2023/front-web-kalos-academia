@@ -66,12 +66,7 @@ export default class GaleryWokouts extends Component {
                 </Link>
               </div>
               <div className='search-group-workouts'>
-                <Input.Search
-                  className='search_header-workout search_header'
-                  placeholder="Buscar exercicios..."
-                  onSearch={this.onSearch}
-                  size='large'
-                />
+
               </div>
               <div className='buttonsExercise'>
                 <Link to='/menu/treinos'>
@@ -140,23 +135,29 @@ export default class GaleryWokouts extends Component {
                     </div>
                     {exercises.map((exercise, index) => (
                       <div className='card-exercise' key={exercise.id}>
-                        {exercise.anexo == "" || exercise.anexo == null || exercise.anexo.length == 0 ? (
-                          <img className='image-card-exercise' src={photoDefaultExercise} alt={exercise.nome} />
-                        ) : (
-                          <img className='image-card-exercise' src={exercise.anexo } alt={exercise.nome} />
-                        )}
                         <div
-                          className={`change-card ${selectedCard === index ? 'visible' : ''}`}
+                          className={`change-card-galery-exercise ${selectedCard === index ? 'visible' : ''}`}
                           onClick={() => this.toggleCardVisibility(index)}
                         >
                           {selectedCard === index && (
                             localStorage.setItem("idExercicio", exercise.id),
                             <CrudWokoutCardExercise className="container-crud-workouts" />
                           )}
-                          <div className='text-exercise-card'>
-                            <p className='name-exercise-card'>{exercise.nome}</p>
-                            <p className='description-exercise-card'>{exercise.descricao}</p>
-                          </div>
+
+                          {exercise.anexo == "" || exercise.anexo == null || exercise.anexo.length == 0 ? (
+
+                            <img className='image-card-exercise' src={`https://img.youtube.com/vi/${exercise.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt={exercise.nome} />
+                          ) : (
+                            <img className='image-card-exercise' src={`https://img.youtube.com/vi/${exercise.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} />
+                          )}
+
+                        </div>
+
+
+
+                        <div className='text-exercise-card'>
+                          <p className='name-exercise-card'>{exercise.nome}</p>
+                          <p className='description-exercise-card'>{exercise.descricao}</p>
                         </div>
                       </div>
                     ))}

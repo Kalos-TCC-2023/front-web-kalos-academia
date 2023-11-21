@@ -120,9 +120,9 @@ export default class ChangeExercise extends Component {
                   {exercises.map((exercise) => (
                     <div className='card-exercise-change' key={exercise.id}>
                       {exercise.anexo === '' ? (
-                        <img className='image-card-exercise-change' src={exercise.anexo} alt={exercise.nome} />
+                        <img className='image-card-exercise-change' src={`https://img.youtube.com/vi/${exercise.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt={exercise.nome} />
                       ) : (
-                        <img className='image-card-exercise-change' src={exercise.anexo} alt={exercise.nome} />
+                        <img className='image-card-exercise-change' src={`https://img.youtube.com/vi/${exercise.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt={exercise.nome} />
                       )}
                       <div
                         className={`change-card ${selectedExercises.includes(exercise.id) ? 'selectCard' : ''}`}
