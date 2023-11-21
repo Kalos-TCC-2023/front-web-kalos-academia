@@ -23,15 +23,11 @@ import { AddNewStudentPage } from './pages/AddNewStudentPage/AddNewStudentPage.j
 import  AddExerciseRepetsSets  from './pages/AddExerciseReptsSets/AddExerciseReptsSets'
 import { EditStudentGym } from './components/EditStudentGym/EditStudentGym.jsx'
 import { AddStudentWorkouts } from './pages/AddStudentWorkouts/AddStudentWorkouts'
-<<<<<<< HEAD
 import ChangeExercise from './pages/ChangeExercise/changeExerciseForWorkout.jsx'
 import { ExerciseCreated } from './pages/exerciseCreate/exerciseCreate.jsx'
-
-
-=======
 import { ProductReservationPage } from './pages/ProductReservationPage/ProductReservationPage.jsx'
 import { NewProductPage } from './pages/NewProductPage/NewProductPage.jsx'
->>>>>>> 071c4710ae5bb756feb2aada9f0a9bfa8a435550
+
 
 const router = createBrowserRouter([
   {
@@ -126,7 +122,6 @@ const router = createBrowserRouter([
       },
       {
         path: "/menu/adicionar_exercicio",
-<<<<<<< HEAD
         element: <AddExerciseRepetsSets/>
       }
       ,
@@ -137,9 +132,6 @@ const router = createBrowserRouter([
       {
         path: "/menu/exercicio_criado_com_sucesso",
         element: <ExerciseCreated/>
-=======
-        element: <AddExerciseRepetsSets />
->>>>>>> 071c4710ae5bb756feb2aada9f0a9bfa8a435550
       }
 
     ]
