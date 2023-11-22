@@ -5,12 +5,23 @@ import { Link } from 'react-router-dom'
 const { Search } = Input
 const { TextArea } = Input;
 import { CheckOutlined } from '@ant-design/icons'
+import { storage } from '../../adapters/firebase';
 
 
 export const NewProductPage = () => {
 
 
     const [searchProducts, setSearchProducts] = useState('')
+
+    const [images, setImagens] = useState('')
+    const [progress, setProgress] = useState('')
+
+
+    const imgsUploadProduct = () => {
+        const storageRef = storage.ref()
+        const promise = []
+        
+    }
 
 
     const handleChangeSelect = (value) => {
@@ -89,7 +100,7 @@ export const NewProductPage = () => {
                                     showCount
                                     maxLength={120}
                                     onChange={onChange}
-                                    placeholder="disable resize"
+                                    placeholder=""
                                     style={{
                                         height: 130,
                                         resize: 'none',
