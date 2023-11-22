@@ -25,6 +25,7 @@ export const AddWorkouts = (
       duracao: exercicio.duracao,
     })),
   };
+  console.log(workoutData);
 
   // Enviar a solicitação POST para a API
   return fetch(url, {

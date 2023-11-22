@@ -184,3 +184,6 @@ width: 400px;
 .exercise-clicked {
     border: 1px solid #00FE90;
 }
+.nameExercise{
+    border-radius: 10px;
+}

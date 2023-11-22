@@ -95,7 +95,7 @@ class AddExerciseRepetsSets extends Component {
 
     handleEditExercise = (index) => {
         console.log(index);
-        const { selectedExercises } = this.state;
+        const { selectedExercises , imageExercise} = this.state;
         const exercise = selectedExercises[index];
         console.log(exercise);
 
@@ -108,6 +108,7 @@ class AddExerciseRepetsSets extends Component {
             imageExercise: exercise.foto,
             nameExercise: exercise.nome
         });
+        console.log(imageExercise);
     };
 
     handleSaveEdit = () => {
@@ -277,8 +278,11 @@ class AddExerciseRepetsSets extends Component {
                         <div>
                             <div className='preview-exercise'>
                                 <div className='container-preview-exercise'>
-                                    <p>{nameExercise || "Seu exercício"}</p>
-                                    <img className='photo-exercise-preview' src={`https://img.youtube.com/vi/${imageExercise.replace("https://www.youtube.com/watch?v=", "")}/0.jpg` || blackPhoto} alt='' />
+                                    <p className={nameExercise} > {nameExercise || "Seu exercício/"}</p>
+                                    <iframe width="560" height="615" className='photo-exercise-preview' src={`https://www.youtube.com/embed/${imageExercise}`} title="YouTube video player" frameborder="0" ></iframe>
+
+
+
                                 </div>
                             </div>
                         </div>

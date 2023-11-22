@@ -59,7 +59,7 @@ export default class ChangeExercise extends Component {
         descricao: exercise.descricao,
         serie: "0",
         repeticao:"0",
-        duracao:"00:00:00"
+        duracao:null
 
       };
     });
@@ -131,11 +131,13 @@ export default class ChangeExercise extends Component {
                         }
                       >
                         {selectedExercises.includes(exercise.id) && <div className='exercise-selected'>✔</div>}
-                        <div className='text-exercise-card-change'>
+                   
+                      </div>
+
+                      <div className='text-exercise-card-change'>
                           <p className='name-exercise-card'>{exercise.nome}</p>
                           <p className='description-exercise-card'>{exercise.descricao}</p>
                         </div>
-                      </div>
                     </div>
                   ))}
                 </div>
