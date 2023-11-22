@@ -11,6 +11,8 @@ import { AddWorkouts } from '../AddExerciseReptsSets/Api/addExerciseReptsSetsApi
 import { PreviewCardWokouts } from '../../components/PreviewCardWokouts/PreviewCardWokouts';
 import { storage } from '../../adapters/firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { GetAllCategorys } from './Api/AllCategorys';
+import { GetAllLevels } from './Api/AllLevels';
 
 export class CreateWorkouts extends Component {
   state = {
@@ -21,7 +23,9 @@ export class CreateWorkouts extends Component {
     workoutCategory: '',
     workoutCategoryName: "",
     imageFirebase: "",
-    selectFile: ""
+    selectFile: "",
+    categorys: "",
+    levels: ""
   };
 
   handleSendData = () => {
@@ -41,15 +45,15 @@ export class CreateWorkouts extends Component {
     localStorage.setItem('nivel_treino', workoutIdNivel);
     localStorage.setItem('categoria_treino', workoutCategory);
 
-    
-      console.log('Nome do Treino:', localStorage.getItem('nome_treino'));
-      console.log('Foto do Treino:', localStorage.getItem('foto_treino'));
-      console.log('Descrição do Treino:', localStorage.getItem('descricao_treino'));
-      console.log('Data do Treino:', localStorage.getItem('data_treino'));
-      console.log('Nível do Treino:', localStorage.getItem('nivel_treino'));
-      console.log('Categoria do Treino:', localStorage.getItem('categoria_treino'));
-    
-   
+
+    console.log('Nome do Treino:', localStorage.getItem('nome_treino'));
+    console.log('Foto do Treino:', localStorage.getItem('foto_treino'));
+    console.log('Descrição do Treino:', localStorage.getItem('descricao_treino'));
+    console.log('Data do Treino:', localStorage.getItem('data_treino'));
+    console.log('Nível do Treino:', localStorage.getItem('nivel_treino'));
+    console.log('Categoria do Treino:', localStorage.getItem('categoria_treino'));
+
+
   };
 
   handleNameChange = (event) => {
@@ -58,12 +62,42 @@ export class CreateWorkouts extends Component {
 
 
 
-  
+  componentDidMount  () {
+    const {categorys, levels} =  this.state
+    GetAllCategorys()
+      .then((data) => {
+        const categoriasApi = data.categorias; 
+        const optionsFromApi = categoriasApi.map((categoria) => ({
+          value: categoria.id,
+          label: categoria.nome,
+        }));
+        this.setState({ categorys: optionsFromApi });
+      })
+      .catch((error) => {
+        console.error('Ocorreu um erro ao carregar os dados:', error);
+      });
+
+
+      GetAllLevels()
+      .then((data) => {
+        const levelsApi = data.niveis; 
+        const optionsFromApi = levelsApi.map((levels) => ({
+          value: levels.id,
+          label: levels.nome,
+        }));
+        this.setState({ levels: optionsFromApi });
+      })
+      .catch((error) => {
+        console.error('Ocorreu um erro ao carregar os dados:', error);
+      });
+      
+
+  }
 
   handleFileChange = (event) => {
     event.preventDefault();
     const file = event.target.files[0];
-    this.setState({selectFile: file})
+    this.setState({ selectFile: file })
 
     if (!file) return console.log('Erro: nenhum arquivo selecionado.');
 
@@ -84,79 +118,22 @@ export class CreateWorkouts extends Component {
     );
   };
 
-  
 
-  
-   handleChangeCategoria = (value, {label}) => {
-    this.setState({workoutCategory: value})
-    this.setState({workoutCategoryName: label})
+
+
+  handleChangeCategoria = (value, { label }) => {
+    this.setState({ workoutCategory: value })
+    this.setState({ workoutCategoryName: label })
     console.log(`selected ${label}`);
   };
 
   handleChangeNivel = (value) => {
-    this.setState({workoutIdNivel: value})
+    this.setState({ workoutIdNivel: value })
     console.log(`selected ${value}`);
   };
 
   render() {
-    const optionsCategoria = [
-      { value: '1', label: 'Boxe' },
-      { value: '2', label: 'Natação' },
-      { value: '3', label: 'Cardio' },
-      { value: '4', label: 'Crossfit' },
-    ];
-
-    const optionsTypeWokouts = [
-      { value: '1', label: 'Iniciante' },
-      { value: '2', label: 'Médio' },
-      { value: '3', label: 'Experiente' },
-    ];
-
-    // handleAddExercise = () => {
-      //   const exerciseId = localStorage.getItem("idExercicio");
-      
-      //   const {
-      //     exerciseName,
-      //     selectedFile,
-      //     exerciseDescription,
-      //     exerciseDateCreation,
-      //     exerciseIdNivel,
-      //     exerciseCategoriaTreino
-      //   } = this.state;
-      
-      //   AddWorkouts(
-      //     exerciseName,
-      //     selectedFile,
-      //     exerciseDescription,
-      //     exerciseDateCreation,
-      //     exerciseIdNivel,
-      //     exerciseCategoriaTreino,
-      //     exerciseId
-      //   ).then((data) => {
-      //     const {
-      //       newName,
-      //       newDescription,
-      //       newUrl,
-      //       newDateCreation,
-      //       idNivel,
-      //       idCategoriaTreino,
-      //       idAcademia
-      //     } = data;
-      
-      //     this.setState({
-      //       exerciseName: newName,
-      //       selectedFile: newUrl,
-      //       exerciseDescription: newDescription,
-      //       exerciseDateCreation: newDateCreation,
-      //       exerciseIdNivel: idNivel,
-      //       exerciseCategoriaTreino: idCategoriaTreino,
-      //       idAcademia: idAcademia
-      //     });
-      //   })
-      //   .catch((error) => {
-      //     console.error('Erro ao adicionar exercício:', error);
-      //   });
-      // };
+  
 
     const {
       workoutName,
@@ -166,7 +143,9 @@ export class CreateWorkouts extends Component {
       workoutCategory,
       workoutCategoryName,
       imageFirebase,
-      selectFile
+      selectFile,
+      categorys,
+      levels
     } = this.state;
 
     return (
@@ -268,18 +247,18 @@ export class CreateWorkouts extends Component {
             <div className="selects-new-workouts">
               <div>
                 <p className="color-gray">Categoria de Treino</p>
-                <SelectDefaultKalos defaultValue="Categoria" options={optionsCategoria} width="300px" height="40px" handleChange={this.handleChangeCategoria }className="selectDefault"   onChange={this.handleChangeCategoria}/>
+                <SelectDefaultKalos defaultValue="Categoria" options={categorys} width="300px" height="40px" handleChange={this.handleChangeCategoria} className="selectDefault" onChange={this.handleChangeCategoria} />
               </div>
 
               <div>
                 <p className="color-gray">Tipo de Treino</p>
-                <SelectDefaultKalos defaultValue="Nivel" options={optionsTypeWokouts} width="300px" height="40px" handleChange={this.handleChangeNivel} className="selectDefault" onChange={this.handleChangeNivel} />
+                <SelectDefaultKalos defaultValue="Nivel" options={levels} width="300px" height="40px" handleChange={this.handleChangeNivel} className="selectDefault" onChange={this.handleChangeNivel} />
               </div>
             </div>
             <div className="container-preview-workouts">
               <p className="p-preview-create-workout">Preview</p>
 
-              <PreviewCardWokouts nomeTreino={workoutName} categoriaTreino={workoutCategoryName} dataTreino={workoutDate } foto={imageFirebase}/>
+              <PreviewCardWokouts nomeTreino={workoutName} categoriaTreino={workoutCategoryName} dataTreino={workoutDate} foto={imageFirebase} />
             </div>
           </div>
         </div>
