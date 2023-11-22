@@ -167,35 +167,8 @@ class Workoutspage extends Component {
             {searchResults.length > 0 ? (
               searchResults.map((workout, index) => {
                 return (
-                  <div className="card-workouts" key={index}>
-                    <div
-                      className={`change-card ${selectedCard === index ? 'visible' : ''}`}
-                      onClick={() => this.toggleCardVisibility(index)}
-                    >
-                      {selectedCard === index && (
-                        <CrudWorkoutCard className="container-crud-workouts" />
-                      )}
-                    </div>
-                    {workout.foto !== "a" ? (
-                      <img className='img-card-workouts' src={workout.foto} alt={workout.nome} />
-                    ) : (
-                      <img className='img-card-workouts' src={workoutPhoto} alt="Imagem Padrão" />
-                    )}
-                    <div className='workout-name'>{workout.nome}</div>
-                    <div className='workout-category-name'>{workout.nome_categoria_treino}</div>
-                    <div className='container-data-user'>
-                      <div className='workout-data'>
-                        <img className="img-calendar-workout" src={calendar} alt="" />
-                        <p className='p-workout-data'>{workout.data_criacao}</p>
-                      </div>
-                      <div className='user-workouts'>
-                        {alunosMatriculados.slice(0, 5).map((matriculados, matriculadoIndex) => (
-                          <img key={matriculadoIndex} src={matriculados.foto} className='userCard' alt="" />
-                        ))}
-                        <p className='userCard'>{alunosMatriculados.length}</p>
-                      </div>
-                    </div>
-                  </div>
+                  <CardCrudWorkouts key={index} idWokouts={workout.id} dataWokouts={workout.data_criacao} alunosWokouts={workout.alunos} nomeWokouts={workout.nome} categoriaWokouts='Iniciante' imgWokouts={workout.foto} />
+
                 );
               })
             ) : (
