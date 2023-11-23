@@ -39,6 +39,7 @@ a{
     flex-direction: column;
     gap: 20px;
 
+
 }
 .container-selects-add-exercise-repts-sets{
     display: flex;
@@ -48,6 +49,7 @@ a{
 .text-add-exercise{
     margin: 0px;
     padding: 0px;
+
     color: #666;
 }
 .text-name-exercise{
@@ -76,6 +78,7 @@ a{
 }
 .player-exercise{
     padding: 20px;
+    margin: 50px;
 
 }
 .container-player-exercise{
@@ -92,6 +95,8 @@ width: 400px;
     padding: 10px;
     border-radius: 15px;
     cursor: pointer;
+    box-shadow: 1px 1px 10px rgb(163, 163, 163);
+
 
 }
 
@@ -146,10 +151,16 @@ width: 400px;
 }
 .container-preview-exercise > p{
     position: absolute;
-    top: 20px;
+    bottom: 20px;
+    left: 10px;
     color: white;
     font-weight: 400;
     font-size: 1.3rem;
+    color: #00FE90;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 10px;
+
 
 
 }
@@ -182,8 +193,15 @@ width: 400px;
     
 }
 .exercise-clicked {
-    border: 1px solid #00FE90;
+    transition: 0.2s;
+transform: scale(1.04);
 }
-.nameExercise{
+
+iframe{
     border-radius: 10px;
+    box-shadow: 1px 1px 10px rgb(163, 163, 163);
+}
+.input-time-select{
+    background-color: white;
+    border: 1px solid rgba(128, 128, 128, 0.387);
 }

@@ -106,7 +106,7 @@ justify-content:center ;
     position: relative;
     border-radius: 10px;
     padding: 30px;
-box-shadow: 1px 1px 10px black;
+box-shadow: 1px 1px 10px gray;
 
 }
 
@@ -154,6 +154,8 @@ box-shadow: 1px 1px 10px black;
 
 .description-exercise-card {
     font-weight: 400;
+    font-size: 0.8rem;
+    color: gray;
 }
 
 .image-card-exercise-change {

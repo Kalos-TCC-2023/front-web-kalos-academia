@@ -8,6 +8,7 @@ import blackPhoto from './image/fundoPreto.jpg';
 import { FloatButton } from 'antd';
 import { ArrowRightOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { AddWorkouts } from './Api/addExerciseReptsSetsApi';
+import { createWorkoutSucess } from '../../components/createWorkoutSucess/createWorkoutSucess';
 
 class AddExerciseRepetsSets extends Component {
     state = {
@@ -20,7 +21,9 @@ class AddExerciseRepetsSets extends Component {
         duracaoSelecionado: {},
         imageExercise: "",
         nameExercise: "",
-        descriptionExercise: ""
+        descriptionExercise: "",
+        isRepeticaoSelected: false,
+        isDuracaoSelected: false,
 
     };
 
@@ -55,6 +58,8 @@ class AddExerciseRepetsSets extends Component {
             this.setState({
                 selectedExercises: updatedExercises,
                 repeticaoSelecionada: value, // Atualize o estado de repetição selecionada
+                isRepeticaoSelected: true,
+                isDuracaoSelected: false
             });
             console.log(repeticaoSelecionada);
 
@@ -75,6 +80,8 @@ class AddExerciseRepetsSets extends Component {
             this.setState({
                 selectedExercises: updatedExercises,
                 duracaoSelecionado: horario,
+                isRepeticaoSelected: false, // Desativa a repetição
+                isDuracaoSelected: true,
             });
 
             this.saveToLocalStorage();
@@ -95,7 +102,7 @@ class AddExerciseRepetsSets extends Component {
 
     handleEditExercise = (index) => {
         console.log(index);
-        const { selectedExercises , imageExercise} = this.state;
+        const { selectedExercises, imageExercise } = this.state;
         const exercise = selectedExercises[index];
         console.log(exercise);
 
@@ -106,13 +113,15 @@ class AddExerciseRepetsSets extends Component {
             editingIndex: index,
             exercicioClicadoIndex: index,
             imageExercise: exercise.foto,
-            nameExercise: exercise.nome
+            nameExercise: exercise.nome,
+            isRepeticaoSelected: false,
+            isDuracaoSelected: false,
         });
         console.log(imageExercise);
     };
 
     handleSaveEdit = () => {
-        const { editingIndex, selectedExercises, serieSelecionada, repeticaoSelecionada, duracaoSelecionado, nameExercise } = this.state;
+        const { editingIndex, selectedExercises, serieSelecionada, repeticaoSelecionada, duracaoSelecionado } = this.state;
 
         if (editingIndex !== null) {
             const editedExercise = selectedExercises[editingIndex];
@@ -130,6 +139,7 @@ class AddExerciseRepetsSets extends Component {
             });
 
             this.saveToLocalStorage();
+            createWorkoutSucess();
         }
     };
 
@@ -159,7 +169,7 @@ class AddExerciseRepetsSets extends Component {
     };
 
     render() {
-        const { selectedExercises, serieSelecionada, repeticaoSelecionada, imageExercise, nameExercise } = this.state;
+        const { selectedExercises, serieSelecionada, repeticaoSelecionada, imageExercise, nameExercise, isDuracaoSelected, isRepeticaoSelected } = this.state;
 
         const optionsSerie = [
             { value: '1', label: '1' },
@@ -239,12 +249,15 @@ class AddExerciseRepetsSets extends Component {
                                         width='150px'
                                         height='40px'
                                         handleChange={(value) => this.handleSelectRepeticaoChange(value)}
+                                        disabled={isDuracaoSelected} // Desabilita se a duração estiver selecionada
                                     />
                                 </div>
                             </div>
                             <div>
                                 <p className='text-gray'>Duração</p>
-                                <input type='time' className='input-time' onChange={this.handleSelectDuracaoChange} />
+                                <input type='time' className={`input-time ${isRepeticaoSelected === false ? 'input-time-select' : ''}`}onChange={this.handleSelectDuracaoChange} disabled={isRepeticaoSelected}
+                                
+                                />
                             </div>
                         </div>
                         <div className='player-exercise'>
@@ -254,7 +267,7 @@ class AddExerciseRepetsSets extends Component {
                                     key={index}
                                     onClick={() => this.handleEditExercise(index)}
                                 >                                    <p className='number-exercise'>{index + 1}</p>
-                                    <img className='photo-exercise' src={`https://img.youtube.com/vi/${exercise.foto.replace("https://www.youtube.com/watch?v="," ")}/0.jpg`} alt=''/>
+                                    <img className='photo-exercise' src={`https://img.youtube.com/vi/${exercise.foto.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt='' />
 
                                     <div className='exercise-texto'>
                                         <p className='text-player-name-exercise'>{exercise.nome}</p>
@@ -278,10 +291,17 @@ class AddExerciseRepetsSets extends Component {
                         <div>
                             <div className='preview-exercise'>
                                 <div className='container-preview-exercise'>
-                                    <p className={nameExercise} > {nameExercise || "Seu exercício/"}</p>
-                                    <iframe width="560" height="615" className='photo-exercise-preview' src={`https://www.youtube.com/embed/${imageExercise}`} title="YouTube video player" frameborder="0" ></iframe>
+                                    <iframe
+                                        width="560"
+                                        height="615"
+                                        src={`https://www.youtube.com/embed/${imageExercise.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`}
+                                        title="YouTube video player"
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 
 
+                                    >
+                                    </iframe>
 
                                 </div>
                             </div>
