@@ -46,6 +46,10 @@ export class CreateWorkouts extends Component {
     localStorage.setItem('categoria_treino', workoutCategory);
 
 
+    console.log(workoutIdNivel);
+    console.log(workoutCategory);
+
+
     console.log('Nome do Treino:', localStorage.getItem('nome_treino'));
     console.log('Foto do Treino:', localStorage.getItem('foto_treino'));
     console.log('Descrição do Treino:', localStorage.getItem('descricao_treino'));
@@ -63,7 +67,8 @@ export class CreateWorkouts extends Component {
 
 
   componentDidMount  () {
-    const {categorys, levels} =  this.state
+  
+    const {categorys, levels, workoutCategory, workoutIdNivel} =  this.state
     GetAllCategorys()
       .then((data) => {
         const categoriasApi = data.categorias; 
@@ -91,6 +96,8 @@ export class CreateWorkouts extends Component {
         console.error('Ocorreu um erro ao carregar os dados:', error);
       });
       
+
+
 
   }
 
@@ -132,6 +139,8 @@ export class CreateWorkouts extends Component {
     console.log(`selected ${value}`);
   };
 
+
+  
   render() {
   
 
@@ -238,8 +247,8 @@ export class CreateWorkouts extends Component {
                 <input type="date" className="input-date-workout" value={workoutDate} onChange={(e) => this.setState({ workoutDate: e.target.value })} />
               </div>
               <div className="btn-add-exercise">
-                <Link to="/menu/adicionar_exercicio">
-                  <p className="add-exercise-btn">ADICIONAR EXERCÍCIOS</p>
+                <Link to="/menu/escolher_exercicio">
+                  <p className="add-exercise-btn" onClick={this.handleSendData}>ADICIONAR EXERCÍCIOS</p>
                 </Link>
               </div>
             </div>
