@@ -59,18 +59,24 @@ export const NewProductPage = () => {
 
     const successRequest = () => {
         messageApi.open({
-          type: 'success',
-          content: 'Produto criado com sucesso!',
+            type: 'success',
+            content: 'Produto criado com sucesso!',
         });
-      };
+    };
 
     const imgsUploadProduct = (idProd) => {
 
 
         for (let i = 0; i < images.length; i++) {
             console.log(images)
+
             const image = images[i]
-            const storageRef = ref(storage, `images/${File.name}`)
+
+            const currentDate = new Date();
+            const seconds = currentDate.getSeconds();
+            const newName = `image_${i}_${currentDate.getFullYear()}${(currentDate.getMonth() + 1)}${currentDate.getDate()}_${seconds}`;
+
+            const storageRef = ref(storage, `images/${newName}`)
             const uploadTask = uploadBytesResumable(storageRef, image)
 
             uploadTask.on(
@@ -87,13 +93,13 @@ export const NewProductPage = () => {
                     getDownloadURL(uploadTask.snapshot.ref).then(url => {
                         arraysUrls.push(url)
                         console.log(arraysUrls)
-                        if(images.length !== arraysUrls.length){
+                        if (images.length !== arraysUrls.length) {
                             console.log('nao')
                         } else {
                             setProductPhotos(arraysUrls)
                             console.log('igual')
                             submitPhotos(idProd, arraysUrls)
-                            setArrayUrls([])
+                            // setArrayUrls([])
                         }
                     })
                 }
@@ -124,9 +130,9 @@ export const NewProductPage = () => {
     const id = localStorage.getItem("id_academia")
 
     const submitProduct = () => {
-        if (productName == '' || productCode == '' || productDescription == '' || idProductCategory == '' || statusProduct == '' || priceProduct.length == 0 ) {
+        if (productName == '' || productCode == '' || productDescription == '' || idProductCategory == '' || statusProduct == '' || priceProduct.length == 0) {
             invalidOptins()
-        } else if(priceProduct == 0){
+        } else if (priceProduct == 0) {
             invalidPrice()
         } else {
             axios.post(`https://kaloscorp.cyclic.app/kalos/produto`, {
@@ -137,18 +143,18 @@ export const NewProductPage = () => {
                 status: statusProduct,
                 id_academia: id,
                 id_categoria_produto: idProductCategory
-            }).then(({data}) => {
+            }).then(({ data }) => {
                 console.log(data.produto[0].id)
                 setIdProduct(data.produto[0].id)
                 const idProd = data.produto[0].id
                 imgsUploadProduct(idProd)
                 successRequest()
-            }).catch(({error}) =>{
+            }).catch(({ error }) => {
                 invalidRequest()
                 console.log(error)
             })
         }
-       
+
     }
 
     const submitPhotos = (produto, photos) => {
@@ -158,18 +164,18 @@ export const NewProductPage = () => {
         axios.post(`https://kaloscorp.cyclic.app/kalos/fotos`, {
             anexo: photos,
             id_produto: produto
-        }).then(({data}) => {
+        }).then(({ data }) => {
             console.log(data)
-            setArrayUrls([])
-            productName('')
-            set
-        }).catch(({error}) => {
+            //setArrayUrls([])
+            //productName('')
+            //set
+        }).catch(({ error }) => {
             console.log(produto)
             console.log(photos)
             console.log(error)
         })
 
-    }    
+    }
 
     const contentStyle = {
         margin: 0,
