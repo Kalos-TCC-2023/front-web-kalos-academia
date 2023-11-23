@@ -18,8 +18,6 @@ export const NewProductPage = () => {
     const [searchProducts, setSearchProducts] = useState('')
     const [messageApi, contextHolder] = message.useMessage()
 
-
-
     const [images, setImagens] = useState([])
     const [arraysUrls, setArrayUrls] = useState([])
 
@@ -70,6 +68,7 @@ export const NewProductPage = () => {
 
 
         for (let i = 0; i < images.length; i++) {
+            console.log(images)
             const image = images[i]
             const storageRef = ref(storage, `images/${File.name}`)
             const uploadTask = uploadBytesResumable(storageRef, image)
@@ -94,6 +93,7 @@ export const NewProductPage = () => {
                             setProductPhotos(arraysUrls)
                             console.log('igual')
                             submitPhotos(idProd, arraysUrls)
+                            setArrayUrls([])
                         }
                     })
                 }
@@ -160,16 +160,16 @@ export const NewProductPage = () => {
             id_produto: produto
         }).then(({data}) => {
             console.log(data)
+            setArrayUrls([])
+            productName('')
+            set
         }).catch(({error}) => {
             console.log(produto)
             console.log(photos)
             console.log(error)
         })
 
-    }
-
-    // para fotos é /fotos
-    
+    }    
 
     const contentStyle = {
         margin: 0,

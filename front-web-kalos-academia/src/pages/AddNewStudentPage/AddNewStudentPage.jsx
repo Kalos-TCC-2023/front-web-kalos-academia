@@ -129,7 +129,7 @@ export const AddNewStudentPage = ({ idStudent }) => {
   }
 
   const addStudentWokouts = () => {
-
+    
   }
 
   console.log(isLastStep)
