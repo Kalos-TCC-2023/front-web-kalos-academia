@@ -1,9 +1,33 @@
 import React from 'react'
-import { Button, Carousel } from 'antd'
+import { Button, Carousel, Modal } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import './CardProductGym.css'
+import axios from 'axios'
 
-export const CardProductGym = ({ productName, productCategory, productDescription, productPrice, productPhoto }) => {
+const config = {
+  title: 'Você realmente quer excluir esse produto?',
+  content: 'Esse produto será excluido permanentemente da sua academia.'
+}
+
+export const CardProductGym = ({ productName, productCategory, productDescription, productPrice, productPhoto, idProduct, setDeletedProductId }) => {
+
+  const [modal, contextHolder] = Modal.useModal()
+
+
+  const deletedProduct = (confirm, idProduct) => {
+    if (confirm == true) {
+      axios.delete(`https://kaloscorp.cyclic.app/kalos/produto/id/${idProduct}`)
+        .then(({ data }) => {
+          console.log(data)
+          setDeletedProductId(idProduct)
+        }).catch(({ error }) => {
+          console.log(error)
+        })
+    } else {
+      return
+    }
+
+  }
 
   const contentStyle = {
     height: '350px',
@@ -17,6 +41,7 @@ export const CardProductGym = ({ productName, productCategory, productDescriptio
 
   return (
     <div className='card_product_gym'>
+      {contextHolder}
       <div className="photo">
         <Carousel autoplay effect="fade" dotPosition='bottom'>
           {
@@ -38,7 +63,12 @@ export const CardProductGym = ({ productName, productCategory, productDescriptio
 
         <div className="products_options">
           <EditOutlined />
-          <DeleteOutlined />
+          <DeleteOutlined onClick={async () => {
+            const confirmed = await modal.confirm(config);
+
+            console.log('Confirmed: ', confirmed, idProduct)
+            deletedProduct(confirmed, idProduct)
+          }} />
         </div>
       </div>
       <div className="products_more_options">
