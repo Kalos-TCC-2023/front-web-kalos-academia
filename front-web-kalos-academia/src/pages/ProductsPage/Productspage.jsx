@@ -25,10 +25,10 @@ export const Productspage = () => {
     axios.get(`https://kaloscorp.cyclic.app/kalos/produtoByIdAcademia/id/${idAcademia}`)
       .then(({ data }) => {
         console.log(data)
-       
-          setStatusCode(data.status)
-          setProducts(data.produto)
-        
+
+        setStatusCode(data.status)
+        setProducts(data.produto)
+
 
       }).catch((erro) => {
         console.log(erro)
