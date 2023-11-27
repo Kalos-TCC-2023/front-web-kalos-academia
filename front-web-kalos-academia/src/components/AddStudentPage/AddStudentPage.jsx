@@ -20,15 +20,7 @@ export const AddStudentPage = () => {
     const [excluidos, setExcluidos] = useState([])
     console.log( 'excluidos:', excluidos);
 
-    // const studentForGym = allStudents.map((student, indexa) => {
-    //      studentGym.map((studentFgym, index) => {
-    //         if (student.id == studentFgym.id) {
-    //             console.log(student.id)
-    //             console.log(allStudents.splice(indexa, 1))
-    //         }
-    //     })
-
-    // })
+   
 
     console.log(studentGym)
 

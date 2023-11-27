@@ -42,29 +42,29 @@ export const AddStudentWorkouts = () => {
 
     useEffect(() => {
         axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${id}/idTreinoNivelCategoria/${treino}`)
-          .then(({ data }) => {
-            console.log(data)
-            console.log(data.informacoes)
-            setTeste(data.informacoes)
+            .then(({ data }) => {
+                console.log(data)
+                console.log(data.informacoes)
+                setTeste(data.informacoes)
 
-            studentsGym.map((student) => {
-                data.informacoes.map((studentWourkts) => {
-                  if (student.id == studentWourkts.id) {
-                    setChecked(true)
-                  } else {
-                    setChecked(false)
-                  }
+                studentsGym.map((student) => {
+                    data.informacoes.map((studentWourkts) => {
+                        if (student.id == studentWourkts.id) {
+                            setChecked(true)
+                        } else {
+                            setChecked(false)
+                        }
+                    })
                 })
-              })
-      
-    
-    
-          }).catch((erro) => {
-            console.log(erro)
-          })
-      }, [])
 
-  
+
+
+            }).catch((erro) => {
+                console.log(erro)
+            })
+    }, [])
+
+
     return (
         <div className='add_student_workouts'>
             <div className="add_student_workouts_page">

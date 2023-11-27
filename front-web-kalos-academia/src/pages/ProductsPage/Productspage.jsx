@@ -18,25 +18,25 @@ export const Productspage = () => {
   const [searchProducts, setSearchProducts] = useState('')
   const [products, setProducts] = useState([])
   const [statusCode, setStatusCode] = useState(0)
+  const [deletedProductGym, setDeletedProduct] = useState(0)
 
 
   useEffect(() => {
     axios.get(`https://kaloscorp.cyclic.app/kalos/produtoByIdAcademia/id/${idAcademia}`)
       .then(({ data }) => {
         console.log(data)
-        if (products.length == 0) {
-          setStatusCode(data.status)
-          setProducts(data.produto)
-        } else {
-          return
-        }
+
+        setStatusCode(data.status)
+        setProducts(data.produto)
+
 
       }).catch((erro) => {
-
+        console.log(erro)
 
       })
 
-  }, [])
+  }, [deletedProductGym])
+
 
 
   const handleChangeSelect = (value) => {
@@ -120,7 +120,7 @@ export const Productspage = () => {
           {
             products.length == 0 ? <Loader /> : (
               products.map((product, index) => (
-                <CardProductGym key={product.id} productPhoto={product.fotos} productName={product.nome} productCategory={product.categoria} productDescription={product.descricao} productPrice={product.preco} />
+                <CardProductGym key={product.id} idProduct={product.id} setDeletedProductId={setDeletedProduct} productPhoto={product.fotos} productName={product.nome} productCategory={product.categoria} productDescription={product.descricao} productPrice={product.preco} />
               ))
             )
 

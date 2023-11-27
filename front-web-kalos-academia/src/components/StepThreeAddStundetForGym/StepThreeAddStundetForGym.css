@@ -13,7 +13,7 @@
     flex-flow: wrap-reverse;
 }
 
-.selectCard {
+.selectCardGym {
     transition: 0.2s;
     border: 2px solid #00FE90;
     border-radius: 10px;

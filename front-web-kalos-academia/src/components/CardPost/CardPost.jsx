@@ -50,7 +50,7 @@ export const CardPost = ({ title, description, photo, data, time, postId, setDel
                 style={{
                     width: 600
                 }}
-                cover={<img style={{ width: '100%' }} src={photo || 'https://firebasestorage.googleapis.com/v0/b/kalos-corp-academia.appspot.com/o/images%2Fimage%2072.png?alt=media&token=eb462d95-56bd-4f44-a9c2-d9175eb58e21'} />}
+                cover={<img style={{ width: '100%' }} src={photo || 'https://firebasestorage.googleapis.com/v0/b/kalos-corp-academia.appspot.com/o/images%2FFundo%20transparente%201900x1900%201.png?alt=media&token=7068ccb1-8c80-47e0-b0da-bc35b2b22ea3'} />}
                 actions={[
                     <Tooltip title='Editar post'><EditOutlined key="edit" /></Tooltip>,
                     <Tooltip title='Excluir post'><CloseCircleOutlined key="close" onClick={(e) => deletePost(postId)} /></Tooltip>
