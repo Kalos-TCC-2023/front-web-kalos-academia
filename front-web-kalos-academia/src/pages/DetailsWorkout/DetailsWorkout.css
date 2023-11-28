@@ -1,0 +1,72 @@
+.page-details-workout{
+    width: 100%;
+    height: 100%;
+    padding: 80px;
+}
+.detailsWorkout{
+width: 1200px;
+display: flex;
+justify-content: space-around;
+}
+.detailsWorkout-container{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px rgb(208, 208, 208);
+
+
+}
+.detailsWorkout-container > img{
+    width: 100%;
+    border-radius: 10px;
+}
+.content-details-workout{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.details-workout-name{
+    font-size: 1.5rem;
+    font-weight: bold;
+
+
+}
+.details-workout-date{
+    padding: 10px;
+    background: #00FE90;
+    border-radius: 30px;
+
+}
+.exercises-container-details-workout{
+    width: 500px;
+    background-color: rgba(128, 128, 128, 0.078);
+    border-radius: 10px;
+
+}
+.exercise-details{
+    padding: 10px;
+    box-shadow: 1px 1px 10px rgb(208, 208, 208);
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 1px 1px 10px rgb(208, 208, 208);
+
+
+}
+.content-details-workout-exercise{
+    display: flex;
+gap: 20px;
+    padding: 5px;
+    margin: 20px;
+    padding: 10px;
+    border-top: 1px solid rgba(128, 128, 128, 0.403);
+}
