@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 const { Search } = Input
 import { FloatButton } from 'antd'
 import { SkinOutlined } from '@ant-design/icons'
+import { CardPreviewProductReservation } from '../../components/CardPreviewProduct/CardPreviewProductReservation'
 
 export const ProductReservationPage = () => {
 
@@ -83,6 +84,12 @@ export const ProductReservationPage = () => {
                         </Link>
 
                     </div>
+                </div>
+
+                <div className="reservations_card">
+                    <CardPreviewProductReservation productName='Whey' name='Claudio Souza' code='26523'/>
+                    <CardPreviewProductReservation />
+                    <CardPreviewProductReservation />
                 </div>
             </div>
         </div>

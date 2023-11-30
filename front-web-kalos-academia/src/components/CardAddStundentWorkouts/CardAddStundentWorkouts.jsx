@@ -10,15 +10,12 @@ export const CardAddStundentWorkouts = ({ checked, arrayStundetWorkouts, nameStu
 
   const treino = localStorage.getItem("id_treino")
   const id_academia = localStorage.getItem("id_academia")
-  console.log(students)
 
 
   useEffect(() => {
     axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${id_academia}/idTreinoNivelCategoria/${treino}`)
       .then(({ data }) => {
-        console.log(data)
-        console.log(data.informacoes)
-
+        
         const test = data.informacoes
        
         setTeste(data.informacoes)
@@ -32,23 +29,20 @@ export const CardAddStundentWorkouts = ({ checked, arrayStundetWorkouts, nameStu
   const onChange = (checkedValues) => {
     setCheckedStudent(checkedValues.target.checked)
 
-    console.log('checked = ', checkedValues.target.checked);
-    console.log('aluno', idStudent)
-
     if (checkedValues.target.checked == true) {
       arrayStundetWorkouts.push(idStudent)
     } else if (checkedValues.target.checked == false) {
       arrayStundetWorkouts.map((student, index) => {
         if (student == idStudent) {
           arrayStundetWorkouts.splice(index, 1)
-          console.log(arrayStundetWorkouts)
+          
         }
       })
     }
 
 
   }
-
+  console.log(arrayStundetWorkouts)
   const checkStudent = () => {
     students.map((student) => {
       teste.map((studentWourkts) => {
@@ -62,7 +56,6 @@ export const CardAddStundentWorkouts = ({ checked, arrayStundetWorkouts, nameStu
   }
 
 
-  console.log(arrayStundetWorkouts)
 
   return (
     <div className='user_add_card'>

@@ -7,3 +7,8 @@
     overflow: auto;
     
 }
+.reservations_card{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
