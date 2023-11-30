@@ -2,6 +2,7 @@ import exerciseCreatedSucess from "./image/exerciseCreatedSucess.svg";
 import "./exerciseCreate.css";
 import { Component } from "react";
 import { AddWorkouts } from "../AddExerciseReptsSets/Api/addExerciseReptsSetsApi";
+import { Link } from 'react-router-dom';
 
 export class ExerciseCreated extends Component {
   // handleAddExercise = async () => {
@@ -47,7 +48,9 @@ export class ExerciseCreated extends Component {
   render() {
     return (
       <div className="container_exercise_created_sucess">
+        <Link to="/menu/treinos">
         <img src={exerciseCreatedSucess} alt="exercício criado com sucesso" />
+        </Link>
       </div>
     );
   }

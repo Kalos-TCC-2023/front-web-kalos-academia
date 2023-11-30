@@ -50,10 +50,7 @@ export const CardCrudWorkouts = ({ idWokouts, nomeWokouts, dataWokouts, categori
             onClick: handleIdStorage
 
         },
-        {
-            label: 'Editar Treino',
-            key: '2',
-        },
+      
         {
             label: 'Excluir Treino',
             key: '3',
