@@ -7,15 +7,17 @@ import { Loader } from '../../components/Loader/Loader';
 import { ShowAllExercises } from '../GaleryWokouts.jsx/api/apiShowAllExercises';
 import { FloatButton } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
-import AddExercise from '../../components/CrudExercise/AddExercise';
 import './changeExerciseForWorkout.css';
 import emptyGaleryPhoto from './image/galerykalos.svg';
-
+import { SearchExercise } from './Api/SearchExercise';
+SearchExercise
 export default class ChangeExercise extends Component {
   state = {
     exercises: [],
     loading: true,
     selectedExercises: [],
+    exerciseSearch: [],
+    searchInput: ''
   };
 
   componentDidMount() {
@@ -31,6 +33,17 @@ export default class ChangeExercise extends Component {
       .catch((error) => {
         console.error('Ocorreu um erro ao carregar os dados:', error);
         this.setState({ loading: false });
+      });
+  };
+
+  handleSearch = (value) => {
+    SearchExercise(value)
+      .then((data) => {
+        const exercicioApi = data.exercicio;
+        this.setState({ exerciseSearch: exercicioApi, searchInput: value });
+      })
+      .catch((error) => {
+        console.error('Ocorreu um erro ao carregar os dados da pesquisa:', error);
       });
   };
 
@@ -58,25 +71,23 @@ export default class ChangeExercise extends Component {
         foto: exercise.anexo,
         descricao: exercise.descricao,
         serie: "0",
-        repeticao:"0",
-        duracao:null
-
+        repeticao: "0",
+        duracao: null
       };
     });
     localStorage.setItem('selectedExercises', JSON.stringify(exercisesData));
-    console.log( localStorage.getItem('selectedExercises')
-    );
   };
 
   render() {
-    const { exercises, loading, selectedExercises } = this.state;
+    const { exercises, loading, selectedExercises, exerciseSearch, searchInput } = this.state;
+
+    // Define os exercícios a serem exibidos com base no termo de busca
+    const displayedExercises = searchInput ? exerciseSearch : exercises;
 
     return (
-      
       <div className='galery-workouts'>
         <div className='page-default'>
-
-        <Link to="/menu/adicionar_exercicio">
+          <Link to="/menu/adicionar_exercicio">
             <FloatButton icon={<ArrowRightOutlined onClick={this.handleSendData} />} tooltip={<div>Avançar</div>} />
           </Link>
 
@@ -96,13 +107,16 @@ export default class ChangeExercise extends Component {
                   className='search_header-workout search_header'
                   placeholder='Buscar exercicios...'
                   size='large'
+                  onChange={(e) => this.setState({ searchInput: e.target.value })}
+                  onSearch={this.handleSearch}
+                  value={searchInput}
                 />
               </div>
             </div>
             <div className='container-exercises-galery-workouts'>
               {loading ? (
                 <Loader />
-              ) : exercises.length === 0 ? (
+              ) : displayedExercises.length === 0 ? (
                 <div className='container-cards-galery-workouts-empty'>
                   <div className='container-exercise-empty'>
                     <img src={emptyGaleryPhoto} alt='empty photo' />
@@ -114,31 +128,11 @@ export default class ChangeExercise extends Component {
                       FAZER UPLOAD
                     </div>
                   </div>
-                </div> 
+                </div>
               ) : (
                 <div className='container-exercises-all'>
-                  {exercises.map((exercise) => (
-                    <div className='card-exercise-change' key={exercise.id}>
-                      {exercise.anexo === '' ? (
-                        <img className='image-card-exercise-change' src={`https://img.youtube.com/vi/${exercise.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt={exercise.nome} />
-                      ) : (
-                        <img className='image-card-exercise-change' src={`https://img.youtube.com/vi/${exercise.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt={exercise.nome} />
-                      )}
-                      <div
-                        className={`change-card ${selectedExercises.includes(exercise.id) ? 'selectCard' : ''}`}
-                        onClick={() =>
-                          this.toggleCardSelection(exercise.id, exercise.nome, exercise.anexo, exercise.descricao)
-                        }
-                      >
-                        {selectedExercises.includes(exercise.id) && <div className='exercise-selected'>✔</div>}
-                   
-                      </div>
-
-                      <div className='text-exercise-card-change'>
-                          <p className='name-exercise-card'>{exercise.nome}</p>
-                          <p className='description-exercise-card'>{exercise.descricao}</p>
-                        </div>
-                    </div>
+                  {displayedExercises.map((exercise) => (
+                    <div className='card-exercise-change' key={exercise.id}> {exercise.anexo === '' ? (<img className='image-card-exercise-change' src={`https://img.youtube.com/vi/${exercise.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt={exercise.nome} />) : (<img className='image-card-exercise-change' src={`https://img.youtube.com/vi/${exercise.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt={exercise.nome} />)} <div className={`change-card ${selectedExercises.includes(exercise.id) ? 'selectCard' : ''}`} onClick={() => this.toggleCardSelection(exercise.id, exercise.nome, exercise.anexo, exercise.descricao)} > {selectedExercises.includes(exercise.id) && <div className='exercise-selected'>✔</div>} </div> <div className='text-exercise-card-change'> <p className='name-exercise-card'>{exercise.nome}</p> <p className='description-exercise-card'>{exercise.descricao}</p> </div> </div>
                   ))}
                 </div>
               )}
@@ -146,6 +140,4 @@ export default class ChangeExercise extends Component {
           </div>
         </div>
       </div>
-    );
-  }
-}
+    );}}
