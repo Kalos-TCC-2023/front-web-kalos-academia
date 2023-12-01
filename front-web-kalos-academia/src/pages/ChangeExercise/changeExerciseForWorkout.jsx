@@ -36,15 +36,24 @@ export default class ChangeExercise extends Component {
       });
   };
 
+  // handleSearch = (value) => {
+  //   SearchExercise(value)
+  //     .then((data) => {
+  //       const exercicioApi = data.exercicio;
+  //       this.setState({ exerciseSearch: exercicioApi, searchInput: value });
+  //     })
+  //     .catch((error) => {
+  //       console.error('Ocorreu um erro ao carregar os dados da pesquisa:', error);
+  //     });
+  // };
+
   handleSearch = (value) => {
-    SearchExercise(value)
-      .then((data) => {
-        const exercicioApi = data.exercicio;
-        this.setState({ exerciseSearch: exercicioApi, searchInput: value });
-      })
-      .catch((error) => {
-        console.error('Ocorreu um erro ao carregar os dados da pesquisa:', error);
-      });
+    const { exercises } = this.state;
+    const filteredExercises = exercises.filter((exercise) =>
+      exercise.nome.toLowerCase().includes(value.toLowerCase())
+    );
+
+    this.setState({ exerciseSearch: filteredExercises, searchInput: value });
   };
 
   toggleCardSelection = (exerciseId) => {
@@ -84,6 +93,7 @@ export default class ChangeExercise extends Component {
     // Define os exercícios a serem exibidos com base no termo de busca
     const displayedExercises = searchInput ? exerciseSearch : exercises;
 
+
     return (
       <div className='galery-workouts'>
         <div className='page-default'>
@@ -105,10 +115,9 @@ export default class ChangeExercise extends Component {
               <div className='search-group-workouts'>
                 <Input.Search
                   className='search_header-workout search_header'
-                  placeholder='Buscar exercicios...'
+                  placeholder='Buscar exercícios...'
                   size='large'
-                  onChange={(e) => this.setState({ searchInput: e.target.value })}
-                  onSearch={this.handleSearch}
+                  onChange={(e) => this.handleSearch(e.target.value)}
                   value={searchInput}
                 />
               </div>
@@ -116,7 +125,8 @@ export default class ChangeExercise extends Component {
             <div className='container-exercises-galery-workouts'>
               {loading ? (
                 <Loader />
-              ) : displayedExercises.length === 0 ? (
+
+              ) : exercises.length === 0 ? (
                 <div className='container-cards-galery-workouts-empty'>
                   <div className='container-exercise-empty'>
                     <img src={emptyGaleryPhoto} alt='empty photo' />
@@ -132,12 +142,22 @@ export default class ChangeExercise extends Component {
               ) : (
                 <div className='container-exercises-all'>
                   {displayedExercises.map((exercise) => (
-                    <div className='card-exercise-change' key={exercise.id}> {exercise.anexo === '' ? (<img className='image-card-exercise-change' src={`https://img.youtube.com/vi/${exercise.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt={exercise.nome} />) : (<img className='image-card-exercise-change' src={`https://img.youtube.com/vi/${exercise.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt={exercise.nome} />)} <div className={`change-card ${selectedExercises.includes(exercise.id) ? 'selectCard' : ''}`} onClick={() => this.toggleCardSelection(exercise.id, exercise.nome, exercise.anexo, exercise.descricao)} > {selectedExercises.includes(exercise.id) && <div className='exercise-selected'>✔</div>} </div> <div className='text-exercise-card-change'> <p className='name-exercise-card'>{exercise.nome}</p> <p className='description-exercise-card'>{exercise.descricao}</p> </div> </div>
+                    <div className='card-exercise-change' key={exercise.id}> {exercise.anexo === '' ? (<img className='image-card-exercise-change' src={`https://img.youtube.com/vi/${exercise.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt={exercise.nome} />) : (<img className='image-card-exercise-change' src={`https://img.youtube.com/vi/${exercise.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt={exercise.nome} />)}
+                      <div className={`change-card ${selectedExercises.includes(exercise.id) ? 'selectCard' : ''}`} onClick={() => this.toggleCardSelection(exercise.id, exercise.nome, exercise.anexo, exercise.descricao)} >
+                        {selectedExercises.includes(exercise.id) && <div className='exercise-selected'>✔</div>}
+                      </div>
+                      <div className='text-exercise-card-change'> <p className='name-exercise-card'>{exercise.nome}</p> <p className='description-exercise-card'>{exercise.descricao}</p> </div>
+                    </div>
                   ))}
+                                  {searchInput && displayedExercises.length === 0 && <div className='workout-notfound'>Treino não encontrado</div>}
+
                 </div>
+
               )}
             </div>
           </div>
         </div>
       </div>
-    );}}
+    );
+  }
+}

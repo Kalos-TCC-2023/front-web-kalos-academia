@@ -22,6 +22,7 @@ class Workoutspage extends Component {
     searchInput: '', // Valor de pesquisa
     searchResults: [], // Resultados da pesquisa
     showRemoveExercise: false,
+    loading: true
   };
 
   toggleCardVisibility = (index) => {
@@ -34,10 +35,12 @@ class Workoutspage extends Component {
     loadAllWorkouts()
       .then((data) => {
         const informacoesApi = data.informacoes;
-        this.setState({ informacoes: informacoesApi });
+        this.setState({ informacoes: informacoesApi, loading: false });
       })
       .catch((error) => {
         console.error('Ocorreu um erro ao carregar os dados:', error);
+        this.setState({ loading: false });
+
       });
 
     loadRegistererStudents()
@@ -59,15 +62,15 @@ class Workoutspage extends Component {
   };
 
   handleSearch = (value) => {
-    SearchWorkout(value)
-      .then((data) => {
-        const informacoesApi = data.informacoes;
-        this.setState({ searchResults: informacoesApi, searchInput: value });
-      })
-      .catch((error) => {
-        console.error('Ocorreu um erro ao carregar os dados da pesquisa:', error);
-      });
+    const { informacoes } = this.state;
+    const filteredWorkouts = informacoes.filter((workout) =>
+      workout.nome.toLowerCase().includes(value.toLowerCase())
+    );
+  
+    this.setState({ searchResults: filteredWorkouts, searchInput: value });
   };
+
+  
 
   render() {
     const optionsCategoria = [
@@ -77,7 +80,10 @@ class Workoutspage extends Component {
       { value: 'Crossfit', label: 'Crossfit' },
     ];
 
-    const { informacoes, alunosMatriculados, selectedCard, searchInput, searchResults } = this.state;
+    const { informacoes, alunosMatriculados, selectedCard, searchInput, searchResults , loading} = this.state;
+
+    const displayedWorkout = searchInput ? searchResults : informacoes;
+
 
     return (
       <div className='workouts_page'>
@@ -111,11 +117,19 @@ class Workoutspage extends Component {
                 <Input.Search
                   className='search_header-workout search_header'
                   placeholder="Buscar treinos..."
-                  onChange={(e) => this.setState({ searchInput: e.target.value })}
+                  onChange={(e) => this.handleSearch(e.target.value)}
                   onSearch={this.handleSearch}
                   value={searchInput}
                   size='large'
                 />
+
+{/* <Input.Search
+                  className='search_header-workout search_header'
+                  placeholder='Buscar exercícios...'
+                  size='large'
+                  onChange={(e) => this.handleSearch(e.target.value)}
+                  value={searchInput}
+                /> */}
               </div>
               <div className='buttonsExercise'>
                 {/* <Link to='/menu/treinos'>
@@ -164,15 +178,16 @@ class Workoutspage extends Component {
           </div>
 
           <div className='container-galery-workouts'>
-            {searchResults.length > 0 ? (
+            {searchInput.length > 0 ? (
               searchResults.map((workout, index) => {
                 return (
                   <CardCrudWorkouts key={index} idWokouts={workout.id} dataWokouts={workout.data_criacao} alunosWokouts={workout.alunos} nomeWokouts={workout.nome} categoriaWokouts='Iniciante' imgWokouts={workout.foto} />
+                  
 
                 );
               })
             ) : (
-              informacoes.length === 0 ? (
+              loading ? (
                 <Loader />
               ) : (
                 informacoes.map((workout, index) => {
@@ -209,9 +224,14 @@ class Workoutspage extends Component {
                     //   </div>
                     // </div>
                   );
+                  
                 })
+                
               )
+              
             )}
+                                              {searchInput && displayedWorkout.length === 0 && <div className='workout-notfound'>Treino não encontrado</div>}
+
           </div>
         </div>
       </div>

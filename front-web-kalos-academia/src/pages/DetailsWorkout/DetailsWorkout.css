@@ -1,56 +1,65 @@
-.page-details-workout{
+.page-details-workout {
     width: 100%;
     height: 100%;
     padding: 80px;
 }
-.detailsWorkout{
-width: 1200px;
-display: flex;
-justify-content: space-around;
+
+.detailsWorkout {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
 }
-.detailsWorkout-container{
+
+.detailsWorkout-container {
     width: 500px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 30px;
     border-radius: 10px;
-    box-shadow: 1px 1px 10px rgb(208, 208, 208);
+    position: relative;
+
 
 
 }
-.detailsWorkout-container > img{
+
+.detailsWorkout-container>img {
     width: 100%;
     border-radius: 10px;
 }
-.content-details-workout{
+
+.content-details-workout {
     display: flex;
+    width: 100%;
     justify-content: space-around;
-    align-items: center;
-    padding: 5px;
-    margin: 20px;
-    padding: 10px;
-    border-radius: 10px;
+    position: absolute;
+    bottom: 60px;
+    padding: 20px;
+    color: white;
 }
-.details-workout-name{
+
+.details-workout-name {
     font-size: 1.5rem;
     font-weight: bold;
 
 
 }
-.details-workout-date{
+
+.details-workout-date {
     padding: 10px;
     background: #00FE90;
     border-radius: 30px;
 
 }
-.exercises-container-details-workout{
+
+.exercises-container-details-workout {
     width: 500px;
     background-color: rgba(128, 128, 128, 0.078);
     border-radius: 10px;
 
 }
-.exercise-details{
+
+.exercise-details {
     padding: 10px;
     box-shadow: 1px 1px 10px rgb(208, 208, 208);
     width: 100%;
@@ -62,11 +71,39 @@ justify-content: space-around;
 
 
 }
-.content-details-workout-exercise{
+
+.content-details-workout-exercise {
     display: flex;
-gap: 20px;
+    gap: 20px;
     padding: 5px;
     margin: 20px;
     padding: 10px;
-    border-top: 1px solid rgba(128, 128, 128, 0.403);
+    border-top: 1px solid #00FE90;
 }
+
+.p-player-exercise {
+    margin: 10px;
+    font-size: 1.4rem;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+.container-peoples {
+    width: 500px;
+    margin: 20px;
+    padding-left: 40px;
+    overflow-y: scroll;
+}
+.container-peoples-workout{
+background-color: rgba(128, 128, 128, 0.061);
+display: flex;
+justify-content: center;
+flex-direction: column;
+border-radius: 10px;
+}
+.container-peoples-workout > p{
+   padding-left: 60px;
+   font-size: 1.3rem;
+   font-weight: bold;
+
+    }
