@@ -27,6 +27,7 @@ import ChangeExercise from './pages/ChangeExercise/changeExerciseForWorkout.jsx'
 import { ExerciseCreated } from './pages/exerciseCreate/exerciseCreate.jsx'
 import { ProductReservationPage } from './pages/ProductReservationPage/ProductReservationPage.jsx'
 import { NewProductPage } from './pages/NewProductPage/NewProductPage.jsx'
+import DetailsWorkout from './pages/DetailsWorkout/DetailsWorkout'
 
 
 
@@ -133,6 +134,11 @@ const router = createBrowserRouter([
       {
         path: "/menu/exercicio_criado_com_sucesso",
         element: <ExerciseCreated/>
+      }
+      ,
+      {
+        path: "/menu/detalhes_treino",
+        element: <DetailsWorkout/>
       }
 
     ]

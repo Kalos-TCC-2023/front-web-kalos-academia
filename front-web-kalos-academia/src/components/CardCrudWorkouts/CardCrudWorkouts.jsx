@@ -50,6 +50,13 @@ export const CardCrudWorkouts = ({ idWokouts, nomeWokouts, dataWokouts, categori
             onClick: handleIdStorage
 
         },
+           
+        {
+            label: <Link to='/menu/detalhes_treino'>Detalhes do treino</Link>,
+            key: '2',
+            onClick: handleIdStorage
+        },
+        
       
         {
             label: 'Excluir Treino',
