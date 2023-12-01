@@ -20,14 +20,16 @@ import { CreateWorkouts } from './pages/CreateWorkouts/CreateWorkouts.jsx'
 import GaleryWorkouts from './pages/GaleryWokouts.jsx/GaleryWorkouts.jsx'
 import { AboutStudent } from './pages/AboutStudent/AboutStudent.jsx'
 import { AddNewStudentPage } from './pages/AddNewStudentPage/AddNewStudentPage.jsx'
-import  AddExerciseRepetsSets  from './pages/AddExerciseReptsSets/AddExerciseReptsSets'
+import AddExerciseRepetsSets from './pages/AddExerciseReptsSets/AddExerciseReptsSets'
 import { EditStudentGym } from './components/EditStudentGym/EditStudentGym.jsx'
 import { AddStudentWorkouts } from './pages/AddStudentWorkouts/AddStudentWorkouts'
 import ChangeExercise from './pages/ChangeExercise/changeExerciseForWorkout.jsx'
 import { ExerciseCreated } from './pages/exerciseCreate/exerciseCreate.jsx'
 import { ProductReservationPage } from './pages/ProductReservationPage/ProductReservationPage.jsx'
 import { NewProductPage } from './pages/NewProductPage/NewProductPage.jsx'
+import { DataReservationPage } from './pages/DataReservationPage/DataReservationPage'
 import DetailsWorkout from './pages/DetailsWorkout/DetailsWorkout'
+
 
 
 
@@ -90,13 +92,17 @@ const router = createBrowserRouter([
         path: "/menu/produtos",
         element: <Productspage />
       },
-       {
-         path: "/menu/produtos/reservas",
-         element: <ProductReservationPage />
-       },
-       {
-         path: "/menu/produtos/novo_produto",
-         element: <NewProductPage />
+      {
+        path: "/menu/produtos/reservas",
+        element: <ProductReservationPage />
+      },
+      {
+        path: "/menu/produtos/novo_produto",
+        element: <NewProductPage />
+      },
+      {
+        path: "/menu/produtos/reservas/reserva",
+        element: <DataReservationPage />
       },
       {
         path: "/menu/treinos",
@@ -124,16 +130,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/menu/adicionar_exercicio",
-        element: <AddExerciseRepetsSets/>
+        element: <AddExerciseRepetsSets />
       }
       ,
       {
         path: "/menu/escolher_exercicio",
-        element: <ChangeExercise/>
+        element: <ChangeExercise />
       },
       {
         path: "/menu/exercicio_criado_com_sucesso",
-        element: <ExerciseCreated/>
+        element: <ExerciseCreated />
       }
       ,
       {
@@ -147,7 +153,7 @@ const router = createBrowserRouter([
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <RouterProvider router={router} />
-   
-  
+  <RouterProvider router={router} />
+
+
 )
