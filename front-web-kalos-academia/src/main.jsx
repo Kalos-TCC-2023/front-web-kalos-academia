@@ -28,6 +28,8 @@ import { ExerciseCreated } from './pages/exerciseCreate/exerciseCreate.jsx'
 import { ProductReservationPage } from './pages/ProductReservationPage/ProductReservationPage.jsx'
 import { NewProductPage } from './pages/NewProductPage/NewProductPage.jsx'
 import { DataReservationPage } from './pages/DataReservationPage/DataReservationPage'
+import DetailsWorkout from './pages/DetailsWorkout/DetailsWorkout'
+
 
 
 
@@ -138,6 +140,11 @@ const router = createBrowserRouter([
       {
         path: "/menu/exercicio_criado_com_sucesso",
         element: <ExerciseCreated />
+      }
+      ,
+      {
+        path: "/menu/detalhes_treino",
+        element: <DetailsWorkout/>
       }
 
     ]

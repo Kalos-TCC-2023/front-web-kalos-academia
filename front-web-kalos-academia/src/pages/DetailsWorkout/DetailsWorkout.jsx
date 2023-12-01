@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import { ApiDetailsWorkout } from './Api/ExercisesApi';
+import { ApiDetailsWorkout } from './Api/ApiDetailsWorkout';
 import './DetailsWorkout.css';
+import { CardCrudWorkouts } from '../../components/CardCrudWorkouts/CardCrudWorkouts';
+import { ApiWokoutPeoples } from './Api/ApiWorkoutPeoples';
+import { UserAddStudents } from '../../components/UserAddStudents/UserAddStudents';
 
 export default class DetailsWorkout extends Component {
     state = {
         workoutDetails: {}, // Inicializa os detalhes do treino como um objeto vazio
+        peoplesWorkout: []
     };
 
     componentDidMount() {
         this.handleDetailsExercise();
+        this.handlePeoplesWorkout();
     }
 
     handleDetailsExercise = () => {
@@ -19,12 +24,23 @@ export default class DetailsWorkout extends Component {
                 this.setState({ workoutDetails: informacoes });
             })
             .catch((error) => {
-                console.error('Ocorreu um erro ao carregar os dados da pesquisa:', error);
+                console.error('Ocorreu um erro ao carregar os detalhes do treino:', error);
+            });
+    };
+
+    handlePeoplesWorkout = () => {
+        ApiWokoutPeoples()
+            .then((data) => {
+                const { informacoes } = data;
+                this.setState({ peoplesWorkout: informacoes });
+            })
+            .catch((error) => {
+                console.error('Ocorreu um erro ao carregar as pessoas do treino:', error);
             });
     };
 
     render() {
-        const { workoutDetails } = this.state;
+        const { workoutDetails, peoplesWorkout } = this.state;
 
         return (
             <div className='page-details-workout'>
@@ -34,39 +50,51 @@ export default class DetailsWorkout extends Component {
                 {Object.keys(workoutDetails).length > 0 && (
                     <div className='detailsWorkout'>
                         <div className='detailsWorkout-container'>
-
                             <img className='image-detailsworkout' src={workoutDetails.foto} alt={workoutDetails.nome} />
                             <div className='content-details-workout'>
-                                <p className='details-workout-name'>{workoutDetails.nome}</p>
+                               <div>
+                               <p className='details-workout-name'>{workoutDetails.nome}</p>
+                                <p className='details-workout-name'>{workoutDetails.descricao}</p>
+                               </div>
+
                                 <p className='details-workout-date'>{workoutDetails.data_criacao}</p>
                             </div>
                         </div>
-
                         <div className='exercises-container-details-workout'>
+                            <p className='p-player-exercise'>Player de exercícios</p>
                             {workoutDetails.exercicios.map((exercicio, index) => (
-                                <div
-                                    className={`content-details-workout-exercise`}
-                                    key={index}
-
-                                >          
-                                    <img className='photo-exercise' src={`https://img.youtube.com/vi/${exercicio.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`} alt='' />
-
+                                <div className={`content-details-workout-exercise`} key={index}>
+                                    <img
+                                        className='photo-exercise'
+                                        src={`https://img.youtube.com/vi/${exercicio.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`}
+                                        alt=''
+                                    />
                                     <div className='exercise-texto'>
-                                        <p className='text-player-name-exercise'>{exercicio.nome}</p>
+                                        <p className='text-player-name-exercise'>{exercicio.nome}</p>    
+
                                         <div className='sets-repts'>
-                                            <p className='text-serie-repts'>Série: {exercicio.serie} </p>
-                                            <p className='text-serie-repts'> Repetição: {exercicio.repeticao} </p>
+                                            <p className='text-serie-repts'>Série: {exercicio.series} </p>
+                                            <p className='text-serie-repts'> Repetição/Duração: {exercicio.repeticoes || exercicio.duracao} </p>
                                         </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
-
+                        <div className='container-peoples-workout'>
+                            <p>Alunos matriculados no treino</p>
+                    {peoplesWorkout.length > 0 ? (
+                        peoplesWorkout.map((people, index) => (
+                            <div key={index} className='container-peoples'>{}
+                            <UserAddStudents key={index} nameStudent={people.nome} idStudentFormt={people.id} idStudent={people.id} />
+                            </div>
+                        ))
+                    ) : (
+                        <p>Não há pessoas envolvidas neste treino.</p>
+                    )}
+                </div>
                     </div>
-
-
-
                 )}
+             
             </div>
         );
     }
