@@ -29,6 +29,7 @@ import { ProductReservationPage } from './pages/ProductReservationPage/ProductRe
 import { NewProductPage } from './pages/NewProductPage/NewProductPage.jsx'
 import { DataReservationPage } from './pages/DataReservationPage/DataReservationPage'
 import DetailsWorkout from './pages/DetailsWorkout/DetailsWorkout'
+import { StudentAddSucess } from './pages/studentCreatedWithSucess/StudentsCreated'
 
 
 
@@ -145,6 +146,10 @@ const router = createBrowserRouter([
       {
         path: "/menu/detalhes_treino",
         element: <DetailsWorkout/>
+      },
+      {
+        path: "/menu/aluno_adicionado_sucesso",
+        element: <StudentAddSucess/>
       }
 
     ]

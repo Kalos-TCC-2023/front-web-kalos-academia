@@ -69,7 +69,7 @@ export default class EditExercise extends Component {
   };
 
   handleUrlChange = (event) => {
-    this.setState({ exerciseUrl: event.target.value });
+    this.setState({ exerciseUrl: event.target.value.replace("https://www.youtube.com/watch?v=", "") });
   };
 
   handleDescriptionChange = (event) => {
