@@ -3,7 +3,7 @@ export const ApiWokoutPeoples = () => {
     const idTreino = localStorage.getItem("id_treino");
 
     const idAlunoRegistrado = localStorage.getItem("id_treino_categoria")
-    return fetch(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${idAcademia}/idTreinoNivelCategoria/26`)
+    return fetch(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${idAcademia}/idTreinoNivelCategoria/${idTreino}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Erro na solicitação de dados');

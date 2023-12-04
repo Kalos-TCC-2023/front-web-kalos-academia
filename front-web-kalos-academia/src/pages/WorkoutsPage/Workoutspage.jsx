@@ -53,6 +53,11 @@ class Workoutspage extends Component {
       });
   }
 
+  handleCardClick = (id) => {
+    console.log(`Card clicado com ID: ${id}`);
+    localStorage.setItem("id_treino", id)
+  };
+  // ...
   handleShowRemoveWorkout = () => {
     this.setState({ showRemoveWorkout: true });
   };
@@ -181,8 +186,16 @@ class Workoutspage extends Component {
             {searchInput.length > 0 ? (
               searchResults.map((workout, index) => {
                 return (
-                  <CardCrudWorkouts key={index} idWokouts={workout.id} dataWokouts={workout.data_criacao} alunosWokouts={workout.alunos} nomeWokouts={workout.nome} categoriaWokouts='Iniciante' imgWokouts={workout.foto} />
-                  
+                  <CardCrudWorkouts
+                  key={index}
+                  idWokouts={workout.id}
+                  dataWokouts={workout.data_criacao}
+                  alunosWokouts={workout.alunos}
+                  nomeWokouts={workout.nome}
+                  categoriaWokouts='Iniciante'
+                  imgWokouts={workout.foto}
+                  onClick={(id) => this.handleCardClick(id)}
+                />                  
 
                 );
               })
@@ -192,8 +205,16 @@ class Workoutspage extends Component {
               ) : (
                 informacoes.map((workout, index) => {
                   return (
-                    <CardCrudWorkouts key={index} idWokouts={workout.id} dataWokouts={workout.data_criacao} alunosWokouts={workout.alunos} nomeWokouts={workout.nome} categoriaWokouts='Iniciante' imgWokouts={workout.foto} />
-
+                    <CardCrudWorkouts
+                    key={index}
+                    idWokouts={workout.id}
+                    dataWokouts={workout.data_criacao}
+                    alunosWokouts={workout.alunos}
+                    nomeWokouts={workout.nome}
+                    categoriaWokouts='Iniciante'
+                    imgWokouts={workout.foto}
+                    onClick={(id) => this.handleCardClick(id)}
+                  />
                     // <div className="card-workouts" key={index}>
                     //   <div
                     //     className={`change-card ${selectedCard === index ? 'visible' : ''}`}
