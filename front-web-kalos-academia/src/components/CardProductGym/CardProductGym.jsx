@@ -73,7 +73,6 @@ export const CardProductGym = ({ productName, productCategory, productDescriptio
       </div>
       <div className="products_more_options">
         <Button style={{ borderRadius: '300px', padding: '5px' }} shape='circle'>RESERVAS DO PRODUTO</Button>
-        <Button style={{ borderRadius: '300px', padding: '5px' }} shape='circle'>ATUALIZAR PRODUTO</Button>
       </div>
     </div>
   )
