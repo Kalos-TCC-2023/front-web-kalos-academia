@@ -1,0 +1,112 @@
+.card_preview_reservation {
+    display: flex;
+    background-color: #FBFBFB;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 2px;
+
+}
+
+.Cancelado {
+    background-color: rgb(255, 0, 0);
+
+}
+
+.Recebido {
+    background-color: rgb(66, 169, 57);
+}
+
+.Em-análise {
+    background-color: rgb(238, 214, 0);
+}
+
+.Pronto-para-retirada {
+    background-color: rgb(48, 100, 255);
+}
+
+.status_reservation {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+}
+
+.code_name_reservation {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card_preview_reservation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.primary_information_reservation {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.photo_name_code_reservation {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status_reservation {}
+
+.options_reservation {
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+}
+
+.name_product_reservation {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+
+}
+
+.code_product_reservation {
+    color: #8e8e8e;
+    text-align: center;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+
+}
+
+.name_client_reservation {
+    color: #A4A4A4;
+    font-family: Roboto;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.counter_reservation {
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+.css-dev-only-do-not-override-qgg3xn.ant-btn.ant-btn-sm {
+    font-size: 14px;
+    height: 24px;
+    padding: 0px 7px;
+    border-radius: 512px;
+}
+
+.css-dev-only-do-not-override-qgg3xn.ant-btn.ant-btn-sm:hover {
+    font-size: 14px;
+    height: 24px;
+    padding: 0px 7px;
+    border-radius: 512px;
+    color: #00FE91;
+    border-color: #00FE91;
+}

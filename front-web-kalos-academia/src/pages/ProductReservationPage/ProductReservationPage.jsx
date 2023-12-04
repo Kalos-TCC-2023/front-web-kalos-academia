@@ -1,14 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './ProductReservationPage.css'
 import { Breadcrumb, Select, Input, Button, Tooltip } from 'antd'
 import { Link } from 'react-router-dom'
 const { Search } = Input
 import { FloatButton } from 'antd'
 import { SkinOutlined } from '@ant-design/icons'
+import { CardPreviewProductReservation } from '../../components/CardPreviewProduct/CardPreviewProductReservation'
+import axios from 'axios'
+import { Loader } from '../../components/Loader/Loader'
 
 export const ProductReservationPage = () => {
 
     const [searchProducts, setSearchProducts] = useState('')
+    const [allReservations, setAllReservations] = useState([])
+    const idAcademia = localStorage.getItem('id_academia')
+
+
+
+    useEffect(() => {
+        axios.get(`https://kaloscorp.cyclic.app/kalos/reserva/idAcademia/${idAcademia}`)
+            .then(({ data }) => {
+                if (allReservations.length == 0) {
+                    setAllReservations(data.reservas)
+                }
+                console.log(data)
+
+
+            })
+    }, [])
 
 
     const handleChangeSelect = (value) => {
@@ -83,6 +102,18 @@ export const ProductReservationPage = () => {
                         </Link>
 
                     </div>
+                </div>
+
+                <div className="reservations_card">
+
+                    {
+                        allReservations.length == 0 ? <Loader /> : (
+                            allReservations.map((reservation) => (
+                                <CardPreviewProductReservation idReservation={reservation.id} key={reservation.id} data={reservation.data} counter={reservation.quantidade} status={reservation.status_reserva} photoClient={reservation.foto_aluno} photo={reservation.foto} productName={reservation.nome_produto} name={reservation.nome_aluno} code={reservation.codigo} />
+
+                            ))
+                        )
+                    }
                 </div>
             </div>
         </div>

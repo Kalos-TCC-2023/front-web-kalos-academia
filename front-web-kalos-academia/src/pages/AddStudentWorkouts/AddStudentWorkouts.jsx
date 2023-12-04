@@ -15,6 +15,8 @@ export const AddStudentWorkouts = () => {
     const [arrayStundetWorkouts, setArrayStudentWorkouts] = useState([])
     const [idStudentWorkouts, setIdStundetWorkouts] = useState('')
     const [checked, setChecked] = useState(false)
+    const [checkedUser, setCheckedUser] = useState([])
+    const [testagem, setTestagem] = useState([])
 
     const onSearch = (value, _e, info) => {
         console.log(info?.source, value)
@@ -45,24 +47,31 @@ export const AddStudentWorkouts = () => {
             .then(({ data }) => {
                 console.log(data)
                 console.log(data.informacoes)
-                setTeste(data.informacoes)
+                setCheckedUser(data.informacoes)
 
-                studentsGym.map((student) => {
-                    data.informacoes.map((studentWourkts) => {
-                        if (student.id == studentWourkts.id) {
-                            setChecked(true)
-                        } else {
-                            setChecked(false)
-                        }
-                    })
-                })
-
-
+                // verifyCheck(checkedUser)
 
             }).catch((erro) => {
                 console.log(erro)
             })
     }, [])
+
+    const verifyCheck = (checkedArray) => {
+        studentsGym.map((student, index) => {
+            checkedArray.map((studentWourkts) => {
+                console.log(student)
+                if (student.id == studentWourkts.id) {
+                    const aaa = studentsGym.splice(index, 1)
+                    console.log(student.id, 'sim');
+                    console.log(aaa, 'sim');
+                } else {
+                    testagem.push(student)
+                    console.log(student.id);
+                }
+            })
+        })
+
+    }
 
 
     return (

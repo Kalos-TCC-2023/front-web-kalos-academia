@@ -22,18 +22,30 @@ export const HomePage = () => {
 
     const [lastStudents, setLastStudents] = useState([])
     const [counterWorkouts, setCounterWorkouts] = useState(0)
+    const [counterPrice, setCounterPrice] = useState(0)
 
-    const price = 592.99
 
     const idGym = localStorage.getItem("id_academia")
+    console.log(idGym)
 
     // https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/ultimosAlunos/idAcademia/51`)
+        axios.get(`https://kaloscorp.cyclic.app/kalos/ultimosAlunos/idAcademia/51)`)
             .then(({ data }) => {
 
                 setLastStudents(data.ultimos_alunos)
+            }).catch((erro) => {
+                console.log(erro)
+            })
+    }, [])
+
+    useEffect(() => {
+        axios.get(`https://kaloscorp.cyclic.app/kalos/reservaValorByIdAcademia/id/${idGym}`)
+            .then(({ data }) => {
+
+                setCounterPrice(data.valor)
+                console.log(data.valor)
             }).catch((erro) => {
                 console.log(erro)
             })
@@ -131,7 +143,7 @@ export const HomePage = () => {
                     <div className="data_products">
                         <div className="total_price_products">
                             <div className="value">
-                                R${price}
+                                R${counterPrice}
                                 <span className='total_description'>Lucro Total</span>
                             </div>
                             <span>Com sua loja on você lucrou</span>
