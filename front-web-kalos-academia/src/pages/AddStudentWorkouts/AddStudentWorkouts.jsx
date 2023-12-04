@@ -6,6 +6,8 @@ import './AddStudentWorkouts.css'
 import Search from 'antd/es/input/Search';
 import axios from 'axios';
 import { CardAddStundentWorkouts } from '../../components/CardAddStundentWorkouts/CardAddStundentWorkouts';
+import { FloatButton } from 'antd';
+import { ArrowRightOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 
 export const AddStudentWorkouts = () => {
 
@@ -76,6 +78,9 @@ export const AddStudentWorkouts = () => {
 
     return (
         <div className='add_student_workouts'>
+             <Link to={"/menu/exercicio_criado_com_sucesso"}>
+                    <FloatButton  icon={<ArrowRightOutlined />} tooltip={<div>Avançar</div>} />
+                </Link>
             <div className="add_student_workouts_page">
                 <div className="raiz_title">
                     <h1 className='title_edit_page'> Adicionar novos alunos </h1>

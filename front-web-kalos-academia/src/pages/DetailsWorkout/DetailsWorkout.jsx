@@ -5,6 +5,10 @@ import './DetailsWorkout.css';
 import { CardCrudWorkouts } from '../../components/CardCrudWorkouts/CardCrudWorkouts';
 import { ApiWokoutPeoples } from './Api/ApiWorkoutPeoples';
 import { UserAddStudents } from '../../components/UserAddStudents/UserAddStudents';
+import { Link } from 'react-router-dom';
+import { ArrowRightOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+
+
 
 export default class DetailsWorkout extends Component {
     state = {
@@ -47,9 +51,13 @@ export default class DetailsWorkout extends Component {
                 <Helmet>
                     <title>Detalhes do Treino</title>
                 </Helmet>
+                <Link to='/menu/treinos'>
+                                <ArrowLeftOutlined />
+                            </Link>
                 {Object.keys(workoutDetails).length > 0 && (
                     <div className='detailsWorkout'>
-                                                <h1 className='title-details-workout'>Detalhes do treino</h1>
+                     
+                                                
 
 
                         <div className='detailsWorkout-container'>
@@ -89,7 +97,7 @@ export default class DetailsWorkout extends Component {
                     {peoplesWorkout.length > 0 ? (
                         peoplesWorkout.map((people, index) => (
                             <div key={index} className='container-peoples'>{}
-                            <UserAddStudents key={index} nameStudent={people.nome} idStudentFormt={people.id} idStudent={people.id} />
+                            <UserAddStudents key={index} nameStudent={people.nome}imgSrcStudent={people.foto} idStudentFormt={people.id} idStudent={people.id} />
                             </div>
                         ))
                     ) : (
