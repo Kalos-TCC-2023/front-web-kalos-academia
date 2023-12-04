@@ -97,7 +97,7 @@ export default class DetailsWorkout extends Component {
                     {peoplesWorkout.length > 0 ? (
                         peoplesWorkout.map((people, index) => (
                             <div key={index} className='container-peoples'>{}
-                            <UserAddStudents key={index} nameStudent={people.nome}imgSrcStudent={people.foto} idStudentFormt={people.id} idStudent={people.id} />
+                            <UserAddStudents key={index} nameStudent={people.nome}imgSrcStudent={people.foto} idStudentFormt={ "#" + 1000 + people.id} idStudent={people.id}/>
                             </div>
                         ))
                     ) : (
