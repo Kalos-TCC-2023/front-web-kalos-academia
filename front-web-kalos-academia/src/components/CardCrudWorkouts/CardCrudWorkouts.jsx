@@ -26,6 +26,7 @@ export const CardCrudWorkouts = ({ idWokouts, nomeWokouts, dataWokouts, categori
         message.info('Click on menu item.');
         console.log('click', e)
         console.log(idWokouts)
+        window
     }
 
 
@@ -33,6 +34,8 @@ export const CardCrudWorkouts = ({ idWokouts, nomeWokouts, dataWokouts, categori
         axios.delete(`https://kaloscorp.cyclic.app/kalos/treino/id/${idWokouts}`)
             .then(({ data }) => {
                 success()
+                window.location.reload();
+
                 console.log(data)
             }).catch(({ error }) => {
                 console.log(error)

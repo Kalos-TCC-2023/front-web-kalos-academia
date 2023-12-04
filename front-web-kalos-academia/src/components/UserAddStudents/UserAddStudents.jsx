@@ -41,6 +41,7 @@ export const UserAddStudents = ({ nameStudent, idStudentFormt, imgSrcStudent, id
 
     }
 
+
     // 300px
 
     return (

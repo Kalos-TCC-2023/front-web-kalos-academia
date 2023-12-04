@@ -34,7 +34,7 @@ export default class AddExercise extends Component {
   };
 
   handleUrlChange = (e) => {
-    this.setState({ exerciseUrl: e.target.value });
+    this.setState({ exerciseUrl: e.target.value.replace("https://www.youtube.com/watch?v=", "") });
   };
 
   handleDescriptionChange = (e) => {
@@ -46,7 +46,7 @@ export default class AddExercise extends Component {
     const exerciseId = localStorage.getItem("idExercicio");
     const errors = {
       exerciseName: !exerciseName,
-      exerciseUrl: !exerciseUrl,
+      exerciseUrl: !exerciseUrl.replace("https://www.youtube.com/watch?v=", ""),
       exerciseDescription: !exerciseDescription,
     };
 
