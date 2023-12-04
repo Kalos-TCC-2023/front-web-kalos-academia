@@ -31,7 +31,7 @@ export const HomePage = () => {
     // https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/ultimosAlunos/idAcademia/51)`)
+        axios.get(`https://kaloscorp.cyclic.app/kalos/ultimosAlunos/idAcademia/51`)
             .then(({ data }) => {
 
                 setLastStudents(data.ultimos_alunos)
@@ -133,9 +133,7 @@ export const HomePage = () => {
                                 <ButtonPrimary className='create_new_workout' nameButton='VISUALIZAR DAS AS RESERVAS' />
                             </Link>
                         </div>
-                        <div className="weights">
-                            <NoData description='Ainda não existem dados de pesos pegos' />
-                        </div>
+                       
                     </div>
                 </div>
                 <div className="extras_items">

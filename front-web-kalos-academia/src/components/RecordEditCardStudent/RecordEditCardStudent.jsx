@@ -16,7 +16,7 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
   const [frequenciaTreinoSemanal, setFrequenciaTreinoSemanal] = useState(data.frequencia_treino_semanal)
   const [messageApi, contextHolder] = message.useMessage()
 
-  console.log(qualidadeSono)
+  console.log(dataNascimentoFormat)
 
   console.log(frequenciaCardiaca, qualidadeSono, experienciaExercicios, rotinaRegular, quantidadeTempoPe, frequenciaTreinoSemanal)
 
@@ -44,7 +44,7 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
 
   const handleChangeSleepQuality = (value) => {
     setQualidadeSono(value)
-    console.log(qualidadeSono)
+    console.log(value)
   }
 
   const handleChangeExperienciaExercicios = (value) => {
@@ -59,11 +59,27 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
   }
 
   const id = localStorage.getItem("id_academia")
+  console.log(data.data_nascimento)
 
+  console.log(data);
 
   const atualizarAluno = () => {
     axios.put(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/id/${idStudent}`, {
 
+      nome: data.nome,
+      data_nascimento: "2005-04-04",
+      telefone: data.telefone,
+      email: data.email,
+      foto: data.foto,
+      cpf: data.cpf,
+      senha: data.senha,
+      questao_condicao_medica: data.questao_condicao_medica,
+      questao_lesoes: data.questao_lesoes,
+      questao_medicamento: data.questao_medicamento,
+      peso: data.peso,
+      altura: data.altura,
+      objetivo:data.objetivo,
+      id_genero: data.id_genero,
       frequencia_cardiaca: frequenciaCardiaca,
       tempo_em_pe: quantidadeTempoPe,
       rotina_regular: rotinaRegular,
@@ -71,8 +87,7 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
       id_nivel_experiencia: experienciaExercicios,
       id_qualidade_do_sono: qualidadeSono,
       id_aluno: idStudent,
-      id_academia: id
-
+      id_academia: id,
     }).then(({ data }) => {
       success()
       console.log(data)

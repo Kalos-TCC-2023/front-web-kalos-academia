@@ -67,7 +67,7 @@ export const Header = () => {
         <div className="itens_gym">
           <Switch className='header_switch' defaultChecked />
           <div className="notification">
-            <Badge style={{ backgroundColor: '#00FE91', color: '#1B1B1B' }} count={5}>
+            <Badge style={{ backgroundColor: '#00FE91', color: '#1B1B1B' }} count={0}>
               <Avatar className='notificacoes_icon' onClick={showDrawer} style={{ backgroundColor: '#F5F7F9', color: '#D9D9D9' }} size="large" icon={<BellOutlined />} />
             </Badge>
           </div>
