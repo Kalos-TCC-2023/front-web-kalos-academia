@@ -1,18 +1,17 @@
 .page-details-workout {
-    width: 100%;
-    height: 100%;
+   
     padding: 80px;
 }
 
 .detailsWorkout {
     display: flex;
-    justify-content: space-between;
-    gap: 30px;
+    justify-content: space-around;
+    gap: 20px;
 }
 
 .detailsWorkout-container {
-    width: 500px;
-    height: 400px;
+    width: 30%;
+    height: 300px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -22,18 +21,28 @@
 
 
 }
+.title-details-workout{
+    width: 100%;
+    position: fixed;
+    left: 200px;
+    top: 60px;
+}
 
 .detailsWorkout-container>img {
     width: 100%;
+    height: 100%;
     border-radius: 10px;
+    position: absolute;
 }
 
 .content-details-workout {
     display: flex;
     width: 100%;
-    justify-content: space-around;
+    height: 100px;
+    justify-content: space-between;
+    align-items: flex-end;
     position: absolute;
-    bottom: 60px;
+    bottom: 5px;
     padding: 20px;
     color: white;
 }
@@ -52,17 +61,19 @@
 
 }
 
+
 .exercises-container-details-workout {
-    width: 500px;
+    width: 30%;
     background-color: rgba(128, 128, 128, 0.078);
     border-radius: 10px;
-
+    padding: 10px;
+    overflow-y:auto;
+    box-shadow: 1px 1px 10px rgb(214, 214, 214);
 }
 
 .exercise-details {
     padding: 10px;
     box-shadow: 1px 1px 10px rgb(208, 208, 208);
-    width: 100%;
     gap: 10px;
     display: flex;
     border-radius: 10px;
@@ -75,10 +86,18 @@
 .content-details-workout-exercise {
     display: flex;
     gap: 20px;
-    padding: 5px;
-    margin: 20px;
+    margin: 5px;
     padding: 10px;
-    border-top: 1px solid #00FE90;
+    border-top: 1px solid rgba(128, 128, 128, 0.258);
+}
+
+.text-serie-repts {
+    color: gray;
+}
+
+.span-serie-repets {
+    color: black;
+    font-weight: bold;
 }
 
 .p-player-exercise {
@@ -89,21 +108,28 @@
 }
 
 .container-peoples {
-    width: 500px;
-    margin: 20px;
-    padding-left: 40px;
-    overflow-y: scroll;
+   
 }
-.container-peoples-workout{
-background-color: rgba(128, 128, 128, 0.061);
-display: flex;
-justify-content: center;
-flex-direction: column;
-border-radius: 10px;
-}
-.container-peoples-workout > p{
-   padding-left: 60px;
-   font-size: 1.3rem;
-   font-weight: bold;
 
-    }
+.container-peoples-workout {
+    background-color: #fbfbfb;
+    padding: 20px;
+    width: 30%;
+    height: 600px;
+    overflow-y: scroll;
+
+    box-shadow: 1px 1px 10px rgb(214, 214, 214);
+
+    border-radius: 10px;
+}
+
+.container-peoples-workout>p {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: rgb(58, 58, 58);
+    padding-bottom: 10px;
+
+}
+
+
+  

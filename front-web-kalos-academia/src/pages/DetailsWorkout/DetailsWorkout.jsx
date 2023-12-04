@@ -49,12 +49,16 @@ export default class DetailsWorkout extends Component {
                 </Helmet>
                 {Object.keys(workoutDetails).length > 0 && (
                     <div className='detailsWorkout'>
+                                                <h1 className='title-details-workout'>Detalhes do treino</h1>
+
+
                         <div className='detailsWorkout-container'>
+
+
                             <img className='image-detailsworkout' src={workoutDetails.foto} alt={workoutDetails.nome} />
                             <div className='content-details-workout'>
                                <div>
                                <p className='details-workout-name'>{workoutDetails.nome}</p>
-                                <p className='details-workout-name'>{workoutDetails.descricao}</p>
                                </div>
 
                                 <p className='details-workout-date'>{workoutDetails.data_criacao}</p>
@@ -73,8 +77,8 @@ export default class DetailsWorkout extends Component {
                                         <p className='text-player-name-exercise'>{exercicio.nome}</p>    
 
                                         <div className='sets-repts'>
-                                            <p className='text-serie-repts'>Série: {exercicio.series} </p>
-                                            <p className='text-serie-repts'> Repetição/Duração: {exercicio.repeticoes || exercicio.duracao} </p>
+                                            <p className='text-serie-repts'>Série:<span className='span-serie-repets'> {exercicio.series}</span> </p>
+                                            <p className='text-serie-repts'> Repetição/Duração:<span className='span-serie-repets'> {exercicio.repeticoes || exercicio.duracao}</span> </p>
                                         </div>
                                     </div>
                                 </div>

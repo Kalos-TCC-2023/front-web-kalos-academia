@@ -1,7 +1,7 @@
 export const ApiDetailsWorkout = () => {
-    const id = localStorage.getItem("idWokouts");
+    const id = localStorage.getItem("id_treino");
     console.log(id);
-    return fetch(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/id/26`)
+    return fetch(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/id/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Erro na solicitação de dados');
