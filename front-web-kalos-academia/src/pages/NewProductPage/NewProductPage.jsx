@@ -348,10 +348,10 @@ export const NewProductPage = () => {
                                     style={{ width: 330 }}
                                     value={priceProduct}
                                     defaultValue={0}
-                                    formatter={(value) => `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                    formatter={(value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                                     parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
                                     onChange={onChangeNumber}
-
+                                    
                                 />
                             </div>
                         </div>
