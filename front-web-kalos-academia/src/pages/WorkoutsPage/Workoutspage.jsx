@@ -71,11 +71,11 @@ class Workoutspage extends Component {
     const filteredWorkouts = informacoes.filter((workout) =>
       workout.nome.toLowerCase().includes(value.toLowerCase())
     );
-  
+
     this.setState({ searchResults: filteredWorkouts, searchInput: value });
   };
 
-  
+
 
   render() {
     const optionsCategoria = [
@@ -85,7 +85,7 @@ class Workoutspage extends Component {
       { value: 'Crossfit', label: 'Crossfit' },
     ];
 
-    const { informacoes, alunosMatriculados, selectedCard, searchInput, searchResults , loading} = this.state;
+    const { informacoes, alunosMatriculados, selectedCard, searchInput, searchResults, loading } = this.state;
 
     const displayedWorkout = searchInput ? searchResults : informacoes;
 
@@ -128,7 +128,7 @@ class Workoutspage extends Component {
                   size='large'
                 />
 
-{/* <Input.Search
+                {/* <Input.Search
                   className='search_header-workout search_header'
                   placeholder='Buscar exercícios...'
                   size='large'
@@ -147,14 +147,14 @@ class Workoutspage extends Component {
                     className="buttonDefault"
                   />
                 </Link> */}
-                <div className="buttons_add_students_my_students">
-                <Link className='my_students_button' to='/menu/criarTreinos'>
+                <div className="buttonsExercise">
+                  <Link className='my_students_button_exercise' to='/menu/treinos'>
                     <Button shape='circle'>TREINOS</Button>
                   </Link>
-                  <Link className='my_students_button' to='/menu/criarTreinos'>
+                  <Link className='my_students_button_exercise' to='/menu/criarTreinos'>
                     <Button shape='circle'>CRIAR NOVO TREINO</Button>
                   </Link>
-                  <Link to='/menu/galeria_exercicios'>
+                  <Link className='my_students_button_exercise' to='/menu/galeria_exercicios'>
                     <Button shape='circle'>GALERIA DE EXERCICIOS</Button>
                   </Link>
                 </div>
@@ -187,15 +187,15 @@ class Workoutspage extends Component {
               searchResults.map((workout, index) => {
                 return (
                   <CardCrudWorkouts
-                  key={index}
-                  idWokouts={workout.id}
-                  dataWokouts={workout.data_criacao}
-                  alunosWokouts={workout.alunos}
-                  nomeWokouts={workout.nome}
-                  categoriaWokouts='Iniciante'
-                  imgWokouts={workout.foto}
-                  onClick={(id) => this.handleCardClick(id)}
-                />                  
+                    key={index}
+                    idWokouts={workout.id}
+                    dataWokouts={workout.data_criacao}
+                    alunosWokouts={workout.alunos}
+                    nomeWokouts={workout.nome}
+                    categoriaWokouts='Iniciante'
+                    imgWokouts={workout.foto}
+                    onClick={(id) => this.handleCardClick(id)}
+                  />
 
                 );
               })
@@ -206,15 +206,15 @@ class Workoutspage extends Component {
                 informacoes.map((workout, index) => {
                   return (
                     <CardCrudWorkouts
-                    key={index}
-                    idWokouts={workout.id}
-                    dataWokouts={workout.data_criacao}
-                    alunosWokouts={workout.alunos}
-                    nomeWokouts={workout.nome}
-                    categoriaWokouts='Iniciante'
-                    imgWokouts={workout.foto}
-                    onClick={(id) => this.handleCardClick(id)}
-                  />
+                      key={index}
+                      idWokouts={workout.id}
+                      dataWokouts={workout.data_criacao}
+                      alunosWokouts={workout.alunos}
+                      nomeWokouts={workout.nome}
+                      categoriaWokouts='Iniciante'
+                      imgWokouts={workout.foto}
+                      onClick={(id) => this.handleCardClick(id)}
+                    />
                     // <div className="card-workouts" key={index}>
                     //   <div
                     //     className={`change-card ${selectedCard === index ? 'visible' : ''}`}
@@ -245,13 +245,13 @@ class Workoutspage extends Component {
                     //   </div>
                     // </div>
                   );
-                  
+
                 })
-                
+
               )
-              
+
             )}
-                                              {searchInput && displayedWorkout.length === 0 && <div className='workout-notfound'>Treino não encontrado</div>}
+            {searchInput && displayedWorkout.length === 0 && <div className='workout-notfound'>Treino não encontrado</div>}
 
           </div>
         </div>

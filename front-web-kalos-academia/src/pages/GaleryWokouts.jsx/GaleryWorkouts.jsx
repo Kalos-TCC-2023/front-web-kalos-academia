@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import ButtonDefaultKalos from '../../components/Button/ButtonDefaultKalos';
 import { Link } from 'react-router-dom';
-import { Input } from 'antd';
+import { Breadcrumb, Button, Input } from 'antd';
 import './GaleryWorkouts.css';
 import emptyGaleryPhoto from './image/galerykalos.svg';
 import photoDefaultExercise from './image/workoutgymTraine.jpeg';
@@ -59,6 +59,14 @@ export default class GaleryWokouts extends Component {
           </Helmet>
           <div className='header-galery'>
             <div className='title-galery'>Galeria de Exercícios</div>
+            <Breadcrumb
+              items={[
+                {
+                  title: <Link to='/menu/galeria_exercicios'>Galeria de treinos</Link>,
+                },
+
+              ]}
+            />
             <div className='container-header'>
               <div className='arrow-back-create-workouts'>
                 <Link to='/menu/treinos'>
@@ -68,36 +76,15 @@ export default class GaleryWokouts extends Component {
               <div className='search-group-workouts'>
 
               </div>
-              <div className='buttonsExercise'>
-                <Link to='/menu/treinos'>
-                  <ButtonDefaultKalos
-                    textButton="TREINOS"
-                    width="150px"
-                    height="40px"
-                    primaryColor="rgb(245, 247, 249)"
-                    secondaryColor="rgb(0, 254, 144, 1)"
-                    className="buttonDefault"
-                  />
+              <div className="buttonsExercise">
+                <Link className='my_students_button_exercise' to='/menu/treinos'>
+                  <Button shape='circle'>TREINOS</Button>
                 </Link>
-                <Link to='/menu/criarTreinos'>
-                  <ButtonDefaultKalos
-                    textButton="CRIAR NOVO TREINO"
-                    width="200px"
-                    height="40px"
-                    primaryColor="rgb(245, 247, 249)"
-                    secondaryColor="rgb(0, 254, 144, 1)"
-                    className="buttonDefault"
-                  />
+                <Link className='my_students_button_exercise' to='/menu/criarTreinos'>
+                  <Button shape='circle'>CRIAR NOVO TREINO</Button>
                 </Link>
-                <Link to='/menu/galeria_exercicios'>
-                  <ButtonDefaultKalos
-                    textButton="GALERIA DOS EXERCÍCIOS"
-                    width="200px"
-                    height="40px"
-                    primaryColor="rgb(245, 247, 249)"
-                    secondaryColor="rgb(0, 254, 144, 1)"
-                    className="buttonDefault"
-                  />
+                <Link className='my_students_button_exercise' to='/menu/galeria_exercicios'>
+                  <Button shape='circle'>GALERIA DE EXERCICIOS</Button>
                 </Link>
               </div>
             </div>

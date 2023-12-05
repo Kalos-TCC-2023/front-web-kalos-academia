@@ -13,7 +13,6 @@
 
 .header-create-workouts {
     width: 100%;
-    border-top: 0.5px rgba(102, 102, 102, 0.31) solid;
     margin: 30px;
 
 
@@ -72,6 +71,8 @@
     background-color: none;
     border-radius: 10px;
     border: 1px solid rgba(217, 217, 217, 1);
+    padding: 5px;
+
 
 }
 
@@ -90,10 +91,11 @@
     background-color: none;
     overflow-y: auto;
     border-radius: 10px;
-    padding: 0px;
+    padding: 5px;
     margin: 0px;
     resize: none;
     border: 1px solid rgba(217, 217, 217, 1);
+    font-family: 'Arial', sans-serif;
 
 }
 
@@ -207,4 +209,16 @@
 }
 a{
     text-decoration: none;
+}
+
+.buttonsExercise .my_students_button_exercise .ant-btn{
+    background-color: #ffffff00 !important;
+    border-radius: 100px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.title-header-workouts{
+    margin-bottom: 25px;
 }
