@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import SelectDefaultKalos from '../../components/Select/Select';
 import workoutPhoto from './image/workoutgymTraine.jpeg';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
-import { FloatButton } from 'antd';
+import { Breadcrumb, Button, FloatButton } from 'antd';
 import { AddWorkouts } from '../AddExerciseReptsSets/Api/addExerciseReptsSetsApi';
 import { PreviewCardWokouts } from '../../components/PreviewCardWokouts/PreviewCardWokouts';
 import { storage } from '../../adapters/firebase';
@@ -66,12 +66,12 @@ export class CreateWorkouts extends Component {
 
 
 
-  componentDidMount  () {
-  
-    const {categorys, levels, workoutCategory, workoutIdNivel} =  this.state
+  componentDidMount() {
+
+    const { categorys, levels, workoutCategory, workoutIdNivel } = this.state
     GetAllCategorys()
       .then((data) => {
-        const categoriasApi = data.categorias; 
+        const categoriasApi = data.categorias;
         const optionsFromApi = categoriasApi.map((categoria) => ({
           value: categoria.id,
           label: categoria.nome,
@@ -83,9 +83,9 @@ export class CreateWorkouts extends Component {
       });
 
 
-      GetAllLevels()
+    GetAllLevels()
       .then((data) => {
-        const levelsApi = data.niveis; 
+        const levelsApi = data.niveis;
         const optionsFromApi = levelsApi.map((levels) => ({
           value: levels.id,
           label: levels.nome,
@@ -95,7 +95,7 @@ export class CreateWorkouts extends Component {
       .catch((error) => {
         console.error('Ocorreu um erro ao carregar os dados:', error);
       });
-      
+
 
 
 
@@ -139,10 +139,10 @@ export class CreateWorkouts extends Component {
     console.log(`selected ${value}`);
   };
 
+  // 
 
-  
   render() {
-  
+
 
     const {
       workoutName,
@@ -170,6 +170,14 @@ export class CreateWorkouts extends Component {
           <div className="header-create-workouts">
             <div className="title-header-workouts">
               <h1>Criar Treinos</h1>
+              <Breadcrumb
+                items={[
+                  {
+                    title: <Link to='/menu/criarTreinos'>Criar Treino</Link>,
+                  },
+
+                ]}
+              />
             </div>
             <div className="container-header-components">
               <div className="arrow-back-create-workouts">
@@ -179,35 +187,14 @@ export class CreateWorkouts extends Component {
                 </Link>
               </div>
               <div className="buttonsExercise">
-                <Link to="/menu/treinos">
-                  <ButtonDefaultKalos
-                    textButton="TREINOS"
-                    width="150px"
-                    height="40px"
-                    primaryColor="rgb(245, 247, 249)"
-                    secondaryColor="rgb(0, 254, 144, 1)"
-                    className="buttonDefault"
-                  />
+                <Link className='my_students_button_exercise' to='/menu/treinos'>
+                  <Button shape='circle'>TREINOS</Button>
                 </Link>
-                <Link to="/menu/criarTreinos">
-                  <ButtonDefaultKalos
-                    textButton="CRIAR NOVO TREINO"
-                    width="200px"
-                    height="40px"
-                    primaryColor="rgb(245, 247, 249)"
-                    secondaryColor="rgb(0, 254, 144, 1)"
-                    className="buttonDefault"
-                  />
+                <Link className='my_students_button_exercise' to='/menu/criarTreinos'>
+                  <Button shape='circle'>CRIAR NOVO TREINO</Button>
                 </Link>
-                <Link to="/menu/galeria_exercicios">
-                  <ButtonDefaultKalos
-                    textButton="GALERIA DOS EXERCÍCIOS"
-                    width="200px"
-                    height="40px"
-                    primaryColor="rgb(245, 247, 249)"
-                    secondaryColor="rgb(0, 254, 144, 1)"
-                    className="buttonDefault"
-                  />
+                <Link className='my_students_button_exercise' to='/menu/galeria_exercicios'>
+                  <Button shape='circle'>GALERIA DE EXERCICIOS</Button>
                 </Link>
               </div>
             </div>
