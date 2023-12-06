@@ -1,7 +1,8 @@
 export const EditExerciseName = (exerciseId, newName, newUrl, newDescription) => {
-  const url = `https://kaloscorp.cyclic.app/kalos/exercicio/id/${exerciseId}`;
-  const id = localStorage.getItem("id_academia");
+  const endPointAzure = localStorage.getItem("end-point-azure")
 
+  const url = `${endPointAzure}/kalos/exercicio/id/${exerciseId}`;
+  const id = localStorage.getItem("id_academia");
 
   // Primeiro, faça uma solicitação GET para obter os dados atuais do exercício
   return fetch(url)

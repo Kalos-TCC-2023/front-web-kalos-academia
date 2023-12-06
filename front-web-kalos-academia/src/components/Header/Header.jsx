@@ -15,6 +15,7 @@ export const Header = () => {
   const id = localStorage.getItem("id_academia")
   const [objectGym, setObjectGym] = useState({})
   const [stateGymApi, setStateGymApis] = useState(0)
+  const endPointAzure = localStorage.getItem("end-point-azure")
 
   const showDrawer = () => {
     setOpen(true);
@@ -32,7 +33,7 @@ export const Header = () => {
   const nameGym = objectGym.nome
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.app/kalos/academia/id/${id}`)
+    axios.get(`${endPointAzure}/kalos/academia/id/${id}`)
       .then(({ data }) => {
         console.log(data)
         setObjectGym(data.academia)

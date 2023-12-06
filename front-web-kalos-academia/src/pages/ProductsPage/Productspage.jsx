@@ -19,10 +19,11 @@ export const Productspage = () => {
   const [products, setProducts] = useState([])
   const [statusCode, setStatusCode] = useState(0)
   const [deletedProductGym, setDeletedProduct] = useState(0)
+  const endPointAzure = localStorage.getItem("end-point-azure")
 
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.app/kalos/produtoByIdAcademia/id/${idAcademia}`)
+    axios.get(`${endPointAzure}/kalos/produtoByIdAcademia/id/${idAcademia}`)
       .then(({ data }) => {
         console.log(data)
 

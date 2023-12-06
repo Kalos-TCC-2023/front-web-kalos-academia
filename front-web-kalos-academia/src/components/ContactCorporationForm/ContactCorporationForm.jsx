@@ -17,6 +17,8 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
   const [idAcademia, setIdAcademia] = useState('')
   const [messageApi, contextHolder] = message.useMessage()
   const navigate = useNavigate()
+  const endPointAzure = localStorage.getItem("end-point-azure")
+
 
   const errorMessage = () => {
     messageApi.open({
@@ -70,7 +72,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
       } else {
 
         // http://10.107.144.6:8080
-        axios.post('https://kaloscorp.cyclic.app/kalos/academia', {
+        axios.post(`${endPointAzure}/kalos/academia`, {
           nome: data.nome,
           email: data.email,
           senha: data.senha,
@@ -112,7 +114,7 @@ export const ContactCorporationForm = ({ data, updateFielHandler, submit, stateS
 
   useEffect(() => {
     if (idAcademia !== '') {
-      axios.post('https://kaloscorp.cyclic.app/kalos/funcionamento', {
+      axios.post(`${endPointAzure}/kalos/funcionamento`, {
         id_academia: idAcademia,
         segunda: {
           status: operationCorporation.segunda['status'],

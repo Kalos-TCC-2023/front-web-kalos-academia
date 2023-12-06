@@ -12,11 +12,12 @@ export const StepThreeAddStundetForGym = ({ updateFielHandler, idStudent }) => {
     const [wokoutsInformations, setWokoutsInformation] = useState('')
     const [addWouktsForStudent, setAddWouktsForStudent] = useState([])
     const [checked, setChecked] = useState(false)
+    const endPointAzure = localStorage.getItem("end-point-azure")
 
     const [teste, setTeste] = useState(null)
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${id}`)
+        axios.get(`${endPointAzure}/kalos/treinoNivelCategoria/idAcademia/${id}`)
             .then(({ data }) => {
                 setWokoutsInformation(data.informacoes)
                 console.log(data.informacoes)

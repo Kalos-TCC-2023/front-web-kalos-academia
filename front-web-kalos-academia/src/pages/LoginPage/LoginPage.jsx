@@ -22,6 +22,7 @@ export const LoginPage = () => {
     const [statusCode, setStatusCode] = useState(0)
     const toforgotPass = forgotPassPage ? '/esqueciSenha' : ''
     const navigate = useNavigate()
+    const endPointAzure = localStorage.getItem("end-point-azure")
 
     const [messageApi, contextHolder] = message.useMessage();
 
@@ -63,7 +64,7 @@ export const LoginPage = () => {
                     setSubmitButton(false)
                 } else {
                     setStatusInput('')
-                    axios.post(`https://kaloscorp.cyclic.app/kalos/academia/autenticar`, {
+                    axios.post(`${endPointAzure}/kalos/academia/autenticar`, {
                 email: email,
                 senha: password
             })

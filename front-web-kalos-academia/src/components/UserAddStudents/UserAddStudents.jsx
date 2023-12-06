@@ -17,6 +17,8 @@ export const UserAddStudents = ({ nameStudent, idStudentFormt, imgSrcStudent, id
     const [modal, contextHolder] = Modal.useModal()
     const navigate = useNavigate()
     const idAcademia = localStorage.getItem("id_academia")
+    const endPointAzure = localStorage.getItem("end-point-azure")
+
 
     const aboutStudent = () => {
         localStorage.setItem('id_aluno', idStudent)
@@ -28,7 +30,7 @@ export const UserAddStudents = ({ nameStudent, idStudentFormt, imgSrcStudent, id
 
     const deleteStudentForGym = (idStundet, idAcademia, confirm) => {
         if (confirm == true) {
-            axios.delete(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAluno/${idStundet}/idAcademia/${idAcademia}`)
+            axios.delete(`${endPointAzure}/kalos/alunoAcademia/idAluno/${idStundet}/idAcademia/${idAcademia}`)
                 .then(({ data }) => {
                     console.log(data)
                     setDeleteState(idStudent)

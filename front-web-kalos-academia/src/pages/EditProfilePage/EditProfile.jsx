@@ -46,6 +46,8 @@ export const EditProfile = () => {
             status: 'done'
         },
     ])
+    const endPointAzure = localStorage.getItem("end-point-azure")
+
 
     const operationCorporation = {
         id_academia: '',
@@ -129,7 +131,7 @@ export const EditProfile = () => {
     }, [])
 
     useEffect(() => {
-        axios.get('https://kaloscorp.cyclic.app/kalos/tags')
+        axios.get(`${endPointAzure}/kalos/tags`)
             .then(({ data }) => {
                 if (tagsApi.length === 0) {
 
@@ -151,7 +153,7 @@ export const EditProfile = () => {
     }, [])
 
     useEffect(() => {
-        axios.get('https://kaloscorp.cyclic.app/kalos/categoria')
+        axios.get(`${endPointAzure}/kalos/categoria`)
             .then(({ data }) => {
 
                 if (categoryApi.length === 0) {

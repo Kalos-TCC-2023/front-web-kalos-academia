@@ -1,6 +1,7 @@
 export const AddExerciseApi = (exerciseId, newName, newUrl, newDescription) => {
   // URL da API
-  const url = `https://kaloscorp.cyclic.app/kalos/exercicio`;
+  const endPointAzure = localStorage.getItem("end-point-azure")
+  const url = `${endPointAzure}/kalos/exercicio`;
 
   // Obter o ID da academia a partir do armazenamento local
   const id = localStorage.getItem("id_academia");

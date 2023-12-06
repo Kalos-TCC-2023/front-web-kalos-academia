@@ -12,6 +12,7 @@ export const AddStudentWorkouts = () => {
     const [studentsGym, setStudentsGym] = useState([]);
     const [checkedUser, setCheckedUser] = useState([]);
     const [arrayStundetWorkouts, setArrayStudentWorkouts] = useState([]);
+    const endPointAzure = localStorage.getItem("end-point-azure")
 
     const onSearch = (value, _e, info) => {
         console.log(info?.source, value);
@@ -21,7 +22,7 @@ export const AddStudentWorkouts = () => {
 
     useEffect(() => {
         axios
-            .get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${id}`)
+            .get(`${endPointAzure}/kalos/alunoAcademia/idAcademia/${id}`)
             .then(({ data }) => {
                 console.log(data);
                 console.log(data.alunos);
@@ -38,7 +39,7 @@ export const AddStudentWorkouts = () => {
 
     useEffect(() => {
         axios
-            .get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${id}/idTreinoNivelCategoria/${treino}`)
+            .get(`${endPointAzure}/kalos/treinoNivelCategoria/idAcademia/${id}/idTreinoNivelCategoria/${treino}`)
             .then(({ data }) => {
                 console.log(data);
                 console.log(data.informacoes);
@@ -63,7 +64,7 @@ export const AddStudentWorkouts = () => {
         console.log(idTreinoNivelCategoria);
 
         axios
-            .post('https://kaloscorp.cyclic.app/kalos/treinoAluno', {
+            .post(`${endPointAzure}/kalos/treinoAluno`, {
                 alunos: alunos,
                 id_treino_nivel_categoria: idTreinoNivelCategoria,
             })

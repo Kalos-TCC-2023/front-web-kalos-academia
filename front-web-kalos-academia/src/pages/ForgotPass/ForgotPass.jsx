@@ -20,6 +20,7 @@ export const ForgotPass = () => {
   const [submitPassword, setSubmitPassword] = useState('')
   const [messageApi, contextHolder] = message.useMessage()
   const navigate = useNavigate()
+  const endPointAzure = localStorage.getItem("end-point-azure")
 
 
   // INSERIR AVISO DE 12 CARACTERES
@@ -116,7 +117,7 @@ export const ForgotPass = () => {
       console.log(userEmail)
       return
     } else {
-      axios.post(`https://kaloscorp.cyclic.cloud/kalos/academia/esqueci_senha`, {
+      axios.post(`${endPointAzure}/kalos/academia/esqueci_senha`, {
         email: userEmail.toString()
       })
         .then(({ data }) => {
@@ -133,7 +134,7 @@ export const ForgotPass = () => {
     if (tokenCode == '' || tokenCode.length < 5) {
       return
     } else {
-      axios.post(`https://kaloscorporation.cyclic.cloud/kalos/academia/validar_token`, {
+      axios.post(`${endPointAzure}/kalos/academia/validar_token`, {
         email: userEmail.toString(),
         token: tokenCode.toString()
       })
@@ -156,7 +157,7 @@ export const ForgotPass = () => {
     if(submitPassword == '' || submitPassword == null){
       return
     } else {
-      axios.put(`https://kaloscorporation.cyclic.cloud/kalos/academia/redefinir_senha`, {
+      axios.put(`${endPointAzure}/kalos/academia/redefinir_senha`, {
         email: userEmail.toString(),
         senha: submitPassword.toString()
       }).then(({ data }) => {

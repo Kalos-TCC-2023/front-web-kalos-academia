@@ -20,7 +20,8 @@ export const AddStudentPage = () => {
     const [excluidos, setExcluidos] = useState([])
     console.log( 'excluidos:', excluidos);
 
-   
+    const endPointAzure = localStorage.getItem("end-point-azure")
+
 
     console.log(studentGym)
 
@@ -66,7 +67,7 @@ export const AddStudentPage = () => {
 
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${id}`)
+        axios.get(`${endPointAzure}/kalos/alunoAcademia/idAcademia/${id}`)
             .then(({ data }) => {
 
                 setStudentsGym(data.alunos)
@@ -76,7 +77,7 @@ export const AddStudentPage = () => {
     }, [])
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/aluno`)
+        axios.get(`${endPointAzure}/kalos/aluno`)
             .then(({ data }) => {
                 const AllStudents = data.alunos
                 setStudents(data.alunos)

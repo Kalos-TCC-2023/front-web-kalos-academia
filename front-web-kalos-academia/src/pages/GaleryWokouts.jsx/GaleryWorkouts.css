@@ -9,7 +9,7 @@
   overflow: auto;
 }
 
-.header-galery {
+.header-galery-workout {
   margin: 33px;
   width: 100%;
   height: 90px;
@@ -17,6 +17,7 @@
 
 .page-default {
   width: 1300px;
+  
   display: flex;
   flex-direction: column;
   justify-content: center;

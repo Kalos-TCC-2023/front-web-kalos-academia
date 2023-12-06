@@ -13,6 +13,7 @@ export const PostsComponentProfile = ({ color }) => {
     const [deletePost, setDeletePost] = useState(0)
     const [messageApi, contextHolder] = message.useMessage();
 
+    const endPointAzure = localStorage.getItem("end-point-azure")
 
     const error = () => {
         messageApi.open({
@@ -22,7 +23,7 @@ export const PostsComponentProfile = ({ color }) => {
       };
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/postagem/idAcademia/${id}`)
+        axios.get(`${endPointAzure}/kalos/postagem/idAcademia/${id}`)
             .then(({ data }) => {
                 setPostsGym(data.postagens)
             }).catch((err) => {

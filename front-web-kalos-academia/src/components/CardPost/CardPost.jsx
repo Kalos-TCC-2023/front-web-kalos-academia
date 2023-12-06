@@ -11,6 +11,7 @@ export const CardPost = ({ title, description, photo, data, time, postId, setDel
 
     const [messageApi, contextHolder] = message.useMessage();
 
+    const endPointAzure = localStorage.getItem("end-point-azure")
 
     const newFormatDate = data.replace('T00:00:00.000Z', '')
     const dayPost = moment(newFormatDate).format('L')
@@ -31,7 +32,7 @@ export const CardPost = ({ title, description, photo, data, time, postId, setDel
       };
 
     const deletePost = (idPost) => {
-        axios.delete(`https://kaloscorp.cyclic.app/kalos/postagem/id/${idPost}`)
+        axios.delete(`${endPointAzure}/kalos/postagem/id/${idPost}`)
             .then(({ data }) => {
                 console.log(data)
                 success()

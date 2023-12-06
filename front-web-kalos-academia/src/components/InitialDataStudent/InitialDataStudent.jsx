@@ -17,10 +17,12 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
     const [ageStudentFormat, setAge] = useState('')
     const [data_de_nascimento_formart, setDate] = useState('')
     const [wokoutsInformations, setWokoutsInformation] = useState([])
+    const endPointAzure = localStorage.getItem("end-point-azure")
+
 
     useEffect(() => {
 
-        axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idStudent}`)
+        axios.get(`${endPointAzure}/kalos/aluno/id/${idStudent}`)
             .then(({ data }) => {
 
                 console.log(data)
@@ -45,7 +47,7 @@ export const InitialDataStudent = ({ data, status, idStudent }) => {
 
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAluno/${idStudent}/idAcademia/${id}`)
+        axios.get(`${endPointAzure}/kalos/treinoNivelCategoria/idAluno/${idStudent}/idAcademia/${id}`)
             .then(({ data }) => {
 
                 console.log(data.informacoes)

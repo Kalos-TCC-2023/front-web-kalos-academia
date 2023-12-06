@@ -18,6 +18,7 @@ export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
     const [wokoutsStudentGym, setWokoutsStudentGym] = useState([])
     const [border, setBorderAll] = useState('')
 
+    const endPointAzure = localStorage.getItem("end-point-azure")
 
     const refCard = useRef()
 
@@ -34,7 +35,7 @@ export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
 
     useEffect(() => {
 
-        axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idStudent}`)
+        axios.get(`${endPointAzure}/kalos/aluno/id/${idStudent}`)
             .then(({ data }) => {
 
                 console.log(data)
@@ -60,7 +61,7 @@ export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
 
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${id}`)
+        axios.get(`${endPointAzure}/kalos/treinoNivelCategoria/idAcademia/${id}`)
             .then(({ data }) => {
                 setWokoutsInformation(data.informacoes)
 
@@ -71,7 +72,7 @@ export const InitialDataStudentGymEdit = ({ data, status, idStudent }) => {
 
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAluno/${idStudent}/idAcademia/${id}`)
+        axios.get(`${endPointAzure}/kalos/treinoNivelCategoria/idAluno/${idStudent}/idAcademia/${id}`)
             .then(({ data }) => {
 
                 console.log(data.informacoes)

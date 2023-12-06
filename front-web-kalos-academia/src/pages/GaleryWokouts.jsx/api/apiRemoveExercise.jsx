@@ -1,5 +1,7 @@
 export const removeExercise = (exerciseId) => {
-    const url = `https://kaloscorp.cyclic.app/kalos/exercicio/id/${exerciseId}`;
+  const endPointAzure = localStorage.getItem("end-point-azure")
+
+    const url = `${endPointAzure}/kalos/exercicio/id/${exerciseId}`;
   
     return fetch(url, {
       method: 'DELETE',

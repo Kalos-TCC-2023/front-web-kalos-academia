@@ -1,5 +1,7 @@
 export const GetAllCategorys = () => {
-    return fetch(`https://kaloscorp.cyclic.app/kalos/categoriaTreino`)
+  const endPointAzure = localStorage.getItem("end-point-azure")
+
+    return fetch(`${endPointAzure}/kalos/categoriaTreino`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Erro na solicitação de dados');
