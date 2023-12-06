@@ -108,7 +108,7 @@ export const EditProfile = () => {
     console.log(categoryApi)
 
     useEffect(() => {
-        axios.get('https://kaloscorp.cyclic.app/kalos/tags')
+        axios.get(`${endPointAzure}/kalos/tags`)
             .then(({ data }) => {
                 if (tagsApi.length === 0) {
                     console.log(data.tags)
