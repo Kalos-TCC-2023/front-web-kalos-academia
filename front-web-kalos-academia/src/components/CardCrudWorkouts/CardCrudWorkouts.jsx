@@ -17,6 +17,8 @@ export const CardCrudWorkouts = ({ idWokouts, nomeWokouts, dataWokouts, categori
             content: 'Treino deletado com sucesso!',
         })
     }
+    const endPointAzure = localStorage.getItem("end-point-azure")
+
 
     const handleButtonClick = (e) => {
         message.info('Click on left button.');
@@ -31,7 +33,7 @@ export const CardCrudWorkouts = ({ idWokouts, nomeWokouts, dataWokouts, categori
 
 
     const handleDelete = () => {
-        axios.delete(`https://kaloscorp.cyclic.app/kalos/treino/id/${idWokouts}`)
+        axios.delete(`${endPointAzure}/kalos/treino/id/${idWokouts}`)
             .then(({ data }) => {
                 success()
                 window.location.reload();

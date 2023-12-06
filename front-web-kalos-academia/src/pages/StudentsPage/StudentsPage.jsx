@@ -20,7 +20,10 @@ export const StudentsPage = () => {
     console.log(info?.source, value)
     const search = studentsGym.filter((student) => student.nome.toLowerCase().includes(value.toLowerCase()))
     console.log(search)
+
   }
+  const endPointAzure = localStorage.getItem("end-point-azure")
+
 
   const filteredStudens = !!searchStudens ? allStudens.filter((student) => {
     return student.nome.toLowerCase().includes(
@@ -38,7 +41,7 @@ export const StudentsPage = () => {
   const id = localStorage.getItem("id_academia")
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${id}`)
+    axios.get(`${endPointAzure}/kalos/alunoAcademia/idAcademia/${id}`)
       .then(({ data }) => {
         console.log(data)
         console.log(data.alunos)

@@ -31,6 +31,8 @@ export const NewProductPage = () => {
     const [priceProduct, setPriceProduct] = useState(0)
     const [productPhotos, setProductPhotos] = useState([])
     const [idProduct, setIdProduct] = useState('')
+    const endPointAzure = localStorage.getItem("end-point-azure")
+
 
     console.log(productName, productCode, priceProduct)
     console.log(productDescription, idProductCategory, statusProduct)
@@ -135,7 +137,7 @@ export const NewProductPage = () => {
         } else if (priceProduct == 0) {
             invalidPrice()
         } else {
-            axios.post(`https://kaloscorp.cyclic.app/kalos/produto`, {
+            axios.post(`${endPointAzure}/kalos/produto`, {
                 nome: productName,
                 descricao: productDescription,
                 preco: priceProduct,
@@ -161,7 +163,7 @@ export const NewProductPage = () => {
         console.log(produto)
         console.log(photos)
 
-        axios.post(`https://kaloscorp.cyclic.app/kalos/fotos`, {
+        axios.post(`${endPointAzure}/kalos/fotos`, {
             anexo: photos,
             id_produto: produto
         }).then(({ data }) => {

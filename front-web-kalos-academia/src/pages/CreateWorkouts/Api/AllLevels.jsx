@@ -1,5 +1,7 @@
 export const GetAllLevels = () => {
-    return fetch(`https://kaloscorp.cyclic.app/kalos/nivel`)
+  const endPointAzure = localStorage.getItem("end-point-azure")
+
+    return fetch(`${endPointAzure}/kalos/nivel`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Erro na solicitação de dados');

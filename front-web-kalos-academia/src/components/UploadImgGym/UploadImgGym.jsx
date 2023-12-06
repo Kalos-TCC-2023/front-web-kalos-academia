@@ -10,6 +10,7 @@ export const UploadImgGym = ({ setImg, titlePost, bodyPost }) => {
   const [selectFileName, setSelectFileName] = useState('');
   const [imgDb, setImageDb] = useState(null)
   const [messageApi, contextHolder] = message.useMessage();
+  const endPointAzure = localStorage.getItem("end-point-azure")
 
   console.log(imgDb)
   console.log(titlePost)
@@ -101,7 +102,7 @@ export const UploadImgGym = ({ setImg, titlePost, bodyPost }) => {
     if (titlePost == '' || bodyPost == '') {
       errorForget()
     } else {
-      axios.post('https://kaloscorp.cyclic.app/kalos/postagem', {
+      axios.post(`${endPointAzure}/kalos/postagem`, {
         titulo: titlePost,
         corpo: bodyPost,
         anexo: img,

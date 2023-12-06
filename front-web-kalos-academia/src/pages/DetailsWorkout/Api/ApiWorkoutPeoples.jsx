@@ -1,9 +1,10 @@
 export const ApiWokoutPeoples = () => {
     const idAcademia = localStorage.getItem("id_academia");
     const idTreino = localStorage.getItem("id_treino");
+    const endPointAzure = localStorage.getItem("end-point-azure")
 
     const idAlunoRegistrado = localStorage.getItem("id_treino_categoria")
-    return fetch(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${idAcademia}/idTreinoNivelCategoria/${idTreino}`)
+    return fetch(`${endPointAzure}/kalos/treinoNivelCategoria/idAcademia/${idAcademia}/idTreinoNivelCategoria/${idTreino}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Erro na solicitação de dados');

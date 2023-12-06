@@ -30,9 +30,11 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
       status: 'done'
     },
   ])
+  const endPointAzure = localStorage.getItem("end-point-azure")
+
 
   useEffect(() => {
-    axios.get('https://kaloscorp.cyclic.app/kalos/tags')
+    axios.get(`${endPointAzure}/kalos/tags`)
       .then(({ data }) => {
         if (tagsApi.length === 0) {
           console.log(data.tags)
@@ -55,7 +57,7 @@ export const ProfileCorporationForm = ({ data, updateFielHandler }) => {
   }, [imageDb])
 
   useEffect(() => {
-    axios.get('https://kaloscorp.cyclic.app/kalos/categoria')
+    axios.get(`${endPointAzure}/kalos/categoria`)
     .then(({ data }) => {
       
       if(categoryApi.length === 0){

@@ -10,9 +10,10 @@ export const WorkoutsComponentProfile = ({ color }) => {
     const id = localStorage.getItem("id_academia")
     const [wokoutsInformations, setWokoutsInformation] = useState('')
     const [addWouktsForStudent, setAddWouktsForStudent] = useState([])
+    const endPointAzure = localStorage.getItem("end-point-azure")
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${id}`)
+        axios.get(`${endPointAzure}/kalos/treinoNivelCategoria/idAcademia/${id}`)
             .then(({ data }) => {
                 setWokoutsInformation(data.informacoes)
                 console.log(data.informacoes)

@@ -14,11 +14,12 @@ export const ProductReservationPage = () => {
     const [searchProducts, setSearchProducts] = useState('')
     const [allReservations, setAllReservations] = useState([])
     const idAcademia = localStorage.getItem('id_academia')
+    const endPointAzure = localStorage.getItem("end-point-azure")
 
 
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/reserva/idAcademia/${idAcademia}`)
+        axios.get(`${endPointAzure}/kalos/reserva/idAcademia/${idAcademia}`)
             .then(({ data }) => {
                 if (allReservations.length == 0) {
                     setAllReservations(data.reservas)

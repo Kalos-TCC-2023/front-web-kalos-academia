@@ -8,10 +8,11 @@ import { Loader } from '../Loader/Loader'
 export const StepOneAddStudentForGym = ({ idStudent, updateFielHandler }) => {
 
     const [dataOfStudent, setDataOfStudent] = useState('')
+    const endPointAzure = localStorage.getItem("end-point-azure")
 
     useEffect(() => {
 
-        axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idStudent}`)
+        axios.get(`${endPointAzure}/kalos/aluno/id/${idStudent}`)
             .then(({ data }) => {
                 console.log(data.aluno)
                 setDataOfStudent(data.aluno)

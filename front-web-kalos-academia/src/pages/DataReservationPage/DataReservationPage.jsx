@@ -11,9 +11,11 @@ export const DataReservationPage = () => {
   const [reservationData, setReservationData] = useState([])
   const [statusStep, setStatusStep] = useState('')
   console.log(state)
+  const endPointAzure = localStorage.getItem("end-point-azure")
+
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.app/kalos/reserva/id/${state.id_reserva}`)
+    axios.get(`${endPointAzure}/kalos/reserva/id/${state.id_reserva}`)
       .then(({ data }) => {
 
         console.log((data));

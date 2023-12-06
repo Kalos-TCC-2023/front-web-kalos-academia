@@ -8,7 +8,9 @@ export const AddWorkouts = (
   idAcademia,
   exercicios
 ) => {
-  const url = `https://kaloscorp.cyclic.app/kalos/treino`;
+  const endPointAzure = localStorage.getItem("end-point-azure")
+
+  const url = `${endPointAzure}/kalos/treino`;
 
   const workoutData = {
     nome: newName,

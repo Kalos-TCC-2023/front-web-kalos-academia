@@ -23,15 +23,16 @@ export const HomePage = () => {
     const [lastStudents, setLastStudents] = useState([])
     const [counterWorkouts, setCounterWorkouts] = useState(0)
     const [counterPrice, setCounterPrice] = useState(0)
+    const endPointAzure = localStorage.getItem("end-point-azure")
 
 
     const idGym = localStorage.getItem("id_academia")
     console.log(idGym)
 
-    // https://kaloscorp.cyclic.cloud/kalos/alunoAcademia/idAcademia/
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/ultimosAlunos/idAcademia/51`)
+
+        axios.get(`${endPointAzure}/kalos/ultimosAlunos/idAcademia/51`)
             .then(({ data }) => {
 
                 setLastStudents(data.ultimos_alunos)
@@ -41,7 +42,7 @@ export const HomePage = () => {
     }, [])
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/reservaValorByIdAcademia/id/${idGym}`)
+        axios.get(`${endPointAzure}/kalos/reservaValorByIdAcademia/id/${idGym}`)
             .then(({ data }) => {
 
                 setCounterPrice(data.valor)
@@ -52,7 +53,7 @@ export const HomePage = () => {
     }, [])
 
     useEffect(() => {
-        axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${idGym}`)
+        axios.get(`${endPointAzure}/kalos/treinoNivelCategoria/idAcademia/${idGym}`)
             .then(({ data }) => {
                 console.log(data.informacoes.length)
                 setCounterWorkouts(data.informacoes.length)

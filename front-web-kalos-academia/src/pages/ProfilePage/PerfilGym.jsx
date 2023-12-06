@@ -19,12 +19,13 @@ export const PerfilGym = () => {
   const [stateGymApi, setStateGymApis] = useState(0)
   const [counterWorkouts, setCounterWorkouts] = useState(0)
   const [counterStudents, setCounterStudents] = useState(0)
+  const endPointAzure = localStorage.getItem("end-point-azure")
 
 
   const formatter = (value) => <CountUp end={value} separator="," />;
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.app/kalos/academia/id/${id}`)
+    axios.get(`${endPointAzure}/kalos/academia/id/${id}`)
       .then(({ data }) => {
         
         setObjectGym(data.academia)
@@ -37,7 +38,7 @@ export const PerfilGym = () => {
   }, [])
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.app/kalos/treinoNivelCategoria/idAcademia/${id}`)
+    axios.get(`${endPointAzure}/kalos/treinoNivelCategoria/idAcademia/${id}`)
     .then(({ data }) => {
       
       setCounterWorkouts(data.informacoes.length)
@@ -47,7 +48,7 @@ export const PerfilGym = () => {
   }, [])
 
   useEffect(() => {
-    axios.get(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/idAcademia/${id}`)
+    axios.get(`${endPointAzure}/kalos/alunoAcademia/idAcademia/${id}`)
     .then(({ data }) => {
       console.log(data.alunos.length)
       setCounterStudents(data.alunos.length)

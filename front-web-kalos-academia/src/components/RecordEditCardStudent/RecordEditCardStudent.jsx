@@ -15,6 +15,7 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
   const [quantidadeTempoPe, setQuantidadeTempoPe] = useState(data.tempo_em_pe)
   const [frequenciaTreinoSemanal, setFrequenciaTreinoSemanal] = useState(data.frequencia_treino_semanal)
   const [messageApi, contextHolder] = message.useMessage()
+  const endPointAzure = localStorage.getItem("end-point-azure")
 
   console.log(dataNascimentoFormat)
 
@@ -64,7 +65,7 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
   console.log(data);
 
   const atualizarAluno = () => {
-    axios.put(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/id/${idStudent}`, {
+    axios.put(`${endPointAzure}/kalos/alunoAcademia/id/${idStudent}`, {
 
       nome: data.nome,
       data_nascimento: "2005-04-04",

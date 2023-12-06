@@ -11,11 +11,12 @@ export const CardStudentAdd = ({ idStudent }) => {
     const [data_de_nascimento_formart, setDate] = useState('')
     const [data, setData] = useState('')
     console.log(data)
+    const endPointAzure = localStorage.getItem("end-point-azure")
 
 
     useEffect(() => {
 
-        axios.get(`https://kaloscorp.cyclic.app/kalos/aluno/id/${idStudent}`)
+        axios.get(`${endPointAzure}/kalos/aluno/id/${idStudent}`)
             .then(({ data }) => {
 
                 const dataNascimento = data.aluno.data_nascimento

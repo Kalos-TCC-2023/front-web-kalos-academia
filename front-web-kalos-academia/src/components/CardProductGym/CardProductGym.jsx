@@ -12,11 +12,12 @@ const config = {
 export const CardProductGym = ({ productName, productCategory, productDescription, productPrice, productPhoto, idProduct, setDeletedProductId }) => {
 
   const [modal, contextHolder] = Modal.useModal()
+  const endPointAzure = localStorage.getItem("end-point-azure")
 
 
   const deletedProduct = (confirm, idProduct) => {
     if (confirm == true) {
-      axios.delete(`https://kaloscorp.cyclic.app/kalos/produto/id/${idProduct}`)
+      axios.delete(`${endPointAzure}/kalos/produto/id/${idProduct}`)
         .then(({ data }) => {
           console.log(data)
           setDeletedProductId(idProduct)
