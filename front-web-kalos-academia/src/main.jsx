@@ -31,7 +31,8 @@ import { DataReservationPage } from './pages/DataReservationPage/DataReservation
 import DetailsWorkout from './pages/DetailsWorkout/DetailsWorkout'
 import { StudentAddSucess } from './pages/studentCreatedWithSucess/StudentsCreated'
 
-const url = "https://kaloscorp.azurewebsites.net"
+// const url = "https://kaloscorp.azurewebsites.net"
+const url = "http://10.107.144.31:8080"
 localStorage.setItem("end-point-azure", url)
 
 

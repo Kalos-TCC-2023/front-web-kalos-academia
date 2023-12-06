@@ -101,41 +101,24 @@ class AddExerciseRepetsSets extends Component {
 
 
     handleEditExercise = (index) => {
-        const { selectedExercises } = this.state;
+        console.log(index);
+        const { selectedExercises, imageExercise } = this.state;
         const exercise = selectedExercises[index];
-    
-        const updatedExercises = selectedExercises.map((ex, i) => {
-            if (i === index) {
-                return {
-                    ...ex,
-                    isEditing: true,
-                    serie: '', // Zera a série
-                    repeticao: null, // Zera a repetição
-                    duracao: null, // Zera a duração
-                };
-            } else {
-                return {
-                    ...ex,
-                    isEditing: false,
-                };
-            }
-        });
-    
+        console.log(exercise);
+
         this.setState({
-            selectedExercises: updatedExercises,
-            serieSelecionada: '', // Zera a série selecionada
-            repeticaoSelecionada: null, // Zera a repetição selecionada
-            duracaoSelecionado: null, // Zera a duração selecionada
+            serieSelecionada: exercise.serie || "0",
+            repeticaoSelecionada: exercise.repeticao || "0",
+            duracaoSelecionado: exercise.duracao || "00:00:00",
             editingIndex: index,
             exercicioClicadoIndex: index,
             imageExercise: exercise.foto,
             nameExercise: exercise.nome,
-            isRepeticaoSelected: !!exercise.repeticao,
-            isDuracaoSelected: !!exercise.duracao,
+            isRepeticaoSelected: false,
+            isDuracaoSelected: false,
         });
+        console.log(imageExercise);
     };
-    
-    
 
     handleSaveEdit = () => {
         const { editingIndex, selectedExercises, serieSelecionada, repeticaoSelecionada, duracaoSelecionado } = this.state;
@@ -189,8 +172,6 @@ class AddExerciseRepetsSets extends Component {
         const { selectedExercises, serieSelecionada, repeticaoSelecionada, imageExercise, nameExercise, isDuracaoSelected, isRepeticaoSelected } = this.state;
 
         const optionsSerie = [
-            { value: '0', label: '0' },
-
             { value: '1', label: '1' },
             { value: '2', label: '2' },
             { value: '3', label: '3' },
@@ -207,8 +188,6 @@ class AddExerciseRepetsSets extends Component {
         ]
             ;
         const optionsRepeticao = [
-            { value: '0', label: '0' },
-
             { value: '1', label: '1' },
             { value: '2', label: '2' },
             { value: '3', label: '3' },
@@ -225,9 +204,9 @@ class AddExerciseRepetsSets extends Component {
         ]
         return (
             <div className='container-add-exercise-repts-sets'>
-                <Link to={"/menu/exercicio_criado_com_sucesso"}>
+                {/* <Link to={"/menu/exercicio_criado_com_sucesso"}> */}
                     <FloatButton onClick={this.handleSaveEdit} icon={<ArrowRightOutlined />} tooltip={<div>Avançar</div>} />
-                </Link>
+                {/* </Link> */}
                 <Helmet>
                     <title>Kalos - Criar Treinos</title>
                 </Helmet>
@@ -294,7 +273,7 @@ class AddExerciseRepetsSets extends Component {
                                         <p className='text-player-name-exercise'>{exercise.nome}</p>
                                         <div className='sets-repts'>
                                             <p className='text-serie-repts'>Série: {exercise.serie} </p>
-                                            <p className='text-serie-repts'> Repetição: {exercise.repeticao} </p>
+                                            <p className='text-serie-repts'> Repetição/Duração {exercise.repeticao || exercise.duracao} </p>
                                         </div>
                                     </div>
                                     <DeleteOutlined className='delete-exercise' title="remover exercício?" onClick={() => this.handleDeleteExercise(index)} />

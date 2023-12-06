@@ -39,6 +39,7 @@ export const AddNewStudentPage = ({ idStudent }) => {
 
   const [dataNewStundetAdd, setDataNewStundetAdd] = useState(addNewStudentTemplate)
   const [statusCode, setStatusCode] = useState(0)
+  const endPointAzure = localStorage.getItem("end-point-azure")
 
 
   const updateFielHanlder = (key, value) => {
@@ -88,7 +89,7 @@ export const AddNewStudentPage = ({ idStudent }) => {
   }, [isLastStep])
 
   const addAluno = (idGym, idStudent) => {
-    axios.post(`https://kaloscorp.cyclic.app/kalos/alunoAcademia`, {
+    axios.post(`${endPointAzure}/kalos/alunoAcademia`, {
       id_academia: idGym,
       id_aluno: idStudent
     })
@@ -107,7 +108,7 @@ export const AddNewStudentPage = ({ idStudent }) => {
 
   const updateAddStudent = () => {
 
-    axios.put(`https://kaloscorp.cyclic.app/kalos/alunoAcademia/id/${id}`, {
+    axios.put(`${endPointAzure}/kalos/alunoAcademia/id/${id}`, {
       frequencia_cardiaca: dataNewStundetAdd.frequencia_cardiaca,
       tempo_em_pe: dataNewStundetAdd.tempo_em_pe,
       rotina_regular: dataNewStundetAdd.rotina_regular,
@@ -129,7 +130,7 @@ export const AddNewStudentPage = ({ idStudent }) => {
   }
 
   const addStudentWokouts = () => {
-    axios.post(`https://kaloscorp.cyclic.app/kalos/alunoTreino`, {
+    axios.post(`${endPointAzure}/kalos/alunoTreino`, {
       
         id_aluno: dataNewStundetAdd.id_aluno,
         treinos: dataNewStundetAdd.treinos_aluno
