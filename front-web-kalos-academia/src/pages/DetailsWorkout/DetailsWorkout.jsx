@@ -52,12 +52,12 @@ export default class DetailsWorkout extends Component {
                     <title>Detalhes do Treino</title>
                 </Helmet>
                 <Link to='/menu/treinos'>
-                                <ArrowLeftOutlined />
-                            </Link>
+                    <ArrowLeftOutlined />
+                </Link>
                 {Object.keys(workoutDetails).length > 0 && (
                     <div className='detailsWorkout'>
-                     
-                                                
+
+
 
 
                         <div className='detailsWorkout-container'>
@@ -65,9 +65,9 @@ export default class DetailsWorkout extends Component {
 
                             <img className='image-detailsworkout' src={workoutDetails.foto} alt={workoutDetails.nome} />
                             <div className='content-details-workout'>
-                               <div>
-                               <p className='details-workout-name'>{workoutDetails.nome}</p>
-                               </div>
+                                <div>
+                                    <p className='details-workout-name'>{workoutDetails.nome}</p>
+                                </div>
 
                                 <p className='details-workout-date'>{workoutDetails.data_criacao}</p>
                             </div>
@@ -82,7 +82,7 @@ export default class DetailsWorkout extends Component {
                                         alt=''
                                     />
                                     <div className='exercise-texto'>
-                                        <p className='text-player-name-exercise'>{exercicio.nome}</p>    
+                                        <p className='text-player-name-exercise'>{exercicio.nome}</p>
 
                                         <div className='sets-repts'>
                                             <p className='text-serie-repts'>Série:<span className='span-serie-repets'> {exercicio.series}</span> </p>
@@ -94,19 +94,19 @@ export default class DetailsWorkout extends Component {
                         </div>
                         <div className='container-peoples-workout'>
                             <p>Alunos matriculados no treino</p>
-                    {peoplesWorkout.length > 0 ? (
-                        peoplesWorkout.map((people, index) => (
-                            <div key={index} className='container-peoples'>{}
-                            <UserAddStudents key={index} nameStudent={people.nome}imgSrcStudent={people.foto} idStudentFormt={ "#" + 1000 + people.id} idStudent={people.id}/>
-                            </div>
-                        ))
-                    ) : (
-                        <p>Não há pessoas envolvidas neste treino.</p>
-                    )}
-                </div>
+                            {peoplesWorkout.length > 0 ? (
+                                peoplesWorkout.map((people, index) => (
+                                    <div key={index} className='container-peoples'>{ }
+                                        <UserAddStudents key={index} nameStudent={people.nome} imgSrcStudent={people.foto} idStudentFormt={"#" + 1000 + people.id} idStudent={people.id} />
+                                    </div>
+                                ))
+                            ) : (
+                                <p>Não há pessoas envolvidas neste treino.</p>
+                            )}
+                        </div>
                     </div>
                 )}
-             
+
             </div>
         );
     }

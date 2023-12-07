@@ -60,15 +60,16 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
   }
 
   const id = localStorage.getItem("id_academia")
-  console.log(data.data_nascimento)
+  const Nascimento = data.data_nascimento
+  console.log(data.data_nascimento.substring(0, 10))
 
   console.log(data);
 
   const atualizarAluno = () => {
-    axios.put(`${endPointAzure}/kalos/alunoAcademia/id/${idStudent}`, {
+    axios.put(`${endPointAzure}/kalos/aluno/id/${idStudent}`, {
 
       nome: data.nome,
-      data_nascimento: "2005-04-04",
+      data_nascimento: data.data_nascimento.substring(0, 10),
       telefone: data.telefone,
       email: data.email,
       foto: data.foto,
@@ -82,13 +83,11 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
       objetivo:data.objetivo,
       id_genero: data.id_genero,
       frequencia_cardiaca: frequenciaCardiaca,
-      tempo_em_pe: quantidadeTempoPe,
       rotina_regular: rotinaRegular,
       frequencia_treino_semanal: frequenciaTreinoSemanal,
       id_nivel_experiencia: experienciaExercicios,
-      id_qualidade_do_sono: qualidadeSono,
-      id_aluno: idStudent,
-      id_academia: id,
+      id_qualidade_do_sono: qualidadeSono
+
     }).then(({ data }) => {
       success()
       console.log(data)
