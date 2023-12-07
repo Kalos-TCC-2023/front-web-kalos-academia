@@ -31,6 +31,30 @@
     font-weight: bold;
     font-size: 15px;
 }
+.step_status{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.step_status p{
+    font-size: 2rem;
+}
+.blink {
+    animation: blink 1s infinite;
+  }
+  
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 /* .status_information_reservation .css-dev-only-do-not-override-qgg3xn.ant-btn.ant-btn-sm {
     font-size: 14px;
     height: 24px;

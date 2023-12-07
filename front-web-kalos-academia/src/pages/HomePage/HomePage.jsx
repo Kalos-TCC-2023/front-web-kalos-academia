@@ -32,7 +32,7 @@ export const HomePage = () => {
 
     useEffect(() => {
 
-        axios.get(`${endPointAzure}/kalos/ultimosAlunos/idAcademia/51`)
+        axios.get(`${endPointAzure}/kalos/ultimosAlunos/idAcademia/${idGym}`)
             .then(({ data }) => {
 
                 setLastStudents(data.ultimos_alunos)

@@ -39,6 +39,7 @@ export const AddNewStudentPage = ({ idStudent }) => {
 
   const [dataNewStundetAdd, setDataNewStundetAdd] = useState(addNewStudentTemplate)
   const [statusCode, setStatusCode] = useState(0)
+  const [data, setData] = useState('')
   const endPointAzure = localStorage.getItem("end-point-azure")
 
 
@@ -106,9 +107,32 @@ export const AddNewStudentPage = ({ idStudent }) => {
       })
   }
 
+  useEffect(() => {
+    axios.get(`${endPointAzure}/kalos/aluno/id/${id}`)
+        .then(({ data }) => {
+            console.log(data)
+            setData(data.aluno)
+        })
+}, [])
+
   const updateAddStudent = () => {
 
     axios.put(`${endPointAzure}/kalos/alunoAcademia/id/${id}`, {
+
+      nome: data.nome,
+      data_nascimento: data.data_nascimento.substring(0, 10),
+      telefone: data.telefone,
+      email: data.email,
+      foto: data.foto,
+      cpf: data.cpf,
+      senha: data.senha,
+      questao_condicao_medica: data.questao_condicao_medica,
+      questao_lesoes: data.questao_lesoes,
+      questao_medicamento: data.questao_medicamento,
+      peso: data.peso,
+      altura: data.altura,
+      objetivo:data.objetivo,
+      id_genero: data.id_genero,
       frequencia_cardiaca: dataNewStundetAdd.frequencia_cardiaca,
       tempo_em_pe: dataNewStundetAdd.tempo_em_pe,
       rotina_regular: dataNewStundetAdd.rotina_regular,
@@ -117,6 +141,7 @@ export const AddNewStudentPage = ({ idStudent }) => {
       id_qualidade_do_sono: dataNewStundetAdd.id_qualidade_sono,
       id_aluno: dataNewStundetAdd.id_aluno,
       id_academia: dataNewStundetAdd.id_academia
+
     }).then(({ data }) => {
       
       console.log(data)
