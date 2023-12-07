@@ -49,7 +49,7 @@ class AddExerciseRepetsSets extends Component {
 
     handleSelectRepeticaoChange = (value) => {
         console.log(value);
-        const { editingIndex, selectedExercises, repeticaoSelecionada } = this.state;
+        const { editingIndex, selectedExercises, repeticaoSelecionada, duracaoSelecionado } = this.state;
 
         if (editingIndex !== null) {
             const updatedExercises = [...selectedExercises];
@@ -59,6 +59,7 @@ class AddExerciseRepetsSets extends Component {
                 selectedExercises: updatedExercises,
                 repeticaoSelecionada: value, // Atualize o estado de repetição selecionada
                 isRepeticaoSelected: true,
+                duracaoSelecionado: null,
                 isDuracaoSelected: false
             });
             console.log(repeticaoSelecionada);
@@ -70,10 +71,10 @@ class AddExerciseRepetsSets extends Component {
     };
 
     handleSelectDuracaoChange = (event) => {
-        const horario = event.target.value; // Extrai o valor do evento
+        const horario = "00:"+ event.target.value; // Extrai o valor do evento
         console.log(horario);
 
-        const { editingIndex, selectedExercises, duracaoSelecionado } = this.state;
+        const { editingIndex, selectedExercises, duracaoSelecionado , serieSelecionada} = this.state;
 
         if (editingIndex !== null) {
             const updatedExercises = [...selectedExercises];
@@ -82,6 +83,7 @@ class AddExerciseRepetsSets extends Component {
             this.setState({
                 selectedExercises: updatedExercises,
                 duracaoSelecionado: horario,
+                serieSelecionada: null,
                 isRepeticaoSelected: false, // Desativa a repetição
                 isDuracaoSelected: true,
             });
@@ -211,9 +213,9 @@ class AddExerciseRepetsSets extends Component {
         ]
         return (
             <div className='container-add-exercise-repts-sets'>
-                {/* <Link to={"/menu/exercicio_criado_com_sucesso"}> */}
-                    <FloatButton onClick={this.handleSaveEdit} icon={<ArrowRightOutlined />} tooltip={<div>Avançar</div>} />
-                {/* </Link> */}
+                <Link to={"/menu/exercicio_criado_com_sucesso"}>
+                <FloatButton onClick={this.handleSaveEdit} icon={<ArrowRightOutlined />} tooltip={<div>Avançar</div>} />
+                </Link>
                 <Helmet>
                     <title>Kalos - Criar Treinos</title>
                 </Helmet>
@@ -239,8 +241,7 @@ class AddExerciseRepetsSets extends Component {
                                 <div>
                                     <p className='text-gray'>Serie</p>
                                     <SelectDefaultKalos
-                                        defaultValue={serieSelecionada}
-                                        options={optionsSerie}
+                                        defaultValue="0" options={optionsSerie}
                                         width='150px'
                                         height='40px'
                                         handleChange={(value) => this.handleSelectSerieChange(value)}
@@ -251,7 +252,7 @@ class AddExerciseRepetsSets extends Component {
 
 
                                     <SelectDefaultKalos
-                                        defaultValue={repeticaoSelecionada}
+                                        defaultValue="0"
                                         options={optionsRepeticao}
                                         width='150px'
                                         height='40px'
@@ -262,8 +263,8 @@ class AddExerciseRepetsSets extends Component {
                             </div>
                             <div>
                                 <p className='text-gray'>Duração</p>
-                                <input type='time' className={`input-time ${isRepeticaoSelected === false ? 'input-time-select' : ''}`}onChange={this.handleSelectDuracaoChange} disabled={isRepeticaoSelected}
-                                
+                                <input type='time' className={`input-time ${isRepeticaoSelected === false ? 'input-time-select' : ''}`} onChange={this.handleSelectDuracaoChange} disabled={isRepeticaoSelected}
+
                                 />
                             </div>
                         </div>

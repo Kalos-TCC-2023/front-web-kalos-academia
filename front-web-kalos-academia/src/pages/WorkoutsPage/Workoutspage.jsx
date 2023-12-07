@@ -211,7 +211,7 @@ class Workoutspage extends Component {
                       dataWokouts={workout.data_criacao}
                       alunosWokouts={workout.alunos}
                       nomeWokouts={workout.nome}
-                      categoriaWokouts='Iniciante'
+                      categoriaWokouts={workout.nome_categoria_treino}
                       imgWokouts={workout.foto}
                       onClick={(id) => this.handleCardClick(id)}
                     />
