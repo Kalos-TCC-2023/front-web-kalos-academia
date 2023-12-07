@@ -3,7 +3,7 @@ import { Select, Space } from 'antd';
 
 
 
-const SelectDefaultKalos = ({ defaultValue, options, width, height, handleChange }) => (
+const SelectDefaultKalos = ({ defaultValue, options, width, height, handleChange, disableValue }) => (
   <Space wrap>
     <Select
       defaultValue={defaultValue}
@@ -13,6 +13,7 @@ const SelectDefaultKalos = ({ defaultValue, options, width, height, handleChange
       }}
       onChange={handleChange}
       options={options}
+      disabled={disableValue}
     />
   </Space>
 );

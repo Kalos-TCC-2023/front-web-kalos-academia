@@ -45,3 +45,9 @@
   border-radius: 10px;
   background: #d9d9d9;
 }
+.preview_new_product{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}

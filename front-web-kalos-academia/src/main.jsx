@@ -31,8 +31,9 @@ import { DataReservationPage } from './pages/DataReservationPage/DataReservation
 import DetailsWorkout from './pages/DetailsWorkout/DetailsWorkout'
 import { StudentAddSucess } from './pages/studentCreatedWithSucess/StudentsCreated'
 
+const url = "https://kaloscorp.cyclic.app"
 // const url = "https://kaloscorp.azurewebsites.net"
-const url = "http://10.107.144.31:8080"
+// const url = "http://10.107.144.31:8080"
 localStorage.setItem("end-point-azure", url)
 
 
@@ -147,11 +148,11 @@ const router = createBrowserRouter([
       ,
       {
         path: "/menu/detalhes_treino",
-        element: <DetailsWorkout/>
+        element: <DetailsWorkout />
       },
       {
         path: "/menu/aluno_adicionado_sucesso",
-        element: <StudentAddSucess/>
+        element: <StudentAddSucess />
       }
 
     ]

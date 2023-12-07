@@ -62,6 +62,8 @@ class AddExerciseRepetsSets extends Component {
                 isDuracaoSelected: false
             });
             console.log(repeticaoSelecionada);
+            console.log(isRepeticaoSelected);
+
 
             this.saveToLocalStorage();
         }
@@ -97,6 +99,7 @@ class AddExerciseRepetsSets extends Component {
         this.setState({ selectedExercises });
         console.log(localStorage.getItem('nome_treino'));
     }
+
 
 
 
@@ -168,10 +171,13 @@ class AddExerciseRepetsSets extends Component {
         console.log(localStorage.getItem('selectedExercises'));
     };
 
+
     render() {
         const { selectedExercises, serieSelecionada, repeticaoSelecionada, imageExercise, nameExercise, isDuracaoSelected, isRepeticaoSelected } = this.state;
+        console.log(isDuracaoSelected, isRepeticaoSelected)
 
         const optionsSerie = [
+            { value: '0', label: '0' },
             { value: '1', label: '1' },
             { value: '2', label: '2' },
             { value: '3', label: '3' },
@@ -188,6 +194,7 @@ class AddExerciseRepetsSets extends Component {
         ]
             ;
         const optionsRepeticao = [
+            { value: '0', label: '0' },
             { value: '1', label: '1' },
             { value: '2', label: '2' },
             { value: '3', label: '3' },
@@ -249,7 +256,7 @@ class AddExerciseRepetsSets extends Component {
                                         width='150px'
                                         height='40px'
                                         handleChange={(value) => this.handleSelectRepeticaoChange(value)}
-                                        disabled={isDuracaoSelected} // Desabilita se a duração estiver selecionada
+                                        disableValue={isDuracaoSelected} // Desabilita se a duração estiver selecionada
                                     />
                                 </div>
                             </div>
