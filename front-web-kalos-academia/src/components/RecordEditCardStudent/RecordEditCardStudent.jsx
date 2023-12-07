@@ -16,6 +16,9 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
   const [frequenciaTreinoSemanal, setFrequenciaTreinoSemanal] = useState(data.frequencia_treino_semanal)
   const [messageApi, contextHolder] = message.useMessage()
   const endPointAzure = localStorage.getItem("end-point-azure")
+  const [idExperienciaNivel, setIdExperienciaNivel] = useState(data.id_nivel_experiencia)
+  const [idQualidadeSono, setIdQualidadeSono] = useState(data.id_qualidade_do_sono)
+
 
   console.log(dataNascimentoFormat)
 
@@ -44,11 +47,13 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
 
 
   const handleChangeSleepQuality = (value) => {
+    setIdQualidadeSono(value)
     setQualidadeSono(value)
     console.log(value)
   }
 
   const handleChangeExperienciaExercicios = (value) => {
+    setIdExperienciaNivel(value)
     setExperienciaExercicios(value)
     console.log(experienciaExercicios)
 
@@ -63,7 +68,7 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
   const Nascimento = data.data_nascimento
   console.log(data.data_nascimento.substring(0, 10))
 
-  console.log(data);
+  console.log(idQualidadeSono, idExperienciaNivel);
 
   const atualizarAluno = () => {
     axios.put(`${endPointAzure}/kalos/aluno/id/${idStudent}`, {
@@ -84,9 +89,9 @@ export const RecordEditCardStudent = ({ data, dataNascimentoFormat, idStudent })
       id_genero: data.id_genero,
       frequencia_cardiaca: frequenciaCardiaca,
       rotina_regular: rotinaRegular,
-      frequencia_treino_semanal: frequenciaTreinoSemanal,
+      frequencia_treino_semanal: idExperienciaNivel,
       id_nivel_experiencia: experienciaExercicios,
-      id_qualidade_do_sono: qualidadeSono
+      id_qualidade_do_sono: idQualidadeSono
 
     }).then(({ data }) => {
       success()
