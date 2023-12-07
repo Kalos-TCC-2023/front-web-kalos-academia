@@ -33,6 +33,9 @@ import { StudentAddSucess } from './pages/studentCreatedWithSucess/StudentsCreat
 
 // const url = "https://kaloscorp.cyclic.app"
 const url = "https://kaloscorpapp.azurewebsites.net/"
+
+//  const url = "https://kaloscorp.cyclic.app"
+// const url = "https://kaloscorpapp.azurewebsites.net"
 // const url = "http://10.107.144.31:8080"
 localStorage.setItem("end-point-azure", url)
 
