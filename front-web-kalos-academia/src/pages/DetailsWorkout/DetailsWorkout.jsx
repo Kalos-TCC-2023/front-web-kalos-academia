@@ -74,23 +74,28 @@ export default class DetailsWorkout extends Component {
                         </div>
                         <div className='exercises-container-details-workout'>
                             <p className='p-player-exercise'>Player de exercícios</p>
-                            {workoutDetails.exercicios.map((exercicio, index) => (
-                                <div className={`content-details-workout-exercise`} key={index}>
-                                    <img
-                                        className='photo-exercise'
-                                        src={`https://img.youtube.com/vi/${exercicio.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`}
-                                        alt=''
-                                    />
-                                    <div className='exercise-texto'>
-                                        <p className='text-player-name-exercise'>{exercicio.nome}</p>
+                            {workoutDetails.length > 0 ? (
+    workoutDetails.exercicio.map((exercicio, index) => (
+        <div className={`content-details-workout-exercise`} key={index}>
+            <img
+                className='photo-exercise'
+                src={`https://img.youtube.com/vi/${exercicio.anexo.replace("https://www.youtube.com/watch?v=", "")}/0.jpg`}
+                alt=''
+            />
+            <div className='exercise-texto'>
+                <p className='text-player-name-exercise'>{exercicio.nome}</p>
 
-                                        <div className='sets-repts'>
-                                            <p className='text-serie-repts'>Série:<span className='span-serie-repets'> {exercicio.series}</span> </p>
-                                            <p className='text-serie-repts'> Repetição/Duração:<span className='span-serie-repets'> {exercicio.repeticoes || exercicio.duracao}</span> </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
+                <div className='sets-repts'>
+                    <p className='text-serie-repts'>Série:<span className='span-serie-repets'> {exercicio.series}</span> </p>
+                    <p className='text-serie-repts'> Repetição/Duração:<span className='span-serie-repets'> {exercicio.repeticoes || exercicio.duracao}</span> </p>
+                </div>
+            </div>
+        </div>
+    ))
+) : (
+    <p>Nenhum Exercício adicionado ao treino</p>
+)}
+
                         </div>
                         <div className='container-peoples-workout'>
                             <p>Alunos matriculados no treino</p>

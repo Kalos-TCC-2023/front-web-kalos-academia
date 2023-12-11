@@ -31,8 +31,8 @@ import { DataReservationPage } from './pages/DataReservationPage/DataReservation
 import DetailsWorkout from './pages/DetailsWorkout/DetailsWorkout'
 import { StudentAddSucess } from './pages/studentCreatedWithSucess/StudentsCreated'
 
-// const url = "https://kaloscorp.cyclic.app"
-const url = "https://kaloscorpapp.azurewebsites.net/"
+ const url = "https://kaloscorp.cyclic.app"
+// const url = "https://kaloscorpapp.azurewebsites.net/"
 
 //  const url = "https://kaloscorp.cyclic.app"
 // const url = "https://kaloscorpapp.azurewebsites.net"

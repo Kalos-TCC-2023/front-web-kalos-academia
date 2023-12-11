@@ -2,6 +2,10 @@
    
     padding: 80px;
 }
+p{
+    font-weight: bold;
+    text-align: center;
+}
 
 .detailsWorkout {
     display: flex;
