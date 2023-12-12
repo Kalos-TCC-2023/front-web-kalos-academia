@@ -1,7 +1,7 @@
 import { AddWorkouts } from "../../pages/AddExerciseReptsSets/Api/addExerciseReptsSetsApi";
 
 export const createWorkoutSucess = async () => {
-    const treinoNome = localStorage.getItem("nome_treino");
+      const treinoNome = localStorage.getItem("nome_treino");
     const fotoTreino = localStorage.getItem("foto_treino");
     const descricaoTreino = localStorage.getItem("descricao_treino");
     const dataTreino = localStorage.getItem("data_treino");
@@ -36,3 +36,4 @@ export const createWorkoutSucess = async () => {
     }
   };
 
+  
