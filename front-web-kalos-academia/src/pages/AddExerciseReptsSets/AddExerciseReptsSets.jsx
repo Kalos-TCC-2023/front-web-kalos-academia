@@ -27,6 +27,8 @@ class AddExerciseRepetsSets extends Component {
 
     };
 
+    
+
     handleSelectSerieChange = (value) => {
         console.log(value);
 
@@ -63,7 +65,6 @@ class AddExerciseRepetsSets extends Component {
                 isDuracaoSelected: false
             });
             console.log(repeticaoSelecionada);
-            console.log(isRepeticaoSelected);
 
 
             this.saveToLocalStorage();
@@ -113,8 +114,8 @@ class AddExerciseRepetsSets extends Component {
 
         this.setState({
             serieSelecionada: exercise.serie || "0",
-            repeticaoSelecionada: exercise.repeticao || "0",
-            duracaoSelecionado: exercise.duracao || "00:00:00",
+            repeticaoSelecionada: exercise.repeticao || null,
+            duracaoSelecionado: exercise.duracao || null,
             editingIndex: index,
             exercicioClicadoIndex: index,
             imageExercise: exercise.foto,

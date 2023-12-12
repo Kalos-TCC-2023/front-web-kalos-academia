@@ -23,8 +23,8 @@ export const AddWorkouts = (
     exercicios: exercicios.map((exercicio) => ({
       id_exercicio: exercicio.id,
       id_serie: exercicio.serie,
-      id_repeticao: exercicio.repeticao,
-      duracao: exercicio.duracao,
+      id_repeticao: exercicio.repeticao || null,
+      duracao: exercicio.duracao || null,
     })),
   };
   console.log(workoutData);
